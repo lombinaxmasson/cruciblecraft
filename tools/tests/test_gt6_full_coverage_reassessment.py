@@ -261,7 +261,12 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         )
         self.assertEqual("runtime_code_uncarded", multiblocks["large_boiler"]["delivery_depth"])
         self.assertEqual("runtime_code_uncarded", multiblocks["tank_3x3x3"]["delivery_depth"])
-        self.assertEqual("runtime_paused", multiblocks["electrolyzer"]["delivery_depth"])
+        self.assertEqual("runtime_accepted", multiblocks["electrolyzer"]["delivery_depth"])
+        self.assertEqual("runtime_accepted", multiblocks["matter_fabricator"]["delivery_depth"])
+        self.assertEqual(
+            ["machines/gt6-coil-hosts"],
+            [cap["slug"] for cap in multiblocks["matter_fabricator"]["capabilities"]],
+        )
         self.assertEqual(
             ["machines/large-crucible"],
             [cap["slug"] for cap in multiblocks["crucible"]["capabilities"]],
@@ -269,6 +274,11 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         kinds = {row["behavior_class"]: row for row in self.coverage["machine_kinds"] if not row.get("recipe_map") or row["recipe_map"] == "NONE"}
         self.assertEqual("runtime_accepted", kinds["MultiTileEntityReactorCore1x1"]["delivery_depth"])
         self.assertEqual("runtime_accepted", kinds["MultiTileEntityAxle"]["delivery_depth"])
+        self.assertEqual("runtime_accepted", kinds["MultiTileEntityEngineRotation"]["delivery_depth"])
+        self.assertIn(
+            "content/gt6-mte-drive-runtime",
+            {cap["slug"] for cap in kinds["MultiTileEntityEngineRotation"]["evidence"]["capabilities"]},
+        )
         self.assertEqual("runtime_accepted", kinds["MultiTileEntitySolarPanelElectric"]["delivery_depth"])
         self.assertNotIn(
             "needs_manual_audit",

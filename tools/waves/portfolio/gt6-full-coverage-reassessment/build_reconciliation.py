@@ -119,10 +119,12 @@ MULTIBLOCK_CAPABILITY_ALIASES: dict[str, tuple[str, ...]] = {
     "large_turbine_gas": ("energy/large-gas-turbine",),
     "large_turbine_steam": ("energy/steam-turbine",),
     "logistics_core": ("logistics/logistics-core",),
+    "matter_fabricator": ("machines/gt6-coil-hosts",),
 }
 
 MACHINE_KIND_CAPABILITY_ALIASES: dict[str, tuple[str, ...]] = {
     "MultiTileEntityAxle": ("content/gt6-mte-drive-runtime",),
+    "MultiTileEntityEngineRotation": ("content/gt6-mte-drive-runtime",),
     "MultiTileEntityGearBox": ("content/gt6-mte-drive-runtime",),
     "MultiTileEntityBatteryBox": ("content/gt6-mte-converter-remainder-runtime",),
     "MultiTileEntityReactorCore2x2": (

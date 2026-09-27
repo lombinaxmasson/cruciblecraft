@@ -719,12 +719,11 @@
     },
     "cc_recipe_rows": 561126,
     "cc_material_rule_files": 98,
-    "capability_count": 128,
+    "capability_count": 129,
     "capability_states": {
       "frozen:accepted": 2,
-      "frozen:paused": 12,
-      "runtime_ready:accepted": 110,
-      "runtime_ready:active": 1,
+      "frozen:paused": 11,
+      "runtime_ready:accepted": 113,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -859,7 +858,7 @@
       "slug": "content/gt6-fluid-barrel",
       "title": "GT6 fluid storage tanks",
       "maturity": "runtime_ready",
-      "workflow": "active",
+      "workflow": "accepted",
       "survival_access": "partial",
       "wave_slug": "content/gt6-fluid-barrel",
       "path": "tools/capabilities/content/gt6-fluid-barrel/capability.json"
@@ -1578,8 +1577,8 @@
     {
       "slug": "machines/large-electrolyzer",
       "title": "Large Electrolyzer 17103",
-      "maturity": "frozen",
-      "workflow": "paused",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
       "survival_access": "partial",
       "wave_slug": "machines/large-electrolyzer",
       "path": "tools/capabilities/machines/large-electrolyzer/capability.json"
@@ -1736,6 +1735,15 @@
       "survival_access": "not_applicable",
       "wave_slug": null,
       "path": "tools/capabilities/portfolio/default-gametest-recovery/capability.json"
+    },
+    {
+      "slug": "portfolio/gt6-machine-ledger-audit",
+      "title": "GT6 machine ledger audit",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "not_applicable",
+      "wave_slug": null,
+      "path": "tools/capabilities/portfolio/gt6-machine-ledger-audit/capability.json"
     },
     {
       "slug": "portfolio/publication-reload-performance",
@@ -8960,8 +8968,8 @@
         {
           "slug": "machines/large-electrolyzer",
           "title": "Large Electrolyzer 17103",
-          "maturity": "frozen",
-          "workflow": "paused",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
           "survival_access": "partial",
           "wave_slug": "machines/large-electrolyzer",
           "path": "tools/capabilities/machines/large-electrolyzer/capability.json"
@@ -15808,7 +15816,17 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
+        "capabilities": [
+          {
+            "slug": "content/gt6-mte-drive-runtime",
+            "title": "GT6 Drive Runtime",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": null,
+            "wave_slug": "content/gt6-mte-drive-runtime",
+            "path": "tools/capabilities/content/gt6-mte-drive-runtime/capability.json"
+          }
+        ],
         "owner_attributed": [],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
@@ -15820,7 +15838,7 @@
         ],
         "data_file_count": 1
       },
-      "delivery_depth": "runtime_code_uncarded"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -17794,8 +17812,8 @@
         {
           "slug": "machines/large-electrolyzer",
           "title": "Large Electrolyzer 17103",
-          "maturity": "frozen",
-          "workflow": "paused",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
           "survival_access": "partial",
           "wave_slug": "machines/large-electrolyzer",
           "path": "tools/capabilities/machines/large-electrolyzer/capability.json"
@@ -17806,8 +17824,8 @@
           {
             "slug": "machines/large-electrolyzer",
             "title": "Large Electrolyzer 17103",
-            "maturity": "frozen",
-            "workflow": "paused",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
             "survival_access": "partial",
             "wave_slug": "machines/large-electrolyzer",
             "path": "tools/capabilities/machines/large-electrolyzer/capability.json"
@@ -17824,7 +17842,7 @@
         "data_file_count": 1,
         "structure_files": []
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "fermenter",
@@ -18302,9 +18320,29 @@
       "roadmap_bucket": "T23",
       "cc_multiblock": null,
       "owner": null,
-      "capabilities": [],
+      "capabilities": [
+        {
+          "slug": "machines/gt6-coil-hosts",
+          "title": "GT6 coils 18040-18045 and host machines",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": null,
+          "path": "tools/capabilities/machines/gt6-coil-hosts/capability.json"
+        }
+      ],
       "evidence": {
-        "capabilities": [],
+        "capabilities": [
+          {
+            "slug": "machines/gt6-coil-hosts",
+            "title": "GT6 coils 18040-18045 and host machines",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/machines/gt6-coil-hosts/capability.json"
+          }
+        ],
         "owner_attributed": [],
         "java_files": [],
         "java_file_count": 0,
@@ -18314,7 +18352,7 @@
         "data_file_count": 1,
         "structure_files": []
       },
-      "delivery_depth": "identity_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "mixer",
@@ -24149,7 +24187,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -24179,7 +24217,8 @@
       "recipe/gt6-steamcracking-bulk",
       "capability close recipe/gt6-steamcracking-bulk (major)",
       "energy/gt6-laser-magnet-zpm-converters",
-      "capability close energy/gt6-remainder-devices (major)"
+      "capability close energy/gt6-remainder-devices (major)",
+      "capability close content/gt6-fluid-barrel (major)"
     ],
     "accepted": null
   }

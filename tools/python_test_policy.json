@@ -50,6 +50,7 @@
     "test_oven",
     "test_large_processing_parts",
     "test_large_electrolyzer",
+    "test_large_boiler",
     "test_large_oven",
     "test_large_fermenter",
     "test_large_autoclave",
@@ -1677,6 +1678,26 @@
       "test_modules": [
         "test_material_form_authority",
         "test_technological_parts_foundation"
+      ]
+    },
+    {
+      "paths": [
+        "docs/history/card-plans/active/大型锅炉详细计划.md",
+        "docs/history/card-plans/closed/大型锅炉详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerWallParts.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTank.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTier.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/LargeBoilerRenderer.java",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerContractTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTankTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTierTest.java",
+        "tools/capabilities/machines/large-boiler/**",
+        "tools/tests/test_large_boiler.py"
+      ],
+      "test_modules": [
+        "test_large_boiler"
       ]
     }
   ]

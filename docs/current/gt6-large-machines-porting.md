@@ -6,6 +6,7 @@
 >
 > 本文是大型机器领域分析快照，不是项目总进度权威。全量 GT6 分母与当前
 > source/runtime/published/survival 对账见 [GT6 全量覆盖重评估](gt6-full-coverage.md)。
+> 主机排期见 [GT6 机器与多方块总计划](../history/card-plans/prep/GT6机器与多方块总计划.md)。
 
 ## 1. 这份文档解决什么问题
 

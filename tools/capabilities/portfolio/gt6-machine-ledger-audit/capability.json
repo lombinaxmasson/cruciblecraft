@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "slug": "portfolio/gt6-machine-ledger-audit",
+  "title": "GT6 machine ledger audit",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6机器账本检查详细计划.md",
+    "docs/history/card-plans/closed/GT6机器账本检查详细计划.md",
+    "tools/capabilities/portfolio/gt6-machine-ledger-audit/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "note": "Ledger-only reconciliation of paused large machines and stale steam-engine / large-bath documents. Does not change machine behavior, obtain, worldgen, EnergyType, or the coverage scanner. Playtest cycle stays as-is."
+}

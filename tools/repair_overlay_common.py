@@ -122,7 +122,7 @@ KIND_TABLE: tuple[tuple[str, str, str, str, str | None], ...] = (
     ("rollingmill", "ku_machine_kinetic", "轧机", "Rolling Mill", "t16"),
     ("shredder", "ku_machine_kinetic", "粉碎机", "Shredder", "t16"),
     ("sifter", "sifter", "筛选机", "Sifter", None),
-    ("sluice", "centrifuge", "溜槽", "Sluice", None),
+    ("sluice", "centrifuge", "洗矿机", "Sluice", None),
     ("smelter", "ru_machine_heat", "熔炼炉", "Smelter", "t17"),
     ("wiremill", "ku_machine_kinetic", "线材轧机", "Wire Mill", "t16"),
 )

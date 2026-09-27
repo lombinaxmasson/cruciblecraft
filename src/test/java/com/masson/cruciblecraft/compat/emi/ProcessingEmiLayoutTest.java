@@ -37,6 +37,12 @@ class ProcessingEmiLayoutTest {
     void gt6NeiOffsetsMatchRecipeMapBlit() {
         assertEquals(52, Gt6EmiGui.slotX(53));
         assertEquals(29, Gt6EmiGui.slotY(25));
+        assertEquals(151, Gt6EmiGui.slotX(ProcessingEmiLayout.WORKSTATION.x()));
+        assertEquals(87, Gt6EmiGui.slotY(ProcessingEmiLayout.WORKSTATION.y()));
+        assertEquals(15, Gt6EmiGui.STATS_X);
+        assertEquals(89, ProcessingEmiLayout.GT6_COSTS_TEXT_Y);
+        assertEquals(99, ProcessingEmiLayout.GT6_POWER_TEXT_Y);
+        assertEquals(129, ProcessingEmiLayout.GT6_DURATION_TEXT_Y);
         assertEquals(53, Gt6EmiGui.tankX(53));
         assertEquals(68, Gt6EmiGui.tankY(63));
         assertEquals(78, Gt6EmiGui.progressX(78));
@@ -46,6 +52,27 @@ class ProcessingEmiLayoutTest {
         assertEquals(79, Gt6EmiGui.MACHINE_PANEL_HEIGHT);
         assertEquals(166, Gt6EmiGui.NEI_CHROME_HEIGHT);
         assertEquals(166, ProcessingEmiLayout.NEI_HEIGHT);
+    }
+
+    @Test
+    void assemblerUsesGt6InputRowInsteadOfCcSixSlotGrid() {
+        ProcessingEmiLayout layout = ProcessingEmiLayout.create(
+                ModProcessingMachines.ASSEMBLER,
+                fullDisplayData(ModProcessingMachines.ASSEMBLER));
+        List<ProcessingEmiLayout.Rect> inputs = layout.itemSlots().stream()
+                .filter(slot -> slot.kind() != ProcessingEmiLayout.ItemKind.OUTPUT)
+                .map(ProcessingEmiLayout.ItemSlot::bounds)
+                .toList();
+
+        assertEquals(
+                new ProcessingEmiLayout.Rect(35, 25, 18, 18),
+                inputs.get(0));
+        assertEquals(
+                new ProcessingEmiLayout.Rect(53, 25, 18, 18),
+                inputs.get(1));
+        assertTrue(inputs.stream().skip(2).allMatch(
+                bounds -> bounds.y() >= ProcessingEmiLayout.WORKSTATION.bottom()));
+        assertEquals(6, ModProcessingMachines.ASSEMBLER.items().inputs().size());
     }
 
     @Test
@@ -81,7 +108,7 @@ class ProcessingEmiLayoutTest {
     }
 
     @Test
-    void bathCircuitRecipesOverflowInsteadOfThrowing() {
+    void bathCircuitRecipesKeepRecipeInputOrder() {
         ProcessingEmiRecipeData data = ProcessingEmiRecipeData.from(
                 ModProcessingMachines.BATH,
                 new GTRecipe(
@@ -111,7 +138,8 @@ class ProcessingEmiLayoutTest {
         assertEquals(2, inputSlots);
         assertTrue(layout.itemSlots().stream().anyMatch(slot ->
                 slot.kind() == ProcessingEmiLayout.ItemKind.CATALYST
-                        && slot.machineSlot() >= ModProcessingMachines.BATH.items().slotCount()));
+                        && slot.machineSlot()
+                                == ModProcessingMachines.BATH.items().inputs().get(1)));
         List<ProcessingEmiLayout.Rect> bounds = layout.visibleBounds();
         for (int left = 0; left < bounds.size(); left++) {
             for (int right = left + 1; right < bounds.size(); right++) {
@@ -131,6 +159,10 @@ class ProcessingEmiLayoutTest {
             assertEquals(spec.ui().progress().x(), layout.progress().x());
             assertEquals(spec.ui().progress().y(), layout.progress().y());
             for (ProcessingEmiLayout.ItemSlot slot : layout.itemSlots()) {
+                if (spec.recipeMapId().getPath().equals("assembler")
+                        && slot.kind() != ProcessingEmiLayout.ItemKind.OUTPUT) {
+                    continue;
+                }
                 if (slot.machineSlot() >= spec.items().slotCount()) {
                     continue;
                 }

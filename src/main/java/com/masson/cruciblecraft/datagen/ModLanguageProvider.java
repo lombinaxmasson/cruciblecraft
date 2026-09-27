@@ -372,15 +372,15 @@ public class ModLanguageProvider extends LanguageProvider {
                     "主机在侧底中心，朝外");
             add("tooltip.cruciblecraft.large_shredder.io",
                     "仅粉碎刀片输入，底层输出");
-            addBlock(ModBlocks.LARGE_SLUICE, "大型溜槽");
+            addBlock(ModBlocks.LARGE_SLUICE, "大型洗矿机");
             add("tooltip.cruciblecraft.large_sluice.structure",
-                    "结构：3×7×3 两层钛墙与顶层溜槽部件");
+                    "结构：3×7×3 两层钛墙与顶层洗矿部件");
             add("tooltip.cruciblecraft.large_sluice.parts",
-                    "远侧顶层溜槽部件输入；运行时部件随主机方向切换");
+                    "远侧顶层洗矿部件输入；运行时部件随主机方向切换");
             add("tooltip.cruciblecraft.large_sluice.controller",
                     "主机在近侧底层中心，朝外");
             add("tooltip.cruciblecraft.large_sluice.io",
-                    "远侧输入物品/水；近侧底部输出物品/溜槽汁；两侧相邻 RU 输入");
+                    "远侧输入物品/水；近侧底部输出物品/洗矿汁；两侧相邻 RU 输入");
             addBlock(ModBlocks.LARGE_SQUEEZER, "大型挤压机");
             add("tooltip.cruciblecraft.large_squeezer.structure",
                     "结构：5×5×3，65 个钢墙，中层 3×3 空气");
@@ -786,8 +786,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
                 add("fluid.cruciblecraft." + entry.id(), entry.chinese());
             });
-            add("fluid_type.cruciblecraft.sluice_juice", "溜槽汁");
-            add("fluid.cruciblecraft.sluice_juice", "溜槽汁");
+            add("fluid_type.cruciblecraft.sluice_juice", "洗矿汁");
+            add("fluid.cruciblecraft.sluice_juice", "洗矿汁");
             addEmiStackGroupNames();
             return;
         }
@@ -2148,6 +2148,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case "building/glow_glass_slab" ->
                     chinese ? "荧光玻璃台阶" : "Glow Glass Slab";
             case "building/planks" -> chinese ? "木板" : "Planks";
+            case "building/gt_wood" -> chinese ? "GT木头" : "GT Wood";
             case "building/slab" -> chinese ? "台阶" : "Slab";
             case "building/log" -> chinese ? "原木" : "Log";
             case "building/bars" -> chinese ? "栏杆" : "Bars";
@@ -2159,10 +2160,15 @@ public class ModLanguageProvider extends LanguageProvider {
             case "building/diggable" -> chinese ? "可挖掘方块" : "Diggable";
             case "building/sands" -> chinese ? "沙子" : "Sands";
             case "building/stone" -> chinese ? "石头" : "Stone";
+            case "building/concrete" -> chinese ? "混凝土" : "Concrete";
             case "furniture/bookshelf" -> chinese ? "书架" : "Bookshelf";
             case "furniture/drawer" -> chinese ? "分区抽屉" : "Compartment Drawer";
             case "furniture/safe" -> chinese ? "保险箱" : "Safe";
             case "furniture/chest" -> chinese ? "箱子" : "Chest";
+            case "furniture/mass_storage" ->
+                    chinese ? "量子存储器" : "Mass Storage";
+            case "furniture/locker" -> chinese ? "储物柜" : "Locker";
+            case "furniture/bottle_crate" -> chinese ? "瓶框" : "Bottle Crate";
             case "hopper/hopper" -> chinese ? "料斗" : "Hopper";
             case "hopper/queue_hopper" -> chinese ? "队列料斗" : "Queue Hopper";
             case "misc_tool/anvil" -> chinese ? "砧" : "Anvil";
@@ -2178,6 +2184,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case "foundry/crossing" -> chinese ? "浇铸道" : "Crucible Crossing";
             case "foundry/mold" -> chinese ? "铸造模具" : "Foundry Mold";
             case "mold/ceramic" -> chinese ? "模具" : "Mold";
+            case "component/circuit" -> chinese ? "电路" : "Circuit";
             case "energy/large_gas_turbine" ->
                     chinese ? "大型燃气轮机" : "Large Gas Turbine";
             default -> throw new IllegalStateException(

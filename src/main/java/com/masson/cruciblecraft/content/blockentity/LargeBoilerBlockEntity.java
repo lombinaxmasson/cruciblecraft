@@ -114,9 +114,11 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
         }
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (boiler.lastValidation == null
-                || CheckpointDecisions.onPositionPhase(
-                level.getGameTime(), phaseKey, STRUCTURE_RECHECK_TICKS)) {
+        if (recheckStructureNow(
+                boiler.lastValidation == null,
+                false,
+                CheckpointDecisions.onPositionPhase(
+                        level.getGameTime(), phaseKey, STRUCTURE_RECHECK_TICKS))) {
             boiler.recheckStructure(level, pos, state);
         }
         if (boiler.structureValid && !boiler.pluginQuarantined) {
@@ -125,6 +127,12 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
             boiler.pushSteam();
         }
         boiler.updateBarometer();
+        // GT6 explodes on the same tick when pressure is already past the
+        // barometer-4 mark and checkStructure fails. The 600-tick cadence
+        // stays for a cold, intact boiler.
+        if (recheckStructureNow(false, boiler.barometer() > 4, false)) {
+            boiler.recheckStructure(level, pos, state);
+        }
         boiler.explodeIfUnsafe();
     }
 
@@ -149,8 +157,7 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
                     5_000,
                     efficiency - Math.toIntExact(conversions));
         }
-        long produced = conversions * LargeBoilerTier.STEAM_PER_WATER
-                * efficiency / 10_000L;
+        long produced = steamProduced(conversions, efficiency);
         if (produced > 0L) {
             steam.addUnsafe(
                     new FluidStack(ModFluids.STEAM_SOURCE.get(), 1),
@@ -714,16 +721,54 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
     }
 
     private void updateBarometer() {
-        long capacity = steam.longCapacity();
-        if (capacity <= 0L) {
-            setBarometer(0);
-            return;
+        setBarometer(barometerScale(steam.longAmount(), steam.longCapacity()));
+    }
+
+    /**
+     * GT6 {@code UT.Code.scale(amount, capacity, 31, false)}.
+     * Empty is 0, full is 31, and any partial fill is at least 1.
+     */
+    static int barometerScale(long amount, long capacity) {
+        if (amount <= 0L || capacity <= 0L) {
+            return 0;
         }
-        long amount = steam.longAmount();
-        long scaled = amount > Long.MAX_VALUE / 31L
-                ? 31L
-                : amount * 31L / capacity;
-        setBarometer((int) Math.max(0L, Math.min(31L, scaled)));
+        if (amount >= capacity) {
+            return 31;
+        }
+        long scaled = 1L + (amount * 30L) / capacity;
+        return scaled >= 31L ? 31 : (int) scaled;
+    }
+
+    /**
+     * GT6 {@code UT.Code.units(conversions, 10000, efficiency * 160, false)}.
+     */
+    static long steamProduced(long conversions, int efficiency) {
+        if (conversions <= 0L || efficiency <= 0) {
+            return 0L;
+        }
+        long original = 10_000L;
+        long target = (long) efficiency * LargeBoilerTier.STEAM_PER_WATER;
+        if (target == 0L) {
+            return 0L;
+        }
+        if (original == target) {
+            return conversions;
+        }
+        if (original % target == 0L) {
+            original /= target;
+            target = 1L;
+        } else if (target % original == 0L) {
+            target /= original;
+            original = 1L;
+        }
+        return Math.max(0L, (conversions * target) / original);
+    }
+
+    static boolean recheckStructureNow(
+            boolean neverValidated,
+            boolean pressurized,
+            boolean phaseDue) {
+        return neverValidated || pressurized || phaseDue;
     }
 
     private void setBarometer(int value) {

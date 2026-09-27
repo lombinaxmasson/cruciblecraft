@@ -3,8 +3,9 @@ package com.masson.cruciblecraft.compat.emi;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.OptionalInt;
+import java.util.Optional;
 
+import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 /**
@@ -17,7 +18,9 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
  * {@code NEI_RecipeMap.drawBackground}: chrome at {@code (0,0)} and the
  * machine crop 176×79 from {@code v=3} at {@code (0,8)}. A tank is shifted to the right only when the source
  * UI overlaps another visible recipe widget, which occurs in the densest
- * configured layouts.
+ * configured layouts. The CC assembler has extra runtime catalyst slots;
+ * its EMI inputs use the two GT6 RecipeMap positions and overflow extras
+ * below the panel.
  */
 public record ProcessingEmiLayout(
         int width,
@@ -35,8 +38,13 @@ public record ProcessingEmiLayout(
     public static final int NEI_HEIGHT = 166;
     public static final int TEXTURE_SIZE = 256;
     public static final Rect WORKSTATION = new Rect(152, 83, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
+    // GT6 drawExtras() coordinates after translating the NEI background to (0, 0).
+    static final int GT6_COSTS_TEXT_Y = 89;
+    static final int GT6_POWER_TEXT_Y = 99;
+    static final int GT6_DURATION_TEXT_Y = 129;
     private static final int PADDING = 4;
     private static final int TEXT_LINE_HEIGHT = 10;
+    private static final int GT6_POWER_TO_DURATION_GAP = 30;
 
     public ProcessingEmiLayout {
         itemSlots = List.copyOf(itemSlots);
@@ -81,10 +89,14 @@ public record ProcessingEmiLayout(
                 .max()
                 .orElse(progress.bottom());
         contentBottom = Math.max(contentBottom, progress.bottom());
-        int textTop = Math.max(contentBottom, PANEL_HEIGHT) + PADDING;
+        int textTop = Math.max(
+                GT6_COSTS_TEXT_Y,
+                Math.max(contentBottom, PANEL_HEIGHT) + PADDING);
         int costsY = textTop;
-        int powerY = costsY + TEXT_LINE_HEIGHT;
-        int durationY = powerY + TEXT_LINE_HEIGHT;
+        int powerY = Math.max(GT6_POWER_TEXT_Y, costsY + TEXT_LINE_HEIGHT);
+        int durationY = Math.max(
+                GT6_DURATION_TEXT_Y,
+                powerY + GT6_POWER_TO_DURATION_GAP);
         int lastTextY = data.specialValue() == 0L
                 ? durationY
                 : durationY + TEXT_LINE_HEIGHT;
@@ -115,23 +127,30 @@ public record ProcessingEmiLayout(
         List<ItemSlot> result = new ArrayList<>();
         int overflow = 0;
         for (ProcessingEmiRecipeData.ItemInput input : data.consumedInputs()) {
-            OptionalInt machineSlot = recipeInputSlot(spec, input.recipeIndex());
-            if (machineSlot.isPresent()) {
+            Optional<ItemPosition> position =
+                    recipeInputPosition(spec, input.recipeIndex());
+            if (position.isPresent()) {
                 result.add(itemSlot(
-                        spec, ItemKind.INPUT, input.recipeIndex(), machineSlot.getAsInt()));
+                        spec,
+                        ItemKind.INPUT,
+                        input.recipeIndex(),
+                        position.get().machineSlot(),
+                        position.get().position()));
             } else {
                 result.add(overflowItemSlot(
                         spec, ItemKind.INPUT, input.recipeIndex(), overflow++));
             }
         }
         for (ProcessingEmiRecipeData.ItemInput catalyst : data.catalysts()) {
-            OptionalInt machineSlot = recipeInputSlot(spec, catalyst.recipeIndex());
-            if (machineSlot.isPresent()) {
+            Optional<ItemPosition> position =
+                    recipeInputPosition(spec, catalyst.recipeIndex());
+            if (position.isPresent()) {
                 result.add(itemSlot(
                         spec,
                         ItemKind.CATALYST,
                         catalyst.recipeIndex(),
-                        machineSlot.getAsInt()));
+                        position.get().machineSlot(),
+                        position.get().position()));
             } else {
                 result.add(overflowItemSlot(
                         spec, ItemKind.CATALYST, catalyst.recipeIndex(), overflow++));
@@ -153,13 +172,32 @@ public record ProcessingEmiLayout(
         return List.copyOf(result);
     }
 
-    private static OptionalInt recipeInputSlot(
+    private static Optional<ItemPosition> recipeInputPosition(
             ProcessingMachineSpec spec,
             int recipeIndex) {
         List<Integer> inputs = spec.items().inputs();
-        return recipeIndex >= 0 && recipeIndex < inputs.size()
-                ? OptionalInt.of(inputs.get(recipeIndex))
-                : OptionalInt.empty();
+        List<ProcessingMachineSpec.SlotPosition> positions =
+                displayInputPositions(spec);
+        if (recipeIndex < 0
+                || recipeIndex >= inputs.size()
+                || recipeIndex >= positions.size()) {
+            return Optional.empty();
+        }
+        return Optional.of(new ItemPosition(
+                inputs.get(recipeIndex),
+                positions.get(recipeIndex)));
+    }
+
+    private static List<ProcessingMachineSpec.SlotPosition> displayInputPositions(
+            ProcessingMachineSpec spec) {
+        // CC keeps six runtime slots for the assembler's material/tool policy,
+        // while GT6 RM.Assembler paints only its two RecipeMap input slots.
+        if ("assembler".equals(spec.recipeMapId().getPath())) {
+            return Gt6BasicMachineGui.inputSlots(2, 1);
+        }
+        return spec.items().inputs().stream()
+                .map(slot -> spec.ui().machineSlots().get(slot))
+                .toList();
     }
 
     private static ItemSlot itemSlot(
@@ -167,8 +205,20 @@ public record ProcessingEmiLayout(
             ItemKind kind,
             int recipeIndex,
             int machineSlot) {
-        ProcessingMachineSpec.SlotPosition position =
-                spec.ui().machineSlots().get(machineSlot);
+        return itemSlot(
+                spec,
+                kind,
+                recipeIndex,
+                machineSlot,
+                spec.ui().machineSlots().get(machineSlot));
+    }
+
+    private static ItemSlot itemSlot(
+            ProcessingMachineSpec spec,
+            ItemKind kind,
+            int recipeIndex,
+            int machineSlot,
+            ProcessingMachineSpec.SlotPosition position) {
         return new ItemSlot(
                 kind,
                 recipeIndex,
@@ -246,6 +296,10 @@ public record ProcessingEmiLayout(
         }
         return List.copyOf(result);
     }
+
+    private record ItemPosition(
+            int machineSlot,
+            ProcessingMachineSpec.SlotPosition position) {}
 
     private static void addTank(
             ProcessingMachineSpec spec,

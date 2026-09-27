@@ -18,10 +18,15 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.FoundryHosts;
+import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
+import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -41,6 +46,8 @@ import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
+import com.masson.cruciblecraft.worldgen.StoneLayerStones;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -236,7 +243,7 @@ public final class EmiStackGroupPlan {
 
     /**
      * Building blocks, furniture, hoppers, tools, foundry parts, fluid
-     * attachments, smelting crucibles, and molds.
+     * attachments, smelting crucibles, molds, and circuit parts.
      * Glass uses catalog ids, not {@code glass/[^/]+}, so material forms such
      * as {@code glass/ingot} stay in the prefix groups.
      */
@@ -270,6 +277,7 @@ public final class EmiStackGroupPlan {
             }
         }
         addIfMany(groups, "building/planks", planks);
+        addIfMany(groups, "building/gt_wood", gtWoodIds());
         List<String> slabs = ids(building, variant ->
                 variant.slab() && !variant.glassLike());
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
@@ -310,13 +318,19 @@ public final class EmiStackGroupPlan {
         for (Map.Entry<String, List<String>> entry : leftover.entrySet()) {
             addIfMany(groups, "building/" + entry.getKey(), entry.getValue());
         }
-        List<String> stones = new ArrayList<>();
+        LinkedHashSet<String> stones = new LinkedHashSet<>();
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
             if (!variant.slab()) {
                 stones.add(variant.id().toString());
             }
         }
-        addIfMany(groups, "building/stone", stones);
+        for (StoneLayerStones.Cube cube : StoneLayerStones.cubes()) {
+            if (cube.role() == StoneLayerStones.Role.STONE) {
+                stones.add(cube.id().toString());
+            }
+        }
+        addIfMany(groups, "building/stone", List.copyOf(stones));
+        addIfMany(groups, "building/concrete", concreteIds());
         addIfMany(
                 groups,
                 "furniture/bookshelf",
@@ -327,6 +341,14 @@ public final class EmiStackGroupPlan {
                 furnitureIds(StorageBehaviorProfile.DRAWER, MteInPlaceKind.DRAWER));
         addIfMany(groups, "furniture/safe", mteIds(MteInPlaceKind.SAFE));
         addIfMany(groups, "furniture/chest", mteIds(MteInPlaceKind.CHEST));
+        addIfMany(groups, "furniture/mass_storage", massStorageIds());
+        addIfMany(groups, "furniture/locker", lockerIds());
+        addIfMany(
+                groups,
+                "furniture/bottle_crate",
+                furnitureIds(
+                        StorageBehaviorProfile.BOTTLE_CRATE,
+                        MteInPlaceKind.BOTTLE_CRATE));
         addIfMany(groups, "hopper/hopper", hopperIds(HopperKind.HOPPER));
         addIfMany(
                 groups,
@@ -369,6 +391,7 @@ public final class EmiStackGroupPlan {
             molds.add("cruciblecraft:" + CeramicMoldCatalog.firedItemId(variant));
         }
         addIfMany(groups, "mold/ceramic", molds);
+        addIfMany(groups, "component/circuit", circuitIds());
         addIfMany(
                 groups,
                 "energy/large_gas_turbine",
@@ -411,6 +434,109 @@ public final class EmiStackGroupPlan {
             }
         }
         return ids;
+    }
+
+    /**
+     * Standard and logistics mass storage, plus material housings.
+     * Item barrels and plastic boxes share the mass-storage behavior and
+     * stay out of this row.
+     */
+    private static List<String> massStorageIds() {
+        LinkedHashSet<String> ids = new LinkedHashSet<>();
+        for (StorageVariant variant : StorageVariantCatalog.variants()) {
+            String family = variant.family();
+            if ("mass_storage_standard".equals(family)
+                    || "mass_storage_logistics".equals(family)) {
+                ids.add(variant.id().toString());
+            }
+        }
+        ids.addAll(mteIds(MteInPlaceKind.MASS_STORAGE));
+        return List.copyOf(ids);
+    }
+
+    private static List<String> lockerIds() {
+        LinkedHashSet<String> ids = new LinkedHashSet<>();
+        for (StorageVariant variant :
+                StorageVariantCatalog.of(StorageBehaviorProfile.LOCKER)) {
+            ids.add(variant.id().toString());
+        }
+        for (StorageVariant variant :
+                StorageVariantCatalog.of(StorageBehaviorProfile.LOCKER_CHARGING)) {
+            ids.add(variant.id().toString());
+        }
+        ids.addAll(mteIds(MteInPlaceKind.LOCKER));
+        return List.copyOf(ids);
+    }
+
+    /**
+     * Named GT planks stay in {@code building/planks}. This row is the
+     * remaining GT wood: the crate, dyed plank/beam/log blocks, and tree
+     * logs and beams.
+     */
+    private static List<String> gtWoodIds() {
+        List<String> ids = new ArrayList<>();
+        ids.add("cruciblecraft:gt_wood/crate");
+        for (GtBlockObjectCatalog.Variant variant :
+                BathRemainderBlockObjectCatalog.variants()) {
+            if (remainderWood(variant.registryPath())) {
+                ids.add(variant.id().toString());
+            }
+        }
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            ids.add("cruciblecraft:" + species.logPath());
+            ids.add("cruciblecraft:" + species.beamPath());
+        }
+        return ids;
+    }
+
+    private static boolean remainderWood(String registryPath) {
+        String root = firstPathSegment(registryPath);
+        return "planks".equals(root)
+                || "planks_fireproof".equals(root)
+                || "planks2".equals(root)
+                || "planks2_fireproof".equals(root)
+                || root.startsWith("beam_")
+                || root.startsWith("log_");
+    }
+
+    private static List<String> concreteIds() {
+        List<String> ids = new ArrayList<>();
+        for (GtBlockObjectCatalog.Variant variant :
+                BathRemainderBlockObjectCatalog.variants()) {
+            String root = firstPathSegment(variant.registryPath());
+            if ("concrete".equals(root) || "concrete_reinforced".equals(root)) {
+                ids.add(variant.id().toString());
+            }
+        }
+        for (BathMteIdentityCatalog.Identity identity :
+                BathMteIdentityCatalog.identities()) {
+            if (identity.registryPath().startsWith("panel/concrete_")) {
+                ids.add(identity.id().toString());
+            }
+        }
+        return ids;
+    }
+
+    private static List<String> circuitIds() {
+        LinkedHashSet<String> ids = new LinkedHashSet<>();
+        ids.add("cruciblecraft:programmed_circuit");
+        for (TechnologicalPartCatalog.Part part : TechnologicalPartCatalog.parts()) {
+            if (part.registryPath().contains("circuit")) {
+                ids.add(part.id().toString());
+            }
+        }
+        for (SemanticObjectCatalog.Identity identity :
+                SemanticObjectCatalog.identities()) {
+            if (identity.registryPath().contains("circuit")) {
+                ids.add(identity.id().toString());
+            }
+        }
+        for (BathIdentityCatalog.Identity identity : BathIdentityCatalog.identities()) {
+            if (identity.registryPath().contains("circuit")) {
+                ids.add(identity.id().toString());
+            }
+        }
+        return List.copyOf(ids);
     }
 
     private static List<String> hopperIds(HopperKind kind) {

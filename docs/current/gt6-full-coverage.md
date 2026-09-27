@@ -15,15 +15,15 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 31，`full_replay` 11 |
-| 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
+| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 32，`full_replay` 11 |
+| 多方块控制器 | 30 canonical kinds | `identity_only` 1，`runtime_code_uncarded` 2，`runtime_paused` 5，`runtime_accepted` 22 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 128 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 110，`runtime_ready:active` 1，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 27，`unreviewed` 28，`unset` 64 |
+| Capability | 129 | `frozen:accepted` 2，`frozen:paused` 11，`runtime_ready:accepted` 113，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 7，`partial` 27，`unreviewed` 28，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -282,7 +282,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachineElectric` | RM.ScannerVisuals | EU→NONE | in_scope | 5 | 5 | — | `denominator_only` |
 | `MultiTileEntityBasicMachineElectric` | RM.Unboxinator | EU→NONE | in_scope | 5 | 5 | — | `denominator_only` |
 | `MultiTileEntityQuantumEnergizerLaser` | — | LU→QU | deferred_with_reason | 5 | 5 | 目录 1 个文件，无运行时 | `identity_only` |
-| `MultiTileEntityEngineRotation` | — | RU→KU | in_scope | 13 | 13 | 代码 2 个文件，无 capability | `runtime_code_uncarded` |
 | `MultiTileEntityBasicMachine` | RM.Furnace | HU→NONE | in_scope | 4 | 4 | cruciblecraft:oven | `runtime_only` |
 | `MultiTileEntityBasicMachine` | RM.Replicator | QU→NONE | deferred_with_reason | 5 | 5 | cruciblecraft:replicator | `runtime_only` |
 | `MultiTileEntityBasicMachine` | RM.ScannerMolecular | QU→NONE | deferred_with_reason | 1 | 1 | cruciblecraft:scanner | `runtime_only` |
@@ -341,6 +340,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityCrystalChargerLarge` | — | NONE→LU | deferred_with_reason | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityDynamoElectric` | — | RU→EU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityEngineElectric` | — | EU→KU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
+| `MultiTileEntityEngineRotation` | — | RU→KU | in_scope | 13 | 13 | content/gt6-mte-drive-runtime（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityEngineSteam` | — | STEAM→KU | in_scope | 28 | 28 | energy/converter-catalog（runtime_ready/accepted）, energy/nuclear-fission-observation-safety（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityGearBox` | — | RU→RU | in_scope | 13 | 13 | content/gt6-mte-drive-runtime（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityGeneratorBrick` | FM.Furnace | NONE→HU | in_scope | 1 | 1 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
@@ -382,12 +382,10 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 控制器 | 分母 | CC 证据 | 交付深度 |
 | --- | --- | --- | --- |
-| `matter_fabricator` | out_of_scope | 目录 1 个文件，无运行时 | `identity_only` |
 | `tank_5x5x5_metal` | deferred_with_reason | 目录 1 个文件，无运行时 | `identity_only` |
 | `large_boiler` | in_scope | 代码 5 个文件，无 capability | `runtime_code_uncarded` |
 | `tank_3x3x3` | in_scope | 代码 1 个文件，无 capability | `runtime_code_uncarded` |
 | `autoclave` | deferred_with_reason | machines/large-autoclave（frozen/paused，survival=partial） | `runtime_paused` |
-| `electrolyzer` | deferred_with_reason | machines/large-electrolyzer（frozen/paused，survival=partial） | `runtime_paused` |
 | `fermenter` | deferred_with_reason | machines/large-fermenter（frozen/paused，survival=partial） | `runtime_paused` |
 | `fusion_reactor` | out_of_scope | energy/fusion-quantum（frozen/paused，survival=unset） | `runtime_paused` |
 | `large_heat_exchanger` | deferred_with_reason | energy/large-heat-exchanger（frozen/paused，survival=unset） | `runtime_paused` |
@@ -401,11 +399,13 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `crusher` | deferred_with_reason | machines/large-crusher（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `cryo_distillation_tower` | deferred_with_reason | machines/distillation-tower（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `distillation_tower` | in_scope | machines/distillation-tower（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `electrolyzer` | deferred_with_reason | machines/large-electrolyzer（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `implosion_compressor` | deferred_with_reason | machines/implosion-compressor（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_dynamo` | deferred_with_reason | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_turbine_gas` | deferred_with_reason | energy/large-gas-turbine（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `lightning_rod` | out_of_scope | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `logistics_core` | deferred_with_reason | logistics/logistics-core（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
+| `matter_fabricator` | out_of_scope | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `mixer` | deferred_with_reason | machines/large-mixer（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `oven` | deferred_with_reason | machines/large-oven（runtime_ready/accepted，survival=partial）, machines/oven（runtime_ready/accepted，survival=unset） | `runtime_accepted` |
 | `shredder` | deferred_with_reason | machines/large-shredder（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（128）
+## 12. Capability（129）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -585,7 +585,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `content/gt6-eu-cable-acquisition` | runtime_ready | accepted | — |
 | `content/gt6-eu-missing-wire-gauges-runtime` | runtime_ready | accepted | — |
 | `content/gt6-eu-wire-cable-runtime` | runtime_ready | accepted | — |
-| `content/gt6-fluid-barrel` | runtime_ready | active | partial |
+| `content/gt6-fluid-barrel` | runtime_ready | accepted | partial |
 | `content/gt6-fluid-combo-pipe-runtime` | runtime_ready | accepted | — |
 | `content/gt6-fluid-dangerous-media-runtime` | runtime_ready | accepted | — |
 | `content/gt6-fluid-pipe-acquisition` | runtime_ready | accepted | — |
@@ -665,7 +665,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `machines/large-coagulator` | runtime_ready | accepted | blocked |
 | `machines/large-crucible` | runtime_ready | accepted | partial |
 | `machines/large-crusher` | runtime_ready | accepted | partial |
-| `machines/large-electrolyzer` | frozen | paused | partial |
+| `machines/large-electrolyzer` | runtime_ready | accepted | partial |
 | `machines/large-fermenter` | frozen | paused | partial |
 | `machines/large-mixer` | runtime_ready | accepted | partial |
 | `machines/large-oven` | runtime_ready | accepted | partial |
@@ -683,6 +683,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `machines/sanding` | runtime_ready | accepted | — |
 | `machines/slicer` | runtime_ready | accepted | — |
 | `portfolio/default-gametest-recovery` | runtime_ready | accepted | not_applicable |
+| `portfolio/gt6-machine-ledger-audit` | runtime_ready | accepted | not_applicable |
 | `portfolio/publication-reload-performance` | runtime_ready | accepted | not_applicable |
 | `portfolio/test-authoring-workflow` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-bulk-capacity` | runtime_ready | accepted | not_applicable |
@@ -746,7 +747,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 这些是旧冻结分母当年标的 `out_of_scope`（“third-stage excluded axis”）。本页以完整 GT6 为目标，它们不能默认算作“不用做”，需要逐项决定：真正移植、明确作为设计排除，或确认 GT6 本身未使用。
 
 - 配方图：`gt.recipe.anvil`（9228 行）、`gt.recipe.cruciblealloying`（414 行）
-- 多方块控制器：`bedrock_drill`（CC：`runtime_accepted`）、`fusion_reactor`（CC：`runtime_paused`）、`lightning_rod`（CC：`runtime_accepted`）、`matter_fabricator`（CC：`identity_only`）、`von_da_graagg`（CC：`runtime_accepted`）
+- 多方块控制器：`bedrock_drill`（CC：`runtime_accepted`）、`fusion_reactor`（CC：`runtime_paused`）、`lightning_rod`（CC：`runtime_accepted`）、`matter_fabricator`（CC：`runtime_accepted`）、`von_da_graagg`（CC：`runtime_accepted`）
 - 盖板：`asphalt`、`crafting`、`drain`、`logistics_display_cpu_control`、`logistics_display_cpu_conversion`、`logistics_display_cpu_logic`、`logistics_display_cpu_storage`、`texture_canvas`、`texture_multi`、`texture_simple`
 - 能量身份：`REDSTONE_FLUX`、`MINECRAFT_JOULES`、`VIS_ORDO`、`VIS_AER`、`VIS_AQUA`、`VIS_TERRA`、`VIS_IGNIS`、`VIS_PERDITIO`
 - 物品/流体生成域：`ITEMGENERATOR.ARMORS`、`ITEMGENERATOR.EMPTY`、`ITEMGENERATOR.GASES`、`ITEMGENERATOR.LIQUID`、`ITEMGENERATOR.PLANTS`、`ITEMGENERATOR.PROJECTILES`

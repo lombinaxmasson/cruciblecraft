@@ -21,6 +21,7 @@
     "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_liquid/**",
     "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_fluid_bed/**",
     "src/test/java/com/masson/cruciblecraft/energy/converter/**",
+    "src/test/java/com/masson/cruciblecraft/steam/SteamEngineKuCurveTest.java",
     "tools/capabilities/energy/converter-catalog/**",
     "tools/waves/runtime/converter-catalog/**",
     "tools/tests/test_energy_converter_catalog.py",
@@ -42,7 +43,8 @@
     "gasBurningBoxFeedsAdjacentHu",
     "playerSurfaceIsRegistered",
     "representativeRecipesAreSurvivalCraftable",
-    "solidBurningBoxBurnsCoal"
+    "solidBurningBoxBurnsCoal",
+    "bronzeNominalTwelveSpansInclusiveSixToTwentyFour"
   ],
   "identity_disposition": [
     {
@@ -70,6 +72,6 @@
       "reason": "GT6 MotorElectric 10021 Electric_T[1]; replaces un-tiered electric_motor."
     }
   ],
-  "note": "169 Loader_MultiTileEntities converter rows as kind × material. Shared runtimes, not 169 classes. Historical energy_converters.json stays byte-stable. Batteries are owned by energy/batteries. Source is local gt6_code. Current MTE energy_converter catalog has 71 metas matching these source_id values; their scatter dummies must later fold to these live BlockItems with no second art set. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed.",
+  "note": "169 Loader_MultiTileEntities converter rows as kind × material. Shared runtimes, not 169 classes. Historical energy_converters.json stays byte-stable. Batteries are owned by energy/batteries. Source is local gt6_code. Current MTE energy_converter catalog has 71 metas matching these source_id values; their scatter dummies must later fold to these live BlockItems with no second art set. Former player_complete claim is withdrawn; historical signoff does not count. survival_access is unreviewed. Steam-engine kinetics are live here, not on a separate energy/steam-engine-kinetics card. Bronze outputPacket size stays 12: that is mOutput and fixedOutput.kuPerTick, not a fixed emit. SteamEngineKuCurve.outputKu emits 6 at state 7, 12 at state 15, and 24 at state 31. Each steam batch is 200 mB; KU credit is SteamConversion.engineKuPerBatch from efficiency basis points (bronze 5000 bps credits 50 KU). The packet carries stroke sign. Emission requires stored > tOutput and tOutput * 2 > nominal, then the KU is deducted even when the neighbor takes nothing. visualState above 30 latches stop and vents steam. Exhaust is distilled water. Proof is SteamEngineKuCurveTest.bronzeNominalTwelveSpansInclusiveSixToTwentyFour. steamEnginePowersSifterThroughKu only advances a sifter and is not kinetics proof.",
   "survival_access": "unreviewed"
 }

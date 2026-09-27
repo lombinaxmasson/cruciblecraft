@@ -7,6 +7,7 @@
 >
 > 分母与现状：[gt6-full-coverage.md](../../../current/gt6-full-coverage.md)（2026-09-24 首次逐行比较）。
 > Java/tick 源：`gt6_code/gregtech6`。贴图源：`gt6_referencable_port_code/gregtech6_w`。
+> 机器与多方块主机的排期见 [GT6 机器与多方块总计划](GT6机器与多方块总计划.md)。本表继续管配方批量。
 
 ```text
 lane                         = prep

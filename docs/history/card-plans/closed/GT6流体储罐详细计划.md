@@ -1,8 +1,8 @@
 # GT6流体储罐详细计划
 
 > 计划 slug：`content/gt6-fluid-barrel`
-> 状态：进行中 `runtime_ready` / `workflow=active`。
-> 本文件位于 `card-plans/active/`。
+> 状态：已关闭 `runtime_ready` / `workflow=accepted`。
+> 本文件位于 `card-plans/closed/`。
 > 正式名称：GT6流体储罐详细计划
 > 性质：把 GT6 Barrel、Drum、Plastic Canister 与 Logistics Tank 做成独立方块。
 >
@@ -10,11 +10,11 @@
 > 美术源：`gt6_referencable_port_code/gregtech6_w`。
 
 ```text
-lane                         = active
+lane                         = closed
 capability_slug              = content/gt6-fluid-barrel
-unique_active_wave           = content/gt6-fluid-barrel
+unique_active_wave           = null
 maturity                     = runtime_ready
-workflow                     = active
+workflow                     = accepted
 depends_on                   = registry/catalog-modern-ids
 close_target                 = runtime_ready
 ```
@@ -37,7 +37,7 @@ close_target                 = runtime_ready
 
 ## 1. 验收
 
-- [ ] 36 个方块、物品、流体能力与长整型流体能力已注册
-- [ ] `FluidBarrelTest` 通过
-- [ ] 20 个金属流体储罐和物流储罐是源配方；木桶和塑料罐保持 blocked
-- [ ] 关闭目标 `runtime_ready`
+- [x] 36 个方块、物品、流体能力与长整型流体能力已注册
+- [x] `FluidBarrelTest` 通过
+- [x] 20 个金属流体储罐和物流储罐是源配方；木桶和塑料罐保持 blocked
+- [x] 关闭目标 `runtime_ready`

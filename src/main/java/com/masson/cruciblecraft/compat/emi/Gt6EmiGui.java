@@ -25,6 +25,7 @@ final class Gt6EmiGui {
     static final int MACHINE_PANEL_V = 3;
     static final int MACHINE_PANEL_HEIGHT = 79;
     static final int NEI_CHROME_HEIGHT = 166;
+    static final int STATS_X = 15;
     private static final int SLOT_INSET = 1;
 
     private Gt6EmiGui() {}
@@ -125,11 +126,11 @@ final class Gt6EmiGui {
     }
 
     static SlotWidget workstation(WidgetHolder widgets, EmiIngredient stack) {
-        return widgets.addSlot(
+        return slot(
+                        widgets,
                         stack,
                         ProcessingEmiLayout.WORKSTATION.x(),
                         ProcessingEmiLayout.WORKSTATION.y())
-                .drawBack(false)
                 .catalyst(true);
     }
 
@@ -167,7 +168,7 @@ final class Gt6EmiGui {
                                     : "emi.cruciblecraft.processing.costs",
                             Long.toString(total),
                             data.energyName()),
-                    8,
+                    STATS_X,
                     costsY,
                     0xFF000000,
                     false);
@@ -180,18 +181,23 @@ final class Gt6EmiGui {
                                     : "emi.cruciblecraft.processing.usage",
                             Long.toString(rate),
                             data.energyUnit()),
-                    8,
+                    STATS_X,
                     usageY,
                     0xFF000000,
                     false);
         }
-        widgets.addText(timeComponent(data.durationTicks()), 8, timeY, 0xFF000000, false);
+        widgets.addText(
+                timeComponent(data.durationTicks()),
+                STATS_X,
+                timeY,
+                0xFF000000,
+                false);
         if (data.specialValue() != 0L) {
             widgets.addText(
                     Component.translatable(
                             "emi.cruciblecraft.processing.special",
                             Long.toString(data.specialValue())),
-                    8,
+                    STATS_X,
                     timeY + 10,
                     0xFF000000,
                     false);

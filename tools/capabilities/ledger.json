@@ -319,7 +319,7 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/GT6流体储罐详细计划.md",
+        "docs/history/card-plans/closed/GT6流体储罐详细计划.md",
         "src/main/java/com/masson/cruciblecraft/content/fluidbarrel/**",
         "src/main/java/com/masson/cruciblecraft/content/block/FluidBarrelBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidBarrelBlockEntity.java",
@@ -345,7 +345,7 @@
       "slug": "content/gt6-fluid-barrel",
       "survival_access": "partial",
       "title": "GT6 fluid storage tanks",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -1650,6 +1650,7 @@
         "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_liquid/**",
         "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_box_fluid_bed/**",
         "src/test/java/com/masson/cruciblecraft/energy/converter/**",
+        "src/test/java/com/masson/cruciblecraft/steam/SteamEngineKuCurveTest.java",
         "tools/capabilities/energy/converter-catalog/**",
         "tools/waves/runtime/converter-catalog/**",
         "tools/tests/test_energy_converter_catalog.py",
@@ -2930,6 +2931,38 @@
     },
     {
       "depends_on": [
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/大型锅炉详细计划.md",
+        "docs/history/card-plans/closed/大型锅炉详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerWallParts.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTank.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTier.java",
+        "src/main/java/com/masson/cruciblecraft/client/render/LargeBoilerRenderer.java",
+        "src/main/java/com/masson/cruciblecraft/compat/jade/observation/LargeBoilerObservation.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_boiler_*.json",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerContractTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTankTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTierTest.java",
+        "tools/capabilities/machines/large-boiler/**",
+        "tools/tests/test_large_boiler.py"
+      ],
+      "path": "tools/capabilities/machines/large-boiler/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-boiler",
+      "survival_access": "partial",
+      "title": "Large Boiler 17201-17205",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "machines/large-processing-parts",
         "content/gt6-mte-processing-host-fold"
       ],
@@ -3066,7 +3099,7 @@
         "machines/large-processing-parts",
         "content/gt6-mte-multiblock-runtime"
       ],
-      "maturity": "frozen",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/closed/大型电解机详细计划.md",
         "src/main/java/com/masson/cruciblecraft/content/block/LargeElectrolyzerBlock.java",
@@ -3091,7 +3124,7 @@
       "slug": "machines/large-electrolyzer",
       "survival_access": "partial",
       "title": "Large Electrolyzer 17103",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -3639,6 +3672,24 @@
       "slug": "portfolio/default-gametest-recovery",
       "survival_access": "not_applicable",
       "title": "Default GameTest Grid Recovery",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6机器账本检查详细计划.md",
+        "docs/history/card-plans/closed/GT6机器账本检查详细计划.md",
+        "tools/capabilities/portfolio/gt6-machine-ledger-audit/**"
+      ],
+      "path": "tools/capabilities/portfolio/gt6-machine-ledger-audit/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "portfolio/gt6-machine-ledger-audit",
+      "survival_access": "not_applicable",
+      "title": "GT6 machine ledger audit",
       "workflow": "accepted"
     },
     {
@@ -4376,7 +4427,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 128,
+  "capability_count": 130,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4558,6 +4609,7 @@
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-boiler",
       "machines/large-centrifuge",
       "machines/large-crucible",
       "machines/large-crusher",
@@ -5524,6 +5576,9 @@
     "machines/large-bathing-vat": [
       "machines/large-bathing-vat"
     ],
+    "machines/large-boiler": [
+      "machines/large-boiler"
+    ],
     "machines/large-centrifuge": [
       "machines/large-centrifuge"
     ],
@@ -5724,6 +5779,9 @@
       "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow"
     ],
+    "portfolio/gt6-machine-ledger-audit": [
+      "portfolio/gt6-machine-ledger-audit"
+    ],
     "portfolio/publication-reload-performance": [
       "portfolio/publication-reload-performance"
     ],
@@ -5808,6 +5866,7 @@
       "machines/implosion-compressor",
       "machines/large-autoclave",
       "machines/large-bathing-vat",
+      "machines/large-boiler",
       "machines/large-centrifuge",
       "machines/large-coagulator",
       "machines/large-crucible",
@@ -5952,6 +6011,7 @@
       "machines/laminator",
       "machines/large-autoclave",
       "machines/large-bathing-vat",
+      "machines/large-boiler",
       "machines/large-centrifuge",
       "machines/large-coagulator",
       "machines/large-crucible",
@@ -5973,6 +6033,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "portfolio/gt6-machine-ledger-audit",
       "recipe/gt6-bulk-capacity",
       "registry/catalog-modern-ids",
       "registry/gt6-long-tail-forms",
@@ -6008,5 +6069,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "content/gt6-fluid-barrel"
+  "unique_active_slug": "machines/large-boiler"
 }

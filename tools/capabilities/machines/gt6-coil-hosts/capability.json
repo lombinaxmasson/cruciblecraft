@@ -65,5 +65,5 @@
       "reason": "GT6 MultiTileEntityMultiBlockPart 18040-18045. Fusion uses only MTE iridium. Oven is 18042 XOR 18043 whole-ring. No GT5 heat/speed/parallel table."
     }
   ],
-  "note": "Six GT6 coil MTEs plus dynamo 17221-17224, lightning 17998/18104, massfab 17199, Von Da Graagg 17996, oven 17106, fusion 17198. Extra identities live only in mte_inplace_catalog. Overlay stays 74. Does not occupy unique-active. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready, not player_complete."
+  "note": "Six GT6 coil MTEs plus dynamo 17221-17224, lightning 17998/18104, massfab 17199, Von Da Graagg 17996, oven 17106, fusion 17198. Extra identities live only in mte_inplace_catalog. Overlay stays 74. Does not occupy unique-active. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready, not player_complete. Coverage attributes matter_fabricator to this card. The live host is MatterFabricatorStructure (5x5x5 dense lead and osmium coils) plus ModMultiblockControllers.LARGE_MATTER_FABRICATOR; CoilHostGameTests.matterFabricatorOsmiumCoilsArePorts asserts the form. The frozen denominator disposition stays out_of_scope."
 }

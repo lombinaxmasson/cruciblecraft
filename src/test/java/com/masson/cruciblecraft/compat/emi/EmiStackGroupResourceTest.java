@@ -126,6 +126,46 @@ class EmiStackGroupResourceTest {
                 "箱子",
                 chinese.get("emi.cruciblecraft.group.furniture.chest").getAsString());
         assertEquals(
+                "Mass Storage",
+                english.get("emi.cruciblecraft.group.furniture.mass_storage")
+                        .getAsString());
+        assertEquals(
+                "量子存储器",
+                chinese.get("emi.cruciblecraft.group.furniture.mass_storage")
+                        .getAsString());
+        assertEquals(
+                "Locker",
+                english.get("emi.cruciblecraft.group.furniture.locker").getAsString());
+        assertEquals(
+                "储物柜",
+                chinese.get("emi.cruciblecraft.group.furniture.locker").getAsString());
+        assertEquals(
+                "Bottle Crate",
+                english.get("emi.cruciblecraft.group.furniture.bottle_crate")
+                        .getAsString());
+        assertEquals(
+                "瓶框",
+                chinese.get("emi.cruciblecraft.group.furniture.bottle_crate")
+                        .getAsString());
+        assertEquals(
+                "GT Wood",
+                english.get("emi.cruciblecraft.group.building.gt_wood").getAsString());
+        assertEquals(
+                "GT木头",
+                chinese.get("emi.cruciblecraft.group.building.gt_wood").getAsString());
+        assertEquals(
+                "Concrete",
+                english.get("emi.cruciblecraft.group.building.concrete").getAsString());
+        assertEquals(
+                "混凝土",
+                chinese.get("emi.cruciblecraft.group.building.concrete").getAsString());
+        assertEquals(
+                "Circuit",
+                english.get("emi.cruciblecraft.group.component.circuit").getAsString());
+        assertEquals(
+                "电路",
+                chinese.get("emi.cruciblecraft.group.component.circuit").getAsString());
+        assertEquals(
                 "Hopper",
                 english.get("emi.cruciblecraft.group.hopper.hopper").getAsString());
         assertEquals(

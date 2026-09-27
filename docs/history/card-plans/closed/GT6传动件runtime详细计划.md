@@ -37,3 +37,9 @@ close_target                 = runtime_ready
 - [x] 隔离 GameTest `-PwaveRecipes=content/gt6-mte-drive-runtime`
 - [x] `python tools/verify.py integration --profile capability-runtime`
 - [x] 关闭目标 `runtime_ready`
+
+## 读法修订（2026-09-27）
+
+覆盖表若仍把 `MultiTileEntityEngineRotation` 写成 `runtime_code_uncarded`，读法以本卡为准。`RotationEngineCatalog` 和 `MteInPlaceBlockEntity.convertRotationEngine` 已在。`MteDriveRuntimeGameTests` 里已有 `rotationEngineConvertsRuToKu` 和 `rotationEngineSoftHammerStopsInput`。本卡 `required_test_ids` 仍只有 `axleIsNotKuRotationalAxle` 与 `drivePushesKineticToAdjacentDrive`，所以当时扫描器没把旋转引擎算进本卡。本修订不改这两条测试 id。
+
+同日后续：覆盖扫描器把 `MultiTileEntityEngineRotation` 别名到本卡。这两条测试 id 仍不加入。覆盖表这一行改为 `runtime_accepted`。

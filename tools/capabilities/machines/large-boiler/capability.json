@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-boiler",
+  "title": "Large Boiler 17201-17205",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/active/大型锅炉详细计划.md",
+    "docs/history/card-plans/closed/大型锅炉详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerWallParts.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTank.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTier.java",
+    "src/main/java/com/masson/cruciblecraft/client/render/LargeBoilerRenderer.java",
+    "src/main/java/com/masson/cruciblecraft/compat/jade/observation/LargeBoilerObservation.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_boiler_*.json",
+    "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerContractTest.java",
+    "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTankTest.java",
+    "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTierTest.java",
+    "tools/capabilities/machines/large-boiler/**",
+    "tools/tests/test_large_boiler.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-boiler",
+  "player_signoff": null,
+  "required_test_ids": [
+    "largeBoilerFormation",
+    "largeBoilerLegacyControllerMigration",
+    "largeBoilerFidelity",
+    "largeBoilerFiveTierProfiles",
+    "largeBoilerPortSupplySingleHost",
+    "largeBoilerTeardown",
+    "largeBoilerFullSteamExplosion",
+    "largeBoilerPowerLoss",
+    "largeBoilerReload",
+    "largeBoilerSaveQuarantine",
+    "largeBoilerSteamPushFivePorts",
+    "largeBoilerDistilledWaterDoesNotCalcify",
+    "largeBoilerCoolingAndToolLifecycle",
+    "largeBoilerPlungerTrashesWaterThenSteam"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_boiler:17201",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:stainless_steel/boiler_main_barometer",
+        "cruciblecraft:invar/boiler_main_barometer",
+        "cruciblecraft:titanium/boiler_main_barometer",
+        "cruciblecraft:tungstensteel/boiler_main_barometer",
+        "cruciblecraft:adamantium/boiler_main_barometer"
+      ],
+      "reason": "GT6 MultiTileEntityLargeBoiler 17201, 17205, 17202, 17203, 17204. Not single-block steam boiler tanks 1200-1262. Not steam turbines 17211-17214. Legacy cruciblecraft:large_boiler only migrates old saves onto the stainless controller."
+    }
+  ],
+  "note": "Five MTE barometer controllers share LargeBoilerBlockEntity. 3x3 heat transmitters under a 3x3x3 shell, one air cell. Water 128000 mB. Steam and HU capacity are mOutput * 10000. 80 HU + 1 mB water -> 160 mB steam at full efficiency, scaled by UT.Code.units. Barometer is UT.Code.scale(amount, capacity, 31, false). Pressure above 4 rechecks structure on that tick. No new EnergyType. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
+}

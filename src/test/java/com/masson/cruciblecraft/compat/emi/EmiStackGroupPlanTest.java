@@ -242,6 +242,46 @@ class EmiStackGroupPlanTest {
         assertTrue(EmiStackGroupPlan.matchesAny(
                 planks, "cruciblecraft:gt_wood/rubberwood_planks"));
         assertFalse(EmiStackGroupPlan.matchesAny(planks, "cruciblecraft:gt_wood/crate"));
+        EmiStackGroupPlan.ExactGroup gtWood = byPath.get("building/gt_wood");
+        assertNotNull(gtWood);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:gt_wood/crate"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:planks/orange"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:tree/rubber_log"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:tree/rubber_beam"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:gt_wood/rubberwood_planks"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:tree/rubber_sapling"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                gtWood, "cruciblecraft:tree/rubber_leaves"));
+        EmiStackGroupPlan.ExactGroup stone = byPath.get("building/stone");
+        assertNotNull(stone);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                stone, "cruciblecraft:granite_black/stone"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                stone, "cruciblecraft:coal/dense_ore"));
+        EmiStackGroupPlan.ExactGroup concrete = byPath.get("building/concrete");
+        assertNotNull(concrete);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                concrete, "cruciblecraft:concrete/orange"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                concrete, "cruciblecraft:concrete_reinforced/reinforced_concrete"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                concrete, "cruciblecraft:panel/concrete_white"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                concrete, "cruciblecraft:concrete/white_concrete_slab/slab_up"));
+        EmiStackGroupPlan.ExactGroup circuit = byPath.get("component/circuit");
+        assertNotNull(circuit);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                circuit, "cruciblecraft:circuit_basic"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                circuit, "cruciblecraft:circuit_quantum"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                circuit, "cruciblecraft:programmed_circuit"));
         EmiStackGroupPlan.ExactGroup slab = byPath.get("building/slab");
         assertNotNull(slab);
         assertTrue(EmiStackGroupPlan.matchesAny(
@@ -259,6 +299,36 @@ class EmiStackGroupPlanTest {
         assertTrue(EmiStackGroupPlan.matchesAny(chest, "cruciblecraft:lead/chest"));
         assertFalse(EmiStackGroupPlan.matchesAny(
                 chest, "cruciblecraft:safe/mechanical_lead_safe"));
+        EmiStackGroupPlan.ExactGroup massStorage =
+                byPath.get("furniture/mass_storage");
+        assertNotNull(massStorage);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                massStorage, "cruciblecraft:mass_storage_6000"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                massStorage, "cruciblecraft:furniture/mass_storage_aluminium"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                massStorage, "cruciblecraft:tin_alloy/mass_storage"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                massStorage, "cruciblecraft:item_barrel_6998"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                massStorage, "cruciblecraft:plastic_storage_box_6993"));
+        EmiStackGroupPlan.ExactGroup locker = byPath.get("furniture/locker");
+        assertNotNull(locker);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                locker, "cruciblecraft:locker_7300"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                locker, "cruciblecraft:charging_locker_7500"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                locker, "cruciblecraft:furniture/locker_aluminium"));
+        EmiStackGroupPlan.ExactGroup bottleCrate =
+                byPath.get("furniture/bottle_crate");
+        assertNotNull(bottleCrate);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                bottleCrate, "cruciblecraft:bottle_crate_8600"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                bottleCrate, "cruciblecraft:furniture/bottlecrate_aluminium"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                bottleCrate, "cruciblecraft:furniture/locker_aluminium"));
         EmiStackGroupPlan.ExactGroup hopper = byPath.get("hopper/hopper");
         assertNotNull(hopper);
         assertTrue(EmiStackGroupPlan.matchesAny(hopper, "cruciblecraft:bronze_hopper"));
@@ -326,6 +396,7 @@ class EmiStackGroupPlanTest {
                 "building/glow_glass",
                 "building/glow_glass_slab",
                 "building/planks",
+                "building/gt_wood",
                 "building/slab",
                 "building/log",
                 "building/bars",
@@ -337,10 +408,14 @@ class EmiStackGroupPlanTest {
                 "building/diggable",
                 "building/sands",
                 "building/stone",
+                "building/concrete",
                 "furniture/bookshelf",
                 "furniture/drawer",
                 "furniture/safe",
                 "furniture/chest",
+                "furniture/mass_storage",
+                "furniture/locker",
+                "furniture/bottle_crate",
                 "hopper/hopper",
                 "hopper/queue_hopper",
                 "misc_tool/anvil",
@@ -354,7 +429,8 @@ class EmiStackGroupPlanTest {
                 "foundry/basin",
                 "foundry/crossing",
                 "foundry/mold",
-                "mold/ceramic")));
+                "mold/ceramic",
+                "component/circuit")));
         Set<String> seen = new HashSet<>();
         for (EmiStackGroupPlan.ExactGroup group : EmiStackGroupPlan.catalogGroups()) {
             assertTrue(seen.add(group.id()), group.id());
