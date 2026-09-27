@@ -91,7 +91,8 @@ public final class ElectrolyzerParts {
     }
 
     public static boolean forwardsEnergy(MteInPlaceBlockEntity part) {
-        return PortCapabilityGate.energyInsert(part.mixerPortType())
+        return isPart(part.spec())
+                && PortCapabilityGate.energyInsert(part.mixerPortType())
                 && host(part) != null;
     }
 

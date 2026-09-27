@@ -2,8 +2,8 @@
   "schema_version": 2,
   "slug": "machines/large-autoclave",
   "title": "Large Autoclave 17112",
-  "maturity": "frozen",
-  "workflow": "paused",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
   "survival_access": "partial",
   "owned_paths": [
     "docs/history/card-plans/closed/大型高压釜详细计划.md",
@@ -48,5 +48,5 @@
       "reason": "GT6 MultiTileEntityAutoclave 17112. Not single-block Autoclave 22004, not dense stainless wall 18022."
     }
   ],
-  "note": "3x3x3 hollow of 18022. Center air. Controller side-bottom facing out. Any wall ONLY_ITEM_FLUID_ENERGY. Hull any-face IO. Auto-out SIDE_BOTTOM. No auto-input. TU 1/1/16, parallel 16, NBT_NO_CONSTANT_POWER. Not single-block 22004 side bits. No process dump. Yielded unique-active; code stays. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
+  "note": "3x3x3 hollow of 18022. Center air. Controller side-bottom facing out. Any wall ONLY_ITEM_FLUID_ENERGY and aliases the controller inventory; walls do not own independent port stores. Hull any-face IO stays live after forming. Auto-out SIDE_BOTTOM. No auto-input. TU 1/1/16, parallel 16, NBT_NO_CONSTANT_POWER. Not single-block 22004 side bits. No process dump. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
 }

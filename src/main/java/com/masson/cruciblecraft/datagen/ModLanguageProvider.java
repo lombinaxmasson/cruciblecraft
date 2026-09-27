@@ -443,7 +443,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         kind.langZh());
             });
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
-            add("emi.category.cruciblecraft.fuels_gas_turbine", "微型燃气涡轮");
+            add("emi.category.cruciblecraft.fuels_gas_turbine", "大型燃气轮机");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
             add("emi.category.cruciblecraft.fuels_hot", "热交换燃料");
@@ -1350,7 +1350,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         "emi.category.cruciblecraft." + spec.id().getPath(),
                         title(spec.id().getPath())));
         add("emi.category.cruciblecraft.fuels_engine", "Fuel Engine");
-        add("emi.category.cruciblecraft.fuels_gas_turbine", "Small Gas Turbine");
+        add("emi.category.cruciblecraft.fuels_gas_turbine", "Large Gas Turbine");
         add("emi.category.cruciblecraft.fuels_gas", "Gas Burning Box");
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
         add("emi.category.cruciblecraft.fuels_hot", "Heat Exchanger Fuel");

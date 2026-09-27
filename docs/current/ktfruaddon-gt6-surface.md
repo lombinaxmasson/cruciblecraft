@@ -45,7 +45,7 @@ vanilla GT6 已有的 1300 段柴油。
 
 | ID | 内容 | 说明 |
 | --- | --- | --- |
-| 10000–10006 | Small Gas Turbine ×7 | `MultiTileEntityGasMotor`（4 行 MotorLiquid）；`FM.Gas` → RU；效率 3500。材料：青铜 / 钢 / 因瓦 / 钛 / 钨钢 / **铱** / 铬。**不是** GT6 大型燃气涡轮 17231–17234。CC 已在 unique-active `energy/small-gas-turbine` 按 DESIGN_POLICY 移植。 |
+| 10000–10006 | Small Gas Turbine ×7 | `MultiTileEntityGasMotor`（4 行 MotorLiquid）；`FM.Gas` → RU；效率 3500。材料：青铜 / 钢 / 因瓦 / 钛 / 钨钢 / **铱** / 铬。**不是** GT6 大型燃气涡轮 17231–17234。kTFRUAddon 是 AGPL，CC 不移植这 7 台单方块；曾经落地的注册已移除。 |
 | 10010–10011 | Gas Battery | `FuelBattery` + `recipeMaps.FuelBattery`；EU；要质子交换膜等 addon 零件。 |
 | 10021–10027 | Manual Motor | 手摇 RU / KU。 |
 | 10050–10054 | Compressed Gas Drum | 钢 / 不锈钢 / 下界合金 / 钨钢为 GT 材料。Manasteel 那档用 `MT.Manasteel`（GT 表里的植物魔法材料名，无 Botania 时可能空）。 |
@@ -194,10 +194,10 @@ Chemistry、Circuits、ComputerBuilding、OilProcessing、Plastic、CompactItem
 | 东西 | 身份 |
 | --- | --- |
 | `FM.Gas` / `FM.Engine` 燃料行、MotorLiquid 排气丢第二槽 | GT6 源行为（SOURCE_BACKED） |
-| 小型燃气涡轮 7 档、飞轮箱、半导体线、addon 蒸馏塔、扩展柴油/涡轮壳 | kTFRUAddon DESIGN_POLICY |
-| GT6 大型燃气涡轮 17231–17234 | vanilla，**不要**和 10000 段小涡轮混成同一个 kind |
+| 小型燃气涡轮 7 档、飞轮箱、半导体线、addon 蒸馏塔、扩展柴油/涡轮壳 | kTFRUAddon DESIGN_POLICY。许可是 AGPL，CC 不移植 |
+| GT6 大型燃气涡轮 17231–17234 | vanilla。燃料图 `cruciblecraft:fuels_gas_turbine` 留给这台多方块 |
 
-CC 现在只动了小型燃气涡轮这一条 unique-active。本页其余行保持清单。
+CC 不收录 kTFRUAddon 机器。本页其余行只是清单，不是移植队列。
 
 ## 源码入口
 

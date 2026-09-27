@@ -96,7 +96,7 @@ CC 已经有这三处入口，行数短一截：
 ## 2. 不做
 
 - Jade、Waila、`IWailaTile`。物品说明不迁进 Jade。
-- kTFRUAddon 专有机器和它的结构句。微型燃气涡轮仍在自己的 prep 卡。
+- kTFRUAddon 专有机器和它的结构句。微型燃气涡轮已因 AGPL 从 CC 移除。
 - 附魔列表、装柄材料、矿石「Source of」、无序合成数量、模组来源名。这些不在 `GT6MaterialMetadata` 里。
 - 为了说明去改 `material_registration_gate`、公共 16、材料 JSON schema。
 - 改 `MteInPlaceBlock`、储罐阀门、`machines/gt6-multiblock-tanks` 正在动的文件。储罐说明留在储罐卡。

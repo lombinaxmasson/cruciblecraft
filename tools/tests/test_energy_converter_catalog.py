@@ -127,13 +127,13 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
     def test_kinds_and_tiers_are_not_processing_catalog(self) -> None:
         kinds = io.load_json(KINDS)
         tiers = io.load_json(TIERS)
-        self.assertEqual(24, len(kinds["kinds"]))
-        self.assertEqual(203, len(tiers["tiers"]))
+        self.assertEqual(23, len(kinds["kinds"]))
+        self.assertEqual(196, len(tiers["tiers"]))
         ids = {row["id"] for row in tiers["tiers"]}
         self.assertIn("cruciblecraft:bronze_burning_box_gas", ids)
         self.assertIn("cruciblecraft:bronze_boiler", ids)
         self.assertIn("cruciblecraft:bronze_fuel_engine", ids)
-        self.assertIn("cruciblecraft:bronze_small_gas_turbine", ids)
+        self.assertNotIn("cruciblecraft:bronze_small_gas_turbine", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_motor", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_heater", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_engine", ids)

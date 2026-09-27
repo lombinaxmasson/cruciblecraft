@@ -31,4 +31,4 @@
 [archived-prep](../history/card-plans/closed/archived-prep/MTE全量Prep总索引.md)，
 但只能作为契约附件阅读，不能把归档目录或 R0 标签抄成待办。
 
-仍在 `card-plans/prep/` 的签发计划（普查、印刷机、地牢、行星岩、Center、PUV 线、微型燃气涡轮）只以状态页 Prep 表为准。
+仍在 `card-plans/prep/` 的签发计划（普查、印刷机、地牢、行星岩、Center、PUV 线）只以状态页 Prep 表为准。

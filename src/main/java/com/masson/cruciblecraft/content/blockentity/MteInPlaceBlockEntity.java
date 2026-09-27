@@ -1053,6 +1053,11 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     }
 
     @Override
+    public boolean ownsIndependentPortStore() {
+        return !AutoclaveWalls.isWall(spec());
+    }
+
+    @Override
     public PortStore portStore() {
         return portStore;
     }

@@ -678,7 +678,6 @@ public final class ModBlockEntities {
                                     FuelGeneratorBlockEntity::new,
                                     ModBlocks.converterBlocks(
                                             "fuel_engine",
-                                            "small_gas_turbine",
                                             "fluid_burning_box"))
                                     .build(null));
     public static final DeferredHolder<

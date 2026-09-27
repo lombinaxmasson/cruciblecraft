@@ -20,7 +20,6 @@ final class EnergyConverterProfiles {
             case "boiler" -> boiler(kind, tier);
             case "steam_engine" -> steamEngine(kind, tier);
             case "fuel_engine" -> fuelEngine(kind, tier);
-            case "small_gas_turbine" -> smallGasTurbine(kind, tier);
             case "dynamo" -> dynamo(kind, tier);
             case "electric_motor" -> motor(kind, tier);
             case "electric_heater" -> electricHeater(kind, tier);
@@ -191,46 +190,6 @@ final class EnergyConverterProfiles {
                         "EXACT_SOURCE_" + tier.sourceId()
                                 + "_MOTOR_LIQUID_" + packet
                                 + "_RU_10000_BPS; CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED; MOTOR_LIQUID_BACK_PUSH_VENT"),
-                null,
-                tanks,
-                scale(65_536, 16, (int) packet));
-    }
-
-    private static EnergyConverterProfile smallGasTurbine(
-            EnergyConverterKindCatalog.Kind kind,
-            EnergyConverterTierCatalog.Entry tier) {
-        long packet = Math.max(1L, tier.nbtOutput());
-        int ru = scale(512, 16, (int) packet);
-        int tanks = scale(8_000, 16, (int) packet);
-        int efficiency = clampedEfficiency(tier.efficiencyBps(), 3_500);
-        return new EnergyConverterProfile(
-                tier.id(),
-                "liquid_fuel_ru_chain",
-                EnergyConverterProfile.Status.COMPLETE,
-                kind.runtime(),
-                source(kind, tier, "FM.Gas", String.valueOf(efficiency)),
-                kind.accepts(),
-                kind.emits(),
-                packet("FLUID_FUEL", "FM.Gas", 1L, 1L),
-                packet("ENERGY", "RU", packet, 1L),
-                absentWindow(),
-                efficiency,
-                "FM.Gas",
-                conservation(
-                        "FM.Gas", 1, "NONE", 0,
-                        "RU", ru, "RECIPE_DEFINED", 1),
-                exhaust("RECIPE_DEFINED", "BUFFER_ALL_OUTPUTS", tanks),
-                kind.faces(),
-                policy(
-                        "EXHAUST_AND_RU_OUTPUT_GATE_START",
-                        "KEEP_RECIPE_ENERGY_IN_RU_BUFFER_AND_EMIT_ONE_PACKET_PER_TICK",
-                        "KTFRUADDON_GAS_MOTOR_FM_GAS_SOURCE_"
-                                + tier.sourceId()
-                                + "_RU_"
-                                + packet
-                                + "_"
-                                + efficiency
-                                + "_BPS; MOTOR_LIQUID_KEEPS_FIRST_EXHAUST_ONLY; CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED; MOTOR_LIQUID_BACK_PUSH_VENT"),
                 null,
                 tanks,
                 scale(65_536, 16, (int) packet));

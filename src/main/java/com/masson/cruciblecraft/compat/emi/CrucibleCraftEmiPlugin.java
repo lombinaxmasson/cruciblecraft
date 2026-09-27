@@ -369,7 +369,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 addedCategories,
                 ModRecipeMaps.FUELS_GAS_TURBINE,
                 "fuels_gas_turbine",
-                "small_gas_turbine");
+                ModBlocks.gasTurbineBlockArray());
         registerFuelMap(
                 registry,
                 addedCategories,
@@ -390,7 +390,20 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             RecipeMap map,
             String categoryPath,
             String runtime) {
-        Block[] workstations = ModBlocks.converterBlocks(runtime);
+        registerFuelMap(
+                registry,
+                addedCategories,
+                map,
+                categoryPath,
+                ModBlocks.converterBlocks(runtime));
+    }
+
+    private static void registerFuelMap(
+            EmiRegistry registry,
+            Set<ResourceLocation> addedCategories,
+            RecipeMap map,
+            String categoryPath,
+            Block[] workstations) {
         if (workstations.length == 0) {
             return;
         }

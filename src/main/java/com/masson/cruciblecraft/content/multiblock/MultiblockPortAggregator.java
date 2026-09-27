@@ -60,9 +60,12 @@ public final class MultiblockPortAggregator {
                         && port instanceof PortStoreCarrier carrier) {
                     PortStore.Assignment assignment = assignments.get(
                             position.immutable());
-                    if (assignment != null) {
+                    if (assignment != null && carrier.ownsIndependentPortStore()) {
                         carrier.configurePortStore(host, assignment);
                         PortStoreRegistry.bind(host, position, carrier);
+                    } else if (assignment != null) {
+                        PortStoreAliasHandoff.once(
+                                carrier, host, assignment, level, position);
                     }
                 }
                 bound.add(position.immutable());

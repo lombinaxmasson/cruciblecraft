@@ -25,7 +25,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 /**
  * GT6 18022 dense stainless-steel walls for Large Autoclave 17112. Every
- * wall binds as {@code ONLY_ITEM_FLUID_ENERGY}.
+ * wall binds as {@code ONLY_ITEM_FLUID_ENERGY} and aliases the controller
+ * inventory. These walls do not own an independent port store.
  */
 public final class AutoclaveWalls {
     public static final ResourceLocation WALL_ID =

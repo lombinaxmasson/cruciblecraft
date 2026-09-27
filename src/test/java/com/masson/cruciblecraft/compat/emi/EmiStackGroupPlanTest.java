@@ -174,17 +174,16 @@ class EmiStackGroupPlanTest {
                     "duplicate converter group " + group.id());
             assertTrue(group.itemIds().size() >= 2, group.id());
         }
-        EmiStackGroupPlan.ExactGroup turbine =
-                byPath.get("converter/small_gas_turbine");
-        assertNotNull(turbine);
-        assertTrue(turbine.itemIds().contains(
-                "cruciblecraft:bronze_small_gas_turbine"));
-        assertTrue(turbine.itemIds().contains(
-                "cruciblecraft:chromium_small_gas_turbine"));
+        EmiStackGroupPlan.ExactGroup engine =
+                byPath.get("converter/fuel_engine");
+        assertNotNull(engine);
+        assertTrue(engine.itemIds().contains(
+                "cruciblecraft:bronze_fuel_engine"));
         assertTrue(EmiStackGroupPlan.matchesAny(
-                turbine, "cruciblecraft:bronze_small_gas_turbine"));
+                engine, "cruciblecraft:bronze_fuel_engine"));
         assertFalse(EmiStackGroupPlan.matchesAny(
-                turbine, "cruciblecraft:large_gas_turbine"));
+                engine, "cruciblecraft:large_gas_turbine"));
+        assertFalse(byPath.containsKey("converter/small_gas_turbine"));
     }
 
     @Test

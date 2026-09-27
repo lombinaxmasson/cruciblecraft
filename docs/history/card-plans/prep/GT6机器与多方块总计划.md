@@ -39,7 +39,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 - 大型锅炉、3×3×3 储罐：结构与方块实体已在，没有任何 capability。
 - 大型电解机：capability 已是 `runtime_ready` / `accepted`。`survival_access` 仍是 `partial`，那是获得格，不是主机暂停。
-- 大型高压釜、大型发酵器：结构、GameTest、capability 都在，`frozen` / `paused`。
+- 大型发酵器：结构、GameTest、capability 都在，`frozen` / `paused`。
 - 5×5×5 金属储罐：只有 `mte_inplace_catalog.json` 身份，没有结构运行时。
 
 物质制造机 17199 和旋转引擎已经挂在已关卡上，覆盖表没认出来。见第 2 节，不新开卡。
@@ -63,6 +63,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 | 大型破碎 | `machines/large-crusher` | partial | 结构 JSON |
 | 蒸馏塔 / 低温蒸馏塔 | `machines/distillation-tower` | partial | 两台控制器，结构 id 共用 `distillation_tower` |
 | 大型电解机 17103 | `machines/large-electrolyzer` | partial | 结构 JSON。主机已 accepted，partial 是获得格 |
+| 大型高压釜 17112 | `machines/large-autoclave` | partial | 结构 JSON。主机已 accepted，partial 是获得格 |
 | 聚爆压缩机 | `machines/implosion-compressor` | partial | 结构 JSON。配方图仍有 296 行可翻译未发 |
 | 大型动力机 / 避雷针 / 范德格雷 | `machines/gt6-coil-hosts` | partial | MTE inplace |
 | 大型燃气轮机 | `energy/large-gas-turbine` | partial | `LargeGasTurbineBlockEntity` |
@@ -107,7 +108,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 | 1 | 大型锅炉 | `machines/large-boiler` | `LargeBoilerBlock` / `LargeBoilerBlockEntity`，五份结构 JSON（不锈钢、殷瓦、钛、钨钢、精金）。另有 `MteInPlaceKind.LARGE_BOILER`。无 capability。覆盖表 `runtime_code_uncarded` | 确认专用锅炉与 MTE inplace 是同一后端。按 GT6 逐档核对蒸汽输出、HU/水/蒸汽容量、进水出汽坐标、结垢、凿子清垢、过满与结构损坏。关 `runtime_ready` |
 | 2 | 多方块储罐 | `machines/gt6-multiblock-tanks` | 已 `runtime_ready` / `accepted`。3×3×3 与 5×5×5 共用 `TankBlockEntity` | 不再占落地锁。`survival_access` 仍是 `partial`。不加别的边长 |
 | 3 | 大型电解机 | `machines/large-electrolyzer` | 已 `runtime_ready` / `accepted`。`survival_access` 仍是 `partial`。结构 3×3×2，底进顶出，EU 512–4096，并行 16 | 不再占落地锁。`partial` 留给获得格或配方 wave，不重开主机。不导入缺形态行，不开形态 |
-| 4 | 大型高压釜 | `machines/large-autoclave` | 已有。`frozen` / `paused`。3×3×3 空心 18022，TU 1–16，并行 16。note 写明曾让出 unique-active，代码留下 | 同第 3 张。不把单方块高压釜 22004 折进来 |
+| 4 | 大型高压釜 | `machines/large-autoclave` | 已 `runtime_ready` / `accepted`。`survival_access` 仍是 `partial`。3×3×3 空心 18022，TU 1–16，并行 16。墙别名主机库存，主机任意面 IO，朝下自动输出 | 不再占落地锁。`partial` 留给获得格或配方 wave。不把单方块高压釜 22004 折进来 |
 | 5 | 大型发酵器 | `machines/large-fermenter` | 已有。`frozen` / `paused`。5×5×3，HU，并行 256。`LargeFermenterAutoOutput` 已写背面偏移，固定坐标仍缺 GameTest | 补输出坐标/堵塞/重载测试后 accepted。不导入 6435 行 dump。缺流体留在流体卡 |
 | 6 | 单方块发酵机 | `machines/fermenter` | 无主机。GT6 22003，不锈钢，HU 16–64，图 `RM.Fermenter`。网格 `wMh` / `PPP` / `BCB`（`Loader_MultiTileEntities.java` 1654） | 第 5 张关了再开，避免两张卡同时改发酵图。获得格逐格 `gt6_resolve`。缺的零件保持 blocked |
 | 7 | 5×5×5 金属储罐 | 并入第 2 张 | GT6 没有边长滑杆，只有 3×3×3 和 5×5×5 两套空心方块 | 不再单独占锁。`machines/tank-5x5x5` 不建卡 |
@@ -115,6 +116,8 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 第 0 张若已经把第 3、4 或 5 张收成 accepted，那一张不再单独占落地锁。检查卡写明「还缺测试」的，仍按原序号做。
 
 2026-09-27 账本检查：第 3 张 `machines/large-electrolyzer` 已 `accepted`，不再占落地锁。第 4 张高压釜、第 5 张发酵器仍按原序号。第 1、2、6、7 张在占上 unique-active 时才写详细计划。
+
+2026-09-27 大型高压釜：第 4 张 `machines/large-autoclave` 已 `accepted`，不再占落地锁。成形后的 18022 不再占独立 PortStore，主机任意面仍收物品、流体和 TU，自动输出在主机正下方。`survival_access` 仍是 `partial`。详细计划在 [大型高压釜详细计划](../closed/大型高压釜详细计划.md)。
 
 2026-09-27 大型锅炉：第 1 张 `machines/large-boiler` 曾占 unique-active，现为 `runtime_ready` / `paused`。详细计划在 [大型锅炉详细计划](../closed/大型锅炉详细计划.md)。GameTest 还没当关闭门跑过，所以不是 accepted。
 
@@ -149,7 +152,7 @@ PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计�
 | `machines/printer` | prep 可停手。主机已在 delivery | 五台获得格卡在 `IL.CONVEYERS`。盖板传送带不是这格 |
 | `energy/cooler` | `runtime_ready` / `paused` | 电力冷却器 EU→CU+HU。通量冷却器走 FE，不发明 `EnergyType.RF` |
 | `energy/flux-converters` | `runtime_ready` / `paused` | 同上，RF 数量译成 FE |
-| `energy/small-gas-turbine` | `frozen` / `paused` | kTFRU 单方块，`DESIGN_POLICY`。GT6 燃气轮机是已验收的大型多方块 |
+| （已撤）微型燃气涡轮 | 不移植 | kTFRUAddon 单方块。纳入会把许可拉成 AGPL，已从 CC 移除。GT6 燃气轮机仍是已验收的大型多方块 |
 
 扫描视觉 20281–20285 的获得格同样是 `IL.CONVEYERS`（同类基础加工机卡已明确不注册这 5 台）。拆箱机 20591–20595 还要 `IL.PISTONS`。模块没有 live 身份之前，这两台和印刷机一样保持 blocked。批量总计划同时暂缓拆箱图、装箱图、`crate.*`、`bulletGt*`、`arrowGt*`。要推翻这个决定，先改那份总计划，再开卡。
 

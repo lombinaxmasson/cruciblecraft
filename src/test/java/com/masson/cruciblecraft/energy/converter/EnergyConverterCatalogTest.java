@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
-import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 import net.minecraft.core.Direction;
 
@@ -342,42 +341,6 @@ class EnergyConverterCatalogTest {
                 engine.faces().fluidOutputs());
         FuelGeneratorSpec live = EnergyConverterFuelSpecs.fromProfile(engine);
         assertTrue(live.pushesExhaust());
-        assertEquals(
-                java.util.List.of(Direction.WEST),
-                live.resolvedExhaustSides(Direction.EAST));
-    }
-
-    @Test
-    void smallGasTurbineLocksKtfruAddonFmGasAndRuPackets() {
-        EnergyConverterProfile turbine = EnergyConverterCatalog.require(
-                "cruciblecraft:bronze_small_gas_turbine");
-        EnergyConverterProfile chromium = EnergyConverterCatalog.require(
-                "cruciblecraft:chromium_small_gas_turbine");
-        EnergyConverterProfile iridium = EnergyConverterCatalog.require(
-                "cruciblecraft:iridium_small_gas_turbine");
-
-        assertEquals(110000, turbine.source().sourceId());
-        assertEquals("MultiTileEntityGasMotor",
-                turbine.source().machineKind());
-        assertEquals("FM.Gas", turbine.fuelMap());
-        assertEquals(3_500, turbine.efficiencyBps());
-        assertEquals("RU", turbine.outputPacket().identity());
-        assertEquals(16L, turbine.outputPacket().size());
-        assertEquals(256L, chromium.outputPacket().size());
-        assertEquals(768L, iridium.outputPacket().size());
-        assertEquals(110006, chromium.source().sourceId());
-        assertEquals(110005, iridium.source().sourceId());
-        assertTrue(turbine.policy().sourceResolution().contains(
-                "KTFRUADDON_GAS_MOTOR_FM_GAS"));
-        assertTrue(turbine.policy().sourceResolution().contains(
-                "MOTOR_LIQUID_KEEPS_FIRST_EXHAUST_ONLY"));
-        FuelGeneratorSpec live = EnergyConverterFuelSpecs.fromProfile(turbine);
-        assertTrue(live.pushesExhaust());
-        assertEquals(ModRecipeMaps.FUELS_GAS_TURBINE, live.requireRecipeMap());
-        assertEquals(3_500, live.efficiencyBps());
-        assertEquals(
-                FuelGeneratorSpec.InputPhase.ANY,
-                live.inputPhase());
         assertEquals(
                 java.util.List.of(Direction.WEST),
                 live.resolvedExhaustSides(Direction.EAST));

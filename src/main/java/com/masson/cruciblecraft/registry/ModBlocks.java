@@ -699,8 +699,6 @@ public final class ModBlocks {
     public static final DeferredBlock<FuelGeneratorBlock> BRONZE_FUEL_ENGINE =
             converter("bronze_fuel_engine");
     public static final DeferredBlock<FuelGeneratorBlock>
-            BRONZE_SMALL_GAS_TURBINE = converter("bronze_small_gas_turbine");
-    public static final DeferredBlock<FuelGeneratorBlock>
             BRONZE_BURNING_BOX_GAS = converter("bronze_burning_box_gas");
     public static final DeferredBlock<FuelGeneratorBlock>
             BRONZE_BURNING_BOX_LIQUID = converter("bronze_burning_box_liquid");
@@ -1345,7 +1343,7 @@ public final class ModBlocks {
                     path,
                     () -> new ZpmDechargerBlock(
                             profile.id(), machineProperties()));
-            case "fuel_engine", "small_gas_turbine", "fluid_burning_box" ->
+            case "fuel_engine", "fluid_burning_box" ->
                     BLOCKS.register(
                     path,
                     () -> new FuelGeneratorBlock(

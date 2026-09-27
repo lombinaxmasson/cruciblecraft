@@ -17,13 +17,13 @@
 - `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
 - `energy/cooler` — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
 - `energy/flux-converters` — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
-- `energy/small-gas-turbine` — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `machines/large-bath` — [大型洗矿机详细计划](../history/card-plans/prep/大型洗矿机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `portfolio/gt6-bulk-port` — [GT6 批量移植总计划](../history/card-plans/prep/GT6批量移植总计划.md)
 - `portfolio/gt6-bulk-port-verification` — [GT6 批量移植基础设施收口](../history/card-plans/prep/GT6批量移植基础设施收口详细计划.md)
 - `portfolio/gt6-machine-multiblock` — [GT6 机器与多方块总计划](../history/card-plans/prep/GT6机器与多方块总计划.md)
 - `presentation/gt6-item-tooltip` — [GT6 物品说明对齐详细计划](../history/card-plans/prep/GT6物品说明对齐详细计划.md)
+- `presentation/multiblock-emi-projection` — [多方块结构 EMI 投影详细计划](../history/card-plans/prep/多方块结构EMI投影详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -35,9 +35,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave
 
-## runtime_ready accepted（114）
+## runtime_ready accepted（115）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -115,6 +115,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/implosion-compressor` — Implosion Compressor 17110 — [聚爆压缩机详细计划](../history/card-plans/closed/聚爆压缩机详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
+- `machines/large-autoclave` — Large Autoclave 17112 — [大型高压釜详细计划](../history/card-plans/closed/大型高压釜详细计划.md)
 - `machines/large-bathing-vat` — Large Bathing Vat 17104
 - `machines/large-centrifuge` — Large Centrifuge 17100
 - `machines/large-coagulator` — Large Coagulator Array 17105
@@ -165,7 +166,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## frozen（13）
+## frozen（11）
 
 分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线。地牢是结构载体，房间内容仍 blocked。
 
@@ -174,10 +175,8 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
 - `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）
 - `energy/quantum-massfab` — Matter Fabricator and Neutronium bootstrap（`workflow=paused`）
-- `energy/small-gas-turbine` — Small Gas Turbine（`workflow=paused`） — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `energy/steam-turbine` — Steam Turbines STEAM to RU（`workflow=paused`）
 - `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
-- `machines/large-autoclave` — Large Autoclave 17112（`workflow=paused`） — [大型高压釜详细计划](../history/card-plans/closed/大型高压釜详细计划.md)
 - `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）

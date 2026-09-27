@@ -1850,7 +1850,6 @@
     {
       "depends_on": [
         "energy/steam-turbine",
-        "energy/small-gas-turbine",
         "energy/batteries",
         "content/technological-parts-foundation"
       ],
@@ -2024,50 +2023,6 @@
       "slug": "energy/quantum-massfab",
       "survival_access": "unreviewed",
       "title": "Matter Fabricator and Neutronium bootstrap",
-      "workflow": "paused"
-    },
-    {
-      "depends_on": [
-        "energy/converter-catalog"
-      ],
-      "maturity": "frozen",
-      "owned_paths": [
-        "docs/history/card-plans/prep/微型燃气涡轮详细计划.md",
-        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterFuelSpecs.java",
-        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterProfiles.java",
-        "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterTierCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorSpec.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModFuelGenerators.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
-        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
-        "src/main/resources/data/cruciblecraft/later_wave_publication_baseline.json",
-        "src/test/java/com/masson/cruciblecraft/datagen/HydrocarbonResourceTest.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
-        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
-        "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
-        "src/main/resources/data/cruciblecraft/energy_converter_tiers.json",
-        "src/hydrocarbon_recipe_generated/resources/data/cruciblecraft/recipe/hydrocarbon/fuels_gas_turbine/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/SmallGasTurbineGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
-        "tools/capabilities/energy/small-gas-turbine/**",
-        "tools/tests/test_energy_converter_catalog.py"
-      ],
-      "path": "tools/capabilities/energy/small-gas-turbine/capability.json",
-      "player_signoff": null,
-      "profiles": [
-        "capability-runtime"
-      ],
-      "slug": "energy/small-gas-turbine",
-      "survival_access": "unreviewed",
-      "title": "Small Gas Turbine",
       "workflow": "paused"
     },
     {
@@ -2901,7 +2856,7 @@
         "machines/large-processing-parts",
         "content/gt6-mte-multiblock-runtime"
       ],
-      "maturity": "frozen",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/closed/大型高压釜详细计划.md",
         "src/main/java/com/masson/cruciblecraft/content/block/LargeAutoclaveBlock.java",
@@ -2926,7 +2881,7 @@
       "slug": "machines/large-autoclave",
       "survival_access": "partial",
       "title": "Large Autoclave 17112",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -4460,7 +4415,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 131,
+  "capability_count": 130,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4811,7 +4766,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "machines/bedrock-drill",
@@ -5057,10 +5011,6 @@
       "machines/large-oven",
       "machines/puv-omega-matrix"
     ],
-    "energy/small-gas-turbine": [
-      "energy/large-gas-turbine",
-      "energy/small-gas-turbine"
-    ],
     "energy/steam-turbine": [
       "content/puv-omega-parts",
       "energy/fusion-quantum",
@@ -5164,7 +5114,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/cover-net-r0",
@@ -5236,7 +5185,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -5299,7 +5247,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -5365,7 +5312,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -5430,7 +5376,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -5497,7 +5442,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
@@ -6024,7 +5968,6 @@
       "energy/nuclear-fission-observation-safety",
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
-      "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
       "fluid/gt6-missing-fluids",

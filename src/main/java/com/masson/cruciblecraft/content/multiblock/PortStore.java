@@ -36,6 +36,7 @@ public final class PortStore {
     private List<PortStoreLongTank> longTanks = List.of();
     private CompoundTag pendingLoad;
     private HolderLookup.Provider pendingRegistries;
+    private boolean aliasHandoffDone;
 
     public PortStore(Runnable mutation) {
         this.mutation = Objects.requireNonNull(mutation, "mutation");
@@ -89,6 +90,48 @@ public final class PortStore {
 
     public boolean configured() {
         return host != null;
+    }
+
+    public boolean aliasHandoffDone() {
+        return aliasHandoffDone;
+    }
+
+    public void finishAliasHandoff() {
+        aliasHandoffDone = true;
+    }
+
+    public boolean hasLiveContents() {
+        for (int slot = 0; slot < items.getSlots(); slot++) {
+            if (!items.getStackInSlot(slot).isEmpty()) {
+                return true;
+            }
+        }
+        for (FluidTank tank : tanks) {
+            if (!tank.getFluid().isEmpty()) {
+                return true;
+            }
+        }
+        for (PortStoreLongTank tank : longTanks) {
+            if (tank.amount(0) > 0L) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasPendingLoad() {
+        return pendingLoad != null;
+    }
+
+    /** Drops the independent-store role after an alias handoff. */
+    public void detach() {
+        host = null;
+        assignment = Assignment.EMPTY;
+        items = new ItemStackHandler(0);
+        tanks = List.of();
+        longTanks = List.of();
+        pendingLoad = null;
+        pendingRegistries = null;
     }
 
     /**
@@ -210,6 +253,7 @@ public final class PortStore {
         if (!tag.contains("port_store")) {
             return;
         }
+        aliasHandoffDone = false;
         pendingLoad = tag.getCompound("port_store").copy();
         pendingRegistries = registries;
         if (configured()) {

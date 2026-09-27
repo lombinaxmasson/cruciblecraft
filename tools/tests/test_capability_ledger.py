@@ -70,7 +70,6 @@ HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
 LARGE_HEX = "energy/large-heat-exchanger"
 STEAM_TURBINE = "energy/steam-turbine"
-SMALL_GAS_TURBINE = "energy/small-gas-turbine"
 FUSION_QUANTUM = "energy/fusion-quantum"
 QUANTUM_MASSFAB = "energy/quantum-massfab"
 PUV_OMEGA_PARTS = "content/puv-omega-parts"
@@ -366,7 +365,6 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CROPS,
                 "logistics/cover-remainder",
                 LARGE_HEX,
-                SMALL_GAS_TURBINE,
                 STEAM_TURBINE,
                 FUSION_QUANTUM,
                 QUANTUM_MASSFAB,
@@ -466,7 +464,6 @@ class CapabilityLedgerTest(unittest.TestCase):
                 OBSERVATION,
                 NUCLEAR,
                 QUANTUM_MASSFAB,
-                SMALL_GAS_TURBINE,
                 STEAM_TURBINE,
                 TRANSFORMERS,
                 DISPLAY,

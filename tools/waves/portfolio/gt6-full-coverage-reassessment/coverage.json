@@ -719,11 +719,11 @@
     },
     "cc_recipe_rows": 561126,
     "cc_material_rule_files": 98,
-    "capability_count": 131,
+    "capability_count": 130,
     "capability_states": {
       "frozen:accepted": 2,
-      "frozen:paused": 11,
-      "runtime_ready:accepted": 114,
+      "frozen:paused": 9,
+      "runtime_ready:accepted": 115,
       "runtime_ready:paused": 4
     },
     "blocker_count": 62,
@@ -1314,15 +1314,6 @@
       "path": "tools/capabilities/energy/quantum-massfab/capability.json"
     },
     {
-      "slug": "energy/small-gas-turbine",
-      "title": "Small Gas Turbine",
-      "maturity": "frozen",
-      "workflow": "paused",
-      "survival_access": "unreviewed",
-      "wave_slug": "energy/small-gas-turbine",
-      "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
-    },
-    {
       "slug": "energy/steam-turbine",
       "title": "Steam Turbines STEAM to RU",
       "maturity": "frozen",
@@ -1532,8 +1523,8 @@
     {
       "slug": "machines/large-autoclave",
       "title": "Large Autoclave 17112",
-      "maturity": "frozen",
-      "workflow": "paused",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
       "survival_access": "partial",
       "wave_slug": "machines/large-autoclave",
       "path": "tools/capabilities/machines/large-autoclave/capability.json"
@@ -3957,21 +3948,6 @@
       "disposition": "new_distinct",
       "runtime_ids": [
         "cruciblecraft:neutronium"
-      ],
-      "blocker_ids": []
-    },
-    {
-      "capability": "energy/small-gas-turbine",
-      "semantic_key": "machine:bronze_small_gas_turbine",
-      "disposition": "new_distinct",
-      "runtime_ids": [
-        "cruciblecraft:bronze_small_gas_turbine",
-        "cruciblecraft:steel_small_gas_turbine",
-        "cruciblecraft:invar_small_gas_turbine",
-        "cruciblecraft:titanium_small_gas_turbine",
-        "cruciblecraft:chromium_small_gas_turbine",
-        "cruciblecraft:tungstensteel_small_gas_turbine",
-        "cruciblecraft:iridium_small_gas_turbine"
       ],
       "blocker_ids": []
     },
@@ -15590,20 +15566,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/BoilerBlockEntity.java",
@@ -15775,20 +15741,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -15831,20 +15787,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/ElectricEngineBlockEntity.java",
@@ -15974,21 +15920,11 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/fission-observation-safety",
             "path": "tools/capabilities/energy/nuclear-fission-observation-safety/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
           "energy/converter-catalog",
-          "energy/nuclear-fission-observation-safety",
-          "energy/small-gas-turbine"
+          "energy/nuclear-fission-observation-safety"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/compat/jade/observation/SteamEngineObservation.java",
@@ -16082,20 +16018,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16158,20 +16084,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16230,20 +16146,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
@@ -16355,20 +16261,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
@@ -16434,20 +16330,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16489,20 +16375,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/ElectricHeaterBlockEntity.java",
@@ -16556,20 +16432,10 @@
             "survival_access": "partial",
             "wave_slug": null,
             "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16620,20 +16486,10 @@
             "survival_access": "partial",
             "wave_slug": null,
             "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16765,20 +16621,10 @@
             "survival_access": "partial",
             "wave_slug": null,
             "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16820,20 +16666,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [],
         "java_file_count": 0,
@@ -16878,20 +16714,10 @@
             "survival_access": "unreviewed",
             "wave_slug": "runtime/converter-catalog",
             "path": "tools/capabilities/energy/converter-catalog/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
@@ -17298,21 +17124,11 @@
             "survival_access": "partial",
             "wave_slug": null,
             "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
           "energy/converter-catalog",
-          "energy/gt6-laser-magnet-zpm-converters",
-          "energy/small-gas-turbine"
+          "energy/gt6-laser-magnet-zpm-converters"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/content/blockentity/ZpmDechargerBlockEntity.java",
@@ -17362,20 +17178,10 @@
             "survival_access": "partial",
             "wave_slug": null,
             "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
-          },
-          {
-            "slug": "energy/small-gas-turbine",
-            "title": "Small Gas Turbine",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": "unreviewed",
-            "wave_slug": "energy/small-gas-turbine",
-            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
           }
         ],
         "owner_attributed": [
-          "energy/converter-catalog",
-          "energy/small-gas-turbine"
+          "energy/converter-catalog"
         ],
         "java_files": [
           "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java"
@@ -17405,8 +17211,8 @@
         {
           "slug": "machines/large-autoclave",
           "title": "Large Autoclave 17112",
-          "maturity": "frozen",
-          "workflow": "paused",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
           "survival_access": "partial",
           "wave_slug": "machines/large-autoclave",
           "path": "tools/capabilities/machines/large-autoclave/capability.json"
@@ -17417,8 +17223,8 @@
           {
             "slug": "machines/large-autoclave",
             "title": "Large Autoclave 17112",
-            "maturity": "frozen",
-            "workflow": "paused",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
             "survival_access": "partial",
             "wave_slug": "machines/large-autoclave",
             "path": "tools/capabilities/machines/large-autoclave/capability.json"
@@ -17435,7 +17241,7 @@
         "data_file_count": 1,
         "structure_files": []
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "bath",
@@ -24321,7 +24127,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -24353,7 +24159,8 @@
       "energy/gt6-laser-magnet-zpm-converters",
       "capability close energy/gt6-remainder-devices (major)",
       "capability close content/gt6-fluid-barrel (major)",
-      "capability close machines/gt6-multiblock-tanks (major)"
+      "capability close machines/gt6-multiblock-tanks (major)",
+      "capability close machines/large-autoclave (major)"
     ],
     "accepted": null
   }

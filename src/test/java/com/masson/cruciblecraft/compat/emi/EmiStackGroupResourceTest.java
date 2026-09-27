@@ -103,16 +103,18 @@ class EmiStackGroupResourceTest {
                 centrifuge.langZh(),
                 chinese.get("emi.cruciblecraft.group.machine.centrifuge")
                         .getAsString());
-        EnergyConverterKindCatalog.Kind turbine = EnergyConverterKindCatalog.require(
-                ResourceLocation.parse("cruciblecraft:small_gas_turbine"));
+        EnergyConverterKindCatalog.Kind engine = EnergyConverterKindCatalog.require(
+                ResourceLocation.parse("cruciblecraft:fuel_engine"));
         assertEquals(
-                turbine.langEn(),
-                english.get("emi.cruciblecraft.group.converter.small_gas_turbine")
+                engine.langEn(),
+                english.get("emi.cruciblecraft.group.converter.fuel_engine")
                         .getAsString());
         assertEquals(
-                turbine.langZh(),
-                chinese.get("emi.cruciblecraft.group.converter.small_gas_turbine")
+                engine.langZh(),
+                chinese.get("emi.cruciblecraft.group.converter.fuel_engine")
                         .getAsString());
+        assertFalse(english.has("emi.cruciblecraft.group.converter.small_gas_turbine"));
+        assertFalse(chinese.has("emi.cruciblecraft.group.converter.small_gas_turbine"));
         assertEquals(
                 "Glass",
                 english.get("emi.cruciblecraft.group.building.glass").getAsString());

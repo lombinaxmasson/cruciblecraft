@@ -86,7 +86,7 @@ class HydrocarbonResourceTest {
                     }
                     case "cruciblecraft:fuels_gas_turbine" -> {
                         turbine++;
-                        assertTrue(ModFuelGenerators.SMALL_GAS_TURBINE
+                        assertTrue(ModFuelGenerators.GAS_TURBINE_FUEL
                                 .validate(decoded).isEmpty(), relative);
                         assertTrue(provenance.get("selected_source_recipe")
                                 .getAsString()
@@ -250,7 +250,7 @@ class HydrocarbonResourceTest {
                             .validate(recipe).isEmpty(), relative);
                     engine++;
                 } else if (relative.startsWith("hydrocarbon/fuels_gas_turbine/")) {
-                    assertTrue(ModFuelGenerators.SMALL_GAS_TURBINE
+                    assertTrue(ModFuelGenerators.GAS_TURBINE_FUEL
                             .validate(recipe).isEmpty(), relative);
                     turbine++;
                 } else if (relative.startsWith("hydrocarbon/fuels_gas/")) {

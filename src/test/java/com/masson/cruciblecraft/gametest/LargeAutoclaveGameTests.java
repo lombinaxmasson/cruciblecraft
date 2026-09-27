@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.LargeAutoclaveBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -79,6 +80,45 @@ public final class LargeAutoclaveGameTests {
         helper.assertTrue(
                 structure.portCount(PortType.ITEM_FLUID_ENERGY) == 25,
                 "Hollow 18022 ITEM_FLUID_ENERGY count drifted");
+        int walls = 0;
+        int alias = 0;
+        int items = 0;
+        int fluids = 0;
+        int time = 0;
+        for (var element : structure.structure()) {
+            if (structure.predicate(element).kind() != PredicateKind.PORT) {
+                continue;
+            }
+            var entity = helper.getBlockEntity(structure.worldPosition(
+                    CONTROLLER, FACING, element.offset()));
+            if (!(entity instanceof MteInPlaceBlockEntity wall)) {
+                continue;
+            }
+            walls++;
+            if (!wall.ownsIndependentPortStore()) {
+                alias++;
+            }
+            if (wall.itemHandler(Direction.UP) != null) {
+                items++;
+            }
+            if (wall.fluidHandler(Direction.UP) != null) {
+                fluids++;
+            }
+            if (wall.handles(EnergyType.TIME, Direction.UP)) {
+                time++;
+            }
+        }
+        helper.assertTrue(
+                walls == 25
+                        && alias == 25
+                        && items == 25
+                        && fluids == 25
+                        && time == 25,
+                "18022 alias walls: found=" + walls
+                        + " alias=" + alias
+                        + " item=" + items
+                        + " fluid=" + fluids
+                        + " tu=" + time);
         helper.succeed();
     }
 

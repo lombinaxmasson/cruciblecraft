@@ -28,9 +28,10 @@ public final class ModFuelGenerators {
                     FuelGeneratorSpec.EnergyOutputFace.FRONT,
                     List.of(Direction.UP),
                     1);
-    public static final FuelGeneratorSpec SMALL_GAS_TURBINE =
+    /** Validates GT6 {@code FM.Gas} rows consumed by the large gas turbine. */
+    public static final FuelGeneratorSpec GAS_TURBINE_FUEL =
             new FuelGeneratorSpec(
-                    id("small_gas_turbine"),
+                    id("fuels_gas_turbine"),
                     () -> ModRecipeMaps.FUELS_GAS_TURBINE,
                     8_000,
                     8_000,
@@ -61,7 +62,7 @@ public final class ModFuelGenerators {
                     List.of(Direction.NORTH, Direction.SOUTH),
                     2);
     public static final List<FuelGeneratorSpec> ALL =
-            List.of(FUEL_ENGINE, SMALL_GAS_TURBINE, BURNING_GAS_GENERATOR);
+            List.of(FUEL_ENGINE, GAS_TURBINE_FUEL, BURNING_GAS_GENERATOR);
     private static final Map<ResourceLocation, FuelGeneratorSpec> BY_MAP =
             ALL.stream().collect(java.util.stream.Collectors.toUnmodifiableMap(
                     spec -> spec.requireRecipeMap().id(),

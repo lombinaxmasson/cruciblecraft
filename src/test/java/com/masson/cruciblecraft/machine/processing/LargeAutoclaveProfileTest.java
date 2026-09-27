@@ -21,6 +21,7 @@ import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.SharedConstants;
+import net.minecraft.core.Direction;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -64,6 +65,26 @@ class LargeAutoclaveProfileTest {
                 runtime.energy().mode());
         assertFalse(runtime.sidedIo().itemsChannel().hasAutoInput());
         assertFalse(runtime.sidedIo().fluidsChannel().hasAutoInput());
+        assertEquals(
+                Optional.of(Direction.DOWN),
+                runtime.sidedIo().itemsChannel().autoOutputWorld(Direction.NORTH));
+        assertEquals(
+                Optional.of(Direction.DOWN),
+                runtime.sidedIo().fluidsChannel().autoOutputWorld(Direction.NORTH));
+        for (Direction side : Direction.values()) {
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.BOTH,
+                    runtime.sidedIo().items().resolve(Direction.NORTH, side),
+                    side.getSerializedName());
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.BOTH,
+                    runtime.sidedIo().fluids().resolve(Direction.NORTH, side),
+                    side.getSerializedName());
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.INPUT,
+                    runtime.sidedIo().energy().resolve(Direction.NORTH, side),
+                    side.getSerializedName());
+        }
     }
 
     @Test

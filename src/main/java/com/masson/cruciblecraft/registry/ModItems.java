@@ -731,8 +731,6 @@ public final class ModItems {
             converterItem("steel_galvanized_electric_motor");
     public static final DeferredItem<BlockItem> BRONZE_FUEL_ENGINE =
             converterItem("bronze_fuel_engine");
-    public static final DeferredItem<BlockItem> BRONZE_SMALL_GAS_TURBINE =
-            converterItem("bronze_small_gas_turbine");
     public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_GAS =
             converterItem("bronze_burning_box_gas");
     public static final DeferredItem<BlockItem> BRONZE_BURNING_BOX_SOLID =
