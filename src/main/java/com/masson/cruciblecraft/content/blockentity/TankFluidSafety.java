@@ -102,8 +102,17 @@ public final class TankFluidSafety {
     }
 
     private static boolean isPowerConducting(FluidStack stack) {
-        if (isPlasma(stack)) {
-            return true;
+        return isPlasma(stack) || conductsPower(stack);
+    }
+
+    /**
+     * GT6 {@code FL.powerconducting}: steam and the power-conducting material
+     * tag. Plasma is a separate hazard; a plasma-proof drum still holds plasma
+     * that is not itself power-conducting.
+     */
+    public static boolean conductsPower(FluidStack stack) {
+        if (stack == null || stack.isEmpty()) {
+            return false;
         }
         Fluid fluid = stack.getFluid();
         ResourceName name = new ResourceName(BuiltInRegistries.FLUID.getKey(fluid));
@@ -121,7 +130,10 @@ public final class TankFluidSafety {
         }
     }
 
-    private static boolean isAcid(FluidStack stack) {
+    public static boolean isAcid(FluidStack stack) {
+        if (stack == null || stack.isEmpty()) {
+            return false;
+        }
         try {
             return ModFluids.material(stack.getFluid())
                     .map(material -> material.hasMaterialTag("PROPERTIES.ACID"))
@@ -131,14 +143,18 @@ public final class TankFluidSafety {
         }
     }
 
-    private static boolean isPlasma(FluidStack stack) {
-        return FluidPipeBlockedMedia.kindOf(stack)
-                == FluidPipeBlockedMedia.Kind.PLASMA;
+    public static boolean isPlasma(FluidStack stack) {
+        return stack != null
+                && !stack.isEmpty()
+                && FluidPipeBlockedMedia.kindOf(stack)
+                        == FluidPipeBlockedMedia.Kind.PLASMA;
     }
 
-    private static boolean isMagic(FluidStack stack) {
-        return FluidPipeBlockedMedia.kindOf(stack)
-                == FluidPipeBlockedMedia.Kind.MAGIC;
+    public static boolean isMagic(FluidStack stack) {
+        return stack != null
+                && !stack.isEmpty()
+                && FluidPipeBlockedMedia.kindOf(stack)
+                        == FluidPipeBlockedMedia.Kind.MAGIC;
     }
 
     private static boolean isSimple(Fluid fluid) {

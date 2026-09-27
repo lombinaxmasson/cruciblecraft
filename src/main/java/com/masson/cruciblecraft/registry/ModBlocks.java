@@ -73,7 +73,10 @@ import com.masson.cruciblecraft.content.block.LogisticsCoreWallBlock;
 import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.block.FluidBarrelBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelCatalog;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelProfile;
 import com.masson.cruciblecraft.content.block.SensorBlock;
 import com.masson.cruciblecraft.content.sensor.SensorKind;
 import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
@@ -724,6 +727,8 @@ public final class ModBlocks {
                     registerTieredProcessingBlocks();
     private static final Map<ResourceLocation, DeferredBlock<HopperBlock>>
             HOPPER_BLOCKS = registerHopperBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<FluidBarrelBlock>>
+            FLUID_BARREL_BLOCKS = registerFluidBarrelBlocks();
     private static final Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>
             MTE_INPLACE_BLOCKS = registerMteInPlaceBlocks();
     private static final Map<ResourceLocation, DeferredBlock<SensorBlock>>
@@ -1802,6 +1807,59 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<HopperBlock>> hopperBlocks() {
         return HOPPER_BLOCKS.values();
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<FluidBarrelBlock>>
+            registerFluidBarrelBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<FluidBarrelBlock>> blocks =
+                new LinkedHashMap<>();
+        for (FluidBarrelProfile profile : FluidBarrelCatalog.profiles()) {
+            DeferredBlock<FluidBarrelBlock> block = BLOCKS.register(
+                    profile.path(),
+                    () -> new FluidBarrelBlock(
+                            profile, fluidBarrelProperties(profile)));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate fluid barrel block " + profile.id());
+            }
+        }
+        if (blocks.size() != FluidBarrelCatalog.EXPECTED) {
+            throw new IllegalStateException(
+                    "Fluid barrel registration drifted from 36 identities");
+        }
+        return Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<FluidBarrelBlock>>
+            fluidBarrelBlocksById() {
+        return FLUID_BARREL_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<FluidBarrelBlock>> fluidBarrelBlocks() {
+        return FLUID_BARREL_BLOCKS.values();
+    }
+
+    public static Block[] fluidBarrelBlockArray() {
+        return FLUID_BARREL_BLOCKS.values().stream()
+                .map(holder -> (Block) holder.get())
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties fluidBarrelProperties(
+            FluidBarrelProfile profile) {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .mapColor(profile.kind().woodenSound()
+                        ? MapColor.WOOD
+                        : MapColor.METAL)
+                .strength(profile.hardness(), profile.resistance())
+                .sound(profile.kind().woodenSound()
+                        ? SoundType.WOOD
+                        : SoundType.METAL)
+                .requiresCorrectToolForDrops();
+        if (profile.flammability() > 0) {
+            properties = properties.ignitedByLava();
+        }
+        return properties;
     }
 
     private static Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>

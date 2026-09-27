@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.item;
 import java.util.Objects;
 
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidBarrelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
@@ -48,6 +49,9 @@ public final class ThermometerItem extends Item {
         }
         if (blockEntity instanceof FoundryCastingBlockEntity mold) {
             return reportKelvin(context, TemperatureDamage.kelvin(mold.temperature()), false);
+        }
+        if (blockEntity instanceof FluidBarrelBlockEntity barrel) {
+            return reportKelvin(context, barrel.temperatureKelvin(), false);
         }
         if (blockEntity instanceof LargeBoilerBlockEntity boiler) {
             if (!level.isClientSide && context.getPlayer() != null) {

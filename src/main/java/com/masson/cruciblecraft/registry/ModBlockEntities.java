@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DirectedWasteConverterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ZpmDechargerBlockEntity;
 import com.masson.cruciblecraft.energy.zpm.ZpmModuleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidBarrelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
@@ -299,6 +300,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     TankBlockEntity::new,
                                     ModBlocks.tankBlockEntityBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FluidBarrelBlockEntity>>
+                    FLUID_BARREL = BLOCK_ENTITIES.register(
+                            "fluid_barrel",
+                            () -> BlockEntityType.Builder.of(
+                                    FluidBarrelBlockEntity::new,
+                                    ModBlocks.fluidBarrelBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

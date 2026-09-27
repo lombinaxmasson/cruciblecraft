@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBushColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
+import com.masson.cruciblecraft.client.color.FluidBarrelBlockColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.LargeCrucibleBlockColor;
 import com.masson.cruciblecraft.client.color.LogisticsCoreBlockColor;
@@ -275,6 +276,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedHoppers)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedFluidBarrels = FluidBarrelBlockColor.tintedBlocks();
+        event.register(
+                FluidBarrelBlockColor::itemColor,
+                java.util.Arrays.stream(tintedFluidBarrels)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         Block[] tintedFoundry = FoundryBlockColor.tintedBlocks();
         event.register(
                 FoundryBlockColor::itemColor,
@@ -383,6 +390,9 @@ public class ClientSetup {
                 Gt6OpeningBlockColor::blockColor,
                 Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
+        event.register(
+                FluidBarrelBlockColor::blockColor,
+                FluidBarrelBlockColor.tintedBlocks());
         event.register(FoundryBlockColor::blockColor, FoundryBlockColor.tintedBlocks());
         event.register(BathingPotColor::blockColor, BathingPotColor.tintedBlocks());
         event.register(StorageArtColor::blockColor, StorageArtColor.tintedBlocks());

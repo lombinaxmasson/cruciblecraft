@@ -712,6 +712,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
             addMachineIoTranslations();
             addHopperTranslations(true);
+            addFluidBarrelTranslations(true);
             addSensorTranslations();
             addRedstoneWireTranslations();
             addStorageTranslations(true);
@@ -1489,6 +1490,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
         addMachineIoTranslations();
         addHopperTranslations(false);
+        addFluidBarrelTranslations(false);
         addSensorTranslations();
         addRedstoneWireTranslations();
         addStorageTranslations(false);
@@ -1725,6 +1727,70 @@ public class ModLanguageProvider extends LanguageProvider {
         add(
                 "message.cruciblecraft.inspect.stage",
                 chinese ? "生长阶段：%s" : "Stage: %s");
+    }
+
+    private void addFluidBarrelTranslations(boolean chinese) {
+        com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelCatalog.profiles()
+                .forEach(profile -> {
+                    var block = ModBlocks.fluidBarrelBlocksById().get(profile.id());
+                    if (block != null) {
+                        addBlock(
+                                block,
+                                chinese
+                                        ? profile.chineseName()
+                                        : profile.englishName());
+                    }
+                });
+        add("tooltip.cruciblecraft.fluid_barrel.capacity",
+                chinese ? "容量：%s L" : "Capacity: %s L");
+        add("tooltip.cruciblecraft.fluid_barrel.contents",
+                chinese ? "%2$s L %1$s；最大：%3$s L" : "%2$s L of %1$s; Max: %3$s L");
+        add("tooltip.cruciblecraft.fluid_barrel.sealed_progress",
+                chinese ? "已密封（%s）" : "Sealed (%s)");
+        add("tooltip.cruciblecraft.fluid_barrel.no_gui",
+                chinese
+                        ? "没有界面。用细漏斗和龙头操作！"
+                        : "No GUI. Use Tiny Funnels and Taps to interact!");
+        add("tooltip.cruciblecraft.fluid_barrel.no_power",
+                chinese
+                        ? "进入的导电流体都会被清空！"
+                        : "All entering Power Conductor Fluids will be voided!");
+        add("tooltip.cruciblecraft.fluid_barrel.only_simple",
+                chinese ? "只接受简单流体！" : "Only accepts simple Fluids!");
+        add("tooltip.cruciblecraft.fluid_barrel.gas_proof",
+                chinese ? "可以装气体" : "Can handle Gases");
+        add("tooltip.cruciblecraft.fluid_barrel.acid_proof",
+                chinese ? "可以装酸" : "Can handle Acids");
+        add("tooltip.cruciblecraft.fluid_barrel.plasma_proof",
+                chinese ? "可以装等离子体" : "Can handle Plasma");
+        add("tooltip.cruciblecraft.fluid_barrel.magic_proof",
+                chinese ? "可以装魔法流体" : "Can handle Magic");
+        add("tooltip.cruciblecraft.fluid_barrel.meltdown",
+                chinese
+                        ? "储存的热量过高时会熔毁！（%s K）"
+                        : "Melts down when stored Heat is too much! (%s K)");
+        add("tooltip.cruciblecraft.fluid_barrel.wrench",
+                chinese
+                        ? "用猴扳手切换自动输出"
+                        : "Use Monkey Wrench to toggle automatic Outputs");
+        add("tooltip.cruciblecraft.fluid_barrel.hammer",
+                chinese ? "用软锤切换状态" : "Use Soft Hammer to toggle States");
+        add("tooltip.cruciblecraft.fluid_barrel.glass",
+                chinese ? "用放大镜查看详情" : "Use Magnifying Glass to see Details");
+        add("message.cruciblecraft.fluid_barrel.normal",
+                chinese ? "普通" : "Normal");
+        add("message.cruciblecraft.fluid_barrel.sealed",
+                chinese ? "已密封" : "Sealed");
+        add("message.cruciblecraft.fluid_barrel.auto_off",
+                chinese
+                        ? "不会灌入上下相邻的储罐"
+                        : "Won't fill vertically adjacent Tanks");
+        add("message.cruciblecraft.fluid_barrel.auto_on",
+                chinese
+                        ? "会灌入上下相邻的储罐（取决于重力和物态）"
+                        : "Will fill vertically adjacent Tanks (depending on Gravity and State of Matter)");
+        add("message.cruciblecraft.fluid_barrel.sealed_progress",
+                chinese ? "已密封（%s / %s）" : "Sealed (%s / %s)");
     }
 
     private void addHopperTranslations(boolean chinese) {

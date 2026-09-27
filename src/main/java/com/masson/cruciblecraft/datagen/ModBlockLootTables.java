@@ -103,6 +103,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.pipeBlocks().forEach(
                 block -> dropSelf(block.get()));
         ModBlocks.hopperBlocks().forEach(block -> dropSelf(block.get()));
+        ModBlocks.fluidBarrelBlocks().forEach(block -> dropSelf(block.get()));
         ModBlocks.sensorBlocks().forEach(block -> dropSelf(block.get()));
         ModBlocks.redstoneWireCatalog().forEach(block -> dropSelf(block.get()));
         ModBlocks.variantStorageBlocks().forEach(block -> dropSelf(block.get()));
@@ -337,6 +338,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 holder -> blocks.add(holder.get()));
         ModBlocks.pipeBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.hopperBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.fluidBarrelBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.sensorBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.variantStorageBlocks().forEach(
                 holder -> blocks.add(holder.get()));

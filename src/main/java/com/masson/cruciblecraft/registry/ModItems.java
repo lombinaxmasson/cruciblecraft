@@ -32,7 +32,11 @@ import com.masson.cruciblecraft.content.item.MaterialDustBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialPlateStorageBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
+import com.masson.cruciblecraft.content.block.FluidBarrelBlock;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelCatalog;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelProfile;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
+import com.masson.cruciblecraft.content.item.FluidBarrelBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
 import com.masson.cruciblecraft.content.item.FluidSpringBlockItem;
 import com.masson.cruciblecraft.content.item.RedstoneWireBlockItem;
@@ -754,6 +758,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<HopperBlockItem>> HOPPER_ITEMS =
                     registerHopperItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<FluidBarrelBlockItem>> FLUID_BARREL_ITEMS =
+                    registerFluidBarrelItems();
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<CatalogNamedBlockItem>> MTE_INPLACE_ITEMS =
@@ -1990,6 +1998,41 @@ public final class ModItems {
     public static Map<ResourceLocation, DeferredItem<HopperBlockItem>>
             hopperItemsById() {
         return HOPPER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<FluidBarrelBlockItem>>
+            registerFluidBarrelItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<FluidBarrelBlockItem>> items =
+                new LinkedHashMap<>();
+        for (FluidBarrelProfile profile : FluidBarrelCatalog.profiles()) {
+            DeferredItem<FluidBarrelBlockItem> item = ITEMS.register(
+                    profile.path(),
+                    () -> new FluidBarrelBlockItem(
+                            (FluidBarrelBlock) ModBlocks.fluidBarrelBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            profile.englishName(),
+                            profile.chineseName()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate fluid barrel item " + profile.id());
+            }
+        }
+        if (items.size() != FluidBarrelCatalog.EXPECTED) {
+            throw new IllegalStateException(
+                    "Fluid barrel item registration drifted from 36 identities");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<FluidBarrelBlockItem>>
+            fluidBarrelItemsById() {
+        return FLUID_BARREL_ITEMS;
+    }
+
+    public static Collection<DeferredItem<FluidBarrelBlockItem>>
+            fluidBarrelItems() {
+        return FLUID_BARREL_ITEMS.values();
     }
 
     private static Map<ResourceLocation, DeferredItem<CatalogNamedBlockItem>>

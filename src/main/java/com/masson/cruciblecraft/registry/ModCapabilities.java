@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
+import com.masson.cruciblecraft.content.item.FluidBarrelBlockItem;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
@@ -85,6 +86,22 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.TANK_3X3X3.get(),
                 (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FLUID_BARREL.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                LONG_FLUID_HANDLER,
+                ModBlockEntities.FLUID_BARREL.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerItem(
+                Capabilities.FluidHandler.ITEM,
+                (stack, context) -> stack.getItem() instanceof FluidBarrelBlockItem item
+                        ? item.fluidHandler(stack)
+                        : null,
+                ModItems.fluidBarrelItems().stream()
+                        .map(holder -> holder.get())
+                        .toArray(net.minecraft.world.item.Item[]::new));
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.DYNAMO.get(), (blockEntity, side) -> blockEntity);

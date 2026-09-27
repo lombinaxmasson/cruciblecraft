@@ -264,6 +264,7 @@ public final class ModCreativeTabs {
         ModMachineVariants.ALL.forEach(variant ->
                 output.accept(ModBlocks.configuredProcessingBlock(variant).asItem()));
         ModBlocks.hopperBlocks().forEach(block -> output.accept(block.get().asItem()));
+        ModBlocks.fluidBarrelBlocks().forEach(block -> output.accept(block.get().asItem()));
         ModBlocks.sensorBlocks().forEach(block -> output.accept(block.get().asItem()));
         output.accept(ModItems.STEEL_DUST_FUNNEL.get());
         output.accept(ModItems.MIXING_BOWL.get());

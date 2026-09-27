@@ -32,7 +32,7 @@ GT6 是这个项目的主要来源，也是完整移植的目标。Minecraft 和
 
 需要 Java 21、Minecraft 1.21.1、NeoForge 21.1.243。内存建议留够 16 GiB 以上，第一次进世界要等它把东西都加载完。材料身份和铸造方块刚改过一版，建议开新档。
 
-直接 clone 下来就能编译。`gt6_code/` 和 `gt6_referencable_port_code/` 是本机的参考源码树，不进 Git，改运行时代码用不着它们；只有要重放 GT6 来源数据或者搬贴图时才需要本地准备一份，具体见[代码树说明](docs/current/code-tree.md)。
+全量移植的对照和当前进度见 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)。
 
 ```powershell
 .\gradlew.bat build

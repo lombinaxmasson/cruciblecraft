@@ -7,7 +7,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`content/gt6-fluid-barrel`（GT6 fluid barrels and drums，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6流体桶与鼓详细计划](../history/card-plans/active/GT6流体桶与鼓详细计划.md)。
 
 ## Prep（不占落地锁）
 

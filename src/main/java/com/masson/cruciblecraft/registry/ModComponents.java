@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelContents;
 import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.material.MaterialId;
@@ -240,6 +241,16 @@ public final class ModComponents {
                     builder -> builder
                             .persistent(Codec.STRING)
                             .networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<FluidBarrelContents>>
+                    FLUID_BARREL = COMPONENTS.registerComponentType(
+                            "fluid_barrel",
+                            builder -> builder
+                                    .persistent(FluidBarrelContents.CODEC)
+                                    .networkSynchronized(
+                                            FluidBarrelContents.STREAM_CODEC));
 
     private ModComponents() {}
 }

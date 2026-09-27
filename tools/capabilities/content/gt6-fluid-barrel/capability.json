@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-fluid-barrel",
+  "title": "GT6 fluid barrels and drums",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6流体桶与鼓详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/fluidbarrel/**",
+    "src/main/java/com/masson/cruciblecraft/content/block/FluidBarrelBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidBarrelBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/FluidBarrelBlockItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/FluidBarrelItemHandler.java",
+    "src/main/java/com/masson/cruciblecraft/client/color/FluidBarrelBlockColor.java",
+    "src/test/java/com/masson/cruciblecraft/content/fluidbarrel/**",
+    "src/main/resources/data/cruciblecraft/fluid_barrel_catalog.json",
+    "src/main/resources/data/cruciblecraft/fluid_barrel_simple_fluids.json",
+    "src/main/resources/data/cruciblecraft/recipe/fluid_barrel/**",
+    "src/main/resources/assets/cruciblecraft/models/block/fluid_barrel/**",
+    "src/main/resources/assets/cruciblecraft/models/item/fluid_barrel/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/fluid_barrel/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/fluid_barrel/**",
+    "tools/fluid_barrel/**",
+    "tools/capabilities/content/gt6-fluid-barrel/**"
+  ],
+  "depends_on": [
+    "registry/catalog-modern-ids"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-fluid-barrel",
+  "note": "36 GT6 barrel, drum, plastic canister and logistics tank identities. Wood barrels accept the GT6 simple-fluid name set. Item fill rejects unsafe fluids; a placed tank accepts them and the next tick voids, melts, or destroys. Logistics tanks keep a zero-amount filter. Decorative covers are not hosted. All 20 metal drums and the logistics tank have source recipes. Wooden barrels stay blocked on unmapped glue. The plastic canister has no GT6 shaped recipe."
+}

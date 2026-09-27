@@ -150,6 +150,13 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             stone.add(block.getKey());
         });
         var axe = tag(BlockTags.MINEABLE_WITH_AXE);
+        ModBlocks.fluidBarrelBlocks().forEach(block -> {
+            if (block.get().profile().kind().woodenSound()) {
+                axe.add(block.getKey());
+            } else {
+                pickaxe.add(block.getKey());
+            }
+        });
         ModBlocks.variantStorageBlocks().forEach(block -> {
             var variant = block.get().variant();
             boolean wood = variant.plankIndex() != null
