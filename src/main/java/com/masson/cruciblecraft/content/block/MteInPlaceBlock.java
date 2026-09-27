@@ -278,6 +278,9 @@ public final class MteInPlaceBlock extends Block
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
+        if (LargeCrucibleHosts.formed(state) && LargeCrucibleHosts.isWall(spec)) {
+            return formedWallShape(level, pos);
+        }
         MteInPlaceKind kind = spec.kind();
         if (AnvilHosts.isAnvil(spec)) {
             return AnvilHosts.shape(AnvilHosts.horizontalFacing(state));
@@ -313,6 +316,27 @@ public final class MteInPlaceBlock extends Block
             case WEST -> WEST;
             case EAST -> EAST;
         };
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        if (LargeCrucibleHosts.formed(state) && LargeCrucibleHosts.isWall(spec)) {
+            return Shapes.block();
+        }
+        return super.getCollisionShape(state, level, pos, context);
+    }
+
+    private VoxelShape formedWallShape(BlockGetter level, BlockPos pos) {
+        LargeCrucibleBlockEntity controller = LargeCrucibleWalls.controllerAt(level, pos);
+        if (controller == null) {
+            return Shapes.block();
+        }
+        BlockPos delta = pos.subtract(controller.getBlockPos());
+        return LargeCrucibleHullShape.shape(delta.getX(), delta.getY(), delta.getZ());
     }
 
     private VoxelShape foundryShape() {
