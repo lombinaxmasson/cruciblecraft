@@ -33,7 +33,7 @@ catalog 或对照工具。全量 GT6 源码目标与当前 runtime portfolio 分
 
 - 已关闭阶段的档案、工作日志与编号卡计划在 [docs/history](../history/INDEX.md)。
 - `0.1.0-rc.1` 是历史工程候选版本，不是 `1.0.0`、GA 或玩家发行承诺。
-- `0.1.0-test.20260922.1` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
+- `0.1.0-test.20260927.1` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
 - 历史 full verification report 已从工作树删除；内容开发不以旧 `--check-ready`
   通过与否作为日常完成判据。
 - 当前进度只接受当前 revision 上 fresh 执行的 capability profile PASS；
@@ -56,7 +56,7 @@ catalog 或对照工具。全量 GT6 源码目标与当前 runtime portfolio 分
 
 仓库历史中的 `1.0` / `1.x` 只表示当时定义的源码阶段 portfolio 与留档边界，
 不是正式 `1.0.0`、GA、完整 GT6 覆盖或玩家发行承诺。当前版本仍是
-`0.1.0-test.20260922.1`；历史退出门不能替代本地 GT6 全量 reconciliation。
+`0.1.0-test.20260927.1`；历史退出门不能替代本地 GT6 全量 reconciliation。
 
 ## 4. 当前内容顺序
 

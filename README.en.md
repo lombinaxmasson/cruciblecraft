@@ -8,7 +8,7 @@ data-driven pipeline. Unofficial. The target is full coverage; progress is
 closed capabilities, and remaining gaps stay on the ledger until they are
 done for real.
 
-Current version `0.1.0-test.20260922.1` — source tree, development snapshot.
+Current version `0.1.0-test.20260927.1` — source tree, development snapshot.
 Play notes: [player guide](docs/current/player-guide.md) (new worlds).
 
 - [Project status](docs/current/project-status.md)
@@ -73,7 +73,7 @@ runtime work does not.
 ```
 
 Artifacts land in `build/libs/` as
-`cruciblecraft-0.1.0-test.20260922.1.jar`. `distBeta` zips the docs with it.
+`cruciblecraft-0.1.0-test.20260927.1.jar`. `distBeta` zips the docs with it.
 Keep Gradle proxies in user-level `~/.gradle/gradle.properties`.
 
 ## Development model

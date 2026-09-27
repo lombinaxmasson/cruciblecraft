@@ -1,5 +1,14 @@
 # CrucibleCraft Changelog
 
+## 0.1.0-test.20260927.1 (2026-09-27)
+
+当前工作树私测包，接在 `0.1.0-test.20260922.1` 之后。
+
+- 安装文件：`cruciblecraft-0.1.0-test.20260927.1.jar`（Minecraft 1.21.1、NeoForge 21.1.243、Java 21）。
+- 大型坩埚：金属着色、炼钢时 KU 当作空气、成型外壳按 3×3 壳取样贴图，准星描边贴在半格锅壁上。
+- 同期已提交的机器、配方、流体罐和其他修复都在这个包里。
+- 仍须新开世界。玩家说明：[docs/current/player-guide.md](docs/current/player-guide.md)。
+
 ## 0.1.0-test.20260922.1 (2026-09-22)
 
 六个运行时回归已修复并完成 Java 验证。

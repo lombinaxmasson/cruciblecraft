@@ -4,7 +4,7 @@
 
 本项目是把 GregTech 6 移植到 Minecraft 1.21.1 / NeoForge 上的一个尝试：材料、机器、配方、能源、物流、世界生成都照着钉死的上游版本走数据驱动的移植流程，目标是完整覆盖，而不是挑几个系统做个演示。
 
-当前版本是开发快照 `0.1.0-test.20260922.1`，以源码仓库的形式发布。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。
+当前版本是开发快照 `0.1.0-test.20260927.1`，以源码仓库的形式发布。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。
 
 - [项目状态](docs/current/project-status.md)
 - [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)
@@ -40,7 +40,7 @@ GT6 是这个项目的主要来源，也是完整移植的目标。Minecraft 和
 .\gradlew.bat test
 ```
 
-构建产物在 `build/libs/` 下，当前是 `cruciblecraft-0.1.0-test.20260922.1.jar`。`distBeta` 会把文档一起打进 zip。如果要配代理，写在用户级的 `~/.gradle/gradle.properties` 里。
+构建产物在 `build/libs/` 下，当前是 `cruciblecraft-0.1.0-test.20260927.1.jar`。`distBeta` 会把文档一起打进 zip。如果要配代理，写在用户级的 `~/.gradle/gradle.properties` 里。
 
 ## 开发方式
 

@@ -1,8 +1,8 @@
-# CrucibleCraft 玩家指南（0.1.0-test.20260922.1）
+# CrucibleCraft 玩家指南（0.1.0-test.20260927.1）
 
 > **小群私测快照，不是公开测试、不是 RC、不是 GA、也不是 `1.0.0`。**
 > 不要发到 CurseForge / Modrinth / GitHub Release。旧档不要拿来升级。
-> 模组列表里应显示 `0.1.0-test.20260922.1`。
+> 模组列表里应显示 `0.1.0-test.20260927.1`。
 
 ## 0. 先读这几条
 
@@ -14,9 +14,9 @@
 ## 1. 安装
 
 1. 安装 Minecraft 1.21.1 与 **NeoForge 21.1.243 或更高**（Java 21）；
-2. 把 `cruciblecraft-0.1.0-test.20260922.1.jar` 放入 `.minecraft/mods/`；
+2. 把 `cruciblecraft-0.1.0-test.20260927.1.jar` 放入 `.minecraft/mods/`；
 3. （可选）EMI `1.1.24+` 查看配方、Jade `15+` 查看方块信息；再加 Reliable EMI（REMI / EMI++）`4.7.3+` 可把同形态材料（粉、锭、碎矿、工具头等）、同种工具、同种加工机 / 能量转换器，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具在物品列表里折叠。YACL 是 REMI 的依赖。缺 EMI / Jade / REMI / KubeJS 仍可启动；
-4. 启动游戏，确认模组列表中出现 CrucibleCraft `0.1.0-test.20260922.1`。
+4. 启动游戏，确认模组列表中出现 CrucibleCraft `0.1.0-test.20260927.1`。
 
 **多人**：服务端安装同一 jar。Handshake `NETWORK_VERSION` 仍为 `"1"`。
 
@@ -107,4 +107,4 @@
 - 可选依赖：缺 EMI / Jade / REMI / KubeJS 可启动；存在时客户端加载 EMI / Jade；有 REMI 时按材料前缀、工具种类、加工机 / 转换器 kind，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具折叠物品列表；
 - 不支持：对外公开分发、旧档升级、GT6 全量配方、G10 / GT6U；
 - 大型热交换器 / 蒸汽涡轮 / 聚变不当成可玩终局；
-- 反馈：小群里直接说，或 https://github.com/icodestuljh/cruciblecraft/issues（附上 **`0.1.0-test.20260922.1`** + 复现步骤 + 日志 / 崩溃报告）。
+- 反馈：小群里直接说，或 https://github.com/icodestuljh/cruciblecraft/issues（附上 **`0.1.0-test.20260927.1`** + 复现步骤 + 日志 / 崩溃报告）。
