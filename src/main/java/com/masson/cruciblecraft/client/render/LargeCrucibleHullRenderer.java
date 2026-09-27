@@ -25,8 +25,16 @@ import net.minecraft.world.level.block.state.BlockState;
 /**
  * GT6 {@code MultiTileEntityCrucible} passes 0–4: a 3x3x3 hollow hull the
  * controller draws after walls switch to empty design 4.
+ *
+ * <p>The colored art is a 48×48 profile of that whole shell (16px per block
+ * across x/z ∈ [-1, 2] and y ∈ [0, 3]). Sampling the full sprite on every
+ * quad smears the bowl onto the half-block rim and floor.
  */
 final class LargeCrucibleHullRenderer {
+    static final float SHELL_MIN = -1.0f;
+    static final float SHELL_SPAN = 3.0f;
+    private static final float OVERLAY_OFFSET = 0.0015f;
+
     private static final ResourceLocation COLORED = texture("colored");
     private static final ResourceLocation COLORED_FRONT = texture("colored_front");
     private static final ResourceLocation OVERLAY = texture("overlay");
@@ -126,9 +134,9 @@ final class LargeCrucibleHullRenderer {
             float z3) {
         TextureAtlasSprite colored = sprite(side, facing, true);
         TextureAtlasSprite overlay = sprite(side, facing, false);
-        emit(vertices, poseStack, packedLight, tint, side, colored,
+        emit(vertices, poseStack, packedLight, tint, side, colored, 0.0f,
                 x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3);
-        emit(vertices, poseStack, packedLight, 0xFFFFFFFF, side, overlay,
+        emit(vertices, poseStack, packedLight, 0xFFFFFFFF, side, overlay, OVERLAY_OFFSET,
                 x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3);
     }
 
@@ -139,6 +147,7 @@ final class LargeCrucibleHullRenderer {
             int argb,
             Direction side,
             TextureAtlasSprite sprite,
+            float outward,
             float x0,
             float y0,
             float z0,
@@ -151,15 +160,49 @@ final class LargeCrucibleHullRenderer {
             float x3,
             float y3,
             float z3) {
-        float u0 = sprite.getU0();
-        float u1 = sprite.getU1();
-        float v0 = sprite.getV0();
-        float v1 = sprite.getV1();
         Matrix4f pose = poseStack.last().pose();
-        vertex(vertices, poseStack, pose, x0, y0, z0, u0, v0, side, argb, packedLight);
-        vertex(vertices, poseStack, pose, x1, y1, z1, u1, v0, side, argb, packedLight);
-        vertex(vertices, poseStack, pose, x2, y2, z2, u1, v1, side, argb, packedLight);
-        vertex(vertices, poseStack, pose, x3, y3, z3, u0, v1, side, argb, packedLight);
+        vertex(vertices, poseStack, pose, x0, y0, z0, side, sprite, outward, argb, packedLight);
+        vertex(vertices, poseStack, pose, x1, y1, z1, side, sprite, outward, argb, packedLight);
+        vertex(vertices, poseStack, pose, x2, y2, z2, side, sprite, outward, argb, packedLight);
+        vertex(vertices, poseStack, pose, x3, y3, z3, side, sprite, outward, argb, packedLight);
+    }
+
+    /**
+     * 0 at the west/north/bottom of the 3-block shell, 1 at the east/south/top.
+     * The 48px crucible profile is authored in that space.
+     */
+    static float textureU(Direction side, float x, float y, float z) {
+        float across = switch (side) {
+            case WEST -> 1.0f - unitZ(z);
+            case EAST -> unitZ(z);
+            case NORTH, SOUTH, UP, DOWN -> unitX(x);
+        };
+        return clamp01(across);
+    }
+
+    static float textureV(Direction side, float x, float y, float z) {
+        float down = switch (side) {
+            case UP -> unitZ(z);
+            case DOWN -> 1.0f - unitZ(z);
+            default -> 1.0f - unitY(y);
+        };
+        return clamp01(down);
+    }
+
+    private static float unitX(float x) {
+        return (x - SHELL_MIN) / SHELL_SPAN;
+    }
+
+    private static float unitY(float y) {
+        return y / SHELL_SPAN;
+    }
+
+    private static float unitZ(float z) {
+        return (z - SHELL_MIN) / SHELL_SPAN;
+    }
+
+    private static float clamp01(float value) {
+        return Math.min(1.0f, Math.max(0.0f, value));
     }
 
     private static void vertex(
@@ -169,12 +212,20 @@ final class LargeCrucibleHullRenderer {
             float x,
             float y,
             float z,
-            float u,
-            float v,
             Direction side,
+            TextureAtlasSprite sprite,
+            float outward,
             int argb,
             int packedLight) {
-        vertices.addVertex(pose, x, y, z)
+        float u = sprite.getU0()
+                + (sprite.getU1() - sprite.getU0()) * textureU(side, x, y, z);
+        float v = sprite.getV0()
+                + (sprite.getV1() - sprite.getV0()) * textureV(side, x, y, z);
+        vertices.addVertex(
+                        pose,
+                        x + side.getStepX() * outward,
+                        y + side.getStepY() * outward,
+                        z + side.getStepZ() * outward)
                 .setColor(argb)
                 .setUv(u, v)
                 .setOverlay(OverlayTexture.NO_OVERLAY)

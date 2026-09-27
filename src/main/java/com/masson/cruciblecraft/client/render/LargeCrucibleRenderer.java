@@ -36,12 +36,12 @@ public final class LargeCrucibleRenderer
     @Override
     public AABB getRenderBoundingBox(LargeCrucibleBlockEntity crucible) {
         return new AABB(
-                crucible.getBlockPos().getX() - 1.0,
-                crucible.getBlockPos().getY(),
-                crucible.getBlockPos().getZ() - 1.0,
-                crucible.getBlockPos().getX() + 2.0,
-                crucible.getBlockPos().getY() + 3.0,
-                crucible.getBlockPos().getZ() + 2.0);
+                crucible.getBlockPos().getX() - 1.05,
+                crucible.getBlockPos().getY() - 0.05,
+                crucible.getBlockPos().getZ() - 1.05,
+                crucible.getBlockPos().getX() + 2.05,
+                crucible.getBlockPos().getY() + 3.05,
+                crucible.getBlockPos().getZ() + 2.05);
     }
 
     @Override
