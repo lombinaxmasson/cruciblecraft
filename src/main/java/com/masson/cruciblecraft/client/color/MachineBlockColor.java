@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
@@ -105,6 +106,11 @@ public final class MachineBlockColor {
                 tinted.add(wall.get());
             }
         }
+        var electrolyzerPart = ModBlocks.mteInPlaceBlocksById()
+                .get(ElectrolyzerParts.PART_ID);
+        if (electrolyzerPart != null) {
+            tinted.add(electrolyzerPart.get());
+        }
         return tinted.toArray(Block[]::new);
     }
 
@@ -187,6 +193,7 @@ public final class MachineBlockColor {
             case "laser_engraver" -> "steel_galvanized";
             case "large_oven" -> "invar";
             case "bath",
+                    "multiblock/electrolyzer_part",
                     "large_electrolyzer",
                     "large_mixer",
                     "large_centrifuge",

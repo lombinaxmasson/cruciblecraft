@@ -914,7 +914,8 @@ expectation change. Do not run this command in CI.
 
 ## Refreshing the GT6 reference
 
-Place the local dump at `gt6_dump/gt6_recipe_dump`, replace the legacy values in
+Put the recipe dump where the
+[reference sources](../docs/current/code-tree.md#参考源) section says, replace the legacy values in
 `gt6_reference_metadata.json` with the exact GT6 version, configuration digest,
 dump-tool version, and refreshed name-only compatibility-surface metrics, then
 run:

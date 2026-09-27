@@ -1,10 +1,10 @@
 # GT6 贴图纪律
 
-新方块 / 新物品 **不使用占位图**。有 GT6 原图就从本地
-`gt6_referencable_port_code/gregtech6_w` 迁入
+新方块 / 新物品 **不使用占位图**。有 GT6 原图就从钉住的
+[gregtech6_w](code-tree.md#参考源) 迁入
 `src/main/resources/assets/cruciblecraft/textures/**/gt6_import/`
 （能量机等已有家族目录如 `gt6_energy_art/` 可继续用）。
-Java / tick 的源码权威仍是 `gt6_code/gregtech6`。不 fetch GitHub。
+Java / tick 的权威是同一节钉住的 GregTech 6，不要改用更新的上游提交。
 
 禁止：
 

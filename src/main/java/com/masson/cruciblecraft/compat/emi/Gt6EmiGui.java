@@ -134,22 +134,33 @@ final class Gt6EmiGui {
                 .catalyst(true);
     }
 
+    /**
+     * Recipe fluids fill the whole tank cell. EMI otherwise scales the sprite
+     * by recipe amount / machine capacity, which collapses a cell into a strip.
+     */
     static SlotWidget tank(
             WidgetHolder widgets,
             EmiIngredient stack,
             int guiX,
             int guiY,
             int width,
-            int height,
-            int capacity) {
+            int height) {
         return widgets.addTank(
                 stack,
                 tankX(guiX),
                 tankY(guiY),
                 width,
                 height,
-                capacity)
+                displayedFill(stack))
                 .drawBack(false);
+    }
+
+    static int displayedFill(EmiIngredient stack) {
+        long amount = stack.getAmount();
+        if (amount <= 0L) {
+            return 1;
+        }
+        return amount > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) amount;
     }
 
     static void addStats(

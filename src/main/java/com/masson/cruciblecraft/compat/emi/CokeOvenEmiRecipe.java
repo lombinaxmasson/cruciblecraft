@@ -117,8 +117,7 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
                     tank.x(),
                     tank.y(),
                     tank.width(),
-                    tank.height(),
-                    Math.max(1, (int) fluidOutputs.getFirst().getAmount()))
+                    tank.height())
                     .recipeContext(this);
         }
         Gt6EmiGui.workstation(widgets, workstation);

@@ -583,7 +583,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：—
 - 权威：`docs/current/unimplemented-gap.md`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. World click/mine vs missing forms vs unwired ToolActions. Not a recipe-row count. Do not bundle electric tools with builder wand. Authority is this blocker plus local gt6_code Loader_Tools.java, not the archived gap snapshot.
+- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. World click/mine vs missing forms vs unwired ToolActions. Not a recipe-row count. Do not bundle electric tools with builder wand. Authority is this blocker plus Loader_Tools.java in the pinned GregTech 6 revision, not the archived gap snapshot.
 
 ### `worldgen/bees`
 

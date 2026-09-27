@@ -38,7 +38,8 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 30 个多方块控制器里，20 个覆盖表记 `runtime_accepted`。代码侧还要单独处理的是：
 
 - 大型锅炉、3×3×3 储罐：结构与方块实体已在，没有任何 capability。
-- 大型电解、大型高压釜、大型发酵器：结构、GameTest、capability 都在，`frozen` / `paused`。
+- 大型电解机：capability 已是 `runtime_ready` / `accepted`。`survival_access` 仍是 `partial`，那是获得格，不是主机暂停。
+- 大型高压釜、大型发酵器：结构、GameTest、capability 都在，`frozen` / `paused`。
 - 5×5×5 金属储罐：只有 `mte_inplace_catalog.json` 身份，没有结构运行时。
 
 物质制造机 17199 和旋转引擎已经挂在已关卡上，覆盖表没认出来。见第 2 节，不新开卡。
@@ -61,6 +62,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 | 大型坩埚 | `machines/large-crucible` | partial | 结构 JSON |
 | 大型破碎 | `machines/large-crusher` | partial | 结构 JSON |
 | 蒸馏塔 / 低温蒸馏塔 | `machines/distillation-tower` | partial | 两台控制器，结构 id 共用 `distillation_tower` |
+| 大型电解机 17103 | `machines/large-electrolyzer` | partial | 结构 JSON。主机已 accepted，partial 是获得格 |
 | 聚爆压缩机 | `machines/implosion-compressor` | partial | 结构 JSON。配方图仍有 296 行可翻译未发 |
 | 大型动力机 / 避雷针 / 范德格雷 | `machines/gt6-coil-hosts` | partial | MTE inplace |
 | 大型燃气轮机 | `energy/large-gas-turbine` | partial | `LargeGasTurbineBlockEntity` |
@@ -101,10 +103,10 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 | 序 | 卡 | slug | 代码现状 | 这张卡关闭时 |
 | --- | --- | --- | --- | --- |
-| 0 | 机器账本检查 | `portfolio/gt6-machine-ledger-audit` | 已关文书和后来的行为脱节。例：`energy/converter-catalog` 仍写蒸汽机动力学未做、青铜固定 12 KU/t；代码已是 `SteamEngineKuCurve`（名义 12，行程 6–24）、正负行程、满汽停机排气。大型电解 / 高压釜 / 发酵器的计划在 `closed/`，capability 仍是 `paused` | 只改账本。能按现有合同关掉的暂停卡改成 accepted。文书落后于代码的，补 note、测试 id 和已关计划末尾的读法修订。对不上的留在下面的序号，本卡不改机器行为 |
+| 0 | 机器账本检查 | `portfolio/gt6-machine-ledger-audit` | 已关文书和后来的行为脱节。例：`energy/converter-catalog` 仍写蒸汽机动力学未做、青铜固定 12 KU/t；代码已是 `SteamEngineKuCurve`（名义 12，行程 6–24）、正负行程、满汽停机排气。高压釜 / 发酵器的计划在 `closed/`，capability 仍是 `paused`。大型电解机检查后已是 `accepted` | 只改账本。能按现有合同关掉的暂停卡改成 accepted。文书落后于代码的，补 note、测试 id 和已关计划末尾的读法修订。对不上的留在下面的序号，本卡不改机器行为 |
 | 1 | 大型锅炉 | `machines/large-boiler` | `LargeBoilerBlock` / `LargeBoilerBlockEntity`，五份结构 JSON（不锈钢、殷瓦、钛、钨钢、精金）。另有 `MteInPlaceKind.LARGE_BOILER`。无 capability。覆盖表 `runtime_code_uncarded` | 确认专用锅炉与 MTE inplace 是同一后端。按 GT6 逐档核对蒸汽输出、HU/水/蒸汽容量、进水出汽坐标、结垢、凿子清垢、过满与结构损坏。关 `runtime_ready` |
-| 2 | 多方块储罐 | `machines/gt6-multiblock-tanks` | 3×3×3 已能成形。5×5×5 原先只有 catalog 身份 | 两套固定空心方块共用阀门合同。3×3×3 含木。5×5×5 只有金属和致密金属。不加别的边长 |
-| 3 | 大型电解机 | `machines/large-electrolyzer` | 已有。`frozen` / `paused`，`survival_access=partial`。结构 3×3×2，底进顶出，EU 512–4096，并行 16 | 重新占 unique-active，跑现有 profile。按 capability note 修失败项后 accepted。不导入缺形态行，不开形态 |
+| 2 | 多方块储罐 | `machines/gt6-multiblock-tanks` | 已 `runtime_ready` / `accepted`。3×3×3 与 5×5×5 共用 `TankBlockEntity` | 不再占落地锁。`survival_access` 仍是 `partial`。不加别的边长 |
+| 3 | 大型电解机 | `machines/large-electrolyzer` | 已 `runtime_ready` / `accepted`。`survival_access` 仍是 `partial`。结构 3×3×2，底进顶出，EU 512–4096，并行 16 | 不再占落地锁。`partial` 留给获得格或配方 wave，不重开主机。不导入缺形态行，不开形态 |
 | 4 | 大型高压釜 | `machines/large-autoclave` | 已有。`frozen` / `paused`。3×3×3 空心 18022，TU 1–16，并行 16。note 写明曾让出 unique-active，代码留下 | 同第 3 张。不把单方块高压釜 22004 折进来 |
 | 5 | 大型发酵器 | `machines/large-fermenter` | 已有。`frozen` / `paused`。5×5×3，HU，并行 256。`LargeFermenterAutoOutput` 已写背面偏移，固定坐标仍缺 GameTest | 补输出坐标/堵塞/重载测试后 accepted。不导入 6435 行 dump。缺流体留在流体卡 |
 | 6 | 单方块发酵机 | `machines/fermenter` | 无主机。GT6 22003，不锈钢，HU 16–64，图 `RM.Fermenter`。网格 `wMh` / `PPP` / `BCB`（`Loader_MultiTileEntities.java` 1654） | 第 5 张关了再开，避免两张卡同时改发酵图。获得格逐格 `gt6_resolve`。缺的零件保持 blocked |
@@ -116,7 +118,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 2026-09-27 大型锅炉：第 1 张 `machines/large-boiler` 曾占 unique-active，现为 `runtime_ready` / `paused`。详细计划在 [大型锅炉详细计划](../closed/大型锅炉详细计划.md)。GameTest 还没当关闭门跑过，所以不是 accepted。
 
-2026-09-27 多方块储罐：第 2 张 `machines/gt6-multiblock-tanks` 占这一次 unique-active，并收进第 7 张。GT6 只有 3×3×3 和 5×5×5 两套固定空心方块，没有连续边长。详细计划在 [GT6 多方块储罐详细计划](../active/GT6多方块储罐详细计划.md)。
+2026-09-27 多方块储罐：第 2 张 `machines/gt6-multiblock-tanks` 已 `accepted`，并收进第 7 张。GT6 只有 3×3×3 和 5×5×5 两套固定空心方块，没有连续边长。声明的 17 条 GameTest 已通过。详细计划在 [GT6 多方块储罐详细计划](../closed/GT6多方块储罐详细计划.md)。
 
 大型锅炉的逐档缺口清单在大型机器快照 §5.8.1。那一节的旧容量数字（8,000 mB 水）是历史快照，以当前 `LargeBoilerTier` 为准，再和 GT6 逐项对。
 

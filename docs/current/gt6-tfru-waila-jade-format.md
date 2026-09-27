@@ -1,7 +1,7 @@
 # GT6-TFRU Waila → Jade 映射格式
 
-本格式是迁移账本，不是 Jade Provider 注册表。源事实来自本地
-`gt6_tfru/gregtech6-TFRU` 与 `ktfruaddon/kTFRUAddon`。
+本格式是迁移账本，不是 Jade Provider 注册表。源事实来自钉住的
+gregtech6-TFRU 与 kTFRUAddon，见 [代码树 · 参考源](code-tree.md#参考源)。
 
 ## 数据结构
 

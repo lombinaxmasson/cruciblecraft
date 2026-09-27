@@ -8,9 +8,9 @@ GameTest，但玩家仍然可能搜不到物品、看不到中文、缺少配方
 
 按以下顺序查资料，不凭文件名或印象补齐：
 
-1. **GT6 行为源码**：`gt6_code/gregtech6`。
+1. **GT6 行为**：钉住的 GregTech 6，见 [代码树 · 参考源](code-tree.md#参考源)。
    记录相态、容量、耐酸/耐魔、点击方向、容器替换和创造模式行为。
-2. **GT6 美术参考树**：`gt6_referencable_port_code/gregtech6_w`。
+2. **GT6 美术**：同一节钉住的 gregtech6_w。
    记录实际纹理路径、共用底图、overlay、透明度和材质染色方式。
 3. **CrucibleCraft 身份目录**：
    `src/main/resources/data/cruciblecraft/mte_inplace_catalog.json`。
@@ -24,9 +24,8 @@ GameTest，但玩家仍然可能搜不到物品、看不到中文、缺少配方
    `tools/waves/content/gt6-mte-fluid-attachments-runtime/art_manifest.json`。
    每条记录必须有 `source`、`gt6_source`、`destination`、`sha256`。
 
-`gt6_code` 和 `gt6_referencable_port_code` 是本机只读参考树。不要 fetch
-GitHub，不要把 CC 现有方块贴图当替身，也不要为了凑资源数复制同一张
-PNG。
+对照时停在参考源表里的 revision。不要把 CC 现有方块贴图当替身，
+也不要为了凑资源数复制同一张 PNG。
 
 ## 标准实施顺序
 

@@ -2327,7 +2327,7 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "| 配方图分母、机器 kind、多方块、盖板、能量、生成域、前缀的“分母/历史分类” | "
             "`tools/machine_tree_denominators/*.json` | 冻结分母（GT6 revision 固定，不随工作树变） |",
             "| 已追溯源行 / CC 行 / 材料规则 | 运行时资源根里的配方 JSON + "
-            "`source_attribution.json` | live 扫描；归属钉需本地 `gt6_dump` 刷新 |",
+            "`source_attribution.json` | live 扫描；归属钉需对照配方 dump 刷新（见代码树参考源） |",
             "| 材料规则展开数 | `tools/component_rule_manifest.json` | 上游产物（`build_component_rules.py`） |",
             "| overflow | `tools/waves/**/overflow.json` | 上游产物（各 wave builder） |",
             "| 机器 kind / 多方块证据 | capability、`src/main/java`、`machine_delivery.json`、多方块结构 | live 扫描 |",

@@ -23,7 +23,7 @@ overworld scatter：整本 remainder / MTE / food tag 丢到 dirt/sand 上（约
 ## 允许
 
 - GT6 有的世界生成：石块、树、矿脉、地牢战利品、作物——对照
-  `gt6_code/gregtech6` 翻译，不另发明目录倾倒
+  钉住的 GregTech 6 翻译，不另发明目录倾倒
 - 真实 RecipeManager 配方（无 stand-in 配料）
 - 缺真实路径时保持 `runtime_ready` / `blocked`；`survival_access` 可标
   `blocked` / `partial`，不挡 runtime 关闭

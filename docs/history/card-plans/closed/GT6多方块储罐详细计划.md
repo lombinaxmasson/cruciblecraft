@@ -79,4 +79,4 @@ GT6 没有边长滑杆。多方块储罐只有两套空心方块，共用 `Multi
 - [x] 13 个 3×3×3 阀门和 12 个 5×5×5 阀门都进 `TankControllerProfiles`
 - [x] `tank_5x5x5.json`：125 格，27 空气，97 流体端口，1 阀门
 - [x] 大罐阀门不进 `tank_3x3x3_controllers`
-- [ ] 声明的 GameTest 通过后 `workflow=accepted`，并跑覆盖表重建
+- [x] 声明的 GameTest 通过后 `workflow=accepted`，并跑覆盖表重建。2026-09-27：`tank3x3x3` 与 `tank5x5x5` 共 17 条通过。

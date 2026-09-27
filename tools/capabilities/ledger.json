@@ -2757,7 +2757,7 @@
       "slug": "machines/gt6-multiblock-tanks",
       "survival_access": "partial",
       "title": "GT6 Multiblock Tanks 17001-17067",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -3139,6 +3139,8 @@
         "src/main/resources/data/cruciblecraft/multiblock_structures/large_electrolyzer.json",
         "src/main/resources/assets/cruciblecraft/gt6_large_electrolyzer_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/machine/large_electrolyzer/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/electrolyzer_part/**",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_electrolyzer_part_*.json",
         "src/main/resources/data/cruciblecraft_wave_machines_large_electrolyzer/**",
         "src/test/java/com/masson/cruciblecraft/gametest/LargeElectrolyzerGameTests.java",
         "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
@@ -6106,5 +6108,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "machines/gt6-multiblock-tanks"
+  "unique_active_slug": null
 }

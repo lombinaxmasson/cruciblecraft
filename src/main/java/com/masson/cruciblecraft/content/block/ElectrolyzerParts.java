@@ -41,6 +41,29 @@ public final class ElectrolyzerParts {
         return spec != null && spec.meta() == META;
     }
 
+    /**
+     * GT6 {@code checkStructure2} design index. The bottom layer stays 1.
+     * An idle top stays 0. An active top is {@code 2 + rng(6)} and keeps
+     * that face until the active or running state changes.
+     */
+    public static int structureDesign(
+            int localY,
+            boolean active,
+            int current,
+            boolean reroll,
+            int rng) {
+        if (localY <= 0) {
+            return 1;
+        }
+        if (!active) {
+            return 0;
+        }
+        if (!reroll && current >= 2 && current <= 7) {
+            return current;
+        }
+        return 2 + Math.floorMod(rng, 6);
+    }
+
     public static boolean accepts(MteInPlaceSpec spec, PortType type) {
         if (!isPart(spec) || type == null) {
             return false;

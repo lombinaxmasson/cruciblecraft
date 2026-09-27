@@ -33,7 +33,7 @@
 ## 2. 夹具只用已注册的 GT6 物件
 
 - 材料、形态、管道、机器必须是 GT6 真的注册了的，并且在 CC 里已经注册。
-  写之前查 `gt6_code/gregtech6` 与 `python tools/gt6_resolve.py`。
+  写之前对照钉住的 GregTech 6（见 [代码树 · 参考源](code-tree.md#参考源)）与 `python tools/gt6_resolve.py`。
   反例：纯锡、纯铁流体管。GT6 的流体管名单
   （`Loader_MultiTileEntities.java` 1846 行起）没有 `MT.Sn` / `MT.Fe`；
   锡铁合金是 `MT.TinAlloy`。

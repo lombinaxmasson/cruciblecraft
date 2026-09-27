@@ -16,14 +16,14 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 32，`full_replay` 11 |
-| 多方块控制器 | 30 canonical kinds | `identity_only` 1，`runtime_code_uncarded` 2，`runtime_paused` 5，`runtime_accepted` 22 |
+| 多方块控制器 | 30 canonical kinds | `runtime_paused` 6，`runtime_accepted` 24 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 129 | `frozen:accepted` 2，`frozen:paused` 11，`runtime_ready:accepted` 113，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 7，`partial` 27，`unreviewed` 28，`unset` 64 |
+| Capability | 131 | `frozen:accepted` 2，`frozen:paused` 11，`runtime_ready:accepted` 114，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 28，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -382,12 +382,10 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 控制器 | 分母 | CC 证据 | 交付深度 |
 | --- | --- | --- | --- |
-| `tank_5x5x5_metal` | deferred_with_reason | 目录 1 个文件，无运行时 | `identity_only` |
-| `large_boiler` | in_scope | 代码 5 个文件，无 capability | `runtime_code_uncarded` |
-| `tank_3x3x3` | in_scope | 代码 1 个文件，无 capability | `runtime_code_uncarded` |
 | `autoclave` | deferred_with_reason | machines/large-autoclave（frozen/paused，survival=partial） | `runtime_paused` |
 | `fermenter` | deferred_with_reason | machines/large-fermenter（frozen/paused，survival=partial） | `runtime_paused` |
 | `fusion_reactor` | out_of_scope | energy/fusion-quantum（frozen/paused，survival=unset） | `runtime_paused` |
+| `large_boiler` | in_scope | machines/large-boiler（runtime_ready/paused，survival=partial） | `runtime_paused` |
 | `large_heat_exchanger` | deferred_with_reason | energy/large-heat-exchanger（frozen/paused，survival=unset） | `runtime_paused` |
 | `large_turbine_steam` | deferred_with_reason | energy/steam-turbine（frozen/paused，survival=unset） | `runtime_paused` |
 | `bath` | deferred_with_reason | machines/large-bathing-vat（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -411,6 +409,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `shredder` | deferred_with_reason | machines/large-shredder（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `sluice` | deferred_with_reason | machines/large-sluice（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `squeezer` | deferred_with_reason | machines/large-squeezer（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `tank_3x3x3` | in_scope | machines/gt6-multiblock-tanks（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `tank_5x5x5_metal` | deferred_with_reason | machines/gt6-multiblock-tanks（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `von_da_graagg` | out_of_scope | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 
 ## 6. 盖板（47）
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（129）
+## 12. Capability（131）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -655,12 +655,14 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `machines/distillation-tower` | runtime_ready | accepted | partial |
 | `machines/gt6-basic-machine-batch` | runtime_ready | accepted | partial |
 | `machines/gt6-coil-hosts` | runtime_ready | accepted | partial |
+| `machines/gt6-multiblock-tanks` | runtime_ready | accepted | partial |
 | `machines/hammer-squeezer-laser` | runtime_ready | accepted | unreviewed |
 | `machines/implosion-compressor` | runtime_ready | accepted | partial |
 | `machines/injector` | runtime_ready | accepted | — |
 | `machines/laminator` | runtime_ready | accepted | — |
 | `machines/large-autoclave` | frozen | paused | partial |
 | `machines/large-bathing-vat` | runtime_ready | accepted | partial |
+| `machines/large-boiler` | runtime_ready | paused | partial |
 | `machines/large-centrifuge` | runtime_ready | accepted | partial |
 | `machines/large-coagulator` | runtime_ready | accepted | blocked |
 | `machines/large-crucible` | runtime_ready | accepted | partial |
@@ -772,7 +774,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 轴 | 来源 | 类型 |
 | --- | --- | --- |
 | 配方图分母、机器 kind、多方块、盖板、能量、生成域、前缀的“分母/历史分类” | `tools/machine_tree_denominators/*.json` | 冻结分母（GT6 revision 固定，不随工作树变） |
-| 已追溯源行 / CC 行 / 材料规则 | 运行时资源根里的配方 JSON + `source_attribution.json` | live 扫描；归属钉需本地 `gt6_dump` 刷新 |
+| 已追溯源行 / CC 行 / 材料规则 | 运行时资源根里的配方 JSON + `source_attribution.json` | live 扫描；归属钉需对照配方 dump 刷新（见代码树参考源） |
 | 材料规则展开数 | `tools/component_rule_manifest.json` | 上游产物（`build_component_rules.py`） |
 | overflow | `tools/waves/**/overflow.json` | 上游产物（各 wave builder） |
 | 机器 kind / 多方块证据 | capability、`src/main/java`、`machine_delivery.json`、多方块结构 | live 扫描 |

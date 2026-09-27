@@ -719,12 +719,12 @@
     },
     "cc_recipe_rows": 561126,
     "cc_material_rule_files": 98,
-    "capability_count": 129,
+    "capability_count": 131,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 11,
-      "runtime_ready:accepted": 113,
-      "runtime_ready:paused": 3
+      "runtime_ready:accepted": 114,
+      "runtime_ready:paused": 4
     },
     "blocker_count": 62,
     "blocker_states": {
@@ -1485,6 +1485,15 @@
       "path": "tools/capabilities/machines/gt6-coil-hosts/capability.json"
     },
     {
+      "slug": "machines/gt6-multiblock-tanks",
+      "title": "GT6 Multiblock Tanks 17001-17067",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "partial",
+      "wave_slug": "machines/gt6-multiblock-tanks",
+      "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json"
+    },
+    {
       "slug": "machines/hammer-squeezer-laser",
       "title": "Hammer / Squeezer / Laser",
       "maturity": "runtime_ready",
@@ -1537,6 +1546,15 @@
       "survival_access": "partial",
       "wave_slug": "machines/large-bathing-vat",
       "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
+    },
+    {
+      "slug": "machines/large-boiler",
+      "title": "Large Boiler 17201-17205",
+      "maturity": "runtime_ready",
+      "workflow": "paused",
+      "survival_access": "partial",
+      "wave_slug": "machines/large-boiler",
+      "path": "tools/capabilities/machines/large-boiler/capability.json"
     },
     {
       "slug": "machines/large-centrifuge",
@@ -4351,6 +4369,47 @@
       "blocker_ids": []
     },
     {
+      "capability": "machines/gt6-multiblock-tanks",
+      "semantic_key": "machine:tank_3x3x3:17001",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:wood/tank_main_valve",
+        "cruciblecraft:multiblock/small_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/small_invar_tank_main_valve",
+        "cruciblecraft:multiblock/small_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/small_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/small_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/small_adamantium_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_invar_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_adamantium_tank_main_valve"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "machines/gt6-multiblock-tanks",
+      "semantic_key": "machine:tank_5x5x5:17042",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/large_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/large_invar_tank_main_valve",
+        "cruciblecraft:multiblock/large_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/large_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/large_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/large_adamantium_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_invar_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_adamantium_tank_main_valve"
+      ],
+      "blocker_ids": []
+    },
+    {
       "capability": "machines/hammer-squeezer-laser",
       "semantic_key": "machine:automatic_hammer:15001-15004",
       "disposition": "new_distinct",
@@ -4463,6 +4522,19 @@
       "disposition": "new_distinct",
       "runtime_ids": [
         "cruciblecraft:large_bath"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "machines/large-boiler",
+      "semantic_key": "machine:large_boiler:17201",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:stainless_steel/boiler_main_barometer",
+        "cruciblecraft:invar/boiler_main_barometer",
+        "cruciblecraft:titanium/boiler_main_barometer",
+        "cruciblecraft:tungstensteel/boiler_main_barometer",
+        "cruciblecraft:adamantium/boiler_main_barometer"
       ],
       "blocker_ids": []
     },
@@ -17994,10 +18066,32 @@
       "roadmap_bucket": "T23",
       "cc_multiblock": null,
       "owner": null,
-      "capabilities": [],
+      "capabilities": [
+        {
+          "slug": "machines/large-boiler",
+          "title": "Large Boiler 17201-17205",
+          "maturity": "runtime_ready",
+          "workflow": "paused",
+          "survival_access": "partial",
+          "wave_slug": "machines/large-boiler",
+          "path": "tools/capabilities/machines/large-boiler/capability.json"
+        }
+      ],
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
+        "capabilities": [
+          {
+            "slug": "machines/large-boiler",
+            "title": "Large Boiler 17201-17205",
+            "maturity": "runtime_ready",
+            "workflow": "paused",
+            "survival_access": "partial",
+            "wave_slug": "machines/large-boiler",
+            "path": "tools/capabilities/machines/large-boiler/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "machines/large-boiler"
+        ],
         "java_files": [],
         "java_file_count": 5,
         "data_files": [
@@ -18017,7 +18111,7 @@
           "src/main/resources/data/cruciblecraft/multiblock_structures/large_boiler_tungstensteel.json"
         ]
       },
-      "delivery_depth": "runtime_code_uncarded"
+      "delivery_depth": "runtime_paused"
     },
     {
       "canonical_id": "large_dynamo",
@@ -18615,9 +18709,29 @@
       "roadmap_bucket": "T23",
       "cc_multiblock": null,
       "owner": null,
-      "capabilities": [],
+      "capabilities": [
+        {
+          "slug": "machines/gt6-multiblock-tanks",
+          "title": "GT6 Multiblock Tanks 17001-17067",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/gt6-multiblock-tanks",
+          "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json"
+        }
+      ],
       "evidence": {
-        "capabilities": [],
+        "capabilities": [
+          {
+            "slug": "machines/gt6-multiblock-tanks",
+            "title": "GT6 Multiblock Tanks 17001-17067",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": "machines/gt6-multiblock-tanks",
+            "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json"
+          }
+        ],
         "owner_attributed": [],
         "java_files": [],
         "java_file_count": 1,
@@ -18629,7 +18743,7 @@
           "src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json"
         ]
       },
-      "delivery_depth": "runtime_code_uncarded"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "tank_5x5x5_metal",
@@ -18641,9 +18755,29 @@
       "roadmap_bucket": "POST_T19",
       "cc_multiblock": null,
       "owner": "POST_T19",
-      "capabilities": [],
+      "capabilities": [
+        {
+          "slug": "machines/gt6-multiblock-tanks",
+          "title": "GT6 Multiblock Tanks 17001-17067",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/gt6-multiblock-tanks",
+          "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json"
+        }
+      ],
       "evidence": {
-        "capabilities": [],
+        "capabilities": [
+          {
+            "slug": "machines/gt6-multiblock-tanks",
+            "title": "GT6 Multiblock Tanks 17001-17067",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": "machines/gt6-multiblock-tanks",
+            "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json"
+          }
+        ],
         "owner_attributed": [],
         "java_files": [],
         "java_file_count": 0,
@@ -18653,7 +18787,7 @@
         "data_file_count": 1,
         "structure_files": []
       },
-      "delivery_depth": "identity_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "von_da_graagg",
@@ -24187,7 +24321,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -24218,7 +24352,8 @@
       "capability close recipe/gt6-steamcracking-bulk (major)",
       "energy/gt6-laser-magnet-zpm-converters",
       "capability close energy/gt6-remainder-devices (major)",
-      "capability close content/gt6-fluid-barrel (major)"
+      "capability close content/gt6-fluid-barrel (major)",
+      "capability close machines/gt6-multiblock-tanks (major)"
     ],
     "accepted": null
   }

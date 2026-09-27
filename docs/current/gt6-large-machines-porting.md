@@ -35,10 +35,10 @@ GT6 的“大型机器”不是一个简单的 Block 清单。一个 GT6 大型�
 
 ### 2.1 控制器类
 
-Java/tick 的本地源头是：
+类路径相对于钉住的 GregTech 6，见 [代码树 · 参考源](code-tree.md#参考源)：
 
 ```text
-gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/
+gregtech/tileentity/multiblocks/
 ```
 
 其中的具体类包括：
@@ -78,7 +78,7 @@ gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/
 注册名、meta、RecipeMap、能源类型和主机配方集中在：
 
 ```text
-gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java
+gregtech/loaders/b/Loader_MultiTileEntities.java
 ```
 
 这份 Loader 是确认“GT6 这个名字到底是控制器还是部件”的首要依据。比如：
@@ -94,7 +94,7 @@ gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.jav
 GT6 的多方块通用部件主要由：
 
 ```text
-gt6_code/gregtech6/src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java
+gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java
 ```
 
 承载，具体材料和 meta 在 Loader 中注册。墙、致密墙、线圈、专用部件和端口都必须结合它们在目标控制器中的角色判断，不能只按名称计数。
@@ -138,8 +138,8 @@ src/test/java/com/masson/cruciblecraft/gametest/
 
 - 27 个是主机或主机身份；
 - 23 个是部件、端口或 MTE 身份；
-- 31 个条目属于当前 accepted runtime；
-- 6 个有明确的 frozen/paused 能力卡；
+- 32 个条目属于当前 accepted runtime；
+- 5 个有明确的 frozen/paused 能力卡；
 - 0 个仍停留在“已有主机/结构代码但尚未进入 accepted 能力账本”；
 - 10 个只有身份或部件；
 - 3 个目前没有大型主机。
@@ -181,9 +181,8 @@ src/test/java/com/masson/cruciblecraft/gametest/
 - `tools/capabilities/energy/large-gas-turbine/capability.json`
 - `tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json`
 
-### 4.2 有代码但暂停：6 个条目
+### 4.2 有代码但暂停：5 个条目
 
-- Large Electrolyzer；
 - Large Autoclave；
 - Large Fermenter；
 - Large Heat Exchanger；
@@ -193,7 +192,6 @@ src/test/java/com/masson/cruciblecraft/gametest/
 对应能力卡分别位于：
 
 ```text
-tools/capabilities/machines/large-electrolyzer/
 tools/capabilities/machines/large-autoclave/
 tools/capabilities/machines/large-fermenter/
 tools/capabilities/energy/large-heat-exchanger/
@@ -201,7 +199,7 @@ tools/capabilities/energy/fusion-quantum/
 tools/capabilities/energy/steam-turbine/
 ```
 
-这些项目不能标成“缺失”，因为代码、结构、资源或测试已经存在；也不能标成“已完成”，因为当前声明仍是 `frozen/paused`。
+这些项目不能标成“缺失”，因为代码、结构、资源或测试已经存在；也不能标成“已完成”，因为当前声明仍是 `frozen/paused`。Large Electrolyzer 已离开这组：`machines/large-electrolyzer` 是 `runtime_ready` / `accepted`，`survival_access` 仍是 `partial`。
 
 ### 4.3 当前工作树已有主机代码，已按独立 capability 收束：11 个条目
 
@@ -520,8 +518,8 @@ GT6 `MultiTileEntityLargeBoiler` 还同时实现：
 证据入口：
 
 ```text
-gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java
-gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java
+gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java
+gregtech/loaders/b/Loader_MultiTileEntities.java
 src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTier.java
 src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerBlockEntity.java
 src/main/resources/data/cruciblecraft/multiblock_structures/large_boiler_*.json
@@ -543,7 +541,7 @@ side-bottom 中心的位置，不额外放置重复部件。`item_fluid_energy_i
 只提供物品/流体输入和 Electric 能量输入；顶部部件只提供物品/流体输出。
 未成形或未绑定时，部件不提供这些能力。
 
-对应的结构、能力方向、未成形拒绝和端口 landing check 已验证。剩余的
+对应的结构、能力方向、未成形拒绝和端口 landing check 已验证。活动或运行状态变化时会重查结构：底层部件设计固定为 1，顶层空闲为 0，加工中为 `2+rng(6)`。内腔中心正下一格的顶面按主机开关同步 Electric 能量源。剩余的
 端口存储与聚合交易行为属于 §5.8.4 的独立端口语义，已由
 `PortStore`、`PortHostViews` 和控制器交易同步层统一处理。
 
@@ -630,7 +628,7 @@ src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterAutoOut
 
 以后统计任何一批 GT6 大型机器时，按以下顺序执行：
 
-1. 在本地 `Loader_MultiTileEntities.java` 找到名称、meta、控制器类、RecipeMap 和能源类型。
+1. 在钉住的 GregTech 6 的 `Loader_MultiTileEntities.java` 找到名称、meta、控制器类、RecipeMap 和能源类型。
 2. 在 `gregtech/tileentity/multiblocks` 确认它是具体控制器，不是抽象基类或通用部件。
 3. 在 `mte_inplace_catalog.json` 中确认 GT6 身份是否只是 live MTE BlockItem。
 4. 检查 CC 是否有：
@@ -652,7 +650,7 @@ src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterAutoOut
 python tools/build_capability_ledger.py --check
 python tools/build_project_status.py --check
 python tools/verify.py integration --profile capability-runtime
-rg -n "MultiTileEntity|Multiblock Machines" gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java
+rg -n "MultiTileEntity|Multiblock Machines" gregtech/loaders/b/Loader_MultiTileEntities.java
 rg -n "large_|multiblock|coke_oven|tank_3x3x3" src/main/java src/main/resources src/test/java
 ```
 

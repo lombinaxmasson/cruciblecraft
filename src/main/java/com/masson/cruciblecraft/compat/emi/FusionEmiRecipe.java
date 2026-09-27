@@ -141,8 +141,7 @@ final class FusionEmiRecipe implements EmiRecipe {
                     tank.x(),
                     tank.y(),
                     Gt6BasicMachineGui.FLUID_SLOT,
-                    Gt6BasicMachineGui.FLUID_SLOT,
-                    Math.max(1, (int) fluidInputs.get(index).getAmount()));
+                    Gt6BasicMachineGui.FLUID_SLOT);
         }
         List<EmiStack> itemOutputs = recipe.itemOutputs().stream()
                 .map(EmiStacks::ofItem)
@@ -168,8 +167,7 @@ final class FusionEmiRecipe implements EmiRecipe {
                     tank.x(),
                     tank.y(),
                     Gt6BasicMachineGui.FLUID_SLOT,
-                    Gt6BasicMachineGui.FLUID_SLOT,
-                    Math.max(1, (int) fluidOutputs.get(index).getAmount()))
+                    Gt6BasicMachineGui.FLUID_SLOT)
                     .recipeContext(this);
         }
         Gt6EmiGui.workstation(widgets, workstation);

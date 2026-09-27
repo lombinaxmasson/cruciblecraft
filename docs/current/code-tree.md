@@ -1,7 +1,7 @@
 # 代码树与工作副本
 
-日常改运行时、验证和文档时只需要打开这些路径。其余本地目录是参考树、
-Minecraft 运行实例或缓存，不要整理、删除或链接它们。
+日常改运行时、验证和文档时只需要打开这些路径。Minecraft 运行实例、缓存，
+以及对照上游用的可选检出，都不是这个仓库的一部分。
 
 ## 日常入口
 
@@ -19,23 +19,42 @@ Minecraft 运行实例或缓存，不要整理、删除或链接它们。
 `modules`，见 [tools/README.md](../../tools/README.md) 和
 [开发与验证指南](verification.md)。
 
-## 工作副本里不要动的东西
+## 工作副本里不算仓库的东西
 
 Explorer 里会看到很多 Git 忽略的目录。它们不是仓库结构的一部分：
 
 - `run/` 和 `run-*/`：Gradle 客户端 / GameTest 实例。日常只保留一个 `run/`。
-- `gt6_code/`、`gt6_referencable_port_code/`、`gtceu_code/`、`gt6u_code/`、
-  `gt6_dump/`、`ktfruaddon/`：本地只读参考树，不在 Git 里。禁止
-  `git clean -fdx`、删除、junction / symlink。`ktfruaddon/` 不是 GT6 权威；
-  只依赖 GT6 / 不绑 AR·TFC 的表面见
-  [ktfruaddon-gt6-surface.md](ktfruaddon-gt6-surface.md)。
+- 参考源检出：见下一节。仓库里没有这些目录；克隆后的日常开发也不需要它们。
 - `build/`、`bin/`、`.gradle/`、`logs/`、`tmp-baked_textures/`、`src/src/`、
   `__pycache__/`、崩溃日志：缓存或误生成副本。
 - `tools/_tmp_*.py` 和 `tools/scratch/`：本地草稿。坩埚卡结束前不要删除现有
   `_tmp_extract_gt6_*.py`；结束后再决定并入正式提取器或丢掉。
 
-Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器里藏起来，
-但 **不** 把 GT6 / GTCEu / kTFRUAddon 参考树排除出搜索。
+Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器里藏起来。
+搜索范围仍包含你另外放在工作副本里的参考源检出。
+
+## 参考源
+
+这些上游不随本仓库发布。普通编译、运行和阅读现行文档都不需要检出。
+只有对照 GT6 行为、迁贴图，或重算配方覆盖时才需要，并且必须停在下表的 revision，
+不要跟上游的更新提交。类路径都相对于对应检出的 `src/main/java`。
+
+| 用途 | 上游 | 固定 revision | 脚本查找位置（可选检出，不入库） |
+| --- | --- | --- | --- |
+| Java / tick 权威 | [GregTech6/gregtech6](https://github.com/GregTech6/gregtech6) | `3703e40308c8c030763fd6297dea8b210d2a77b1` | `gt6_code/gregtech6` |
+| 贴图 | [wolfram0108/gregtech6_w](https://github.com/wolfram0108/gregtech6_w) | `936083c247a70b1bbc5f19996a83d75c27d196e2` | `gt6_referencable_port_code/gregtech6_w` |
+| 管道命名与几何（不是运行时依赖） | [GregTechCEu/GregTech-Modern](https://github.com/GregTechCEu/GregTech-Modern) | `de5d2c4a4c863b94a10bfb5d0839df2de8246628` | `gtceu_code` |
+| GT6U（不在 v1 范围） | [GregTech6-Unofficial/GregTech6-Unofficial](https://github.com/GregTech6-Unofficial/GregTech6-Unofficial) | `4972d0468ee2ea0e896af1e4afe4018d4e2294e6` | `gt6u_code` |
+| TFRU 附加。不是 GT6 权威 | [kuzuanpa/kTFRUAddon](https://github.com/kuzuanpa/kTFRUAddon) | `75cebb71abb9b5ac5ceb447e3324bd161b6fa7ab` | `ktfruaddon/kTFRUAddon` |
+| TFRU 的 Waila 表面 | [kuzuanpa/gregtech6-TFRU](https://github.com/kuzuanpa/gregtech6-TFRU) | `35402b05b35d4c7e666233cb37f99d305eeffc8b` | `gt6_tfru/gregtech6-TFRU` |
+
+kTFRUAddon 里只依赖 GT6、不绑 Advanced Rocketry / TerraFirmaCraft 的部分见
+[ktfruaddon-gt6-surface.md](ktfruaddon-gt6-surface.md)。
+许可证和资产说明见 [CREDITS.md](../../CREDITS.md)。
+
+配方 dump 不是上游仓库，而是从钉住的 GregTech 6 导出的配方 JSON。
+重算脚本在 `gt6_dump/gt6_recipe_dump` 找它。
+覆盖页的 `--check` 不需要它；只有重新核对源行归属时才需要。
 
 ## Python 工具生命周期
 

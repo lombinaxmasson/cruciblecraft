@@ -23,7 +23,7 @@
 | 未认领 family | [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json) |
 | MTE 身份分母（冻结快照） | [`disposition_ledger.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json) / [`family_map.json`](../../tools/waves/portfolio/mte-identity-disposition-r0/family_map.json)；R0 计划 [MTE 身份分母处置 R0](../history/card-plans/closed/MTE身份分母处置R0详细计划.md) |
 | 已关 MTE runtime / 折回 | [project-status.md](project-status.md) 的 `runtime_ready` 表与 `docs/history/card-plans/closed/` |
-| 手持工具余量 | [blocked.md](blocked.md) `tools/world-behaviors`；对照本地 `gt6_code/gregtech6` 的 `Loader_Tools.java` |
+| 手持工具余量 | [blocked.md](blocked.md) `tools/world-behaviors`；对照钉住的 GregTech 6 里 `gregtech/loaders/b/Loader_Tools.java` |
 | 严禁目录掉落物世界生成 | [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md) |
 | GT6 贴图 | [gt6-art-policy.md](gt6-art-policy.md) |
 

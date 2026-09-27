@@ -50,6 +50,18 @@ TEXTURES = (
     / "machine"
     / "large_electrolyzer"
 )
+PART_TEXTURES = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "assets"
+    / "cruciblecraft"
+    / "textures"
+    / "block"
+    / "machine"
+    / "electrolyzer_part"
+)
 
 
 def _load(path: Path) -> Any:
@@ -99,6 +111,12 @@ def check() -> list[str]:
             path = TEXTURES / layer / f"{face}.png"
             if not path.is_file():
                 errors.append(f"missing texture {io.relative(path)}")
+    for design in range(8):
+        for layer in ("colored", "overlay"):
+            for face in ("top", "side", "bottom"):
+                path = PART_TEXTURES / str(design) / layer / f"{face}.png"
+                if not path.is_file():
+                    errors.append(f"missing texture {io.relative(path)}")
     tiers = _load(TIERS)
     rows = {
         row["tierBand"]: row

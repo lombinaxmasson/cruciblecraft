@@ -24,15 +24,15 @@ Builder：`tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconcilia
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --write
 # 只检查，不写；CI 用这个
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --check
-# 用本地 gt6_dump 重新核对归属钉，不写
+# 用配方 dump 重新核对归属钉，不写。dump 见代码树参考源
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --verify-source
 # 单独重建/检查逐行分类（通常由上面的命令自动调用）
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --write
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --check
 ```
 
-`--check` 和“配方证据没变”时的 `--write` 都不需要参考树。只有配方证据变了，`--write`
-才需要本地 `gt6_dump/` 和 `tools/gt6_recipe_normalized_reference.json`。
+`--check` 和“配方证据没变”时的 `--write` 都不需要配方 dump。只有配方证据变了，`--write`
+才需要那份 dump（见 [代码树 · 参考源](code-tree.md#参考源)）和 `tools/gt6_recipe_normalized_reference.json`。
 dump 行 hash 缓存在 `build/gt6_full_coverage/`（gitignored），首次约 40 秒，之后约 15 秒。
 
 ## 2. 什么时候会过期
@@ -81,7 +81,7 @@ dump 行 hash 缓存在 `build/gt6_full_coverage/`（gitignored），首次约 4
 这个 hash 归哪张 GT6 图，按下面顺序取：
 
 1. `selected_source_recipe` 形如 `gt.recipe.<map>#NNNN`（`#NNNN` 是模板号，不是行号）
-2. `selected_source_recipe` 形如 `gt6_dump/…/maps/<map>.json#recipes[i]`（同时记下行号）
+2. `selected_source_recipe` 形如 `…/maps/<map>.json#recipes[i]`（旧行可能带本机 dump 路径前缀；同时记下行号）
 3. 文件的 `family_id` 形如 `gt.recipe.<map>#NNNN`
 4. 都没有时，取 CC 目标图同名的 GT6 图
 
@@ -157,7 +157,7 @@ provenance，只会落在“CC 未追溯行”，永远达不到 `full_replay`�
 
 ### 3.6 归属钉与 CI
 
-CI 上没有 `gt6_dump`。`source_attribution.json` 记录了：
+CI 上没有配方 dump。`source_attribution.json` 记录了：
 
 - `evidence_digest`：全树所有 `(声明图, hash)` 与 dump 行号引用的摘要；
 - `full_overrides` / `short_overrides`：声明图里没有该行时的实际归属；
@@ -173,8 +173,8 @@ CI 上没有 `gt6_dump`。`source_attribution.json` 记录了：
 `semantic_coverage.json` 记录每张 GT6 图的类别计数、校准结果、缺身份的前 25 个来源，
 以及翻译链源码的 hash 和 CC 侧投影摘要（运行时配方行 + 材料规则展开）。
 
-- `--write` 需要本地 `gt6_dump/`，约 4 分钟；`build_reconciliation.py --write` 会先调用它。
-- `--check` 不需要参考树：只核对翻译链源码 hash 和 CC 侧投影摘要。
+- `--write` 需要配方 dump，约 4 分钟；`build_reconciliation.py --write` 会先调用它。
+- `--check` 不需要配方 dump：只核对翻译链源码 hash 和 CC 侧投影摘要。
   CC 配方或规则一变，或翻译链代码一变，CI 就会报过期，要在有 dump 的机器上重跑 `--write`。
 - 已知局限：只改了材料/流体/物品注册、没改任何配方时，`--check` 看不出分类变化，
   要手动重跑 `--write`（比如刚开完一批材料形态之后）。
@@ -229,8 +229,8 @@ CI 上没有 `gt6_dump`。`source_attribution.json` 记录了：
 | 输出 | 处理 |
 | --- | --- |
 | `… is stale` | 跑 `--write`，把产物和改动一起提交 |
-| `source_attribution.json does not match the recipe tree` | 在有 `gt6_dump/` 的机器上跑 `--write` |
-| `local GT6 source revision differs from frozen scope` | 本地 `gt6_code` 不是 `scope.json` 的 revision；先对齐参考树，不要改 scope |
+| `source_attribution.json does not match the recipe tree` | 在有配方 dump 的检出上跑 `--write` |
+| `local GT6 source revision differs from frozen scope` | 本地 GregTech 6 检出不是 `scope.json` 的 revision；先对齐参考源，不要改 scope |
 
 ## 5. 各轴哪些会自动更新
 

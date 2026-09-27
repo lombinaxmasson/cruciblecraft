@@ -207,8 +207,7 @@ final class ProcessingEmiRecipe implements EmiRecipe {
                     bounds.x(),
                     bounds.y(),
                     bounds.width(),
-                    bounds.height(),
-                    Math.toIntExact(tank.capacity()));
+                    bounds.height());
             if (tank.kind() == ProcessingEmiLayout.FluidKind.OUTPUT) {
                 widget.recipeContext(this);
             }

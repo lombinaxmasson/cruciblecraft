@@ -102,6 +102,8 @@ public final class MteInPlaceBlock extends Block
             IntegerProperty.create("wheel_design", 0, 3);
     public static final IntegerProperty SLUICE_DESIGN =
             IntegerProperty.create("sluice_design", 0, 7);
+    public static final IntegerProperty ELECTROLYZER_DESIGN =
+            IntegerProperty.create("electrolyzer_design", 0, 7);
     private static final VoxelShape DOWN = Block.box(4.0, 0.0, 4.0, 12.0, 8.0, 12.0);
     private static final VoxelShape UP = Block.box(4.0, 8.0, 4.0, 12.0, 16.0, 12.0);
     private static final VoxelShape NORTH = Block.box(4.0, 4.0, 0.0, 12.0, 12.0, 8.0);
@@ -160,6 +162,9 @@ public final class MteInPlaceBlock extends Block
         if (SluiceParts.isPart(spec)) {
             initial = initial.setValue(SLUICE_DESIGN, 0);
         }
+        if (ElectrolyzerParts.isPart(spec)) {
+            initial = initial.setValue(ELECTROLYZER_DESIGN, 0);
+        }
         if (DistillationTowerParts.usesTowerSkin(spec)) {
             initial = initial
                     .setValue(MultiblockPortBlock.TOWER_SKIN, false)
@@ -207,6 +212,9 @@ public final class MteInPlaceBlock extends Block
             }
             if (SluiceParts.isPart(constructingSpec())) {
                 builder.add(SLUICE_DESIGN);
+            }
+            if (ElectrolyzerParts.isPart(constructingSpec())) {
+                builder.add(ELECTROLYZER_DESIGN);
             }
             if (DistillationTowerParts.usesTowerSkin(constructingSpec())) {
                 builder.add(

@@ -1,7 +1,8 @@
 # kTFRUAddon：只依赖 GT6 的表面
 
-本地只读树 `ktfruaddon/kTFRUAddon`（kuzuanpa / TFRU 附加）。Java/tick 权威仍是
-`gt6_code/gregtech6`。这份清单回答：addon 里哪些东西是 **GregTech 6 风格**、
+对照 [kuzuanpa/kTFRUAddon](https://github.com/kuzuanpa/kTFRUAddon)
+`75cebb71abb9b5ac5ceb447e3324bd161b6fa7ab`。Java/tick 权威仍是钉住的
+GregTech 6，见 [代码树 · 参考源](code-tree.md#参考源)。这份清单回答：addon 里哪些东西是 **GregTech 6 风格**、
 运行时 **不绑 Advanced Rocketry / TerraFirmaCraft**（以及同类整合模组）。
 
 这不是 unique-active，也不是移植队列。增减公共 16 前缀、开形态、写配方卡，
@@ -200,12 +201,11 @@ CC 现在只动了小型燃气涡轮这一条 unique-active。本页其余行保
 
 ## 源码入口
 
-| 读 | 路径 |
+| 读 | 路径（相对于 kTFRUAddon 检出） |
 | --- | --- |
-| 树（只读，gitignore） | `ktfruaddon/kTFRUAddon/` |
-| README 意图 | `ktfruaddon/kTFRUAddon/README.md` |
-| 注册 | `.../tile/tileEntityInit0.java` |
-| 配方门 | `.../recipe/recipeInit.java` |
-| RecipeMap | `.../api/recipe/recipeMaps.java` |
-| 材料 | `.../api/material/materialPreInit.java` |
-| 环境门 | `.../EnvironmentHelper.java` |
+| README 意图 | `README.md` |
+| 注册 | `src/main/java/cn/kuzuanpa/ktfruaddon/tile/tileEntityInit0.java` |
+| 配方门 | `src/main/java/cn/kuzuanpa/ktfruaddon/recipe/recipeInit.java` |
+| RecipeMap | `src/main/java/cn/kuzuanpa/ktfruaddon/api/recipe/recipeMaps.java` |
+| 材料 | `src/main/java/cn/kuzuanpa/ktfruaddon/api/material/materialPreInit.java` |
+| 环境门 | `src/main/java/cn/kuzuanpa/ktfruaddon/EnvironmentHelper.java` |

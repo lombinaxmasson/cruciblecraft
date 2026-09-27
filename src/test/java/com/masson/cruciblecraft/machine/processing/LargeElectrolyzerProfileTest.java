@@ -14,6 +14,7 @@ import java.util.Optional;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -150,6 +151,16 @@ class LargeElectrolyzerProfileTest {
         assertEquals(8, energyInPorts);
         assertEquals(9, outPorts);
         assertEquals(1, controllers);
+    }
+
+    @Test
+    void partDesignFollowsGt6ActiveFormula() {
+        assertEquals(1, ElectrolyzerParts.structureDesign(0, true, 0, true, 0));
+        assertEquals(0, ElectrolyzerParts.structureDesign(1, false, 4, true, 3));
+        assertEquals(2, ElectrolyzerParts.structureDesign(1, true, 0, true, 0));
+        assertEquals(7, ElectrolyzerParts.structureDesign(1, true, 0, true, 5));
+        assertEquals(4, ElectrolyzerParts.structureDesign(1, true, 4, false, 1));
+        assertEquals(3, ElectrolyzerParts.structureDesign(1, true, 4, true, 1));
     }
 
     private static GTRecipe recipe(long eut, int duration) {

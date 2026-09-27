@@ -1,8 +1,11 @@
 package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeElectrolyzerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
@@ -181,6 +184,71 @@ public final class LargeElectrolyzerGameTests {
                                         true)
                                 == 0L,
                 "Unformed electrolyzer part accepted Electric energy");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void formedPartsUseIdleGt6Designs(GameTestHelper helper) {
+        placeFormed(helper);
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.LARGE_ELECTROLYZER.structureId());
+        int bottoms = 0;
+        int tops = 0;
+        for (var element : structure.structure()) {
+            if (structure.predicate(element).kind() != PredicateKind.PORT) {
+                continue;
+            }
+            int expected = element.offset().y() <= 0 ? 1 : 0;
+            if (expected == 1) {
+                bottoms++;
+            } else {
+                tops++;
+            }
+            var state = helper.getBlockState(
+                    structure.worldPosition(
+                            CONTROLLER, FACING, element.offset()));
+            helper.assertTrue(
+                    state.hasProperty(MteInPlaceBlock.ELECTROLYZER_DESIGN)
+                            && state.getValue(
+                                    MteInPlaceBlock.ELECTROLYZER_DESIGN)
+                                    == expected,
+                    "Electrolyzer part design drifted at "
+                            + element.offset());
+        }
+        helper.assertTrue(
+                bottoms == 8 && tops == 9,
+                "Idle design check did not cover both layers");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void adjacentEuSourceFollowsMachineSwitch(
+            GameTestHelper helper) {
+        LargeElectrolyzerBlockEntity be = placeFormed(helper);
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.LARGE_ELECTROLYZER.structureId());
+        BlockPos below = structure.anchor("center", CONTROLLER, FACING)
+                .below();
+        helper.setBlock(
+                below,
+                ModBlocks.STEEL_GALVANIZED_ELECTRIC_MOTOR.get()
+                        .defaultBlockState()
+                        .setValue(ElectricMotorBlock.FACING, Direction.DOWN));
+        ElectricMotorBlockEntity motor = helper.getBlockEntity(below);
+        helper.assertTrue(motor != null, "Missing EU emitter under the center");
+        motor.setAdjacentOnOff(false);
+        helper.assertTrue(motor.stopped(), "Emitter did not start stopped");
+        LargeElectrolyzerBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(CONTROLLER),
+                helper.getBlockState(CONTROLLER),
+                be);
+        helper.assertTrue(
+                !motor.stopped(),
+                "Formed electrolyzer did not enable the EU emitter");
+        helper.assertTrue(
+                !be.setStateOnOff(false) && motor.stopped(),
+                "Switching the electrolyzer off left the EU emitter running");
         helper.succeed();
     }
 

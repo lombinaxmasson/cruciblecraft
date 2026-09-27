@@ -53,11 +53,12 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
 
 以上可选兼容模组均未捆绑；运行时按能力门控启用集成。
 
-## 本地参考树
+## 其它对照源
 
-- `gt6u_code/` 是本地 Git 参考树，已从公开仓库忽略；不属于模组运行时输入，
-  clone 也不会自动取得。GT6U 本身声明 LGPL-3.0-or-later，默认资产 CC0 1.0，
-  logo 例外为 CC-BY-NC-4.0。
+贴图树、GT6U、kTFRUAddon、GT6-TFRU 和配方 dump 不随本仓库发布。上游与固定
+revision 见 [代码树 · 参考源](docs/current/code-tree.md#参考源)。GT6U 为
+LGPL-3.0-or-later，默认资产 CC0 1.0，logo 例外为 CC-BY-NC-4.0。v1 不包含
+GT6U 内容。
 
 ## 免责声明
 

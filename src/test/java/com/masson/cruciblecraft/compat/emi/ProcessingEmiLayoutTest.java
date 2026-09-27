@@ -13,6 +13,8 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
+import dev.emi.emi.api.stack.EmiStack;
+
 import net.minecraft.SharedConstants;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +33,12 @@ class ProcessingEmiLayoutTest {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
+    }
+
+    @Test
+    void recipeFluidFillsTheTankCell() {
+        assertEquals(144, Gt6EmiGui.displayedFill(EmiStack.of(Fluids.WATER, 144)));
+        assertEquals(1, Gt6EmiGui.displayedFill(EmiStack.of(Fluids.WATER, 0)));
     }
 
     @Test

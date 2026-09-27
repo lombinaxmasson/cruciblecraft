@@ -62,9 +62,9 @@ Java 21, Minecraft 1.21.1, NeoForge 21.1.243. Plan on ≥16 GiB; the first
 world load takes a while. Material identity and foundry blocks just moved:
 start a new save.
 
-A clone builds. `gt6_code/` and `gt6_referencable_port_code/` are local
-reference trees, not in Git. Runtime work does not need them. Replay or new
-art imports do; see the [code tree](docs/current/code-tree.md).
+A clone builds. Replaying GregTech 6 or importing art needs the optional
+checkouts in the [code tree](docs/current/code-tree.md#参考源). Ordinary
+runtime work does not.
 
 ```powershell
 .\gradlew.bat build
