@@ -19,6 +19,20 @@ public final class MteInPlaceDisplayNames {
             Map.entry("tungstensteel", "钨钢"),
             Map.entry("adamantium", "艾德曼合金"),
             Map.entry("ceramic", "陶瓷"),
+            Map.entry("syrmorite", "瑟钼"),
+            Map.entry("ironwood", "铁木"),
+            Map.entry("manasteel", "魔力钢"),
+            Map.entry("terrasteel", "泰拉钢"),
+            Map.entry("titanium_gold", "钛金"),
+            Map.entry("gaia_spirit", "盖亚之魂"),
+            Map.entry("draconium", "龙素"),
+            Map.entry("draconium_awakened", "觉醒龙素"),
+            Map.entry("infinity", "无尽"),
+            Map.entry("efrine", "埃弗林"),
+            Map.entry("blackstone", "黑石"),
+            Map.entry("hslatungsten_alloy", "HSLA钨合金"),
+            Map.entry("arsenic_copper", "砷铜"),
+            Map.entry("arsenic_bronze", "砷青铜"),
             Map.entry("steel_galvanized", "镀锌钢"),
             Map.entry("netherite", "下界合金"),
             Map.entry("wood_treated", "防腐木"),
@@ -38,6 +52,10 @@ public final class MteInPlaceDisplayNames {
     public static Optional<String> chinese(String registryPath) {
         if (registryPath == null || registryPath.isEmpty()) {
             return Optional.empty();
+        }
+        Optional<String> anvil = chineseAnvil(registryPath);
+        if (anvil.isPresent()) {
+            return anvil;
         }
         Optional<String> fluidAttachment = chineseFluidAttachment(registryPath);
         if (fluidAttachment.isPresent()) {
@@ -67,6 +85,19 @@ public final class MteInPlaceDisplayNames {
         }
         return FoundryHosts.kindTemplate(registryPath)
                 .map(template -> template.replace("%s", name));
+    }
+
+    private static Optional<String> chineseAnvil(String registryPath) {
+        String materialId;
+        if ("misc_tool/awakened_draconium_anvil".equals(registryPath)) {
+            materialId = "draconium_awakened";
+        } else if (registryPath.endsWith("/anvil")) {
+            materialId = registryPath.substring(
+                    0, registryPath.length() - "/anvil".length());
+        } else {
+            return Optional.empty();
+        }
+        return chineseMaterialName(materialId).map(material -> material + "砧");
     }
 
     private static Optional<String> chineseFluidAttachment(String registryPath) {

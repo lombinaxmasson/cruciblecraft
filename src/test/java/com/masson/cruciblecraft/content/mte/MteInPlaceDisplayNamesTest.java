@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.mte;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -86,6 +87,23 @@ class MteInPlaceDisplayNamesTest {
                 "不锈钢龙头",
                 MteInPlaceDisplayNames.chinese(
                                 "fluid_attachment/stainless_tap")
+                        .orElseThrow());
+    }
+
+    @Test
+    void anvilsComposeChineseFromEveryGt6MaterialIdentity() {
+        MteInPlaceCatalog.specs().stream()
+                .filter(spec -> spec.gt6Class().contains("MultiTileEntityAnvil"))
+                .forEach(spec -> assertTrue(
+                        MteInPlaceDisplayNames.chinese(spec.registryPath()).isPresent(),
+                        spec.registryPath()));
+        assertEquals(
+                "钢砧",
+                MteInPlaceDisplayNames.chinese("steel/anvil").orElseThrow());
+        assertEquals(
+                "觉醒龙素砧",
+                MteInPlaceDisplayNames.chinese(
+                                "misc_tool/awakened_draconium_anvil")
                         .orElseThrow());
     }
 
