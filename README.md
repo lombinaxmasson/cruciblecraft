@@ -10,7 +10,7 @@
 - [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)
 - [未实现与缺口](docs/current/unimplemented-gap.md)
 - [总体规划](docs/current/roadmap.md)
-- [问题反馈](https://github.com/icodestuljh/cruciblecraft/issues)
+- [问题反馈](https://github.com/lombinaxmasson/cruciblecraft/issues)
 
 ## 目前进了运行时的东西
 
