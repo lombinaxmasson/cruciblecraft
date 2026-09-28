@@ -4,10 +4,14 @@
   "plugin": "com.masson.cruciblecraft.mixin.CrucibleCraftMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ClientRecipePacketTimingMixin",
     "GenericPacketSplitterSizeLimitsMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "RecipeManagerWorkbenchToolsMixin"
   ],
   "client": [
+    "ClientRecipeSyncTimingMixin",
+    "EmiVanillaPluginTimingMixin",
     "RemiStackGroupFields",
     "RemiStackGroupLockMixin"
   ],

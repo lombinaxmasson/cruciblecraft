@@ -4139,6 +4139,36 @@
     },
     {
       "depends_on": [
+        "portfolio/default-gametest-recovery"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/工作台工具运行时配方详细计划.md",
+        "tools/capabilities/runtime/workbench-tool-runtime-recipes/**",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRuntimeRecipes.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/mixin/RecipeManagerWorkbenchToolsMixin.java",
+        "src/main/resources/cruciblecraft.mixins.json",
+        "src/generated/resources/data/cruciblecraft/recipe/tools/**",
+        "src/test/java/com/masson/cruciblecraft/recipe/crafting/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java"
+      ],
+      "path": "tools/capabilities/runtime/workbench-tool-runtime-recipes/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification",
+        "game-tests"
+      ],
+      "slug": "runtime/workbench-tool-runtime-recipes",
+      "survival_access": "not_applicable",
+      "title": "Workbench Tool Runtime Recipes",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "worldgen/gt-trees"
       ],
       "maturity": "runtime_ready",
@@ -4416,7 +4446,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 130,
+  "capability_count": 131,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5759,7 +5789,8 @@
     "portfolio/default-gametest-recovery": [
       "portfolio/default-gametest-recovery",
       "portfolio/publication-reload-performance",
-      "portfolio/test-authoring-workflow"
+      "portfolio/test-authoring-workflow",
+      "runtime/workbench-tool-runtime-recipes"
     ],
     "portfolio/gt6-machine-ledger-audit": [
       "portfolio/gt6-machine-ledger-audit"
@@ -5882,6 +5913,9 @@
     ],
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
+    ],
+    "runtime/workbench-tool-runtime-recipes": [
+      "runtime/workbench-tool-runtime-recipes"
     ],
     "worldgen/gt-crops": [
       "worldgen/gt-crops"
@@ -6035,7 +6069,8 @@
     "game-tests": [
       "portfolio/default-gametest-recovery",
       "portfolio/publication-reload-performance",
-      "portfolio/test-authoring-workflow"
+      "portfolio/test-authoring-workflow",
+      "runtime/workbench-tool-runtime-recipes"
     ],
     "recipes": [
       "recipe/gt6-bulk-capacity",
@@ -6047,10 +6082,11 @@
     ],
     "verification": [
       "portfolio/publication-reload-performance",
-      "portfolio/test-authoring-workflow"
+      "portfolio/test-authoring-workflow",
+      "runtime/workbench-tool-runtime-recipes"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "runtime/workbench-tool-runtime-recipes"
 }

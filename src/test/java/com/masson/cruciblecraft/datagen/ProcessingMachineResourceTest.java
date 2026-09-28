@@ -11,12 +11,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.localization.LanguageNames;
 import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
+import com.masson.cruciblecraft.material.MaterialRegistrationGate;
+import com.masson.cruciblecraft.material.def.MaterialLoader;
+import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRuntimeRecipes;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
@@ -27,6 +31,19 @@ class ProcessingMachineResourceTest {
     private static final Path MAIN = Path.of("src/main/resources");
     private static final List<String> MACHINES = ModMachineVariants.ALL
             .stream().map(variant -> variant.id().getPath()).toList();
+    private static final Map<String, com.google.gson.JsonObject> WORKBENCH_RECIPES =
+            loadWorkbenchRecipes();
+
+    private static Map<String, com.google.gson.JsonObject> loadWorkbenchRecipes() {
+        var materials = MaterialLoader.load(
+                Path.of("build/test-material-config")).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        return WorkbenchToolRuntimeRecipes.plannedRecipes(materials, registered)
+                .stream()
+                .collect(Collectors.toUnmodifiableMap(
+                        recipe -> recipe.path() + ".json",
+                        recipe -> recipe.toJson()));
+    }
 
     @Test
     void configuredMachinesHaveLootAndMiningTags() throws Exception {
@@ -235,9 +252,7 @@ class ProcessingMachineResourceTest {
                 "material.is literals must stay explicitly budgeted");
         assertTrue(foundWear, "Tool rules must retain WEAR catalysts");
         assertTrue(foundPreserve, "Tool rules must retain pattern selectors");
-        var fileRecipe = JsonParser.parseString(Files.readString(GENERATED.resolve(
-                "data/cruciblecraft/recipe/tools/iron/tool_head_file.json")))
-                .getAsJsonObject();
+        var fileRecipe = workbenchRecipe("tools/iron/tool_head_file.json");
         assertEquals(
                 "cruciblecraft:shaped_catalyst",
                 fileRecipe.get("type").getAsString());
@@ -266,8 +281,7 @@ class ProcessingMachineResourceTest {
                 "tools/steel/tool_head_hammer.json", "cruciblecraft:steel/tool_head_hammer");
 
         for (var entry : headRecipes.entrySet()) {
-            var recipe = JsonParser.parseString(Files.readString(GENERATED.resolve(
-                    "data/cruciblecraft/recipe/" + entry.getKey()))).getAsJsonObject();
+            var recipe = workbenchRecipe(entry.getKey());
             assertEquals(
                     "cruciblecraft:shaped_catalyst",
                     recipe.get("type").getAsString(),
@@ -288,9 +302,7 @@ class ProcessingMachineResourceTest {
                     !result.has("components"),
                     entry.getKey() + " head must not persist tool_material");
         }
-        var stone = JsonParser.parseString(Files.readString(GENERATED.resolve(
-                "data/cruciblecraft/recipe/tools/stone/smithing_hammer.json")))
-                .getAsJsonObject();
+        var stone = workbenchRecipe("tools/stone/smithing_hammer.json");
         assertEquals("cruciblecraft:shaped_catalyst", stone.get("type").getAsString());
         assertEquals(
                 List.of("XX ", "XXS", "XX "),
@@ -468,9 +480,8 @@ class ProcessingMachineResourceTest {
                     "wire_cutter",
                     "monkey_wrench",
                     "tool_head_pickaxe")) {
-                assertTrue(Files.isRegularFile(GENERATED.resolve(
-                        "data/cruciblecraft/recipe/tools/"
-                                + material + "/" + tool + ".json")),
+                assertTrue(WORKBENCH_RECIPES.containsKey(
+                        "tools/" + material + "/" + tool + ".json"),
                         material + " " + tool);
             }
         }
@@ -483,9 +494,7 @@ class ProcessingMachineResourceTest {
             Map<String, String> catalysts,
             String resultId,
             String material) throws Exception {
-        var recipe = JsonParser.parseString(Files.readString(
-                GENERATED.resolve("data/cruciblecraft/recipe/" + relative)))
-                .getAsJsonObject();
+        var recipe = workbenchRecipe(relative);
         assertEquals("cruciblecraft:shaped_catalyst", recipe.get("type").getAsString(), relative);
         assertEquals(
                 pattern,
@@ -534,9 +543,7 @@ class ProcessingMachineResourceTest {
             Map<String, String> ingredients,
             Map<String, String> catalysts,
             String resultId) throws Exception {
-        var recipe = JsonParser.parseString(Files.readString(
-                GENERATED.resolve("data/cruciblecraft/recipe/" + relative)))
-                .getAsJsonObject();
+        var recipe = workbenchRecipe(relative);
         assertEquals("cruciblecraft:shaped_catalyst", recipe.get("type").getAsString(), relative);
         assertEquals(
                 pattern,
@@ -558,6 +565,15 @@ class ProcessingMachineResourceTest {
         var result = recipe.getAsJsonObject("result");
         assertEquals(resultId, result.get("id").getAsString(), relative);
         assertTrue(!result.has("components"), relative);
+    }
+
+    private static com.google.gson.JsonObject workbenchRecipe(String relative) {
+        com.google.gson.JsonObject recipe = WORKBENCH_RECIPES.get(relative);
+        if (recipe == null) {
+            throw new IllegalArgumentException(
+                    "Missing runtime workbench recipe " + relative);
+        }
+        return recipe;
     }
 
     private static String slotRef(com.google.gson.JsonObject slot) {

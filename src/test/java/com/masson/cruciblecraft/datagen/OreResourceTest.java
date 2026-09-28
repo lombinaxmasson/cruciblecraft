@@ -561,15 +561,9 @@ class OreResourceTest {
         // plus five source-backed casings beyond the early six. Storage adds 18
         // source-visible storage acquisition recipes. Display CPU adds 8 cover
         // recipes (4 shaped + 4 shapeless cycle).
-        // Catalog-driven workbench tools replace the previous 32 hardcoded
-        // hammer/workshop/harvest files. The 1_746 baseline is that tree
-        // minus those 32; the plan adds every eligible workshop, harvest-head,
-        // and stone-rock recipe, including the vanilla flint harvest
-        // crafts and bone club. Head-plus-stick assemblies are a fixed extra set.
-        int workbenchTools = WorkbenchToolRecipePlan.plan(
-                materials, registeredForms).size();
+        // Catalog-driven workbench tools are supplied at recipe reload time.
+        // Only the fixed head-assembly recipes remain in generated resources.
         int expectedGenerated = WorkbenchToolRecipePlan.NON_WORKBENCH_GENERATED_RECIPES
-                + workbenchTools
                 + WorkbenchToolRecipePlan.assemblies().size();
         assertEquals(
                 expectedGenerated,

@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.item.tool.ToolMining;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
+import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
 
@@ -93,6 +94,26 @@ public final class ElectricToolGameTests {
                         locker.inventory().getStackInSlot(3))
                         == 5_120L,
                 "locker did not fill the drill from its own capacity");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void runtimeWorkbenchToolRecipesArePublished(
+            GameTestHelper helper) {
+        var manager = helper.getLevel().getRecipeManager();
+        for (String path : new String[] {
+                "tools/iron/knife",
+                "tools/zirconium/wrench_mv/lithium_cobalt_battery_mv"}) {
+            var holder = manager.byKey(ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft",
+                    path));
+            helper.assertTrue(
+                    holder.isPresent(),
+                    "missing runtime workbench recipe " + path);
+            helper.assertTrue(
+                    holder.orElseThrow().value() instanceof ShapedCatalystRecipe,
+                    "wrong runtime recipe type " + path);
+        }
         helper.succeed();
     }
 

@@ -3765,59 +3765,8 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addWorkbenchToolRecipes(RecipeOutput output) {
-        LinkedHashMap<String, List<MaterialPrefix>> registeredForms =
-                new LinkedHashMap<>();
-        MaterialCatalog.startupValues().forEach(material ->
-                registeredForms.put(
-                        material.id(),
-                        MaterialCatalog.registeredForms(material)));
-        WorkbenchToolRecipePlan.plan(
-                MaterialCatalog.startupValues(), registeredForms)
-                .forEach(recipe -> emitPlannedWorkbenchTool(output, recipe));
         WorkbenchToolRecipePlan.assemblies()
                 .forEach(assembly -> emitToolHeadAssembly(output, assembly));
-    }
-
-    private static void emitPlannedWorkbenchTool(
-            RecipeOutput output, WorkbenchToolRecipePlan.Recipe planned) {
-        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
-        planned.ingredients().forEach((symbol, itemId) ->
-                ingredients.put(
-                        symbol,
-                        MaterialLookup.ingredientFromLogicalId(itemId)
-                                .orElseThrow(() -> new IllegalStateException(
-                                        "Missing planned ingredient " + itemId))));
-        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
-        planned.catalysts().forEach((symbol, itemId) ->
-                catalysts.put(
-                        symbol,
-                        MaterialLookup.ingredientFromLogicalId(itemId)
-                                .orElseThrow(() -> new IllegalStateException(
-                                        "Missing planned catalyst " + itemId))));
-        ItemStack result = planned.persistToolMaterial()
-                ? toolStack(
-                        resolveRegisteredItem(
-                                ResourceLocation.parse(planned.resultId())),
-                        planned.material(),
-                        planned.electricCapacity(),
-                        planned.electricVoltage())
-                : MaterialLookup.stackFromLogicalId(planned.resultId())
-                        .map(stack -> {
-                            stack.setCount(planned.count());
-                            return stack;
-                        })
-                        .orElseGet(() -> new ItemStack(
-                                resolveRegisteredItem(
-                                        ResourceLocation.parse(planned.resultId())),
-                                planned.count()));
-        acceptShapedCatalyst(
-                output,
-                planned.path(),
-                planned.pattern(),
-                ingredients,
-                catalysts,
-                result,
-                planned.mirrored());
     }
 
     private static void addRockCobbleRecipes(RecipeOutput output) {

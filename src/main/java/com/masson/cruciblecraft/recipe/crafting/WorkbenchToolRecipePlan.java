@@ -33,9 +33,9 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    // Includes the 28 MTE fluid-attachment cooking recipes emitted outside
-    // the workbench-tool plan.
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 5_146;
+    // Includes the 28 MTE fluid-attachment cooking recipes and the static
+    // tool-pattern resources emitted outside the runtime workbench plan.
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 5_425;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =

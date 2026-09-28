@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "slug": "runtime/workbench-tool-runtime-recipes",
+  "title": "Workbench Tool Runtime Recipes",
+  "maturity": "frozen",
+  "workflow": "active",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/工作台工具运行时配方详细计划.md",
+    "tools/capabilities/runtime/workbench-tool-runtime-recipes/**",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRuntimeRecipes.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/mixin/RecipeManagerWorkbenchToolsMixin.java",
+    "src/main/resources/cruciblecraft.mixins.json",
+    "src/generated/resources/data/cruciblecraft/recipe/tools/**",
+    "src/test/java/com/masson/cruciblecraft/recipe/crafting/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java",
+    "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java"
+  ],
+  "depends_on": [
+    "portfolio/default-gametest-recovery"
+  ],
+  "profiles": [
+    "verification",
+    "game-tests"
+  ],
+  "note": "Moves existing GT6-derived shaped_catalyst workbench tool recipes from generated JSON into RecipeManager reload-time synthesis without changing recipe ids or semantic recipe behavior. Closes at runtime_ready; does not sign playtest."
+}

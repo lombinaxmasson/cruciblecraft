@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
@@ -15,8 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
@@ -24,10 +21,6 @@ import com.masson.cruciblecraft.material.def.MaterialLoader;
 class WorkbenchToolRecipePlanTest {
     private static final Path RECIPE_ROOT = Path.of(
             "src/generated/resources/data/cruciblecraft/recipe");
-    private static final Gson GSON = new GsonBuilder()
-            .setPrettyPrinting()
-            .disableHtmlEscaping()
-            .create();
     private static final List<String> OBSOLETE_PATHS = List.of(
             "smithing_hammer.json",
             "bronze_smithing_hammer.json",
@@ -133,20 +126,11 @@ class WorkbenchToolRecipePlanTest {
                 assertFalse(recipe.mirrored(), recipe.path());
             }
         }
-        for (String path : List.of(
-                "tools/flint_knife",
-                "tools/flint_pickaxe",
-                "tools/stone/axe",
-                "tools/obsidian/knife_from_rock",
-                "tools/bone/club")) {
-            var recipe = plan.stream()
-                    .filter(entry -> path.equals(entry.path()))
-                    .findFirst()
-                    .orElseThrow();
-            Path file = RECIPE_ROOT.resolve(path + ".json");
-            var actual = JsonParser.parseString(Files.readString(file));
-            assertEquals(recipe.toJson(), actual, path);
-        }
+        assertEquals(
+                plan,
+                WorkbenchToolRuntimeRecipes.plannedRecipes(
+                        materials,
+                        registered));
         assertEquals(18, assemblies.size());
         assertTrue(assemblies.stream().anyMatch(assembly ->
                 "tools/assemble/magnifying_glass".equals(assembly.path())
@@ -187,48 +171,6 @@ class WorkbenchToolRecipePlanTest {
             }
         }
 
-        if ("true".equalsIgnoreCase(System.getenv("WRITE_WORKBENCH_TOOLS"))) {
-            for (var recipe : plan) {
-                Path file = RECIPE_ROOT.resolve(recipe.path() + ".json");
-                Files.createDirectories(file.getParent());
-                Files.writeString(
-                        file,
-                        GSON.toJson(recipe.toJson()) + "\n",
-                        StandardCharsets.UTF_8);
-            }
-            for (var assembly : assemblies) {
-                Path file = RECIPE_ROOT.resolve(assembly.path() + ".json");
-                Files.createDirectories(file.getParent());
-                Files.writeString(
-                        file,
-                        GSON.toJson(assembly.toJson()) + "\n",
-                        StandardCharsets.UTF_8);
-            }
-            for (String obsolete : OBSOLETE_PATHS) {
-                Files.deleteIfExists(RECIPE_ROOT.resolve(obsolete));
-            }
-            try (var walk = Files.walk(RECIPE_ROOT.resolve("tools"))) {
-                List<Path> files = walk.filter(Files::isRegularFile).toList();
-                Set<String> keep = plan.stream()
-                        .map(recipe -> recipe.path() + ".json")
-                        .collect(Collectors.toCollection(java.util.HashSet::new));
-                assemblies.forEach(assembly ->
-                        keep.add(assembly.path() + ".json"));
-                keep.add("tools/flint_knife.json");
-                for (Path file : files) {
-                    String relative = RECIPE_ROOT.relativize(file)
-                            .toString()
-                            .replace('\\', '/');
-                    if (relative.startsWith("tools/pattern/")) {
-                        continue;
-                    }
-                    if (!keep.contains(relative)) {
-                        Files.delete(file);
-                    }
-                }
-            }
-        }
-
         for (var assembly : assemblies) {
             Path file = RECIPE_ROOT.resolve(assembly.path() + ".json");
             assertTrue(Files.isRegularFile(file), assembly.path());
@@ -237,7 +179,9 @@ class WorkbenchToolRecipePlanTest {
         }
         for (var recipe : plan) {
             Path file = RECIPE_ROOT.resolve(recipe.path() + ".json");
-            assertTrue(Files.isRegularFile(file), recipe.path());
+            assertFalse(
+                    Files.isRegularFile(file),
+                    recipe.path() + " must be supplied at reload time");
         }
         for (String obsolete : OBSOLETE_PATHS) {
             assertTrue(
