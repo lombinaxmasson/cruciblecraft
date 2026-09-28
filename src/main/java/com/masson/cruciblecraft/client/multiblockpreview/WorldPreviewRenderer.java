@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.client.multiblockpreview;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionGrid;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockWorldPreview;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -18,6 +19,10 @@ import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 @EventBusSubscriber(modid = CrucibleCraft.MODID, value = Dist.CLIENT)
 public final class WorldPreviewRenderer {
     private static WorldStructurePreview active;
+
+    static {
+        MultiblockWorldPreview.register(WorldPreviewRenderer::toggle);
+    }
 
     private WorldPreviewRenderer() {}
 

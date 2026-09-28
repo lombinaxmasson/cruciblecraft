@@ -15,7 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
-import com.masson.cruciblecraft.client.screen.MachineGuiTextures;
+import com.masson.cruciblecraft.gui.MachineGuiTextures;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;

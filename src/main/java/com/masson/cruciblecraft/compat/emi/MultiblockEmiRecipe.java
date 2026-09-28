@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.masson.cruciblecraft.client.multiblockpreview.WorldPreviewRenderer;
 import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionGrid;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockWorldPreview;
 import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionView;
 import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionWidget;
 import com.masson.cruciblecraft.compat.emi.multiblock.ProjectionButtonWidget;
@@ -133,7 +133,7 @@ final class MultiblockEmiRecipe implements EmiRecipe {
                 view.cycleLayer(grid.layers().size()));
         buttonY = addButton(widgets, buttonY, "R", "reset", view::reset);
         addButton(widgets, buttonY, "W", "world_preview", () ->
-                WorldPreviewRenderer.toggle(grid));
+                MultiblockWorldPreview.toggle(grid));
 
         int index = 0;
         for (EmiIngredient ingredient : inputs) {

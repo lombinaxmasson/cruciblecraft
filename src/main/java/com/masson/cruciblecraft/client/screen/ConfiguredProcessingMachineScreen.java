@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.client.screen;
 
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
+import com.masson.cruciblecraft.gui.MachineGuiTextures;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

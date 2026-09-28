@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.client.screen;
 
 import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
+import com.masson.cruciblecraft.gui.MachineGuiTextures;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 

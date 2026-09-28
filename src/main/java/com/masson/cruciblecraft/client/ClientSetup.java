@@ -34,6 +34,7 @@ import com.masson.cruciblecraft.client.model.CeramicMoldGeometry;
 import com.masson.cruciblecraft.client.model.PositionalPebbleGeometry;
 import com.masson.cruciblecraft.client.model.PositionalStickGeometry;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
+import com.masson.cruciblecraft.client.render.BatteryRenderer;
 import com.masson.cruciblecraft.client.render.BookshelfRenderer;
 import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
@@ -564,7 +565,7 @@ public class ClientSetup {
                 ModBlockEntities.TRANSFORMER.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.BATTERY.get(),
-                com.masson.cruciblecraft.energy.battery.BatteryRenderer::new);
+                BatteryRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.MULTIBLOCK_PORT.get(),
                 PipeCoverRenderer::new);

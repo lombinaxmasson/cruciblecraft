@@ -1,6 +1,6 @@
 package com.masson.cruciblecraft.compat.emi;
 
-import com.masson.cruciblecraft.client.screen.MachineGuiTextures;
+import com.masson.cruciblecraft.gui.MachineGuiTextures;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
