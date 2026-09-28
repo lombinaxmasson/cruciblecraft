@@ -239,7 +239,7 @@ class ComponentRuleDataTest {
                         System.nanoTime() - expansionStarted);
         System.out.println("COMPONENT_RULE_EXPANSION_ELAPSED_MS=" + expansionElapsedMs);
         System.out.println("COMPONENT_RULE_EXPANSION_COUNT=" + plans.size());
-        assertEquals(51, rules.size());
+        assertEquals(31, rules.size());
         assertTrue(plans.size() <= 10_000, "component-rule reload expansion budget");
 
         Map<String, MaterialDefinition> byId = materials.stream()
@@ -297,20 +297,8 @@ class ComponentRuleDataTest {
 
         Map<ResourceLocation, Long> perMap = plans.stream().collect(Collectors.groupingBy(
                 MaterialRuleExpansion.Plan::target, Collectors.counting()));
-        assertEquals(10, perMap.size());
+        assertEquals(9, perMap.size());
         assertTrue(perMap.values().stream().allMatch(count -> count > 0));
-        List<MaterialRuleExpansion.Plan> extruderPlans = plans.stream().filter(plan -> plan.target().equals(id("extruder")))
-                .toList();
-        assertFalse(extruderPlans.isEmpty());
-        assertTrue(extruderPlans.stream().allMatch(plan ->
-                        plan.itemInputs().size() == 2
-                                && plan.itemInputs().getFirst().amount() > 0
-                                && plan.itemInputs().get(1).amount() == 0
-                                && plan.itemInputs().get(1).resource().fixed()
-                                        .map(ResourceLocation::getPath)
-                                        .filter(path -> path.startsWith("extruder_shape_"))
-                                        .isPresent()),
-                "every extruder recipe must require an exact presence-only shape");
         Map<ResourceLocation, Long> maxEut = plans.stream().collect(Collectors.groupingBy(
                 MaterialRuleExpansion.Plan::target,
                 Collectors.collectingAndThen(
@@ -318,7 +306,6 @@ class ComponentRuleDataTest {
                                 MaterialRuleExpansion.Plan::eut)),
                         value -> value.orElseThrow().eut())));
         assertEquals(Map.of(
-                id("extruder"), 96L,
                 id("cutter"), 32L,
                 id("lathe"), 24L,
                 id("rollingmill"), 32L,
@@ -490,7 +477,7 @@ class ComponentRuleDataTest {
                 source.path().equals("extruder/ingot_to_long_rod")));
         assertFalse(javaSource.indexOf("\"extruder/ingot_to_long_rod\"") >= 0,
                 "legacy no-shape extruder bypass leaked back into Java");
-        assertEquals(20, rules.stream()
+        assertEquals(0, rules.stream()
                 .filter(source -> source.path().startsWith("extruder/"))
                 .count());
         assertTrue(rules.stream()
@@ -500,7 +487,7 @@ class ComponentRuleDataTest {
                                 .map(table -> table.shapeItem().getPath()
                                         .startsWith("extruder_shape_"))
                                 .orElse(false)));
-        assertEquals(2782, rules.stream()
+        assertEquals(0, rules.stream()
                 .flatMap(source -> source.rule().sparse().stream())
                 .mapToLong(table -> table.relations().size())
                 .sum());

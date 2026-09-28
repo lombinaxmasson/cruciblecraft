@@ -1,15 +1,20 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "d": {
-      "item": "cruciblecraft:material_screwdriver"
+      "tag": "cruciblecraft:crafting_tools/screwdriver"
     },
     "x": {
-      "item": "cruciblecraft:material_wire_cutter"
+      "tag": "cruciblecraft:crafting_tools/wire_cutter"
     }
   },
   "ingredients": {
     "P": {
-      "item": "cruciblecraft:iron/double_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "iron"
+      },
+      "items": "cruciblecraft:double_plate"
     },
     "S": {
       "item": "cruciblecraft:iron/long_rod"
@@ -29,6 +34,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:misc_tool/sifting_table"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

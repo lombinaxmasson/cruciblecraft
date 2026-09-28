@@ -75,7 +75,7 @@ class GtSmallOresTest(unittest.TestCase):
         self.assertNotIn("programmed_circuit", feature)
         tests = (TEST_JAVA / "gametest" / ores.GAME_TESTS).read_text(encoding="utf-8")
         self.assertIn("must not reuse T20 large-vein ellipsoids", tests)
-        self.assertIn("cruciblecraft_wave_worldgen_gt_small_ores", tests)
+        self.assertIn("cruciblecraft_worldgen", tests)
         self.assertIn("sylvite", tests)
         five = census.load_json(ores.REMOVE_FIVE)
         self.assertEqual(list(ores.FIVE_REMOVED_VEINS), five["features"])

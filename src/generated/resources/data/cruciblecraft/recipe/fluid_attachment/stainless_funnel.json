@@ -1,15 +1,20 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "h": {
-      "item": "cruciblecraft:smithing_hammer"
+      "tag": "cruciblecraft:crafting_tools/hammer"
     },
     "o": {
-      "item": "cruciblecraft:material_bending_cylinder_small"
+      "tag": "cruciblecraft:crafting_tools/bending_cylinder_small"
     }
   },
   "ingredients": {
     "P": {
-      "item": "cruciblecraft:stainless_steel/curved_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:curved_plate"
     }
   },
   "pattern": [
@@ -20,6 +25,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:fluid_attachment/stainless_funnel"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

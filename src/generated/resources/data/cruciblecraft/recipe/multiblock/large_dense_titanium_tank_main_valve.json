@@ -1,10 +1,11 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "h": {
-      "item": "cruciblecraft:smithing_hammer"
+      "tag": "cruciblecraft:crafting_tools/hammer"
     },
     "s": {
-      "item": "cruciblecraft:material_saw"
+      "tag": "cruciblecraft:crafting_tools/saw"
     }
   },
   "ingredients": {
@@ -12,7 +13,11 @@
       "item": "cruciblecraft:multiblock/small_dense_titanium_tank_main_valve"
     },
     "P": {
-      "item": "cruciblecraft:titanium/dense_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:dense_plate"
     }
   },
   "pattern": [
@@ -23,6 +28,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:multiblock/large_dense_titanium_tank_main_valve"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

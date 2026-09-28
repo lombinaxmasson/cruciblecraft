@@ -99,7 +99,7 @@ class GtCropsTest(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("must not reuse lilypad_glowtus/white_glowtus", tests)
-        self.assertIn("cruciblecraft_wave_worldgen_gt_crops", tests)
+        self.assertIn("cruciblecraft_worldgen", tests)
 
     def test_unique_active_hand_off_matches_capability(self) -> None:
         capability = census.load_json(

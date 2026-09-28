@@ -67,7 +67,7 @@ class LogisticsCoreResourceTest {
         JsonObject wall = json(ROOT.resolve(
                 "assets/cruciblecraft/blockstates/multiblock/galvanized_steel_wall.json"));
         assertEquals(
-                "cruciblecraft:block/large_crucible_wall",
+                "cruciblecraft:block/mte_inplace_multiblock_part",
                 wall.getAsJsonObject("variants")
                         .getAsJsonObject("facing=north")
                         .get("model")

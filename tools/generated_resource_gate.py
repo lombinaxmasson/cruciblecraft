@@ -41,10 +41,15 @@ NO_LOOT_BLOCKS = {
     "gt_small_bedrock_ore",
     "gt_small_ore",
     "gt_surface_rock",
+    "gt_stick",
+    "multiblock_fluid_port",
+    "zero_point_module",
     "subsurface_fluid_deposit",
 }
 NO_ITEM_BLOCKS = {
     "gas_cloud",
+    "gt_stick",
+    "multiblock_fluid_port",
     "subsurface_fluid_deposit",
 }
 HAND_BREAKABLE_PREFIXES = (
@@ -57,7 +62,11 @@ def python_owned_generated_prefixes() -> tuple[str, ...]:
         "assets/cruciblecraft/models/gt_stone/",
         "assets/cruciblecraft/models/item/gt_block/",
         "assets/cruciblecraft/models/item/gt_stone/",
+        "data/cruciblecraft/recipe/storage/",
     }
+    for family in ("diggable", "glass", "glow_glass", "sands"):
+        prefixes.add(f"assets/cruciblecraft/models/{family}/")
+        prefixes.add(f"assets/cruciblecraft/models/item/{family}/")
     from tools import catalog_modern_ids as modern
 
     if modern.MAP_PATH.is_file():
@@ -247,15 +256,20 @@ def manifested_textures() -> tuple[set[str], tuple[str, ...]]:
         if not path.is_file():
             continue
         document = load_json(path)
-        for row in document.get("imports") or document.get("assets") or []:
-            dest = str(
-                row.get("destination")
-                or row.get("destination_path")
-                or ""
-            )
-            if dest:
-                for item in expand_brace_paths(dest.replace("\\", "/")):
-                    found.add(item)
+        for collection in document.values():
+            if not isinstance(collection, list):
+                continue
+            for row in collection:
+                if not isinstance(row, dict):
+                    continue
+                dest = str(
+                    row.get("destination")
+                    or row.get("destination_path")
+                    or ""
+                )
+                if dest:
+                    for item in expand_brace_paths(dest.replace("\\", "/")):
+                        found.add(item)
         for row in document.get("identities") or []:
             for texture in [row.get("texture"), *(row.get("textures") or [])]:
                 if texture:

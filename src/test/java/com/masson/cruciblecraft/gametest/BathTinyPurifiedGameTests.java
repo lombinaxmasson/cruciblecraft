@@ -50,7 +50,7 @@ public final class BathTinyPurifiedGameTests {
     private static final Direction FRONT = Direction.EAST;
     private static final int BATH_MTE_LOCKED_RELATIONS = 1517;
     private static final int BATH_REMAINDER_LOCKED_RELATIONS = 13708;
-    private static final int BATH_IDENTITY_LOCKED_RELATIONS = 34091;
+    private static final int BATH_IDENTITY_LOCKED_RELATIONS = 34081;
     private static final int LOCKED_RELATIONS = 95;
     private static final int FLUID_SUPPORT_RECIPES = 0;
     private static final ResourceLocation BATH_MTE_GROUP =

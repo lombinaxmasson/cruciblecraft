@@ -40,8 +40,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * {@code tools/bath_identity_materialization_measurements.json} for the Python
  * decision builder. Timings are nonparametric p50/p95 over 21 samples.
  *
- * <p>Measures exact (47), exact_multi (12422), tool_head (21622), and
- * card-aggregate (34091) publication groups independently. Production
+ * <p>Measures exact (46), exact_multi (12413), tool_head (21622), and
+ * card-aggregate (34081) publication groups independently. Production
  * winners are not claimed here. Declared-before-measure cache ceiling is
  * 128 per group (bath-identity lookup/shard hard envelope), hybrid duration_ticks_lte
  * 16. Not a copied bath-remainder on_demand / cache 478 winner. Skips when
@@ -57,13 +57,13 @@ class BathIdentityMeasurementHarness {
     private static final long EPOCH = 11L;
     private static final int CACHE_CEILING = 128;
     private static final int HYBRID_DURATION_CUTOFF = 16;
-    private static final int LOCKED_FAMILIES = 145;
-    private static final int LOCKED_RELATIONS = 34091;
-    private static final int EXACT_ROWS = 47;
-    private static final int EXACT_MULTI_ROWS = 12422;
+    private static final int LOCKED_FAMILIES = 143;
+    private static final int LOCKED_RELATIONS = 34081;
+    private static final int EXACT_ROWS = 46;
+    private static final int EXACT_MULTI_ROWS = 12413;
     private static final int TOOL_HEAD_ROWS = 21622;
-    private static final int EXACT_FAMILIES = 47;
-    private static final int EXACT_MULTI_FAMILIES = 62;
+    private static final int EXACT_FAMILIES = 46;
+    private static final int EXACT_MULTI_FAMILIES = 61;
     private static final int TOOL_HEAD_FAMILIES = 36;
     private static final Path OUTPUT = Path.of(
             "tools/bath_identity_materialization_measurements.json");

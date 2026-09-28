@@ -169,7 +169,7 @@ class ProcessingMachineResourceTest {
                 "item.cruciblecraft.material_soft_hammer",
                 "item.cruciblecraft.material_spade",
                 "item.cruciblecraft.portable_fluid_tank",
-                "block.cruciblecraft.anvil",
+                "device.cruciblecraft.anvil",
                 "block.cruciblecraft.foundry.smelting_crucible_steel",
                 "block.cruciblecraft.centrifuge",
                 "block.cruciblecraft.sifter",

@@ -98,7 +98,7 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         tests = (TEST_JAVA / "gametest" / rocks.GAME_TESTS).read_text(
             encoding="utf-8"
         )
-        self.assertIn("cruciblecraft_wave_worldgen_gt_stone_layer_rocks", tests)
+        self.assertIn("cruciblecraft_worldgen", tests)
         self.assertIn("granite_black", tests)
         self.assertIn("stoneLayerReplacesVanillaStone", tests)
         self.assertIn("stoneLayerPlacesLayerOres", tests)

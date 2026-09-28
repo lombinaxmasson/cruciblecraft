@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:gilded_iron/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:gilded_iron/gear"
     },
     "P": {
-      "item": "cruciblecraft:gilded_iron/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "gilded_iron"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:gilded_iron/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/key_locked_gilded_iron_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

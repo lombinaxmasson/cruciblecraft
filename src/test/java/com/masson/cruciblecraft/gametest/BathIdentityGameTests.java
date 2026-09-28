@@ -48,9 +48,9 @@ public final class BathIdentityGameTests {
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final int BATH_MTE_LOCKED_RELATIONS = 1517;
-    private static final int LOCKED_RELATIONS = 34091;
-    private static final int EXACT_RELATIONS = 47;
-    private static final int EXACT_MULTI_RELATIONS = 12422;
+    private static final int LOCKED_RELATIONS = 34081;
+    private static final int EXACT_RELATIONS = 46;
+    private static final int EXACT_MULTI_RELATIONS = 12413;
     private static final int TOOL_HEAD_RELATIONS = 21622;
     private static final int IDENTITY_COUNT = 71;
     private static final int FLUID_SUPPORT_RECIPES = 2;
@@ -82,7 +82,7 @@ public final class BathIdentityGameTests {
                         + ModItems.bathIdentityItemsById().size());
         helper.assertTrue(
                 bathIdentityStableIds().size() == LOCKED_RELATIONS,
-                "bath/identity Bath compact ids drifted from 34091: " + bathIdentityStableIds().size());
+                "bath/identity Bath compact ids drifted from 34081: " + bathIdentityStableIds().size());
         RecipeMap.RecipeFamily exactFamily = bathFamily(EXACT_GROUP);
         RecipeMap.RecipeFamily multiFamily = bathFamily(EXACT_MULTI_GROUP);
         RecipeMap.RecipeFamily toolFamily = bathFamily(TOOL_HEAD_GROUP);
@@ -92,7 +92,7 @@ public final class BathIdentityGameTests {
                         + (exactFamily == null ? "missing" : exactFamily.logicalRecipeCount()));
         helper.assertTrue(
                 multiFamily != null && multiFamily.logicalRecipeCount() == EXACT_MULTI_RELATIONS,
-                "bath/identity exact_multi compact family is not the 12422 locked relations: "
+                "bath/identity exact_multi compact family is not the 12413 locked relations: "
                         + (multiFamily == null ? "missing" : multiFamily.logicalRecipeCount()));
         helper.assertTrue(
                 toolFamily != null && toolFamily.logicalRecipeCount() == TOOL_HEAD_RELATIONS,

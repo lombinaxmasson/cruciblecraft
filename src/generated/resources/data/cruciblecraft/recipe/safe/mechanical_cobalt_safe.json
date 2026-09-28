@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:cobalt/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:cobalt/gear"
     },
     "P": {
-      "item": "cruciblecraft:cobalt/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "cobalt"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:cobalt/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/mechanical_cobalt_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

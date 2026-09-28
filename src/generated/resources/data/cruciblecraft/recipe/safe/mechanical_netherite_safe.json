@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:netherite/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:netherite/gear"
     },
     "P": {
-      "item": "cruciblecraft:netherite/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "netherite"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:netherite/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/mechanical_netherite_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

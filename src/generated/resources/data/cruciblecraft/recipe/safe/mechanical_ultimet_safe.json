@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:ultimet/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:ultimet/gear"
     },
     "P": {
-      "item": "cruciblecraft:ultimet/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "ultimet"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:ultimet/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/mechanical_ultimet_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

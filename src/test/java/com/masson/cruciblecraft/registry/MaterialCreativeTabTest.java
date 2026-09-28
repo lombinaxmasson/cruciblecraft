@@ -27,6 +27,8 @@ import com.masson.cruciblecraft.material.def.ThermalProperties;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
 class MaterialCreativeTabTest {
+    private static final long EXPECTED_DOUBLE_AND_TRIPLE_INGOTS = 326L;
+
     @Test
     void allBuiltinPrefixesHaveOneSemanticTabAndUnknownPrefixesUseMisc() {
         var prefixes = MaterialPrefixCatalog.values();
@@ -72,10 +74,10 @@ class MaterialCreativeTabTest {
             @TempDir Path configDirectory) {
         var materials = MaterialLoader.load(configDirectory).values();
         var registered = MaterialRegistrationGate.load(materials);
-        assertEquals(324L, registered.values().stream()
+        assertEquals(EXPECTED_DOUBLE_AND_TRIPLE_INGOTS, registered.values().stream()
                 .filter(forms -> forms.contains(MaterialPrefixes.DOUBLE_INGOT))
                 .count());
-        assertEquals(324L, registered.values().stream()
+        assertEquals(EXPECTED_DOUBLE_AND_TRIPLE_INGOTS, registered.values().stream()
                 .filter(forms -> forms.contains(MaterialPrefixes.TRIPLE_INGOT))
                 .count());
         assertEquals(321L, registered.values().stream()
@@ -123,17 +125,17 @@ class MaterialCreativeTabTest {
         assertEquals(
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 294),
-                        Map.entry(MaterialCreativeTab.RAW_ORES, 1_150),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_755),
-                        Map.entry(MaterialCreativeTab.DUSTS, 4_541),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 4_540),
-                        Map.entry(MaterialCreativeTab.PLATES, 3_785),
-                        Map.entry(MaterialCreativeTab.PARTS, 4_237),
-                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_152),
-                        Map.entry(MaterialCreativeTab.WIRES, 168),
+                        Map.entry(MaterialCreativeTab.RAW_ORES, 1_191),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_326),
+                        Map.entry(MaterialCreativeTab.DUSTS, 4_851),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 5_786),
+                        Map.entry(MaterialCreativeTab.PLATES, 4_646),
+                        Map.entry(MaterialCreativeTab.PARTS, 4_874),
+                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_772),
+                        Map.entry(MaterialCreativeTab.WIRES, 222),
                         Map.entry(MaterialCreativeTab.CABLES, 625),
                         Map.entry(MaterialCreativeTab.PIPES, 406),
-                        Map.entry(MaterialCreativeTab.MISC, 859)),
+                        Map.entry(MaterialCreativeTab.MISC, 3_063)),
                 counts);
         assertEquals(
                 0,

@@ -20,6 +20,8 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.MaterialCreativeTab;
 
 class MaterialVisualResourceTest {
+    private static final long EXPECTED_STORAGE_BLOCKS = 495L;
+
     @Test
     void placeableStorageBlocksUseSharedTintedCube(
             @TempDir Path configDirectory) {
@@ -34,7 +36,7 @@ class MaterialVisualResourceTest {
                 .filter(material ->
                         !material.formItems().containsKey(MaterialPrefixes.BLOCK))
                 .count();
-        assertEquals(486, storage);
+        assertEquals(EXPECTED_STORAGE_BLOCKS, storage);
 
         assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/blockstates/aluminium/block.json"));

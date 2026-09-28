@@ -70,7 +70,13 @@ class StorageAcquisitionResourceTest {
                                 variant.acquisitionProfile()))
                         .count(),
                 recipes);
-        assertEquals(foldedCatalystRecipes.size(), foldedRecipes);
+        long expectedFoldedRecipes = StorageVariantCatalog.variants().stream()
+                .filter(variant -> !variant.sourceVisible()
+                        || "folded_gt6_catalyst".equals(variant.acquisitionProfile()))
+                .filter(variant -> foldedCatalystRecipes.contains(
+                        "storage/" + variant.path() + ".json"))
+                .count();
+        assertEquals(expectedFoldedRecipes, foldedRecipes);
         assertEquals(625, StorageVariantCatalog.variants().size());
     }
 

@@ -324,6 +324,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addGtTreeNames();
             addBlock(ModBlocks.MULTIBLOCK_CASING, "通用多方块外壳");
             addBlock(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT, "多方块物品流体端口");
+            addBlock(ModBlocks.MULTIBLOCK_FLUID_PORT, "多方块流体端口");
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
             addBlock(ModBlocks.MULTIBLOCK_FLUID_OUT_PORT, "多方块流体输出端口");
             addBlock(ModBlocks.LARGE_CENTRIFUGE, "大型离心机");
@@ -887,6 +888,9 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT,
                 "Multiblock Item/Fluid Port");
+        addBlock(
+                ModBlocks.MULTIBLOCK_FLUID_PORT,
+                "Multiblock Fluid Port");
         addBlock(
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT,
                 "Multiblock Energy Input Port");

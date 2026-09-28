@@ -27,6 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MortarMaterialRuleDataTest {
+    private static final int EXPECTED_GEM_RULES = 99;
+    private static final int EXPECTED_SIGNATURES = 231;
+
     private static final Path MATERIAL_ROOT = Path.of(
             "src/main/resources/data/cruciblecraft/materials");
     private static final Path GATE = Path.of(
@@ -88,8 +91,8 @@ class MortarMaterialRuleDataTest {
 
         assertEquals(expected, actual);
         assertEquals(132, actual.get("ingot_to_dust").size());
-        assertEquals(96, actual.get("gem_to_dust").size());
-        assertEquals(228, signatures.size());
+        assertEquals(EXPECTED_GEM_RULES, actual.get("gem_to_dust").size());
+        assertEquals(EXPECTED_SIGNATURES, signatures.size());
         assertTrue(actual.get("ingot_to_dust").contains("iron"));
         assertTrue(actual.get("gem_to_dust").contains("amber"));
     }

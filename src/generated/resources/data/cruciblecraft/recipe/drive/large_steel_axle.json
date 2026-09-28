@@ -1,15 +1,20 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "f": {
-      "item": "cruciblecraft:material_file"
+      "tag": "cruciblecraft:crafting_tools/file"
     },
     "h": {
-      "item": "cruciblecraft:smithing_hammer"
+      "tag": "cruciblecraft:crafting_tools/hammer"
     }
   },
   "ingredients": {
     "S": {
-      "item": "cruciblecraft:steel/double_ingot"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "steel"
+      },
+      "items": "cruciblecraft:double_ingot"
     }
   },
   "pattern": [
@@ -20,6 +25,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:drive/large_steel_axle"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

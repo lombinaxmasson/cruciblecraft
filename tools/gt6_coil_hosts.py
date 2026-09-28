@@ -186,8 +186,8 @@ def check() -> list[str]:
         if not wire.endswith("/quadruple_wire"):
             errors.append(f"{path} is not quadruple_wire {wire}")
     overlay = _load(OVERLAY)
-    if (overlay.get("counts") or {}).get("in_place") != 74:
-        errors.append("multiblock overlay row count drifted from 74")
+    if (overlay.get("counts") or {}).get("in_place") != 73:
+        errors.append("multiblock overlay row count drifted from 73")
     if not MANIFEST.is_file():
         errors.append("missing gt6_coil_host_art_manifest.json")
     policy = _load(POLICY)

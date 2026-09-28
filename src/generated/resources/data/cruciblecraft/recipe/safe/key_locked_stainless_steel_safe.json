@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:stainless_steel/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:stainless_steel/gear"
     },
     "P": {
-      "item": "cruciblecraft:stainless_steel/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:stainless_steel/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/key_locked_stainless_steel_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:adamantium/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:adamantium/gear"
     },
     "P": {
-      "item": "cruciblecraft:adamantium/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "adamantium"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:adamantium/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/key_locked_adamantium_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

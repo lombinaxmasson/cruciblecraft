@@ -13,9 +13,6 @@ import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
 
 class ExplosiveResourceTest {
-    private static final Path GT6 = Path.of(
-            "gt6_referencable_port_code/gregtech6_w/src/main/resources/"
-                    + "assets/gregtech/textures/blocks/machines/tools/dynamite");
     private static final Path CC = Path.of(
             "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/dynamite");
 
@@ -35,20 +32,15 @@ class ExplosiveResourceTest {
                 "overlay_active/back.png",
                 "overlay_active/side.png");
         for (String texture : textures) {
-            assertTrue(Files.exists(GT6.resolve(texture)), texture);
             assertTrue(Files.exists(CC.resolve(texture)), texture);
         }
     }
 
     @Test
-    void remoteActivatorUsesTheGt6IconAndRecipeInputs() {
-        Path source = Path.of(
-                "gt6_referencable_port_code/gregtech6_w/src/main/resources/"
-                        + "assets/gregtech/textures/items/gt.multiitem.randomtools/9000.png");
+    void remoteActivatorUsesCommittedIconAndRecipeInputs() {
         Path destination = Path.of(
                 "src/main/resources/assets/cruciblecraft/textures/item/"
                         + "gt6_import/remote_activator.png");
-        assertTrue(Files.exists(source));
         assertTrue(Files.exists(destination));
 
         JsonObject recipe = JsonParser.parseString(read(

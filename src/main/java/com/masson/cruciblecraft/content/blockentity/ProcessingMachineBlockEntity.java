@@ -565,9 +565,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             restoredWorkProgress = 0L;
             restoredWorkRequired = 0L;
         } else {
-            if (restoredSelectedId.equals(match.id().toString())) {
-                runtime.reset();
-            }
+            runtime.reset();
             workProgress = 0L;
             rolledOutputs = ParallelRecipeOperations.rollItemOutputsIndexed(
                     match.recipe(), operations, this::randomBelow);

@@ -159,7 +159,7 @@ class LargeGasTurbineCardTest(unittest.TestCase):
         source = GAME_TESTS.read_text(encoding="utf-8")
         for test_id in capability["required_test_ids"]:
             self.assertIn(f"void {test_id}", source)
-        self.assertIn("cruciblecraft_wave_energy_large_gas_turbine", source)
+        self.assertIn("cruciblecraft_multiblock", source)
         self.assertNotIn("bronze_small_gas_turbine", source)
 
     def test_art_is_twelve_gasturbine_sheets(self) -> None:

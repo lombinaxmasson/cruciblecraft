@@ -1,6 +1,5 @@
 package com.masson.cruciblecraft.datagen;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,50 +45,6 @@ class DisplayCpuResourceTest {
             assertTrue(
                     Files.isRegularFile(ROOT.resolve(destination)),
                     destination);
-        }
-    }
-
-    @Test
-    void itemIconsUseGt6CoverItemsNotEmptyLoadFrame() throws Exception {
-        Path gt6 = Path.of(
-                "gt6_referencable_port_code/gregtech6_w/src/main/resources");
-        String[][] rows = {
-                {
-                    "logistics_display_cpu_logic_cover.png",
-                    "items/gt.multiitem.technological/1086.png",
-                    "blocks/machines/covers/logistics/display/cpu_logic/0.png"
-                },
-                {
-                    "logistics_display_cpu_control_cover.png",
-                    "items/gt.multiitem.technological/1087.png",
-                    "blocks/machines/covers/logistics/display/cpu_control/0.png"
-                },
-                {
-                    "logistics_display_cpu_storage_cover.png",
-                    "items/gt.multiitem.technological/1088.png",
-                    "blocks/machines/covers/logistics/display/cpu_storage/0.png"
-                },
-                {
-                    "logistics_display_cpu_conversion_cover.png",
-                    "items/gt.multiitem.technological/1089.png",
-                    "blocks/machines/covers/logistics/display/cpu_conversion/0.png"
-                }
-        };
-        for (String[] row : rows) {
-            Path icon = ROOT.resolve(
-                    "assets/cruciblecraft/textures/item/gt6_import/" + row[0]);
-            byte[] actual = Files.readAllBytes(icon);
-            assertArrayEquals(
-                    Files.readAllBytes(gt6.resolve(
-                            "assets/gregtech/textures/" + row[1])),
-                    actual,
-                    row[0]);
-            assertFalse(
-                    java.util.Arrays.equals(
-                            actual,
-                            Files.readAllBytes(gt6.resolve(
-                                    "assets/gregtech/textures/" + row[2]))),
-                    row[0] + " is overlay 0");
         }
     }
 

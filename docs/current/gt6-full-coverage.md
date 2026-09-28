@@ -13,8 +13,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 轴 | 分母 | 当前状态分布 |
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
-| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39033（5.4%）；缺身份 89907（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565616）；身份就绪 86.0%；按机器平均 60.8%（73 台，完成 14，未开始 16） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 565616（78.5%）；部分一致 3064（0.4%）；缺配方 39036（5.4%）；缺身份 89907（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 1，`bounded_subset` 40，`runtime_accepted` 33，`full_replay` 11 |
 | 多方块控制器 | 30 canonical kinds | `runtime_paused` 2，`runtime_accepted` 28 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -28,9 +28,9 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
-- **已证明** 565619（78.5%）：`source_exact` 558645，`translated_exact` 6974
+- **已证明** 565616（78.5%）：`source_exact` 558645，`translated_exact` 6971
 - **部分一致** 3064（0.4%）：`translated_io_only` 0，`translated_item_io` 3064
-- **缺配方** 39033（5.4%）：`translatable_missing` 39033
+- **缺配方** 39036（5.4%）：`translatable_missing` 39036
 - **缺身份** 89907（12.5%）：`missing_material_form` 66810，`missing_material` 0，`missing_fluid` 7978，`missing_object` 15119
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
@@ -242,7 +242,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.juicer` | 96 | 96 | 0.0% | 29.2% | 0 | 0 | 0 | 0 | 28 | 0 | 0 | 5 | 63 | 0 | 0 |
 | `gt.recipe.bumblequeen` | 80 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 80 | 0 |
 | `gt.recipe.other` | 71 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 71 | 0 |
-| `gt.recipe.nanofab` | 64 | 64 | 100.0% | 100.0% | 62 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.nanofab` | 64 | 64 | 96.9% | 100.0% | 62 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.cryomixer` | 57 | 56 | 0.0% | 21.4% | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 45 | 0 | 0 | 0 |
 | `gt.recipe.fuels.fluidbed` | 55 | 55 | 100.0% | 100.0% | 55 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.bedrockorelist` | 52 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 52 | 0 |
@@ -257,7 +257,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.fusionreactor` | 18 | 18 | 100.0% | 100.0% | 0 | 18 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.trees` | 15 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 15 | 0 |
 | `gt.recipe.fuels.hot` | 12 | 12 | 0.0% | 8.3% | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 11 | 0 | 0 | 0 |
-| `gt.recipe.lightning` | 12 | 12 | 8.3% | 100.0% | 0 | 1 | 0 | 0 | 11 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.lightning` | 12 | 12 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 12 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.fuels.gas` | 9 | 9 | 100.0% | 100.0% | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.distillationtower` | 8 | 8 | 87.5% | 100.0% | 0 | 7 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.coagulator` | 5 | 5 | 20.0% | 40.0% | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 3 | 0 | 0 | 0 |

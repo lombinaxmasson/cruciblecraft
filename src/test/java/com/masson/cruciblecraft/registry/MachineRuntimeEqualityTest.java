@@ -26,6 +26,9 @@ import net.minecraft.server.Bootstrap;
 import net.neoforged.fml.loading.LoadingModList;
 
 class MachineRuntimeEqualityTest {
+    private static final int EXPECTED_MACHINE_VARIANTS = 314;
+    private static final int EXPECTED_GENERIC_VARIANTS = 312;
+
     @BeforeAll
     static void bootstrapMinecraft() {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
@@ -38,8 +41,8 @@ class MachineRuntimeEqualityTest {
         JsonObject document = loadCatalog();
         Set<String> catalog = ids(document, false);
         Set<String> generic = ids(document, true);
-        assertEquals(298, catalog.size());
-        assertEquals(296, generic.size());
+        assertEquals(EXPECTED_MACHINE_VARIANTS, catalog.size());
+        assertEquals(EXPECTED_GENERIC_VARIANTS, generic.size());
         assertTrue(catalog.contains("cruciblecraft:bronze_crusher"));
         assertTrue(catalog.contains("cruciblecraft:steel_roaster"));
         assertTrue(catalog.contains("cruciblecraft:coagulator"));

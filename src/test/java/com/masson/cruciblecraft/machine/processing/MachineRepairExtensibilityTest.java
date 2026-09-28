@@ -25,6 +25,7 @@ import net.minecraft.server.Bootstrap;
 import net.neoforged.fml.loading.LoadingModList;
 
 class MachineRepairExtensibilityTest {
+    private static final int EXPECTED_MACHINE_VARIANTS = 314;
     private static final String FIXTURE_VARIANT = "cruciblecraft:invar_lathe";
     private static final String FIXTURE_CASING = "cruciblecraft:iron_machine_casing";
     private static final Path OVERLAY_ROOT = Path.of(
@@ -110,7 +111,7 @@ class MachineRepairExtensibilityTest {
         assertFalse(tiers.contains("invar_lathe"));
         assertFalse(casings.contains("iron_machine_casing"));
         assertFalse(crucibleSection(devices).contains("\"material_id\": \"iron\""));
-        assertEquals(298, JsonParser.parseString(tiers)
+        assertEquals(EXPECTED_MACHINE_VARIANTS, JsonParser.parseString(tiers)
                 .getAsJsonObject()
                 .getAsJsonArray("variants")
                 .size());

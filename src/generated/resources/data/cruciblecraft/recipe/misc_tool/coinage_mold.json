@@ -1,13 +1,14 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "f": {
-      "item": "cruciblecraft:material_file"
+      "tag": "cruciblecraft:crafting_tools/file"
     },
     "h": {
-      "item": "cruciblecraft:smithing_hammer"
+      "tag": "cruciblecraft:crafting_tools/hammer"
     },
     "y": {
-      "item": "cruciblecraft:material_chisel"
+      "tag": "cruciblecraft:crafting_tools/chisel"
     }
   },
   "ingredients": {
@@ -15,7 +16,11 @@
       "item": "minecraft:iron_ingot"
     },
     "P": {
-      "item": "cruciblecraft:iron/double_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "iron"
+      },
+      "items": "cruciblecraft:double_plate"
     }
   },
   "pattern": [
@@ -26,6 +31,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:misc_tool/coinage_mold"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

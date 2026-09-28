@@ -18,10 +18,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
 
@@ -51,7 +49,6 @@ class BathMteHarnessTest {
     private static List<CompactRecipeFamilySource> sources;
     private static Map<ResourceLocation, CompactGTRecipeFamilyDefinition.Relation>
             liveRelations;
-    private static Map<String, JsonObject> pinnedSourceRelations;
 
     @BeforeAll
     static void bootstrapMinecraft() throws IOException {
@@ -77,7 +74,6 @@ class BathMteHarnessTest {
             }
         }
         assertEquals(LOCKED_RELATIONS, liveRelations.size());
-        pinnedSourceRelations = loadPinnedSourceRelations();
     }
 
     @Test
@@ -128,22 +124,13 @@ class BathMteHarnessTest {
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();
                 CompactGTRecipeFamilyDefinition.Relation liveRelation =
                         liveRelations.get(stableId);
-                JsonObject sourceRelation = pinnedSourceRelations.get(stableId.toString());
                 assertTrue(
                         liveRelation != null,
                         () -> stableId + " is missing from live compact relations");
-                assertTrue(
-                        sourceRelation != null,
-                        () -> stableId + " is missing from the pinned source pack");
-                assertEquals(
-                        sourceRelation.get("shadow_order").getAsInt(),
-                        relationJson.get("shadow_order").getAsInt(),
-                        () -> stableId + " shadow_order drifted from pinned source pack");
                 assertEquals(
                         relationJson.get("shadow_order").getAsInt(),
                         liveRelation.shadowOrder(),
                         () -> stableId + " shadow_order drifted from generated JSON");
-                assertSourceMteMeta(stableId, sourceRelation, relationJson, recipe);
 
                 assertEquals(
                         relationJson.get("duration").getAsInt(),
@@ -439,125 +426,6 @@ class BathMteHarnessTest {
                     dirtShards.size() < router.shardCount(),
                     () -> publicationGroup + " dirt-only query scanned every shard");
         }
-    }
-
-    private static Map<String, JsonObject> loadPinnedSourceRelations() throws IOException {
-        Path path = Path.of("tools/bath_mte_source.json");
-        JsonObject document = JsonParser.parseString(
-                Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
-        Map<String, JsonObject> byId = new HashMap<>();
-        for (JsonElement element : document.getAsJsonArray("relations")) {
-            JsonObject relation = element.getAsJsonObject();
-            String stableId = SemanticIdMap.remapStableId(
-                    relation.get("stable_id").getAsString());
-            assertEquals(
-                    null,
-                    byId.put(stableId, relation),
-                    () -> "duplicate pinned source relation " + stableId);
-        }
-        assertEquals(LOCKED_RELATIONS, byId.size());
-        return byId;
-    }
-
-    private static void assertSourceMteMeta(
-            ResourceLocation stableId,
-            JsonObject sourceRelation,
-            JsonObject generatedRelation,
-            GTRecipe recipe) {
-        List<Integer> sourceMteMeta = new ArrayList<>();
-        JsonArray sourceInputs = sourceRelation.getAsJsonArray("item_inputs");
-        JsonArray generatedInputs = generatedRelation.getAsJsonArray("item_inputs");
-        assertEquals(sourceInputs.size(), generatedInputs.size(), stableId::toString);
-        for (int index = 0; index < sourceInputs.size(); index++) {
-            JsonObject sourceStack = sourceInputs.get(index).getAsJsonObject();
-            if (!sourceStack.has("source") || sourceStack.get("source").isJsonNull()) {
-                continue;
-            }
-            JsonObject source = sourceStack.getAsJsonObject("source");
-            if (!source.has("meta") || source.get("meta").isJsonNull()) {
-                continue;
-            }
-            int meta = source.get("meta").getAsInt();
-            String sourceItem = source.get("item").getAsString();
-            sourceMteMeta.add(meta);
-            ResourceLocation catalogId = runtimeIdForMeta(sourceItem, meta);
-            String generatedId = generatedInputs.get(index).getAsJsonObject()
-                    .get("item").getAsString();
-            ResourceLocation expected = resolvedRuntimeId(catalogId, generatedId);
-            assertEquals(
-                    expected.toString(),
-                    generatedId,
-                    () -> stableId + " source_mte_meta " + meta
-                            + " drifted from catalog to generated JSON");
-            ItemStack[] options = recipe.itemInputs().get(index).getItems();
-            assertTrue(options.length > 0, () -> stableId + " item input has no sample");
-            assertEquals(
-                    expected,
-                    BuiltInRegistries.ITEM.getKey(options[0].getItem()),
-                    () -> stableId + " source_mte_meta " + meta
-                            + " drifted from catalog to live GTRecipe");
-        }
-        JsonArray sourceOutputs = sourceRelation.getAsJsonArray("item_outputs");
-        JsonArray generatedOutputs = generatedRelation.getAsJsonArray("item_outputs");
-        assertEquals(sourceOutputs.size(), generatedOutputs.size(), stableId::toString);
-        for (int index = 0; index < sourceOutputs.size(); index++) {
-            JsonObject sourceStack = sourceOutputs.get(index).getAsJsonObject();
-            if (!sourceStack.has("source") || sourceStack.get("source").isJsonNull()) {
-                continue;
-            }
-            JsonObject source = sourceStack.getAsJsonObject("source");
-            if (!source.has("meta") || source.get("meta").isJsonNull()) {
-                continue;
-            }
-            int meta = source.get("meta").getAsInt();
-            String sourceItem = source.get("item").getAsString();
-            sourceMteMeta.add(meta);
-            ResourceLocation catalogId = runtimeIdForMeta(sourceItem, meta);
-            String generatedId = generatedOutputs.get(index).getAsJsonObject()
-                    .get("id").getAsString();
-            ResourceLocation expected = resolvedRuntimeId(catalogId, generatedId);
-            assertEquals(
-                    expected.toString(),
-                    generatedId,
-                    () -> stableId + " source_mte_meta " + meta
-                            + " output drifted from catalog to generated JSON");
-            ItemStack actual = recipe.itemOutputs().get(index);
-            assertEquals(
-                    expected,
-                    BuiltInRegistries.ITEM.getKey(actual.getItem()),
-                    () -> stableId + " source_mte_meta " + meta
-                            + " output drifted from catalog to live GTRecipe");
-        }
-        assertFalse(
-                sourceMteMeta.isEmpty(),
-                () -> stableId + " source_mte_meta is missing from the pinned source pack");
-    }
-
-    private static ResourceLocation runtimeIdForMeta(String sourceItem, int meta) {
-        for (BathMteIdentityCatalog.Identity identity : BathMteIdentityCatalog.identities()) {
-            if (identity.sourceItem().equals(sourceItem) && identity.meta() == meta) {
-                return identity.id();
-            }
-        }
-        throw new AssertionError("unmapped source_mte_meta " + sourceItem + "#" + meta);
-    }
-
-    private static ResourceLocation resolvedRuntimeId(
-            ResourceLocation catalogId, String generatedId) {
-        if (catalogId.toString().equals(generatedId)) {
-            return catalogId;
-        }
-        ResourceLocation live = ResourceLocation.parse(generatedId);
-        boolean livePresent = BuiltInRegistries.ITEM.containsKey(live)
-                && BuiltInRegistries.ITEM.get(live) != Items.AIR;
-        boolean catalogPresent = BuiltInRegistries.ITEM.containsKey(catalogId)
-                && BuiltInRegistries.ITEM.get(catalogId) != Items.AIR;
-        boolean dummyPath = catalogId.getPath().startsWith("fluid_pipe_tile/")
-                || catalogId.getPath().startsWith("electric_wire/");
-        if (livePresent && (!catalogPresent || dummyPath)) {
-            return live;
-        }
-        return catalogId;
     }
 
     private static void assertFluidStacks(

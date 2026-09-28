@@ -571,7 +571,7 @@ class OreResourceTest {
         assertEquals(
                 expectedGenerated + preStorageRecipeSet.size(),
                 generatedRecipeSet.size());
-        assertEquals(51, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
+        assertEquals(31, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));
 

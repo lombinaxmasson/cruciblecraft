@@ -41,10 +41,10 @@ class BathIdentityHarnessTest {
         MinecraftTestBootstrap.bootstrap();
     }
 
-    private static final int LOCKED_FAMILIES = 145;
-    private static final int LOCKED_RELATIONS = 34091;
-    private static final int EXACT_RELATIONS = 47;
-    private static final int EXACT_MULTI_RELATIONS = 12422;
+    private static final int LOCKED_FAMILIES = 143;
+    private static final int LOCKED_RELATIONS = 34081;
+    private static final int EXACT_RELATIONS = 46;
+    private static final int EXACT_MULTI_RELATIONS = 12413;
     private static final int TOOL_HEAD_RELATIONS = 21622;
     private static final int IDENTITY_COUNT = 71;
     private static final ResourceLocation BATH_EXACT_GROUP =

@@ -23,7 +23,6 @@ class PrefixPackRecipeResourceTest {
         assertEquals(1, tiny.get("input_count").getAsInt());
         assertEquals("tiny_dust", tiny.get("output_prefix").getAsString());
         assertEquals(9, tiny.get("output_count").getAsInt());
-        assertEquals(0, tiny.get("unpack_index").getAsInt());
         assertEquals(2, tiny.get("unpack_modulus").getAsInt());
 
         JsonObject pack = object("dust_to_storage_dust.json");

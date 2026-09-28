@@ -128,10 +128,22 @@ public final class MaterialItemColor {
                 .orElseThrow()
                 .voltage()
                 .hullMaterial();
+        if (!MaterialCatalog.isBootstrapped()) {
+            return fallbackElectricHullColor(materialId);
+        }
         return MaterialCatalog.find(materialId)
                 .map(material -> styleColor(
                         material.colorRgb(), material.tintStyle()))
                 .orElse(0xFFFFFF);
+    }
+
+    private static int fallbackElectricHullColor(String materialId) {
+        return switch (materialId) {
+            case "steel_galvanized" -> 0xFAF0F0;
+            case "aluminium" -> 0x80C8F0;
+            case "stainless_steel" -> 0xC8C8DC;
+            default -> 0xFFFFFF;
+        };
     }
 
     static int baseColor(

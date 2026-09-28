@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:gold/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:gold/gear"
     },
     "P": {
-      "item": "cruciblecraft:gold/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "gold"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:gold/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/key_locked_gold_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

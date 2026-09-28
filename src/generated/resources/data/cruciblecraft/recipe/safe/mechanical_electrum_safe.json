@@ -1,4 +1,5 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "ingredients": {
     "G": {
       "item": "cruciblecraft:electrum/small_gear"
@@ -7,7 +8,11 @@
       "item": "cruciblecraft:electrum/gear"
     },
     "P": {
-      "item": "cruciblecraft:electrum/quintuple_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "electrum"
+      },
+      "items": "cruciblecraft:quintuple_plate"
     },
     "S": {
       "item": "cruciblecraft:electrum/rod"
@@ -21,6 +26,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:safe/mechanical_electrum_safe"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

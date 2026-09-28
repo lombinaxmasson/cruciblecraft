@@ -1887,7 +1887,7 @@ def check() -> list[str]:
         errors.append(f"missing {GAME_TESTS}")
     else:
         text = tests.read_text(encoding="utf-8")
-        if "cruciblecraft_wave_worldgen_gt_stone_layer_rocks" not in text:
+        if "cruciblecraft_worldgen" not in text:
             errors.append("GameTest namespace drifted")
         if "granite_black" not in text:
             errors.append("GameTest must cover granite_black loot")

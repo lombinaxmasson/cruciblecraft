@@ -1,10 +1,11 @@
 {
+  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "h": {
-      "item": "cruciblecraft:smithing_hammer"
+      "tag": "cruciblecraft:crafting_tools/hammer"
     },
     "w": {
-      "item": "cruciblecraft:material_wrench"
+      "tag": "cruciblecraft:crafting_tools/wrench"
     }
   },
   "ingredients": {
@@ -12,7 +13,11 @@
       "item": "cruciblecraft:multiblock/dense_titanium_wall"
     },
     "P": {
-      "item": "cruciblecraft:titanium/dense_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:dense_plate"
     }
   },
   "pattern": [
@@ -23,6 +28,5 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:titanium/boiler_main_barometer"
-  },
-  "type": "cruciblecraft:shaped_catalyst"
+  }
 }

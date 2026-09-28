@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.datagen;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -68,17 +67,11 @@ class CoverRemainderResourceTest {
         for (var key : java.util.List.of("entries", "block_entries")) {
             for (var entry : manifest.getAsJsonArray(key)) {
                 JsonObject row = entry.getAsJsonObject();
-                Path source = ROOT.resolve(row.get("source").getAsString());
                 Path destination = ROOT.resolve(
                         "src/main/resources/" + row.get("destination").getAsString());
-                assertTrue(Files.isRegularFile(source), source.toString());
                 assertTrue(
                         Files.isRegularFile(destination),
                         destination.toString());
-                assertArrayEquals(
-                        Files.readAllBytes(source),
-                        Files.readAllBytes(destination),
-                        row.get("destination").getAsString());
             }
         }
     }

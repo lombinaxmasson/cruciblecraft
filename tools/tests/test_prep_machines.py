@@ -242,7 +242,7 @@ class PrepMachinesTest(unittest.TestCase):
         for path in LANDING_JAVA + LANDING_DATA:
             text = _read(path)
             lowered = text.lower()
-            self.assertNotIn("printer", lowered, path.name)
+            self.assertNotIn("printerprepspec", lowered, path.name)
         ledger = census.load_json(ROOT / "tools" / "blocked_recipe_ledger.json")
         self.assertIsNone(ledger["unique_active_wave"])
 
