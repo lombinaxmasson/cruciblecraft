@@ -24,6 +24,7 @@ class LaserMagnetZpmConverterTest {
         EnergyConverterProfile zpm = EnergyConverterCatalog.require(
                 ResourceLocation.parse(
                         "cruciblecraft:osmiridium_zpm_decharger"));
+        // gt6-source: Loader_MultiTileEntities.java:1001 ZPM Decharger (Electric)
         assertEquals(11171, zpm.source().sourceId());
         assertEquals("zpm_qu_chain", zpm.stage());
         assertEquals("QU", zpm.inputPacket().identity());
@@ -35,6 +36,7 @@ class LaserMagnetZpmConverterTest {
         EnergyConverterProfile quantum = EnergyConverterCatalog.require(
                 ResourceLocation.parse(
                         "cruciblecraft:osmiridium_zpm_decharger_qu"));
+        // gt6-source: Loader_MultiTileEntities.java:1000 ZPM Decharger (Quantum)
         assertEquals(11170, quantum.source().sourceId());
         assertEquals("QU", quantum.outputPacket().identity());
         assertEquals(

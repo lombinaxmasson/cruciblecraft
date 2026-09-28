@@ -76,6 +76,18 @@ class GameTestHygieneTest(unittest.TestCase):
         self.assertIn("projection_count", kinds)
         self.assertNotIn("optional_get", kinds)
 
+    def test_decimal_fraction_is_not_a_projection_count(self) -> None:
+        kinds = _kinds(
+            """
+            class SyntheticShapeTest {
+                void middleSideWallKeepsTheFloorLip() {
+                    assertTrue(boxes.stream().anyMatch(box -> near(box, 0.0, 0.0, 0.0, 1.0, 0.125, 1.0)));
+                }
+            }
+            """
+        )
+        self.assertNotIn("projection_count", kinds)
+
     def test_cited_projection_and_negative_pipe_are_clean(self) -> None:
         kinds = _kinds(
             """

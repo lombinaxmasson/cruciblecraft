@@ -86,6 +86,7 @@ class TankControllerProfilesTest {
                 "cruciblecraft:stainless_steel/wall",
                 stainless.wallId().toString());
         assertEquals(2_048_000_000, denseAdamantium.capacityMb());
+        // gt6-source: Loader_MultiTileEntities.java:1165 Dense Adamantium Wall
         assertEquals(18025, denseAdamantium.wallMeta());
         assertTrue(denseAdamantium.plasmaProof());
         assertEquals(

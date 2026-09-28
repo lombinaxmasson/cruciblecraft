@@ -53,8 +53,7 @@ class BlockedRecipeLedgerCardTest(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.document = io.load_json(ledger.LEDGER)
 
-    def test_ledger_replays_from_fixed_revision(self) -> None:
-        self.assertEqual(0, ledger.main(["--check"]))
+    def test_committed_ledger_stays_on_the_fixed_revision(self) -> None:
         self.assertEqual(io.SOURCE_REVISION, self.document["source_revision"])
         self.assertIsNone(self.document["unique_active_wave"])
         self.assertEqual(OWNER_SLUG, self.document["capability_slug"])

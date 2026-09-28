@@ -47,7 +47,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(Gt6SteamcrackingBulkGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class Gt6SteamcrackingBulkGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_steam_cracker_steamcracking";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final BlockPos MACHINE = new BlockPos(1, 2, 1);
     private static final int SAMPLE_SLACK_TICKS = 40;

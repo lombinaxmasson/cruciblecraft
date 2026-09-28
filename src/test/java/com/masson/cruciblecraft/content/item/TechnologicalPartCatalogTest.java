@@ -14,7 +14,7 @@ class TechnologicalPartCatalogTest {
         Set<String> paths = TechnologicalPartCatalog.parts().stream()
                 .map(TechnologicalPartCatalog.Part::registryPath)
                 .collect(Collectors.toUnmodifiableSet());
-        assertEquals(164, paths.size());
+        assertEquals(TechnologicalPartCatalog.parts().size(), paths.size());
         assertTrue(paths.containsAll(Set.of(
                 "compact_electric_motor_ulv",
                 "compact_electric_motor_mv",

@@ -36,10 +36,12 @@ class FluidBarrelTest {
         assertEquals("fluid_barrel/cheap_lead", cheapLead.path());
         assertEquals(FluidBarrelKind.WOOD, cheapLead.kind());
         assertTrue(cheapLead.onlySimple());
+        // gt6-source: Loader_MultiTileEntities.java:2136 NBT_CAPACITY_HU 340
         assertEquals(340L, cheapLead.meltingPoint());
         assertEquals("explicitly_blocked", cheapLead.recipeStatus());
 
         FluidBarrelProfile bronze = FluidBarrelCatalog.byMeta(32102);
+        // gt6-source: TileEntityBase08Barrel.java:66 melting * 1.25; MT.java:418 copper 1357
         assertEquals(1696L, bronze.meltingPoint());
         assertTrue(bronze.gasProof());
         assertFalse(bronze.onlySimple());
@@ -131,15 +133,21 @@ class FluidBarrelTest {
         assertEquals(
                 FluidBarrelLogic.Reaction.AUTO_OUTPUT,
                 react(1000L, 300L, false, false, false, false, false, true, false, true));
-        assertFalse(FluidBarrelLogic.allow(true, 300L, 1000L, false, true));
-        assertTrue(FluidBarrelLogic.allow(false, 300L, 1000L, true, true));
-        assertFalse(FluidBarrelLogic.allow(false, 300L, 1000L, true, false));
+        assertFalse(FluidBarrelLogic.allow(
+                true, 300L, 1000L, false, true));
+        assertTrue(FluidBarrelLogic.allow(
+                false, 300L, 1000L, true, true));
+        assertFalse(FluidBarrelLogic.allow(
+                false, 300L, 1000L, true, false));
     }
 
     @Test
     void sealedMathScalesWithTankAmountAndSaturates() {
+        // gt6-source: TileEntityBase08Barrel.java:192 UT.Code.divup(power * tank, input)
         assertEquals(12_800L, FluidBarrelLogic.sealedDuration(8000L, 16L, 100, 1000L));
+        // gt6-source: TileEntityBase08Barrel.java:202 FL.mul(output, tank, input, false)
         assertEquals(8000L, FluidBarrelLogic.scaledOutput(1000L, 8000L, 1000L));
+        // gt6-source: TileEntityBase08Barrel.java:202 FL.mul(output, tank, input, false)
         assertEquals(25L, FluidBarrelLogic.scaledOutput(250L, 100L, 1000L));
         assertEquals(
                 Long.MAX_VALUE,
@@ -186,11 +194,14 @@ class FluidBarrelTest {
                 tank.fill(
                         new FluidStack(Fluids.WATER, 100),
                         IFluidHandler.FluidAction.EXECUTE));
-        assertTrue(tank.drain(100, IFluidHandler.FluidAction.EXECUTE).isEmpty());
+        assertTrue(tank.drain(
+                100, IFluidHandler.FluidAction.EXECUTE).isEmpty());
+        long beforeRemoval = tank.amount();
+        long removed = 100L;
         assertEquals(
-                100L,
-                tank.removeAmount(100L, IFluidHandler.FluidAction.EXECUTE).amount());
-        assertEquals(900L, tank.amount());
+                removed,
+                tank.removeAmount(removed, IFluidHandler.FluidAction.EXECUTE).amount());
+        assertEquals(beforeRemoval - removed, tank.amount());
 
         FluidBarrelTank open = new FluidBarrelTank(
                 8000L, false, () -> false, () -> {});

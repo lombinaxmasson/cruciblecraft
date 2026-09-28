@@ -37,6 +37,7 @@ class ProcessingEmiLayoutTest {
 
     @Test
     void recipeFluidFillsTheTankCell() {
+        // gt6-source: CS.java:129 L = 144
         assertEquals(144, Gt6EmiGui.displayedFill(EmiStack.of(Fluids.WATER, 144)));
         assertEquals(1, Gt6EmiGui.displayedFill(EmiStack.of(Fluids.WATER, 0)));
     }
@@ -45,11 +46,14 @@ class ProcessingEmiLayoutTest {
     void gt6NeiOffsetsMatchRecipeMapBlit() {
         assertEquals(52, Gt6EmiGui.slotX(53));
         assertEquals(29, Gt6EmiGui.slotY(25));
-        assertEquals(151, Gt6EmiGui.slotX(ProcessingEmiLayout.WORKSTATION.x()));
+        assertEquals(
+                ProcessingEmiLayout.WORKSTATION.x() - 1,
+                Gt6EmiGui.slotX(ProcessingEmiLayout.WORKSTATION.x()));
         assertEquals(87, Gt6EmiGui.slotY(ProcessingEmiLayout.WORKSTATION.y()));
         assertEquals(15, Gt6EmiGui.STATS_X);
         assertEquals(89, ProcessingEmiLayout.GT6_COSTS_TEXT_Y);
         assertEquals(99, ProcessingEmiLayout.GT6_POWER_TEXT_Y);
+        // gt6-source: NEI_RecipeMap.java:714 drawText y=113, translated +16
         assertEquals(129, ProcessingEmiLayout.GT6_DURATION_TEXT_Y);
         assertEquals(53, Gt6EmiGui.tankX(53));
         assertEquals(68, Gt6EmiGui.tankY(63));

@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.multiblock.TankControllerProfiles;
 import com.masson.cruciblecraft.content.multiblock.TankControllerProfiles.Profile;
+import com.masson.cruciblecraft.gametest.support.GameTestRequirements;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -39,8 +40,10 @@ public final class Tank5x5GameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void tank5x5x5Fidelity(GameTestHelper helper) {
         var structure = MultiblockStructureCatalog.require(
-                TankControllerProfiles.findControllerMeta(LARGE_STAINLESS)
-                        .orElseThrow()
+                GameTestRequirements.requirePresent(
+                        helper,
+                        TankControllerProfiles.findControllerMeta(LARGE_STAINLESS),
+                        "missing large stainless tank profile")
                         .structureId());
         long ports = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
@@ -66,7 +69,10 @@ public final class Tank5x5GameTests {
                         + " ports, "
                         + air
                         + " air");
-        var source = structure.source().orElseThrow();
+        var source = GameTestRequirements.requirePresent(
+                helper,
+                structure.source(),
+                "5x5x5 tank has no source provenance");
         helper.assertTrue(
                 source.className().endsWith("MultiTileEntityTank5x5x5")
                         && "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -78,9 +84,10 @@ public final class Tank5x5GameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void tank5x5x5BareControllerDoesNotForm(
             GameTestHelper helper) {
-        Profile profile = TankControllerProfiles
-                .findControllerMeta(LARGE_STAINLESS)
-                .orElseThrow();
+        Profile profile = GameTestRequirements.requirePresent(
+                helper,
+                TankControllerProfiles.findControllerMeta(LARGE_STAINLESS),
+                "missing large stainless tank profile");
         helper.setBlock(
                 CONTROLLER,
                 block(profile.controllerId())
@@ -101,7 +108,7 @@ public final class Tank5x5GameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
     public static void tank5x5x5Formation(GameTestHelper helper) {
         TankBlockEntity tank = place(helper, LARGE_STAINLESS);
-        BlockPos port = firstPort(tank);
+        BlockPos port = firstPort(helper, tank);
         helper.startSequence()
                 .thenIdle(25)
                 .thenExecute(() -> {
@@ -147,7 +154,7 @@ public final class Tank5x5GameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
     public static void tank5x5x5Teardown(GameTestHelper helper) {
         TankBlockEntity tank = place(helper, LARGE_STAINLESS);
-        BlockPos port = firstPort(tank);
+        BlockPos port = firstPort(helper, tank);
         tank.contents().fill(
                 new FluidStack(Fluids.WATER, 10_000),
                 IFluidHandler.FluidAction.EXECUTE);
@@ -172,8 +179,10 @@ public final class Tank5x5GameTests {
     }
 
     private static TankBlockEntity place(GameTestHelper helper, int meta) {
-        Profile profile = TankControllerProfiles.findControllerMeta(meta)
-                .orElseThrow();
+        Profile profile = GameTestRequirements.requirePresent(
+                helper,
+                TankControllerProfiles.findControllerMeta(meta),
+                "missing tank profile " + meta);
         var structure = MultiblockStructureCatalog.require(
                 profile.structureId());
         helper.setBlock(
@@ -197,16 +206,18 @@ public final class Tank5x5GameTests {
         return helper.getBlockEntity(CONTROLLER);
     }
 
-    private static BlockPos firstPort(TankBlockEntity tank) {
+    private static BlockPos firstPort(GameTestHelper helper, TankBlockEntity tank) {
         var structure = MultiblockStructureCatalog.require(
                 tank.structureId());
-        return structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .map(element -> structure.worldPosition(
-                        CONTROLLER, FACING, element.offset()))
-                .findFirst()
-                .orElseThrow();
+        return GameTestRequirements.requirePresent(
+                helper,
+                structure.structure().stream()
+                        .filter(element -> structure.predicate(element).kind()
+                                == PredicateKind.PORT)
+                        .map(element -> structure.worldPosition(
+                                CONTROLLER, FACING, element.offset()))
+                        .findFirst(),
+                "large tank structure has no port");
     }
 
     private static Block block(ResourceLocation id) {

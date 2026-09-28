@@ -26,9 +26,12 @@ class LargeBoilerContractTest {
 
     @Test
     void steamUsesGt6Units() {
+        // gt6-source: MultiTileEntityLargeBoiler.java:187 units(conversions, 10000, efficiency * 160, false)
         assertEquals(480L, LargeBoilerBlockEntity.steamProduced(3L, 10_000));
+        // gt6-source: MultiTileEntityLargeBoiler.java:187 units(conversions, 10000, efficiency * 160, false)
         assertEquals(240L, LargeBoilerBlockEntity.steamProduced(3L, 5_000));
         assertEquals(1_599L, LargeBoilerBlockEntity.steamProduced(10L, 9_999));
+        // gt6-source: MultiTileEntityLargeBoiler.java:187 units(conversions, 10000, efficiency * 160, false)
         assertEquals(15_800L, LargeBoilerBlockEntity.steamProduced(100L, 9_875));
         assertEquals(0L, LargeBoilerBlockEntity.steamProduced(0L, 10_000));
     }

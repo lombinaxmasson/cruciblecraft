@@ -38,7 +38,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public class Gt6BasicMachineBatchGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_gt6_basic_machine_batch";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final BlockPos ORIGIN = new BlockPos(1, 2, 1);
 

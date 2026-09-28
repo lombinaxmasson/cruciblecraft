@@ -75,7 +75,7 @@ OPTIONAL_GET = re.compile(
     r"\.byKey\([^;\n]{0,240}\)\s*\.get\s*\("
 )
 ASSERT_LITERAL = re.compile(
-    r"\bassert(?:Equals|True|That)\([^;\n]*\b(\d{3,})L?\b"
+    r"\bassert(?:Equals|True|That)\([^;\n]*(?<!\.)\b(\d{3,})L?\b"
 )
 FIXTURE = re.compile(
     r"(?:MaterialLookup\.(?:tryStack|stack)|"

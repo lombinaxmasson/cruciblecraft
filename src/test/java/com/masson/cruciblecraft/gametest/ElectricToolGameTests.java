@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
+import com.masson.cruciblecraft.gametest.support.GameTestRequirements;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
 
@@ -107,11 +108,12 @@ public final class ElectricToolGameTests {
             var holder = manager.byKey(ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft",
                     path));
-            helper.assertTrue(
-                    holder.isPresent(),
+            var recipe = GameTestRequirements.requirePresent(
+                    helper,
+                    holder,
                     "missing runtime workbench recipe " + path);
             helper.assertTrue(
-                    holder.orElseThrow().value() instanceof ShapedCatalystRecipe,
+                    recipe.value() instanceof ShapedCatalystRecipe,
                     "wrong runtime recipe type " + path);
         }
         helper.succeed();
