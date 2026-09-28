@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.code.gson:gson:2.10.1'
+    }
+}
+
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
+import com.google.gson.JsonParseException
+import com.google.gson.JsonParser
+
+/**
+ * Shrinks JSON while it is copied into the mod jar.
+ *
+ * JSON is re-emitted without whitespace. Compact GT recipe families also lose
+ * the evidence hashes that only the Python ledgers read: runtime codecs ignore
+ * matrix.dicts.hashes and relations[].provenance.evidence_hashes, and accept
+ * 5-tuple matrix rows. Development runs and GameTests keep build/resources/main.
+ */
+class ReleaseJsonShrinkReader extends FilterReader {
+    static final String COMPACT_FAMILY_TYPE = 'cruciblecraft:compact_gt_recipe_family'
+    private static final Gson GSON = new GsonBuilder()
+            .disableHtmlEscaping()
+            .serializeNulls()
+            .create()
+
+    ReleaseJsonShrinkReader(Reader input) {
+        super(new StringReader(shrink(input.text)))
+    }
+
+    static String shrink(String text) {
+        JsonElement root
+        try {
+            root = JsonParser.parseString(text)
+        } catch (JsonParseException ignored) {
+            return text
+        }
+        if (root == null || root.isJsonNull()) {
+            return text
+        }
+        stripEvidence(root)
+        return GSON.toJson(root)
+    }
+
+    static void stripEvidence(JsonElement root) {
+        if (!root.isJsonObject()) {
+            return
+        }
+        JsonObject document = root.asJsonObject
+        JsonElement type = document.get('type')
+        if (type == null || !type.isJsonPrimitive() || type.asString != COMPACT_FAMILY_TYPE) {
+            return
+        }
+        JsonElement matrix = document.get('matrix')
+        if (matrix != null && matrix.isJsonObject()) {
+            JsonElement dicts = matrix.asJsonObject.get('dicts')
+            if (dicts != null && dicts.isJsonObject()) {
+                dicts.asJsonObject.remove('hashes')
+            }
+            JsonElement rows = matrix.asJsonObject.get('rows')
+            if (rows != null && rows.isJsonArray()) {
+                rows.asJsonArray.each { JsonElement row ->
+                    if (row.isJsonArray() && row.asJsonArray.size() == 6) {
+                        row.asJsonArray.remove(4)
+                    }
+                }
+            }
+        }
+        JsonElement relations = document.get('relations')
+        if (relations != null && relations.isJsonArray()) {
+            relations.asJsonArray.each { JsonElement relation ->
+                if (!relation.isJsonObject()) {
+                    return
+                }
+                JsonElement provenance = relation.asJsonObject.get('provenance')
+                if (provenance != null && provenance.isJsonObject()) {
+                    provenance.asJsonObject.remove('evidence_hashes')
+                }
+            }
+        }
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    inputs.file file('gradle/scripts/release-resources.gradle')
+    filteringCharset = 'UTF-8'
+    filesMatching(['**/*.json', '**/*.mcmeta']) {
+        filter(ReleaseJsonShrinkReader)
+    }
+}
