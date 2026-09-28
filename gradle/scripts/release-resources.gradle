@@ -13,6 +13,22 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParseException
 import com.google.gson.JsonParser
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+import java.nio.file.Files
+import java.nio.file.Path
+import java.util.Comparator
+import java.util.LinkedHashMap
+import java.util.Locale
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.DefaultTask
 
 /**
  * Shrinks JSON while it is copied into the mod jar.
@@ -86,8 +102,263 @@ class ReleaseJsonShrinkReader extends FilterReader {
     }
 }
 
+/**
+ * Packs compact GT family resources only for the release jar. The development
+ * resource tree remains one family per JSON so datagen, Python replay, and
+ * ordinary reload diagnostics keep their existing paths.
+ */
+abstract class CompactFamilyBundleTask extends DefaultTask {
+    static final String FAMILY_TYPE =
+            'cruciblecraft:compact_gt_recipe_family'
+    static final String BUNDLE_TYPE =
+            'cruciblecraft:compact_gt_recipe_family_bundle'
+    static final int MAX_RELATIONS = 1_024
+    static final int MAX_MEMBER_BYTES = 380_000
+    static final int MAX_BUNDLE_BYTES = 380_000
+
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    abstract DirectoryProperty getInputDir()
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir()
+
+    @OutputFile
+    abstract RegularFileProperty getManifestFile()
+
+    @TaskAction
+    void bundle() {
+        File output = outputDir.get().asFile
+        clearDirectory(output)
+        output.mkdirs()
+        File manifest = manifestFile.get().asFile
+        manifest.parentFile.mkdirs()
+
+        File recipeRoot = new File(
+                inputDir.get().asFile,
+                'data/cruciblecraft/recipe')
+        def groups = [:].withDefault { [] }
+        def skipped = []
+        if (recipeRoot.isDirectory()) {
+            Files.walk(recipeRoot.toPath()).withCloseable { stream ->
+                stream.filter { Files.isRegularFile(it) }
+                        .filter { it.fileName.toString().endsWith('.json') }
+                        .sorted()
+                        .forEach { Path path ->
+                            CompactFamilyBundleTask.collectMember(
+                                    recipeRoot.toPath(),
+                                    path.toFile(),
+                                    groups,
+                                    skipped)
+                        }
+            }
+        }
+
+        def bundledPaths = []
+        def bundleIndexByHost = [:].withDefault { 0 }
+        int bundleCount = 0
+        groups.keySet().toList().sort().each { String key ->
+            List<Map> members = groups[key]
+            members.sort { a, b -> a.sourceId <=> b.sourceId }
+            List<Map> current = []
+            int currentBytes = 2
+            int currentRelations = 0
+            def flush = {
+                if (current.size() < 2) {
+                    current.each { skipped << it.resourcePath }
+                } else {
+                    String host = current[0].host
+                    int bundleIndex = bundleIndexByHost[host]
+                    bundleIndexByHost[host] = bundleIndex + 1
+                    String filename = String.format(
+                            Locale.ROOT,
+                            'compact_family_bundle_%04d.json',
+                            bundleIndex)
+                    File target = new File(
+                            output,
+                            'data/cruciblecraft/recipe/'
+                                    + host + '/bundles/' + filename)
+                    target.parentFile.mkdirs()
+                    def document = [
+                            type: BUNDLE_TYPE,
+                            families: current.collect { member ->
+                                [
+                                        source_id: member.sourceId,
+                                        definition: member.definition
+                                ]
+                            }
+                    ]
+                    target.setText(
+                            JsonOutput.toJson(document) + '\n',
+                            'UTF-8')
+                    current.each { bundledPaths << it.resourcePath }
+                    bundleCount++
+                }
+                current = []
+                currentBytes = 2
+                currentRelations = 0
+            }
+            members.each { Map member ->
+                if (current
+                        && (currentBytes + member.memberBytes > MAX_BUNDLE_BYTES
+                                || currentRelations + member.relations
+                                > MAX_RELATIONS)) {
+                    flush()
+                }
+                current << member
+                currentBytes += member.memberBytes + 1
+                currentRelations += member.relations
+            }
+            flush()
+        }
+
+        manifest.text = bundledPaths.sort().join('\n') + (
+                bundledPaths.isEmpty() ? '' : '\n')
+        logger.lifecycle(
+                'Packed {} compact family bundles, {} members; kept {} members',
+                bundleCount,
+                bundledPaths.size(),
+                skipped.size())
+    }
+
+    private static void collectMember(
+            Path recipeRoot,
+            File source,
+            Map groups,
+            List skipped) {
+        def document
+        try {
+            document = new JsonSlurper().parse(source)
+        } catch (RuntimeException ignored) {
+            return
+        }
+        if (!(document instanceof Map)
+                || document.type != FAMILY_TYPE
+                || document.containsKey('transport_fragment')
+                || document.containsKey('conditions')
+                || document.containsKey('neoforge:conditions')) {
+            return
+        }
+        String relative = recipeRoot
+                .relativize(source.toPath())
+                .toString()
+                .replace('\\', '/')
+        String resourcePath = 'data/cruciblecraft/recipe/' + relative
+        String sourceId = 'cruciblecraft:' + relative.substring(
+                0, relative.length() - 5)
+        Map definition = new LinkedHashMap(document)
+        definition.remove('type')
+        stripEvidence(definition)
+        int relations = relationCount(document)
+        int memberBytes = JsonOutput.toJson([
+                source_id: sourceId,
+                definition: definition
+        ]).getBytes('UTF-8').length
+        if (memberBytes > MAX_MEMBER_BYTES) {
+            skipped << resourcePath
+            return
+        }
+        String host = relative.tokenize('/')[0]
+        String target = String.valueOf(document.target_map ?: '')
+        String groupKey = host + '|' + target
+        groups[groupKey] << [
+                host: host,
+                sourceId: sourceId,
+                resourcePath: resourcePath,
+                definition: definition,
+                relations: relations,
+                memberBytes: memberBytes
+        ]
+    }
+
+    private static int relationCount(Map document) {
+        if (document.matrix instanceof Map
+                && document.matrix.rows instanceof List) {
+            return document.matrix.rows.size()
+        }
+        return document.relations instanceof List
+                ? document.relations.size()
+                : 0
+    }
+
+    private static void stripEvidence(Map definition) {
+        if (definition.matrix instanceof Map) {
+            Map matrix = definition.matrix
+            if (matrix.dicts instanceof Map) {
+                matrix.dicts.remove('hashes')
+            }
+            if (matrix.rows instanceof List) {
+                matrix.rows = matrix.rows.collect { row ->
+                    row instanceof List && row.size() == 6
+                            ? row.subList(0, 4) + [row[5]]
+                            : row
+                }
+            }
+        }
+        if (definition.relations instanceof List) {
+            definition.relations.each { relation ->
+                if (relation instanceof Map
+                        && relation.provenance instanceof Map) {
+                    relation.provenance.remove('evidence_hashes')
+                }
+            }
+        }
+    }
+
+    private static void clearDirectory(File directory) {
+        if (!directory.isDirectory()) {
+            return
+        }
+        Path root = directory.toPath()
+        Files.walk(root).sorted(Comparator.reverseOrder()).forEach { Path path ->
+            if (path != root) {
+                Files.deleteIfExists(path)
+            }
+        }
+    }
+}
+
+def mainResourcesDir = sourceSets.main.output.resourcesDir
+def compactBundleOutputDir = layout.buildDirectory.dir(
+        'generated/release-compact-family-bundles')
+def compactBundleManifest = layout.buildDirectory.file(
+        'generated/release-compact-family-bundled-paths.txt')
+
+def bundleCompactFamilies = tasks.register(
+        'bundleCompactFamilies',
+        CompactFamilyBundleTask) {
+    group = 'build'
+    description = 'Packs compact GT family resources for the release jar.'
+    dependsOn tasks.named('processResources')
+    inputDir.set(mainResourcesDir)
+    outputDir.set(compactBundleOutputDir)
+    manifestFile.set(compactBundleManifest)
+    inputs.file file('gradle/scripts/release-resources.gradle')
+}
+
+tasks.named('test').configure {
+    dependsOn bundleCompactFamilies
+}
+
 tasks.named('jar', Jar).configure {
     inputs.file file('gradle/scripts/release-resources.gradle')
+    dependsOn bundleCompactFamilies
+    from(compactBundleOutputDir)
+    def bundledPaths = [] as Set
+    doFirst {
+        File manifest = compactBundleManifest.get().asFile
+        bundledPaths.clear()
+        if (manifest.isFile()) {
+            bundledPaths.addAll(
+                    manifest.readLines('UTF-8')
+                            .findAll { !it.isBlank() })
+        }
+    }
+    exclude { FileTreeElement element ->
+        !element.directory
+                && bundledPaths.contains(
+                        element.path.replace('\\', '/'))
+    }
     filteringCharset = 'UTF-8'
     filesMatching(['**/*.json', '**/*.mcmeta']) {
         filter(ReleaseJsonShrinkReader)

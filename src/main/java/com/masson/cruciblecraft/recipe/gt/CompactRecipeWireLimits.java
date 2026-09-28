@@ -15,6 +15,7 @@ public final class CompactRecipeWireLimits {
     public static final int MAX_BLOCK_STATE_PROPERTIES = 16;
     public static final int MAX_DICTIONARY_ENTRIES = 8_192;
     public static final int MAX_TRANSPORT_FRAGMENTS = 256;
+    public static final int MAX_BUNDLE_FAMILIES = 1_024;
     public static final int MAX_SEMANTIC_DIGEST_LENGTH = 64;
     public static final int MAX_PROVENANCE_KEYS = 256;
     public static final int MAX_ACTIONS = 64;

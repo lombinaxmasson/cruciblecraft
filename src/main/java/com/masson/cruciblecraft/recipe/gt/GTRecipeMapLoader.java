@@ -127,12 +127,23 @@ public final class GTRecipeMapLoader {
         for (RecipeHolder<CompactGTRecipeFamilyEntry> holder
                 : manager.getAllRecipesFor(ModRecipes.COMPACT_GT_RECIPE_FAMILY_TYPE.get())) {
             CompactGTRecipeFamilyDefinition definition = holder.value().definition();
-            if (!knownMaps.containsKey(definition.targetMap())) {
-                throw recipeValidationError(
-                        holder.id(),
-                        "Unknown recipe map " + definition.targetMap());
+            addCompactSource(
+                    compactSources,
+                    knownMaps,
+                    holder.id(),
+                    definition);
+        }
+        for (RecipeHolder<CompactGTRecipeFamilyBundle> holder
+                : manager.getAllRecipesFor(
+                        ModRecipes.COMPACT_GT_RECIPE_FAMILY_BUNDLE_TYPE.get())) {
+            for (CompactGTRecipeFamilyBundleEntry member
+                    : holder.value().families()) {
+                addCompactSource(
+                        compactSources,
+                        knownMaps,
+                        member.sourceId(),
+                        member.definition());
             }
-            compactSources.add(new CompactRecipeFamilySource(holder.id(), definition));
         }
         compactSources.sort(Comparator.comparing(source -> source.id().toString()));
         compactSources = CompactTransportFragments.reassemble(compactSources);
@@ -1612,6 +1623,19 @@ public final class GTRecipeMapLoader {
     static String logicalRecipeResourcePath(ResourceLocation recipeId) {
         return "data/" + recipeId.getNamespace() + "/recipe/"
                 + recipeId.getPath() + ".json";
+    }
+
+    private static void addCompactSource(
+            List<CompactRecipeFamilySource> compactSources,
+            Map<ResourceLocation, RecipeMap> knownMaps,
+            ResourceLocation sourceId,
+            CompactGTRecipeFamilyDefinition definition) {
+        if (!knownMaps.containsKey(definition.targetMap())) {
+            throw recipeValidationError(
+                    sourceId,
+                    "Unknown recipe map " + definition.targetMap());
+        }
+        compactSources.add(new CompactRecipeFamilySource(sourceId, definition));
     }
 
     private static IllegalArgumentException recipeValidationError(

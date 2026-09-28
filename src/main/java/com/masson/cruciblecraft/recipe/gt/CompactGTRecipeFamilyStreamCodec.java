@@ -31,6 +31,11 @@ final class CompactGTRecipeFamilyStreamCodec {
             StreamCodec.of(
                     CompactGTRecipeFamilyStreamCodec::encode,
                     CompactGTRecipeFamilyStreamCodec::decode);
+    static final StreamCodec<
+            RegistryFriendlyByteBuf, CompactGTRecipeFamilyBundle> BUNDLE =
+            StreamCodec.of(
+                    CompactGTRecipeFamilyStreamCodec::encodeBundle,
+                    CompactGTRecipeFamilyStreamCodec::decodeBundle);
 
     private static final byte STABLE_ID_SPLIT = 0;
     private static final byte STABLE_ID_FULL = 1;
@@ -101,6 +106,92 @@ final class CompactGTRecipeFamilyStreamCodec {
         } finally {
             payload.release();
         }
+    }
+
+    private static void encodeBundle(
+            RegistryFriendlyByteBuf buffer,
+            CompactGTRecipeFamilyBundle bundle) {
+        ByteBuf payload = Unpooled.buffer();
+        try {
+            RegistryFriendlyByteBuf nested = wrap(payload, buffer);
+            nested.writeVarInt(bundle.families().size());
+            for (CompactGTRecipeFamilyBundleEntry member : bundle.families()) {
+                ResourceLocation.STREAM_CODEC.encode(nested, member.sourceId());
+                encodeBody(
+                        nested,
+                        new CompactGTRecipeFamilyEntry(member.definition()));
+            }
+            writeFramed(buffer, payload);
+        } finally {
+            payload.release();
+        }
+    }
+
+    private static CompactGTRecipeFamilyBundle decodeBundle(
+            RegistryFriendlyByteBuf buffer) {
+        ByteBuf payload = readFramed(buffer);
+        try {
+            RegistryFriendlyByteBuf nested = wrap(payload, buffer);
+            int count = readCount(
+                    nested,
+                    CompactRecipeWireLimits.MAX_BUNDLE_FAMILIES,
+                    "bundle families");
+            List<CompactGTRecipeFamilyBundleEntry> families =
+                    new ArrayList<>(count);
+            for (int index = 0; index < count; index++) {
+                ResourceLocation sourceId =
+                        ResourceLocation.STREAM_CODEC.decode(nested);
+                families.add(new CompactGTRecipeFamilyBundleEntry(
+                        sourceId,
+                        decodeBody(nested).definition()));
+            }
+            if (nested.readableBytes() != 0) {
+                throw new DecoderException(
+                        "Compact family bundle payload has "
+                                + nested.readableBytes() + " leftover bytes");
+            }
+            return new CompactGTRecipeFamilyBundle(families);
+        } finally {
+            payload.release();
+        }
+    }
+
+    private static void writeFramed(
+            RegistryFriendlyByteBuf buffer,
+            ByteBuf payload) {
+        int payloadSize = payload.readableBytes();
+        int total = 1 + varIntBytes(payloadSize) + payloadSize;
+        if (total > CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES) {
+            throw new EncoderException(
+                    "Compact family bundle wire payload exceeds "
+                            + CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES
+                            + " bytes: " + total);
+        }
+        buffer.writeByte(CompactRecipeWireLimits.WIRE_VERSION);
+        buffer.writeVarInt(payloadSize);
+        buffer.writeBytes(payload);
+    }
+
+    private static ByteBuf readFramed(RegistryFriendlyByteBuf buffer) {
+        int version = buffer.readUnsignedByte();
+        if (version != CompactRecipeWireLimits.WIRE_VERSION) {
+            throw new DecoderException(
+                    "Unsupported compact family bundle wire version: " + version);
+        }
+        int payloadSize = buffer.readVarInt();
+        if (payloadSize < 0
+                || payloadSize > CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES) {
+            throw new DecoderException(
+                    "Compact family bundle payload size " + payloadSize
+                            + " exceeds "
+                            + CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES);
+        }
+        if (buffer.readableBytes() < payloadSize) {
+            throw new DecoderException(
+                    "Compact family bundle payload truncated: expected "
+                            + payloadSize + ", remaining " + buffer.readableBytes());
+        }
+        return buffer.readBytes(payloadSize);
     }
 
     private static void encodeBody(

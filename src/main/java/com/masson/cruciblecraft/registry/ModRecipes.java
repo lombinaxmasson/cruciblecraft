@@ -4,6 +4,8 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.recipe.gt.CompactDedupRuleEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactDedupRuleSerializer;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyEntry;
+import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyBundle;
+import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyBundleSerializer;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilySerializer;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicyEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicySerializer;
@@ -65,6 +67,22 @@ public final class ModRecipes {
                     RECIPE_SERIALIZERS.register(
                             "compact_gt_recipe_family",
                             CompactGTRecipeFamilySerializer::new);
+
+    public static final DeferredHolder<
+                    RecipeType<?>, RecipeType<CompactGTRecipeFamilyBundle>>
+            COMPACT_GT_RECIPE_FAMILY_BUNDLE_TYPE =
+                    RECIPE_TYPES.register(
+                            "compact_gt_recipe_family_bundle",
+                            () -> RecipeType.<CompactGTRecipeFamilyBundle>simple(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            "compact_gt_recipe_family_bundle")));
+    public static final DeferredHolder<
+                    RecipeSerializer<?>, RecipeSerializer<CompactGTRecipeFamilyBundle>>
+            COMPACT_GT_RECIPE_FAMILY_BUNDLE_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "compact_gt_recipe_family_bundle",
+                            CompactGTRecipeFamilyBundleSerializer::new);
 
     public static final DeferredHolder<
                     RecipeType<?>, RecipeType<CompactPublicationPolicyEntry>>

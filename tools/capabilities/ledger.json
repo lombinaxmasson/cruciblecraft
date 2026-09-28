@@ -4139,6 +4139,36 @@
     },
     {
       "depends_on": [
+        "runtime/workbench-tool-runtime-recipes"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/紧凑配方发行包详细计划.md",
+        "tools/capabilities/runtime/compact-family-jar-bundles/**",
+        "gradle/scripts/release-resources.gradle",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyBundle.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyBundleEntry.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyBundleSerializer.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyStreamCodec.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeWireLimits.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModRecipes.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/**"
+      ],
+      "path": "tools/capabilities/runtime/compact-family-jar-bundles/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification",
+        "recipes",
+        "game-tests"
+      ],
+      "slug": "runtime/compact-family-jar-bundles",
+      "survival_access": "not_applicable",
+      "title": "Compact Family Jar Bundles",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "portfolio/default-gametest-recovery"
       ],
       "maturity": "runtime_ready",
@@ -4446,7 +4476,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 131,
+  "capability_count": 132,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5790,6 +5820,7 @@
       "portfolio/default-gametest-recovery",
       "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow",
+      "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
     "portfolio/gt6-machine-ledger-audit": [
@@ -5914,7 +5945,11 @@
     "registry/tool-head-remainder": [
       "registry/tool-head-remainder"
     ],
+    "runtime/compact-family-jar-bundles": [
+      "runtime/compact-family-jar-bundles"
+    ],
     "runtime/workbench-tool-runtime-recipes": [
+      "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
     "worldgen/gt-crops": [
@@ -6070,6 +6105,7 @@
       "portfolio/default-gametest-recovery",
       "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow",
+      "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
     "recipes": [
@@ -6078,15 +6114,17 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk",
-      "recipe/gt6-steamcracking-bulk"
+      "recipe/gt6-steamcracking-bulk",
+      "runtime/compact-family-jar-bundles"
     ],
     "verification": [
       "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow",
+      "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "runtime/compact-family-jar-bundles"
 }
