@@ -1,41 +1,36 @@
 package com.masson.cruciblecraft.client.render;
 
-import java.util.Locale;
+import java.util.function.Function;
 
+import org.joml.Matrix4f;
+
+import com.masson.cruciblecraft.client.render.SensorDisplayLayout.Glyph;
 import com.masson.cruciblecraft.content.block.SensorBlock;
 import com.masson.cruciblecraft.content.blockentity.SensorBlockEntity;
-import com.masson.cruciblecraft.content.sensor.SensorKind;
-import com.masson.cruciblecraft.content.sensor.SensorMode;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 
 /**
- * Dynamic GT6-style sensor readout.
+ * GT6 sensor readout: six character icons, one per display window.
  *
- * <p>The imported sensor overlay supplies the static icon and dark display
- * cells. The original GT6 renderer adds six character passes on top of that
- * overlay; this renderer draws the same logical slots with the client font:
- * five numeric positions (or a mode symbol plus four threshold positions) and
- * one unit position.
+ * <p>{@code MultiTileEntitySensor.getRenderPasses2} draws the plate on pass
+ * 0 and one character on each of passes 1–6. The plate is the block model.
+ * This renderer draws the six character quads in those windows.
  */
 public final class SensorRenderer
         implements BlockEntityRenderer<SensorBlockEntity> {
-    private static final float FACE_OFFSET = 0.377F;
-    private static final float TEXT_OFFSET = 0.003F;
-    // The imported face puts the display cells above the block centre.  The
-    // previous baseline placed the font origin at the lower edge of those
-    // cells, making every readout visibly sag.
-    private static final float BASELINE = 0.3125F;
-    private static final float TEXT_SCALE = 0.0125F;
-
     public SensorRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
@@ -47,126 +42,59 @@ public final class SensorRenderer
             int packedLight,
             int packedOverlay) {
         Direction facing = sensor.getBlockState().getValue(SensorBlock.FACING);
-        String text = displayText(sensor);
-        if (text.isEmpty()) {
-            return;
-        }
-
-        Font font = Minecraft.getInstance().font;
-        float width = font.width(text) * TEXT_SCALE;
-        poseStack.pushPose();
-        poseStack.translate(
-                0.5 - facing.getStepX() * FACE_OFFSET,
-                0.5 - facing.getStepY() * FACE_OFFSET,
-                0.5 - facing.getStepZ() * FACE_OFFSET);
-        orientToFace(poseStack, facing);
-        poseStack.translate(-width / 2.0F, BASELINE, TEXT_OFFSET);
-        poseStack.scale(TEXT_SCALE, -TEXT_SCALE, TEXT_SCALE);
-        font.drawInBatch(
-                text,
-                0.0F,
-                0.0F,
-                color(sensor.kind(), sensor.mode()),
-                false,
-                poseStack.last().pose(),
-                buffers,
-                Font.DisplayMode.SEE_THROUGH,
-                0,
-                LightTexture.FULL_BRIGHT);
-        poseStack.popPose();
-    }
-
-    private static void orientToFace(PoseStack poseStack, Direction facing) {
-        switch (facing) {
-            case NORTH -> poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
-            case SOUTH -> {
-                // The default text plane faces SOUTH.
+        Glyph[] glyphs = SensorDisplayLayout.glyphs(
+                sensor.kind(),
+                sensor.mode(),
+                sensor.hexadecimal(),
+                sensor.displayedNumber());
+        Function<ResourceLocation, TextureAtlasSprite> sprites =
+                Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS);
+        VertexConsumer vertices = buffers.getBuffer(RenderType.cutoutMipped());
+        float[] normal = SensorCharacterCells.normal(facing);
+        Matrix4f pose = poseStack.last().pose();
+        for (int index = 0; index < glyphs.length; index++) {
+            Glyph glyph = glyphs[index];
+            if (glyph == null) {
+                continue;
             }
-            case WEST -> poseStack.mulPose(Axis.YP.rotationDegrees(-90.0F));
-            case EAST -> poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
-            case UP -> poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
-            case DOWN -> poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+            TextureAtlasSprite sprite = sprites.apply(
+                    SensorDisplayLayout.sprite(glyph.icon()));
+            quad(
+                    vertices,
+                    poseStack,
+                    pose,
+                    SensorCharacterCells.worldCorners(facing, index),
+                    SensorCharacterCells.textureCoordinates(facing, index),
+                    sprite,
+                    glyph.argb(),
+                    normal);
         }
     }
 
-    private static String displayText(SensorBlockEntity sensor) {
-        SensorMode mode = sensor.mode();
-        String unit = unit(sensor.kind());
-        if (mode == SensorMode.FULL) {
-            return "=100%" + unit;
+    private static void quad(
+            VertexConsumer vertices,
+            PoseStack poseStack,
+            Matrix4f pose,
+            float[][] corners,
+            float[][] textureCoordinates,
+            TextureAtlasSprite sprite,
+            int argb,
+            float[] normal) {
+        int red = (argb >>> 16) & 0xFF;
+        int green = (argb >>> 8) & 0xFF;
+        int blue = argb & 0xFF;
+        int alpha = (argb >>> 24) & 0xFF;
+        for (int corner = 0; corner < corners.length; corner++) {
+            float[] point = corners[corner];
+            float[] textureCoordinate = textureCoordinates[corner];
+            vertices.addVertex(pose, point[0], point[1], point[2])
+                    .setColor(red, green, blue, alpha)
+                    .setUv(
+                            sprite.getU(textureCoordinate[0] / 16.0F),
+                            sprite.getV(textureCoordinate[1] / 16.0F))
+                    .setOverlay(OverlayTexture.NO_OVERLAY)
+                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setNormal(poseStack.last(), normal[0], normal[1], normal[2]);
         }
-        if (mode == SensorMode.NOT_FULL) {
-            return "<100%" + unit;
-        }
-        if (mode.usesSetNumber()) {
-            String symbol = switch (mode) {
-                case GREATER -> ">";
-                case EQUAL -> "=";
-                case SMALLER -> "<";
-                case SCALE -> "~";
-                default -> "";
-            };
-            return symbol
-                    + digits(sensor.setNumber(), 4, sensor.hexadecimal())
-                    + unit;
-        }
-        String suffix = mode == SensorMode.PERCENT ? "%" : unit;
-        String prefix = sensor.hexadecimal() ? "0x" : "";
-        int width = sensor.hexadecimal() ? 4 : 5;
-        return prefix
-                + digits(sensor.displayedNumber(), width, sensor.hexadecimal())
-                + suffix;
-    }
-
-    private static String digits(long value, int width, boolean hexadecimal) {
-        long bounded = Math.max(0L, Math.min(0xFFFFL, value));
-        int radix = hexadecimal ? 16 : 10;
-        String text = Long.toString(bounded, radix).toUpperCase(Locale.ROOT);
-        if (text.length() >= width) {
-            return text.substring(text.length() - width);
-        }
-        return "0".repeat(width - text.length()) + text;
-    }
-
-    private static String unit(SensorKind kind) {
-        return switch (kind) {
-            case THERMOMETER -> "K";
-            case GIBBLOMETER, KILO_GIBBLOMETER -> "G";
-            case LUMINOMETER -> "lm";
-            case CHRONOMETER -> "T";
-            case ITEMOMETER, STACKOMETER -> "";
-            case FLUIDOMETER -> "L";
-            case BUCKETOMETER -> "m3";
-            case LIGHT_WEIGHTOMETER -> "g";
-            case MEDIUM_WEIGHTOMETER -> "kg";
-            case HEAVY_WEIGHTOMETER -> "t";
-            case SUPER_HEAVY_WEIGHTOMETER -> "kt";
-            case ELECTROMETER -> "EU";
-            case TPS_METER -> "TPS";
-            case PLAYER_COUNTER -> "P";
-            case PROGRESS_METER -> "S";
-            case TACHOMETER -> "RU";
-            case GEIGER_COUNTER -> "n";
-            case LASEROMETER -> "LU";
-            case KILO_BUCKETOMETER -> "dam3";
-        };
-    }
-
-    private static int color(SensorKind kind, SensorMode mode) {
-        if (mode == SensorMode.FULL || mode == SensorMode.NOT_FULL) {
-            return 0xFFC02020;
-        }
-        return switch (kind) {
-            case THERMOMETER, ELECTROMETER, TPS_METER -> 0xFFFF4040;
-            case GIBBLOMETER, KILO_GIBBLOMETER, LASEROMETER -> 0xFFFFFF40;
-            case LUMINOMETER, LIGHT_WEIGHTOMETER, MEDIUM_WEIGHTOMETER,
-                    HEAVY_WEIGHTOMETER, SUPER_HEAVY_WEIGHTOMETER ->
-                    0xFFFFFFC0;
-            case CHRONOMETER, GEIGER_COUNTER, TACHOMETER -> 0xFF40FF40;
-            case FLUIDOMETER, BUCKETOMETER, KILO_BUCKETOMETER ->
-                    0xFF4080FF;
-            case PLAYER_COUNTER, PROGRESS_METER -> 0xFF80D8FF;
-            case ITEMOMETER, STACKOMETER -> 0xFFFFFFFF;
-        };
     }
 }
