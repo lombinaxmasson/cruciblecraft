@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
+import com.masson.cruciblecraft.content.blockentity.CrucibleWorldHazards;
 import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerTier;
@@ -328,6 +329,28 @@ public final class MteInPlaceBlock extends Block
             return Shapes.block();
         }
         return super.getCollisionShape(state, level, pos, context);
+    }
+
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        if (SmelteryHosts.isSmeltery(spec)
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible
+                && crucible.process().nearMeltdown()) {
+            return CrucibleWorldHazards.NEAR_MELTDOWN_LIGHT;
+        }
+        if (LargeCrucibleHosts.isController(spec)
+                && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible
+                && crucible.process().nearMeltdown()) {
+            return CrucibleWorldHazards.NEAR_MELTDOWN_LIGHT;
+        }
+        if (LargeCrucibleHosts.isWall(spec)) {
+            LargeCrucibleBlockEntity controller =
+                    LargeCrucibleWalls.controllerAt(level, pos);
+            if (controller != null && controller.process().nearMeltdown()) {
+                return CrucibleWorldHazards.NEAR_MELTDOWN_LIGHT;
+            }
+        }
+        return super.getLightEmission(state, level, pos);
     }
 
     private VoxelShape formedWallShape(BlockGetter level, BlockPos pos) {

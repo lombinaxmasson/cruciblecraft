@@ -22,11 +22,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 /**
- * Renders the material currently poured into a mold.
+ * Renders the material currently poured into a mold or basin.
  *
- * <p>The block model only describes the ceramic/metal shell.  Its filled
- * variant has no material identity, so the contents must be a block-entity
- * pass, just like the GT6 mold render pass.</p>
+ * <p>The block model only describes the shell. A basin fills the inner cavity
+ * as an opaque volume. Solidified basin contents use the metal
+ * {@code blocksolid} icon plus the material color — not a translucent lid.</p>
  */
 public final class MoldContentsRenderer<T extends BlockEntity>
         implements BlockEntityRenderer<T> {
@@ -38,9 +38,19 @@ public final class MoldContentsRenderer<T extends BlockEntity>
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID,
                     "block/gt6_import/materialicons/rough_block_raw");
+    private static final ResourceLocation BLOCK_SOLID =
+            StorageVoxelBuffer.blockTexture("gt6_import/anvil/blocksolid");
+    /** Ceramic / foundry mold cavity. */
     private static final float MIN = 2.05F / 16.0F;
     private static final float MAX = 13.95F / 16.0F;
     private static final float Y = 3.01F / 16.0F;
+    /**
+     * GT6 basin pass 5 fills {@code PX_P[0]..PX_N[0]} x/z and
+     * {@code PX_N[1]} high. The inner cavity is inside the one-pixel walls.
+     */
+    private static final float BASIN_INSET = 1.01F / 16.0F;
+    private static final float BASIN_OUTER = 14.99F / 16.0F;
+    private static final float BASIN_TOP = 15.0F / 16.0F;
 
     public MoldContentsRenderer(BlockEntityRendererProvider.Context context) {}
 
@@ -53,10 +63,10 @@ public final class MoldContentsRenderer<T extends BlockEntity>
             int packedLight,
             int packedOverlay) {
         String materialId;
-        int color;
         float temperature;
         boolean solidified;
         int outputCount;
+        boolean basin = false;
         if (blockEntity instanceof CeramicMoldBlockEntity mold) {
             materialId = mold.materialId();
             temperature = mold.temperature();
@@ -67,6 +77,7 @@ public final class MoldContentsRenderer<T extends BlockEntity>
             temperature = mold.temperature();
             solidified = mold.isSolidified();
             outputCount = mold.outputCount();
+            basin = mold.basin();
         } else {
             return;
         }
@@ -75,20 +86,60 @@ public final class MoldContentsRenderer<T extends BlockEntity>
             return;
         }
         MaterialDefinition material = MaterialCatalog.require(materialId);
+        boolean molten = !solidified
+                && temperature >= material.thermal().meltingPoint();
+        int color = 0xFF000000 | material.colorRgb();
+        if (basin) {
+            renderBasin(poseStack, buffers, packedLight, color, molten);
+            return;
+        }
         TextureAtlasSprite sprite = Minecraft.getInstance()
                 .getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
-                .apply(solidified || temperature < material.thermal().meltingPoint()
-                        ? SOLID
-                        : MOLTEN);
-        int light = solidified ? packedLight : LightTexture.FULL_BRIGHT;
-        color = solidified ? 0xFF808080 : 0xFF000000 | material.colorRgb();
-
+                .apply(molten ? MOLTEN : SOLID);
+        int light = molten ? LightTexture.FULL_BRIGHT : packedLight;
+        int moldColor = molten ? color : 0xFF808080;
         poseStack.pushPose();
         VertexConsumer vertices = buffers.getBuffer(
                 RenderType.entityTranslucent(TextureAtlas.LOCATION_BLOCKS));
-        PoseStack.Pose pose = poseStack.last();
-        quad(vertices, pose, sprite, color, light,
-                MIN, Y, MIN, MAX, MAX);
+        quad(vertices, poseStack.last(), sprite, moldColor, light, MIN, Y, MIN, MAX, MAX);
+        poseStack.popPose();
+    }
+
+    private static void renderBasin(
+            PoseStack poseStack,
+            MultiBufferSource buffers,
+            int packedLight,
+            int color,
+            boolean molten) {
+        float[] box = {
+            BASIN_INSET,
+            BASIN_INSET,
+            BASIN_INSET,
+            BASIN_OUTER,
+            BASIN_TOP,
+            BASIN_OUTER
+        };
+        poseStack.pushPose();
+        if (molten) {
+            TextureAtlasSprite sprite = Minecraft.getInstance()
+                    .getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                    .apply(MOLTEN);
+            StorageVoxelBuffer.cube(
+                    buffers.getBuffer(
+                            RenderType.entityCutout(TextureAtlas.LOCATION_BLOCKS)),
+                    poseStack,
+                    box,
+                    sprite,
+                    color,
+                    LightTexture.FULL_BRIGHT);
+        } else {
+            StorageVoxelBuffer.cube(
+                    buffers.getBuffer(RenderType.entityCutout(BLOCK_SOLID)),
+                    poseStack,
+                    box,
+                    color,
+                    packedLight);
+        }
         poseStack.popPose();
     }
 
@@ -132,5 +183,4 @@ public final class MoldContentsRenderer<T extends BlockEntity>
                 .setNormal(pose, Direction.UP.getStepX(),
                         Direction.UP.getStepY(), Direction.UP.getStepZ());
     }
-
 }

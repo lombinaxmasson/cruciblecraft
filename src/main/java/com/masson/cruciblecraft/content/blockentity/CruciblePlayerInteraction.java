@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.fluidbarrel.FluidBarrelFluids;
 import com.masson.cruciblecraft.fluid.CrucibleInteractionMessages;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
@@ -23,8 +24,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
@@ -81,7 +85,7 @@ public final class CruciblePlayerInteraction {
             giveScrap(player, process, 1, false);
             return ItemInteractionResult.SUCCESS;
         }
-        if (FluidUtil.interactWithFluidHandler(player, hand, fluids)) {
+        if (transferHeldContainer(player, hand, fluids)) {
             return ItemInteractionResult.SUCCESS;
         }
         Optional<MaterialUnits.Entry> material = MaterialUnits.resolve(stack);
@@ -130,6 +134,95 @@ public final class CruciblePlayerInteraction {
                         contents.isEmpty() ? "-" : contents),
                 true);
         return InteractionResult.SUCCESS;
+    }
+
+    /**
+     * GT6 fills or empties one container and puts that stack in hand. Creative
+     * {@code FluidUtil} keeps the original empty stack after draining the pot.
+     */
+    private static boolean transferHeldContainer(
+            Player player, InteractionHand hand, IFluidHandler fluids) {
+        ItemStack held = player.getItemInHand(hand);
+        if (held.isEmpty() || fluids == null) {
+            return false;
+        }
+        ItemStack one = held.copyWithCount(1);
+        IFluidHandler item = FluidUtil.getFluidHandler(one).orElse(null);
+        if (item == null) {
+            return false;
+        }
+        FluidStack contained = item.getFluidInTank(0);
+        boolean moved = contained.isEmpty()
+                ? fillFromCrucible(item, fluids)
+                : emptyIntoCrucible(item, fluids, contained);
+        if (!moved) {
+            return false;
+        }
+        ItemStack result = item instanceof IFluidHandlerItem handler
+                ? handler.getContainer()
+                : one;
+        if (held.getCount() <= 1) {
+            player.setItemInHand(hand, result);
+        } else {
+            held.shrink(1);
+            if (!player.addItem(result)) {
+                player.drop(result, false);
+            }
+        }
+        return true;
+    }
+
+    private static boolean fillFromCrucible(IFluidHandler item, IFluidHandler crucible) {
+        FluidStack available = crucible.drain(Integer.MAX_VALUE, FluidAction.SIMULATE);
+        if (available.isEmpty()) {
+            return false;
+        }
+        int room = item.fill(available, FluidAction.SIMULATE);
+        if (room <= 0) {
+            return false;
+        }
+        FluidStack drained = crucible.drain(
+                new FluidStack(available.getFluid(), room), FluidAction.EXECUTE);
+        if (drained.isEmpty()) {
+            return false;
+        }
+        int filled = item.fill(drained, FluidAction.EXECUTE);
+        if (filled < drained.getAmount()) {
+            int leftover = drained.getAmount() - Math.max(0, filled);
+            if (leftover > 0) {
+                crucible.fill(
+                        new FluidStack(drained.getFluid(), leftover),
+                        FluidAction.EXECUTE);
+            }
+        }
+        return filled > 0;
+    }
+
+    /** GT6 pours the whole container or nothing, and refuses gas and acid. */
+    private static boolean emptyIntoCrucible(
+            IFluidHandler item, IFluidHandler crucible, FluidStack contained) {
+        if (FluidBarrelFluids.isGas(contained) || TankFluidSafety.isAcid(contained)) {
+            return false;
+        }
+        int accepted = crucible.fill(contained, FluidAction.SIMULATE);
+        if (accepted < contained.getAmount()) {
+            return false;
+        }
+        FluidStack drained = item.drain(contained.getAmount(), FluidAction.EXECUTE);
+        if (drained.isEmpty() || drained.getAmount() < contained.getAmount()) {
+            if (!drained.isEmpty()) {
+                item.fill(drained, FluidAction.EXECUTE);
+            }
+            return false;
+        }
+        int filled = crucible.fill(drained, FluidAction.EXECUTE);
+        if (filled < drained.getAmount()) {
+            item.fill(
+                    new FluidStack(drained.getFluid(), drained.getAmount() - filled),
+                    FluidAction.EXECUTE);
+            return filled > 0;
+        }
+        return true;
     }
 
     private static boolean takeBuffer(

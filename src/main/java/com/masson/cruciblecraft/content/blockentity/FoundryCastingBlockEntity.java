@@ -77,11 +77,12 @@ public final class FoundryCastingBlockEntity extends BlockEntity
                 mold.inventoryChanged = false;
                 return;
             }
-            if (mold.temperature > mold.moldMaxTemperatureCelsius()) {
-                level.setBlock(
-                        pos,
-                        CrucibleWorldHazards.meltdownLavaState(),
-                        Block.UPDATE_ALL);
+            MaterialDefinition filled = MaterialCatalog.require(mold.materialId);
+            if (CrucibleWorldHazards.moldMeltsDown(
+                    mold.temperature,
+                    filled.thermal().boilingPoint(),
+                    mold.moldMaxTemperatureCelsius())) {
+                CrucibleWorldHazards.placeMoldMeltdown(level, pos);
                 return;
             }
             float previous = mold.temperature;

@@ -2166,7 +2166,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                     1.0F);
             level.setBlock(
                     worldPosition,
-                    CrucibleWorldHazards.meltdownLavaState(),
+                    CrucibleWorldHazards.moldMeltdownState(),
                     Block.UPDATE_ALL);
         }
         BlockPos dest = faucetDestination();

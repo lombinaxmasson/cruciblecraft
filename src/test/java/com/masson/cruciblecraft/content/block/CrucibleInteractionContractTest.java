@@ -51,7 +51,7 @@ class CrucibleInteractionContractTest {
 
         int clientGuard = method.indexOf("if (level.isClientSide)");
         int clientReturn = method.indexOf("return predictsItemUse");
-        int fluidInteraction = method.indexOf("FluidUtil.interactWithFluidHandler");
+        int fluidInteraction = method.indexOf("transferHeldContainer(");
         int serverMaterialResolution = method.indexOf(
                 "Optional<MaterialUnits.Entry> material", fluidInteraction);
 
@@ -61,7 +61,7 @@ class CrucibleInteractionContractTest {
         assertTrue(fluidInteraction < serverMaterialResolution);
         assertEquals(
                 fluidInteraction,
-                method.lastIndexOf("FluidUtil.interactWithFluidHandler"),
+                method.lastIndexOf("transferHeldContainer("),
                 "the authoritative transfer helper must be called exactly once");
     }
 

@@ -20,11 +20,20 @@ public final class FoundryHosts {
     }
 
     public static boolean isMold(MteInPlaceSpec spec) {
-        return isFoundry(spec) && spec.gt6Class().contains("MultiTileEntityMold");
+        return isFoundry(spec)
+                && spec.gt6Class().contains("MultiTileEntityMold")
+                && !isBasin(spec);
     }
 
     public static boolean isBasin(MteInPlaceSpec spec) {
-        return isFoundry(spec) && spec.gt6Class().contains("Basin");
+        return isFoundry(spec)
+                && (spec.gt6Class().contains("Basin") || isBasinPath(spec.registryPath()));
+    }
+
+    static boolean isBasinPath(String registryPath) {
+        return registryPath != null
+                && (registryPath.startsWith("foundry/basin_")
+                        || registryPath.endsWith("/basin"));
     }
 
     public static boolean isCrossing(MteInPlaceSpec spec) {
@@ -86,7 +95,7 @@ public final class FoundryHosts {
             return Optional.of("模具（%s）");
         }
         if (registryPath.startsWith("foundry/basin_")) {
-            return Optional.of("盆（%s）");
+            return Optional.of("浇铸盆（%s）");
         }
         return Optional.empty();
     }

@@ -154,6 +154,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             crucible.process.driftTowardAmbient();
             return;
         }
+        boolean previousNearMeltdown = crucible.process.nearMeltdown();
         float previousTemperature = crucible.process.thermal().authoritativeTemperature();
         long previousStoredEnergy = crucible.process.thermal().storedEnergy();
         int previousCooldown = crucible.process.thermal().cooldownTicks();
@@ -176,11 +177,15 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             crucible.setChanged();
             crucible.checkpoint.checkpointed();
         }
-        if (crucible.checkpoint.shouldSync(
-                !crucible.process.isThermallyQuiescent(),
-                level.getGameTime(),
-                phaseKey,
-                20)) {
+        if (previousNearMeltdown != crucible.process.nearMeltdown()) {
+            CrucibleWorldHazards.refreshLargeCrucibleAppearance(level, pos);
+        }
+        if (previousNearMeltdown != crucible.process.nearMeltdown()
+                || crucible.checkpoint.shouldSync(
+                        !crucible.process.isThermallyQuiescent(),
+                        level.getGameTime(),
+                        phaseKey,
+                        20)) {
             crucible.syncToClient();
             crucible.checkpoint.synced();
         }
@@ -288,7 +293,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                 for (int dz = -1; dz <= 1; dz++) {
                     level.setBlock(
                             origin.offset(dx, dy, dz),
-                            CrucibleWorldHazards.meltdownLavaState(),
+                            CrucibleWorldHazards.moldMeltdownState(),
                             Block.UPDATE_ALL);
                 }
             }
@@ -702,6 +707,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        boolean previousNearMeltdown = process.nearMeltdown();
         process.restore(tag, true);
         if (tag.contains("structure_valid")) {
             structureValid = tag.getBoolean("structure_valid");
@@ -711,6 +717,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         }
         LargeCrucibleHosts.bakedMaterial(getBlockState())
                 .ifPresent(process.casing()::setMaterialId);
+        if (level != null
+                && level.isClientSide
+                && previousNearMeltdown != process.nearMeltdown()) {
+            CrucibleWorldHazards.refreshLargeCrucibleAppearance(level, worldPosition);
+        }
     }
 
     @Override

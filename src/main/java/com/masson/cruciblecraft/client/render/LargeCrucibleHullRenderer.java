@@ -7,12 +7,14 @@ import org.joml.Matrix4f;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.blockentity.CrucibleWorldHazards;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.machine.component.CrucibleInteriorGeometry;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -49,6 +51,10 @@ final class LargeCrucibleHullRenderer {
             int packedLight) {
         int tint = LargeCrucibleHosts.colorRgb(
                 crucible.process().casing().materialId());
+        if (crucible.process().nearMeltdown()) {
+            tint = CrucibleWorldHazards.meltDownTint(tint);
+            packedLight = LightTexture.FULL_BRIGHT;
+        }
         Direction facing = facing(crucible.getBlockState());
         VertexConsumer vertices = buffers.getBuffer(
                 RenderType.entityCutout(TextureAtlas.LOCATION_BLOCKS));

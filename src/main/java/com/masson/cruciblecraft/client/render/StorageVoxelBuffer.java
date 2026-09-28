@@ -124,9 +124,9 @@ final class StorageVoxelBuffer {
             int argb,
             int packedLight) {
         vertex(vertices, poseStack, pose, x0, y0, z0, u0, v0, nx, ny, nz, argb, packedLight);
-        vertex(vertices, poseStack, pose, x1, y1, z1, u1, v0, nx, ny, nz, argb, packedLight);
-        vertex(vertices, poseStack, pose, x2, y2, z2, u1, v1, nx, ny, nz, argb, packedLight);
         vertex(vertices, poseStack, pose, x3, y3, z3, u0, v1, nx, ny, nz, argb, packedLight);
+        vertex(vertices, poseStack, pose, x2, y2, z2, u1, v1, nx, ny, nz, argb, packedLight);
+        vertex(vertices, poseStack, pose, x1, y1, z1, u1, v0, nx, ny, nz, argb, packedLight);
     }
 
     private static void quad(
@@ -151,9 +151,9 @@ final class StorageVoxelBuffer {
             int argb,
             int packedLight) {
         vertex(vertices, poseStack, pose, x0, y0, z0, 0.0F, 0.0F, nx, ny, nz, argb, packedLight);
-        vertex(vertices, poseStack, pose, x1, y1, z1, 1.0F, 0.0F, nx, ny, nz, argb, packedLight);
-        vertex(vertices, poseStack, pose, x2, y2, z2, 1.0F, 1.0F, nx, ny, nz, argb, packedLight);
         vertex(vertices, poseStack, pose, x3, y3, z3, 0.0F, 1.0F, nx, ny, nz, argb, packedLight);
+        vertex(vertices, poseStack, pose, x2, y2, z2, 1.0F, 1.0F, nx, ny, nz, argb, packedLight);
+        vertex(vertices, poseStack, pose, x1, y1, z1, 1.0F, 0.0F, nx, ny, nz, argb, packedLight);
     }
 
     private static void vertex(

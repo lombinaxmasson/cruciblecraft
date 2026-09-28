@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.blockentity.CrucibleWorldHazards;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -22,10 +24,20 @@ public final class LargeCrucibleBlockColor {
         if (tintIndex != 0) {
             return 0xFFFFFFFF;
         }
-        if (level != null
-                && pos != null
-                && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
-            return LargeCrucibleHosts.colorRgb(crucible.process().casing().materialId());
+        int color;
+        LargeCrucibleBlockEntity crucible = null;
+        if (level != null && pos != null) {
+            if (level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity controller) {
+                crucible = controller;
+            } else {
+                crucible = LargeCrucibleWalls.controllerAt(level, pos);
+            }
+        }
+        if (crucible != null) {
+            color = LargeCrucibleHosts.colorRgb(crucible.process().casing().materialId());
+            return crucible.process().nearMeltdown()
+                    ? CrucibleWorldHazards.meltDownTint(color)
+                    : color;
         }
         return LargeCrucibleHosts.bakedMaterial(state)
                 .map(LargeCrucibleHosts::colorRgb)

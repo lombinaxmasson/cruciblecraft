@@ -71,12 +71,12 @@ public final class CeramicMoldBlockEntity extends BlockEntity
                 mold.inventoryChanged = false;
                 return;
             }
-            float maximum = mold.moldMaxTemperatureCelsius();
-            if (mold.temperature > maximum) {
-                level.setBlock(
-                        pos,
-                        CrucibleWorldHazards.meltdownLavaState(),
-                        Block.UPDATE_ALL);
+            MaterialDefinition filled = MaterialCatalog.require(mold.materialId);
+            if (CrucibleWorldHazards.moldMeltsDown(
+                    mold.temperature,
+                    filled.thermal().boilingPoint(),
+                    mold.moldMaxTemperatureCelsius())) {
+                CrucibleWorldHazards.placeMoldMeltdown(level, pos);
                 return;
             }
 

@@ -226,8 +226,9 @@ public final class CrucibleMoldInteractionGameTests {
         helper.startSequence()
                 .thenIdle(5)
                 .thenExecute(() -> helper.assertTrue(
-                        helper.getBlockState(pos).is(ModBlocks.MELTDOWN_LAVA.get()),
-                        "overheated crucible did not become temporary lava"))
+                        helper.getBlockState(pos).is(Blocks.LAVA)
+                                && !helper.getBlockState(pos).getFluidState().isSource(),
+                        "overheated crucible did not become GT6 flowing lava"))
                 .thenSucceed();
     }
 

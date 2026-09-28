@@ -45,7 +45,7 @@ class FoundryHostsTest {
                 FoundryHosts.kindTemplate("stainless_steel/smelting_crucible")
                         .orElseThrow());
         assertEquals(
-                "盆（%s）",
+                "浇铸盆（%s）",
                 FoundryHosts.kindTemplate("foundry/basin_bronze").orElseThrow());
         assertEquals(
                 "坩埚交叉（%s）",
@@ -71,6 +71,8 @@ class FoundryHostsTest {
         assertFalse(FoundryHosts.isBasin(mold));
         assertFalse(FoundryHosts.isCrossing(mold));
         assertTrue(FoundryHosts.isBasin(basin));
+        assertTrue(FoundryHosts.isBasin(foundry(
+                "stainless_steel/basin", "MultiTileEntityMold / Molds")));
         assertTrue(FoundryHosts.isCasting(basin));
         assertFalse(FoundryHosts.isMold(basin));
         assertTrue(FoundryHosts.isCrossing(crossing));

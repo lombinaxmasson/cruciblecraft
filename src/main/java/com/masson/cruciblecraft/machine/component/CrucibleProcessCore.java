@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
+import com.masson.cruciblecraft.content.blockentity.CrucibleWorldHazards;
 import com.masson.cruciblecraft.content.sensor.ItemMass;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
@@ -21,6 +22,7 @@ import com.masson.cruciblecraft.fluid.MoltenTransferMath;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
+import com.masson.cruciblecraft.material.GT6ImportUnits;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex.AlloyMatch;
@@ -465,6 +467,11 @@ public final class CrucibleProcessCore {
         return casing.maxTemperature(heatResistanceBonus);
     }
 
+    public boolean nearMeltdown() {
+        return CrucibleWorldHazards.nearMeltdown(
+                authoritativeTemperature(), casingMaxTemperature());
+    }
+
     public double heatResistanceBonus() {
         return heatResistanceBonus;
     }
@@ -636,19 +643,61 @@ public final class CrucibleProcessCore {
         return hasUnknownMaterials() || steelmaking.blocksFluidTransfer();
     }
 
+    /**
+     * GT6 smeltery top click outputs one material's liquid. A resolved alloy
+     * or pure metal is that stack. An unresolved mix outputs only the lightest
+     * molten stack, once the crucible is at least as hot as that liquid.
+     */
     private Optional<DrainCandidate> drainCandidate(int requested) {
-        if (frozen() || requested <= 0 || !isMolten() || fluidTransferBlocked()) {
+        if (frozen() || requested <= 0 || fluidTransferBlocked()) {
             return Optional.empty();
         }
         Optional<MaterialDefinition> resolvedMaterial = contents.resolvedMaterial();
-        if (resolvedMaterial.isEmpty()
-                || ModFluids.molten(resolvedMaterial.get().id()).isEmpty()) {
+        if (resolvedMaterial.isPresent()) {
+            MaterialDefinition material = resolvedMaterial.get();
+            if (!isMolten()
+                    || !liquidScoopAllowed(material)
+                    || ModFluids.molten(material.id()).isEmpty()) {
+                return Optional.empty();
+            }
+            Map<String, Integer> ratio = MaterialCatalog.decompositionRatio(material);
+            return MoltenTransferMath.planDrain(contents.composition(), ratio, requested)
+                    .map(plan -> new DrainCandidate(material, plan));
+        }
+        return lightestMoltenDrain(requested);
+    }
+
+    private Optional<DrainCandidate> lightestMoltenDrain(int requested) {
+        Optional<String> lightestId = contents.lightestId();
+        if (lightestId.isEmpty() || !MaterialCatalog.contains(lightestId.get())) {
             return Optional.empty();
         }
-        MaterialDefinition material = resolvedMaterial.get();
-        Map<String, Integer> ratio = MaterialCatalog.decompositionRatio(material);
-        return MoltenTransferMath.planDrain(contents.composition(), ratio, requested)
-                .map(plan -> new DrainCandidate(material, plan));
+        MaterialDefinition lightest = MaterialCatalog.require(lightestId.get());
+        if (!liquidScoopAllowed(lightest)
+                || ModFluids.molten(lightest.id()).isEmpty()) {
+            return Optional.empty();
+        }
+        int available = contents.units(lightest.id());
+        int amount = Math.min(requested, available);
+        if (amount <= 0) {
+            return Optional.empty();
+        }
+        return Optional.of(new DrainCandidate(
+                lightest,
+                new MoltenTransferMath.DrainPlan(
+                        amount, Map.of(lightest.id(), amount))));
+    }
+
+    /** {@code mTemperature >= melting && (fluid < 320K || crucible >= fluid)}. */
+    private boolean liquidScoopAllowed(MaterialDefinition material) {
+        float temperature = authoritativeTemperature();
+        if (temperature < material.thermal().meltingPoint()) {
+            return false;
+        }
+        int fluidKelvin = GT6ImportUnits.celsiusToRoundedKelvin(
+                material.thermal().meltingPoint());
+        int crucibleKelvin = GT6ImportUnits.celsiusToRoundedKelvin(temperature);
+        return fluidKelvin < 320 || crucibleKelvin >= fluidKelvin;
     }
 
     private FluidStack executeDrain(DrainCandidate candidate, IFluidHandler.FluidAction action) {

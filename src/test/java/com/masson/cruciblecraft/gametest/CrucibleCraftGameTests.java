@@ -5634,19 +5634,22 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(5)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            helper.getBlockState(controllerPos).is(
-                                    ModBlocks.MELTDOWN_LAVA.get()),
+                            isFlowingLava(helper.getBlockState(controllerPos)),
                             "Overheated large crucible controller did not become lava");
                     helper.assertTrue(
-                            helper.getBlockState(controllerPos.offset(-1, 0, -1))
-                                    .is(ModBlocks.MELTDOWN_LAVA.get()),
+                            isFlowingLava(helper.getBlockState(
+                                    controllerPos.offset(-1, 0, -1))),
                             "Large crucible meltdown missed a bottom corner");
                     helper.assertTrue(
-                            helper.getBlockState(controllerPos.offset(1, 2, 1))
-                                    .is(ModBlocks.MELTDOWN_LAVA.get()),
+                            isFlowingLava(helper.getBlockState(
+                                    controllerPos.offset(1, 2, 1))),
                             "Large crucible meltdown missed the 3x3x3 top corner");
                 })
                 .thenSucceed();
+    }
+
+    private static boolean isFlowingLava(BlockState state) {
+        return state.is(Blocks.LAVA) && !state.getFluidState().isSource();
     }
 
     private static void assertFormedTowerPartVisuals(

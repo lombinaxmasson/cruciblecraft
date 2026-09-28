@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.content.block.FoundryHosts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CrucibleWorldHazards;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -23,7 +25,14 @@ public final class FoundryBlockColor {
         if (tintIndex != 0) {
             return 0xFFFFFFFF;
         }
-        return colorFor(state.getBlock());
+        int color = colorFor(state.getBlock());
+        if (level != null
+                && pos != null
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible
+                && crucible.process().nearMeltdown()) {
+            return CrucibleWorldHazards.meltDownTint(color);
+        }
+        return color;
     }
 
     public static int itemColor(ItemStack stack, int tintIndex) {

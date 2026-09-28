@@ -109,6 +109,7 @@ public class CrucibleBlockEntity extends BlockEntity
                 level.isThundering());
         long incomingEnergy = crucible.process.thermal().takePendingHeat();
 
+        boolean previousNearMeltdown = crucible.process.nearMeltdown();
         float previousTemperature = crucible.process.thermal().authoritativeTemperature();
         long previousStoredEnergy = crucible.process.thermal().storedEnergy();
         int previousCooldown = crucible.process.thermal().cooldownTicks();
@@ -135,11 +136,15 @@ public class CrucibleBlockEntity extends BlockEntity
             crucible.setChanged();
             crucible.checkpoint.checkpointed();
         }
-        if (crucible.checkpoint.shouldSync(
-                crucible.isActiveProcess(),
-                level.getGameTime(),
-                phaseKey,
-                20)) {
+        if (previousNearMeltdown != crucible.process.nearMeltdown()) {
+            level.getLightEngine().checkBlock(pos);
+        }
+        if (previousNearMeltdown != crucible.process.nearMeltdown()
+                || crucible.checkpoint.shouldSync(
+                        crucible.isActiveProcess(),
+                        level.getGameTime(),
+                        phaseKey,
+                        20)) {
             crucible.syncToClient();
             crucible.checkpoint.synced();
         }
@@ -203,7 +208,7 @@ public class CrucibleBlockEntity extends BlockEntity
                         process.authoritativeTemperature()) / 25L)));
         level.setBlock(
                 worldPosition,
-                CrucibleWorldHazards.meltdownLavaState(),
+                CrucibleWorldHazards.moldMeltdownState(),
                 Block.UPDATE_ALL);
     }
 
@@ -594,9 +599,15 @@ public class CrucibleBlockEntity extends BlockEntity
     }
 
     private void readClientTag(CompoundTag tag, HolderLookup.Provider registries) {
+        boolean previousNearMeltdown = process.nearMeltdown();
         super.loadAdditional(tag, registries);
         restoreState(tag, true);
         loadBuffer(tag, registries);
+        if (level != null
+                && level.isClientSide
+                && previousNearMeltdown != process.nearMeltdown()) {
+            CrucibleWorldHazards.refreshAppearance(level, worldPosition);
+        }
     }
 
     private void restoreState(CompoundTag tag, boolean clientUpdate) {
