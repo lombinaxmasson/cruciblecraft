@@ -34,7 +34,6 @@ The layered entry point is:
 ```text
 python tools/verify.py dev
 python tools/verify.py integration --profile <name>
-python tools/playtest.py check
 python tools/verify.py release
 ```
 
@@ -50,8 +49,7 @@ python tools/verify.py release
 - `integration --profile` runs that profile's builders, Python modules, and
   declared Gradle tasks. `--if-changed` skips when a diff base exists and the
   profile owns none of the changed paths; without a diff base it still runs.
-- `promotion` is a no-op. Playtest accept is a human `runClient` report via
-  `python tools/playtest.py record-accept`; CI never auto-signs.
+- `promotion` is a no-op. CI never auto-runs `runClient`.
 - `release` executes every release profile against the current checkout.
 
 The standard-library runner still owns Python test selection:

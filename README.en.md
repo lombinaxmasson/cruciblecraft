@@ -111,8 +111,7 @@ test paths use semantic names.
 ### Capability states
 
 Capabilities track whether a specification is defined and whether the runtime
-works. Player obtainability is a separate `survival_access` field. Playtest is
-a project-level cycle:
+works. Player obtainability is a separate `survival_access` field:
 
 - `frozen`: scope, sources, and dependencies are defined
 - `runtime_ready`: the runtime mechanism works and can close; content or
@@ -121,7 +120,8 @@ a project-level cycle:
   `partial` / `complete` / `not_applicable`); does not block runtime close
 
 The roadmap counts accepted `runtime_ready` capabilities as mechanism
-progress. Playtest accept comes only from a human `runClient`. The generated
+progress. Problems found in a human `runClient` become their own cards; there
+is no project-level sign-off. The generated
 set is [project status](docs/current/project-status.md).
 See the [capability delivery workflow](docs/current/capability-delivery-workflow.md)
 for the complete contract.
@@ -137,13 +137,11 @@ python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
-python tools/playtest.py check
 ```
 
 `dev` selects relevant checks from the working-tree changes: ordinary runtime
 Java runs JUnit without datagen; datagen providers and generated trees run the
-double `runData` profile. Playtest accept is a human `runClient` followed by
-`python tools/playtest.py record-accept`. CI never auto-runs `runClient`. The
+double `runData` profile. CI never auto-runs `runClient`. The
 [verification guide](docs/current/verification.md) and
 [tooling guide](tools/README.md) explain profile selection and result locations.
 

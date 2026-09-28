@@ -22,9 +22,7 @@
 路线图与缺口账本把 **accepted `runtime_ready`** 当机制进度。玩家获得性是独立字段
 `survival_access`（`unreviewed` / `blocked` / `partial` / `complete` /
 `not_applicable`），**不挡** runtime 关闭，也不再有 `player_complete` 成熟度。
-试玩是项目级 cycle：大改（新能力，或世界生成 / 玩法主循环 / 获得 / GUI /
-存档 / 网络语义）打开或延长 pending；小改不作废已接受的 cycle。
-签收只能来自人跑的 `runClient` 报告。CI 不得自动 `runClient` 当试玩。
+人跑 `runClient` 发现的问题另开卡。CI 不得自动 `runClient`。
 
 `frozen` 是规格阶段。`runtime_ready` 是可关闭档。
 
@@ -75,7 +73,7 @@
 - 声明的 JUnit / GameTest / reload / 网络契约通过
 - impact graph 上所有受影响能力的 profile 在本次调用中 fresh PASS
 - `survival_access` 为 `blocked` / `partial` / `unreviewed` **不挡**关闭
-- 新能力默认 `change-class=major`，打开或延长项目试玩 cycle
+- `--change-class` 仍接受 `major` / `minor` / `none`，方便旧关闭命令；它不再记签收
 
 配方仍必须按 GT6 源逐格翻译，禁止 stand-in 配料。配方卡上缺格就保持缺口，不要用
 别的材料、原版零件或 `programmed_circuit` 顶。那是安全阀，不是缺形态的工作顺序。
@@ -87,19 +85,12 @@
 目录倒在 dirt/sand 上，当成生存获得。不要写「用主世界掉落物顶 player_complete」。合同见
 [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md)。
 
-### survival_access 与试玩 cycle
+### survival_access
 
 `survival_access` 只描述机制入口，不按 catalog 行关账。
 `complete` 需要真实 RecipeManager 或 GT6 世界生成（石块/树/矿/地牢/作物），
 不是创造栏、不是 GameTest 注入。
-
-试玩权威是 `tools/playtest/current_cycle.json`：
-
-- `major`：新能力，或大改世界生成 / 玩法主循环 / 获得 / GUI / 存档 / 网络
-- `minor` / `none`：不使已接受的 cycle 作废
-- 接受：人跑 `.\gradlew.bat runClient` 之后
-  `python tools/playtest.py record-accept --id … --signer … --i-playtested`
-- CI 与代理不得把 startup smoke / `--client` 当成试玩签收
+CI 与代理不得把 startup smoke / `--client` 当成能力签收。
 
 ### release checkpoint
 
@@ -137,17 +128,16 @@ python tools/build_capability_ledger.py --check
 python tools/build_blockers.py --check
 python tools/build_project_status.py --check
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --check
-python tools/playtest.py check
 python tools/verify.py integration --profile capability-runtime
 python tools/close_capability.py --capability <slug> --change-class major
 .\gradlew.bat runClient
 ```
 
 `--run` 创建临时 receipt、运行 isolated GameTestServer、校验结构化结果，然后写
-本地 latest report。`--run --client` 只是启动 smoke，**不是**试玩签收。
+本地 latest report。`--run --client` 只是启动 smoke。
 单独的 `--check` 只做静态声明检查。
 
-`python tools/build_<slug>.py --check` 与机制卡 `*_READY` **不是**玩家试玩。
+`python tools/build_<slug>.py --check` 与机制卡 `*_READY` 不是玩家获得证明。
 
 ## 7. 贴图
 
@@ -158,7 +148,7 @@ python tools/close_capability.py --capability <slug> --change-class major
 ## 8. Prep 车道
 
 Prep 拆开原先捆在「一条 lane」里的三件事：人读 WIP、共享文件落地锁、
-runtime 关闭与试玩 cycle。只降低第一项。无 stand-in 获得格不降。
+runtime 关闭。只降低第一项。无 stand-in 获得格不降。
 
 | 步 | 进 master？ | `unique_active_wave` | `capability.json` |
 | --- | --- | --- | --- |

@@ -25,7 +25,7 @@
 | 逻辑与数据 | JUnit | 执行时长、电缆损耗、侧面 IO 表、JSON/目录合同、配方来源追踪 |
 | 世界行为 | GameTest | 放方块、接管道、供能、tick 后看产物 |
 | 规模与性能 | 指标 + 预算测试 | 配方总数、eager/lazy、重载耗时 |
-| 玩家体验 | 人跑 `runClient` | 试玩签收，见[能力交付流程](capability-delivery-workflow.md) |
+| 玩家体验 | 人跑 `runClient` | 手感问题另开卡，见[能力交付流程](capability-delivery-workflow.md) |
 
 默认先写 JUnit。只有必须真实世界才写 GameTest。
 不要在 GameTest 里遍历几十万条配方做数据检查，放到 JUnit 或数据检查器。

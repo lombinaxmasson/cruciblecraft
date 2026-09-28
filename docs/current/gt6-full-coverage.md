@@ -25,7 +25,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料形态需求 | 6619 demand pairs | openable 220，gated_unresolved 1207，ungated 规模 3173（规模，非待办） |
 | Capability | 135 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 123，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 11，`partial` 29，`unreviewed` 31，`unset` 61 |
 | Blocker | 62 | `open` 27，`out_of_scope` 6，`partial` 2，`resolved` 22，`superseded` 5 |
-| 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
@@ -769,7 +768,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `runtime_accepted`：无 RecipeMap 的机制（发电/转换/传动等）已有 accepted capability；数值与全部变体仍需逐卡核对。
 - `denominator_only`：只有 GT6 分母，CC 侧没有找到任何实现证据。
 - `legacy_exclusion_pending`：历史分母曾排除；当前全量目标尚未重新决策，见第 14 节。
-- `survival_access`、获得格和项目试玩是独立轴，不由上面任何一列推出。
+- `survival_access` 和获得格是独立轴，不由上面任何一列推出。
 
 ## 16. 各轴来源与新鲜度
 
@@ -785,7 +784,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 前缀映射 | `tools/gt6_resolve.py` → `material_prefixes/` | live 扫描 |
 | MTE 身份 | R0 账本 + `mte_inplace_catalog.json` | 冻结账本 + live 叠加 |
 | 形态需求 | `tools/waves/prep/material-form-demand-census/census.json` | 上游产物（census builder） |
-| Capability / Blocker / 试玩 | `tools/capabilities/**`、`tools/blockers/catalog.json`、`tools/playtest/current_cycle.json` | live 扫描 |
+| Capability / Blocker | `tools/capabilities/**`、`tools/blockers/catalog.json` | live 扫描 |
 | 逐行分类 / 进度 / 行动清单 | `semantic_coverage.json`、`exclusions.json` | live 扫描 + 翻译链（`--write` 需本地 dump） |
 
 ## 17. 缺口行动清单（按杠杆排序，自动生成）

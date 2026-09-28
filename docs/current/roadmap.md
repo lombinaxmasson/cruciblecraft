@@ -2,9 +2,9 @@
 
 > 唯一总体规划与项目导航。
 > 进度计 accepted `runtime_ready` 与 `release` checkpoint。
-> 玩家获得性是独立 `survival_access`，试玩是项目级 cycle。
+> 玩家获得性是独立 `survival_access`。
 > 合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md)。
-> 现行 unique-active、prep 与试玩 cycle 只写在
+> 现行 unique-active 与 prep 只写在
 > [project-status.md](project-status.md)，不要在本页手抄。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
@@ -63,7 +63,7 @@ catalog 或对照工具。全量 GT6 源码目标与当前 runtime portfolio 分
 同一时刻只允许一张内容工作处于 active 状态。编号卡时代已经结束；现行顺序是
 semantic wave，不是下一张里程碑编号。
 
-现行 unique-active、prep 与试玩 cycle 只写在
+现行 unique-active 与 prep 只写在
 [project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
 active 状态；prep 不占落地锁，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)。
@@ -137,7 +137,7 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 已作为独立 bundle 关闭，不再等待 execution gap 清零。Storage 分母仍是 census 冻结的
 28 source sites / 624 expanded registrations；跨分类的 `mass_storage_logistics` 1/1
 保持独立计数。T44 关的是注册与单物品容量。仓储桶前缀合并已在 runtime；
-剩余差异以代码与试玩为准，不要抄归档缺口页。
+剩余差异以代码和实际游玩为准，不要抄归档缺口页。
 
 ## 5. 可玩性与表现层
 
@@ -182,7 +182,6 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
   pipeline 已逐图对账；
 - identity、material form、fluid、obtain、worldgen、runtime 和 verification 缺口均有
   owner 或明确的 out-of-scope 决策；
-- `tools/playtest/current_cycle.json` 已由人工 `runClient` 签收，或者明确保持未签收。
 
 历史 `1.x` portfolio 退出门继续作为历史审计上下文保存，但不再作为全量 GT6 目标的完成证明。
 
@@ -191,8 +190,6 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 - 日常改动运行 `python tools/verify.py dev`；
 - 修改 datagen 时必须连续双跑并比较生成树；
 - 内容卡闭合运行 `python tools/verify.py integration --profile <name>`；
-- 试玩是项目级 cycle：`python tools/playtest.py check`。人跑 `runClient`
-  后才能 `record-accept`；CI 不自动签收；
 - 只有未来玩家发行卡才运行 `python tools/verify.py release` 或历史 `--record`；
 - `4.5Fix/`、本地参考 dump、`build/`、`run*/` 与 `src/src/` 重复树不是 canonical
   主树，不得纳入主分支提交；

@@ -43,6 +43,15 @@ bin/
 run/
 run-*/
 !**/src/**/run/
+# A dedicated server was started in the repo root. Instances belong in run/.
+/world/
+/crash-reports/
+/server.properties
+/banned-ips.json
+/banned-players.json
+/ops.json
+/usercache.json
+/whitelist.json
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
@@ -57,6 +66,7 @@ gtceu_code/
 gt6_dump/
 gt6_referencable_port_code/
 ktfruaddon/
+gt6_tfru/
 _zip_extract/
 tmp-baked_textures/
 logs/
@@ -88,6 +98,7 @@ tools/bath_identity_source.json
 # Closed stone-layer wave ledgers stay tracked via the exception below.
 tools/**/*.log
 tools/waves/**/source.json
+tools/waves/**/source_receipt.json
 tools/waves/**/dump_slice.json
 tools/waves/**/identity_ledger_delta.json
 tools/waves/**/equivalence.json

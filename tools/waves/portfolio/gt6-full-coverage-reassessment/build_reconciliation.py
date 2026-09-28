@@ -1590,7 +1590,6 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
         "itemgenerator_domains": load_itemgenerator_summary(),
         "prefixes": load_prefix_summary(),
         "mte_identity_dispositions": load_mte_disposition_summary(),
-        "playtest": read_json(ROOT / "tools" / "playtest" / "current_cycle.json"),
     }
     chemistry = {
         "schema_version": 2,
@@ -1836,7 +1835,6 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     census = report["form_demand_census"]["counts"]
     capabilities = report["capabilities"]
     blockers = report["blockers"]
-    playtest = report["playtest"]
     semantic = report["semantic_coverage"]
     calibration = semantic["calibration"]
     recipe_grades = summary["recipe_evidence_grades"]
@@ -1916,7 +1914,6 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
         f"| Blocker | {len(blockers)} | "
         + "，".join(f"`{k}` {v}" for k, v in summary["blocker_states"].items())
         + " |",
-        f"| 项目试玩 | `{playtest.get('id')}` | `{playtest.get('status')}` |",
         "",
         "配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：",
         "",
@@ -2318,7 +2315,7 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "- `runtime_accepted`：无 RecipeMap 的机制（发电/转换/传动等）已有 accepted capability；数值与全部变体仍需逐卡核对。",
             "- `denominator_only`：只有 GT6 分母，CC 侧没有找到任何实现证据。",
             "- `legacy_exclusion_pending`：历史分母曾排除；当前全量目标尚未重新决策，见第 14 节。",
-            "- `survival_access`、获得格和项目试玩是独立轴，不由上面任何一列推出。",
+            "- `survival_access` 和获得格是独立轴，不由上面任何一列推出。",
             "",
             "## 16. 各轴来源与新鲜度",
             "",
@@ -2336,8 +2333,7 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "| 前缀映射 | `tools/gt6_resolve.py` → `material_prefixes/` | live 扫描 |",
             "| MTE 身份 | R0 账本 + `mte_inplace_catalog.json` | 冻结账本 + live 叠加 |",
             "| 形态需求 | `tools/waves/prep/material-form-demand-census/census.json` | 上游产物（census builder） |",
-            "| Capability / Blocker / 试玩 | `tools/capabilities/**`、`tools/blockers/catalog.json`、"
-            "`tools/playtest/current_cycle.json` | live 扫描 |",
+            "| Capability / Blocker | `tools/capabilities/**`、`tools/blockers/catalog.json` | live 扫描 |",
             "| 逐行分类 / 进度 / 行动清单 | `semantic_coverage.json`、`exclusions.json` | "
             "live 扫描 + 翻译链（`--write` 需本地 dump） |",
         ]

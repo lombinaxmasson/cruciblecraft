@@ -11,7 +11,6 @@ from pathlib import Path
 from unittest import mock
 
 from tools import capability_ledger
-from tools import playtest
 from tools import player_complete
 from tools import io_common as files
 
@@ -450,88 +449,6 @@ class PlayerCompleteTest(unittest.TestCase):
         self.assertEqual(0, features.count("GtBlockObjectScatterFeature::new"))
         self.assertIn("SURFACE_ROCK_SCATTER", features)
         self.assertNotIn("do not register another", features)
-
-
-class PlaytestCycleTest(unittest.TestCase):
-    def test_committed_cycle_is_pending_obtain_reset(self) -> None:
-        cycle = playtest.load_cycle()
-        self.assertEqual("2026-09-15-obtain-reset", cycle["id"])
-        self.assertEqual("pending", cycle["status"])
-        self.assertIn(cycle.get("accepted"), (None, {}))
-
-    def test_record_accept_requires_human_flag(self) -> None:
-        stderr = io.StringIO()
-        with contextlib.redirect_stderr(stderr):
-            code = playtest.main(
-                ["record-accept", "--id", "x", "--signer", "agent"]
-            )
-        self.assertEqual(1, code)
-        self.assertIn("--i-playtested", stderr.getvalue())
-
-    def test_minor_does_not_invalidate_accepted_cycle(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "current_cycle.json"
-            path.write_text(
-                json.dumps(
-                    {
-                        "schema_version": 1,
-                        "id": "cycle-1",
-                        "status": "accepted",
-                        "opened_at": "2026-09-01",
-                        "reason": "batch",
-                        "scope": ["gui"],
-                        "accepted": {
-                            "at": "2026-09-01",
-                            "notes": "",
-                            "signer": "human",
-                            "source": "human_report",
-                        },
-                    },
-                    indent=2,
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            with mock.patch.object(playtest, "CYCLE_PATH", path):
-                minor = playtest.record_change("minor", "typo", "docs/foo.md")
-                self.assertEqual("accepted", minor["status"])
-                self.assertEqual("cycle-1", minor["id"])
-                major = playtest.record_change("major", "worldgen", "worldgen")
-                self.assertEqual("pending", major["status"])
-                self.assertNotEqual("cycle-1", major["id"])
-
-    def test_accept_requires_matching_id_and_human_source(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "current_cycle.json"
-            path.write_text(
-                json.dumps(
-                    {
-                        "schema_version": 1,
-                        "id": "cycle-1",
-                        "status": "pending",
-                        "opened_at": "2026-09-01",
-                        "reason": "batch",
-                        "scope": ["gui"],
-                        "accepted": None,
-                    },
-                    indent=2,
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-            with mock.patch.object(playtest, "CYCLE_PATH", path):
-                with self.assertRaisesRegex(ValueError, "does not match"):
-                    playtest.record_accept(cycle_id="wrong", signer="human")
-                accepted = playtest.record_accept(
-                    cycle_id="cycle-1",
-                    signer="human",
-                )
-                self.assertEqual("accepted", accepted["status"])
-                self.assertEqual("human_report", accepted["accepted"]["source"])
-
-    def test_survival_access_does_not_block_runtime_close(self) -> None:
-        for value in playtest.SURVIVAL_ACCESS:
-            self.assertFalse(playtest.survival_access_blocks_runtime_close(value))
 
 
 if __name__ == "__main__":

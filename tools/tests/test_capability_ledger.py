@@ -248,7 +248,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         )
         self.assertEqual(
             "runtime_ready is the close maturity; survival_access is independent "
-            "and does not gate close; playtest is a project-level human cycle",
+            "and does not gate close",
             compiled["progress_rule"],
         )
 

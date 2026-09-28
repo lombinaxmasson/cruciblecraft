@@ -18,9 +18,10 @@ from tools import atomic_io
 from tools import blockers
 from tools import capability_ledger
 from tools import io_common as io
-from tools import playtest
 from tools import player_complete
 from tools import project_status
+
+CHANGE_CLASSES = ("major", "minor", "none")
 
 PATH_MAP = ROOT / "docs" / "history" / "path-map.json"
 WAVES = ROOT / "tools" / "waves"
@@ -128,7 +129,7 @@ def close_capability(
 ) -> list[str]:
     if maturity != "runtime_ready":
         raise ValueError(f"unsupported close maturity {maturity!r}")
-    if change_class not in playtest.CHANGE_CLASSES:
+    if change_class not in CHANGE_CLASSES:
         raise ValueError(f"unsupported change class {change_class!r}")
     compiled = capability_ledger.compile_ledger()
     unique = compiled.get("unique_active_slug")
@@ -147,10 +148,6 @@ def close_capability(
         errors.append(
             f"{slug}: close cannot keep player_signoff as a completion gate"
         )
-    if playtest.survival_access_blocks_runtime_close(
-        capability.get("survival_access")
-    ):
-        errors.append(f"{slug}: survival_access must not block runtime close")
     for lock_path in _owned_wave_files(capability, "production_lock.json"):
         note = str(_load_json(lock_path).get("note") or "")
         if _lock_claims_player_complete(note):
@@ -167,11 +164,6 @@ def close_capability(
     if not document.get("survival_access"):
         document["survival_access"] = "unreviewed"
     _write_json(path, document)
-    playtest.record_change(
-        change_class,
-        f"closed {slug}",
-        f"capability close {slug} ({change_class})",
-    )
     for filename in ("topology.json", "readiness.json"):
         for wave_path in _owned_wave_files(capability, filename):
             _null_unique_active_wave(wave_path)
@@ -203,8 +195,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--change-class",
         default="major",
-        choices=playtest.CHANGE_CLASSES,
-        help="major opens/extends the project playtest cycle; minor/none do not",
+        choices=CHANGE_CLASSES,
+        help="kept so older close commands still parse; it does not record a sign-off",
     )
     parser.add_argument(
         "--verify",
@@ -228,7 +220,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"closed {args.capability}")
     print(
         "Confirm production lock, identity reasons, and non-scope before committing. "
-        "Do not commit receipts. Playtest accept is a separate human report."
+        "Do not commit receipts."
     )
     return 0
 

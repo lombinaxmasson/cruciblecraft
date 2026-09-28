@@ -5,7 +5,7 @@
 
 ## 现行
 
-- [项目状态](current/project-status.md)（unique-active、prep、试玩 cycle；由 capability 投影，不要在本页手写）
+- [项目状态](current/project-status.md)（unique-active、prep；由 capability 投影，不要在本页手写）
 - [GT6 全量覆盖重评估](current/gt6-full-coverage.md)（本地 GT6 分母与当前工作树 reconciliation；不把 runtime_ready 当全量完成）
 - [GT6 全量覆盖：工作流与检测](current/gt6-full-coverage-workflow.md)（各列口径、何时重跑、CI `--check`；配方行要带 provenance 才计入源行）
 - [总体规划](current/roadmap.md)

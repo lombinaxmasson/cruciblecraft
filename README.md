@@ -14,7 +14,7 @@
 
 ## 目前进了运行时的东西
 
-当前工作树已经有材料、能源、加工机、物流、世界生成和多方块等多类可运行机制；其中部分内容是 bounded subset，部分 capability 仍 frozen/paused，生存获得和试玩另算。完整 GT6 源码覆盖不以运行时 capability 数量或资源文件数代替，必须查看 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md) 的 source/runtime/published/survival 四个独立轴。第三方集成方面，EMI 能看配方，Jade 能看方块信息，Reliable EMI（REMI / EMI++）能把同形态材料、同种工具、同种加工机 / 能量转换器，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具在物品列表里折叠，KubeJS 是可选项——这些都不会强制捆绑进包里。
+当前工作树已经有材料、能源、加工机、物流、世界生成和多方块等多类可运行机制；其中部分内容是 bounded subset，部分 capability 仍 frozen/paused，生存获得另算。完整 GT6 源码覆盖不以运行时 capability 数量或资源文件数代替，必须查看 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md) 的 source/runtime/published/survival 四个独立轴。第三方集成方面，EMI 能看配方，Jade 能看方块信息，Reliable EMI（REMI / EMI++）能把同形态材料、同种工具、同种加工机 / 能量转换器，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具在物品列表里折叠，KubeJS 是可选项——这些都不会强制捆绑进包里。
 
 具体进度和缺口记在 [项目状态](docs/current/project-status.md)、[未实现与缺口](docs/current/unimplemented-gap.md)、[已阻塞项](docs/current/blocked.md) 里。
 
@@ -71,13 +71,13 @@ Source Pack（GT6 来源或明确的项目设计）
 
 ### 能力状态
 
-项目用 capability 来跟踪一个东西的规格是否定清楚了、机制能不能跑起来；玩家能不能拿到手是单独的字段。试玩是项目级别的一个周期：
+项目用 capability 来跟踪一个东西的规格是否定清楚了、机制能不能跑起来；玩家能不能拿到手是单独的字段：
 
 - `frozen`：范围、来源和依赖都定下来了；
 - `runtime_ready`：运行时机制能用了，可以关闭这张卡，至于内容或获取路径是否补齐是另一回事；
 - `survival_access`：单独描述获得性（`unreviewed` / `blocked` / `partial` / `complete` / `not_applicable`），不会卡住 runtime 的关闭。
 
-路线图把 accepted 的 `runtime_ready` 算作机制进度，但试玩签收只认人工跑一遍 `runClient` 之后的结果。现行的能力集合见[项目状态](docs/current/project-status.md)，完整定义见[能力交付流程](docs/current/capability-delivery-workflow.md)。
+路线图把 accepted 的 `runtime_ready` 算作机制进度。人跑 `runClient` 发现的问题另开卡，不另记项目级签收。现行的能力集合见[项目状态](docs/current/project-status.md)，完整定义见[能力交付流程](docs/current/capability-delivery-workflow.md)。
 
 ### 验证
 
@@ -90,10 +90,9 @@ python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile capability-runtime
-python tools/playtest.py check
 ```
 
-`dev` 会根据工作区改了什么来挑要跑的检查：普通的运行时 Java 改动只跑 JUnit，不碰 datagen；碰到 datagen provider 或生成树的改动才会跑两遍 `runData`。试玩签收是先人工跑一遍 `runClient`，再执行 `python tools/playtest.py record-accept`，CI 不会自动帮你跑 `runClient`。具体该跑哪些 profile、结果记在哪，见[开发与验证指南](docs/current/verification.md)和[工具链说明](tools/README.md)。
+`dev` 会根据工作区改了什么来挑要跑的检查：普通的运行时 Java 改动只跑 JUnit，不碰 datagen；碰到 datagen provider 或生成树的改动才会跑两遍 `runData`。CI 不会自动跑 `runClient`。具体该跑哪些 profile、结果记在哪，见[开发与验证指南](docs/current/verification.md)和[工具链说明](tools/README.md)。
 
 ## 代码结构
 

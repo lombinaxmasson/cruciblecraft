@@ -39,7 +39,7 @@ dump 行 hash 缓存在 `build/gt6_full_coverage/`（gitignored），首次约 4
 
 下列任一输入变化，页面就过期，`--check` 会失败：
 
-- `tools/capabilities/**/capability.json`、`tools/blockers/catalog.json`、`tools/playtest/current_cycle.json`
+- `tools/capabilities/**/capability.json`、`tools/blockers/catalog.json`
 - 运行时资源根里的配方 JSON（`src/main/resources` 加 `tools/generated_resource_roots.json` 列出的根），
   以及 `gradle/scripts/source-sets.gradle` 的 exclude
 - `tools/component_rule_manifest.json`、`tools/waves/**/overflow.json`、形态需求普查 `census.json`
@@ -242,7 +242,7 @@ CI 上没有配方 dump。`source_attribution.json` 记录了：
 | 能量 | `EnergyType.java` | 是 |
 | 材料前缀映射 | `tools/gt6_resolve.py` → `material_prefixes/` | 是 |
 | MTE 身份 | R0 账本 + `mte_inplace_catalog.json` 叠加 | 叠加部分是 |
-| capability / blocker / 试玩 / 形态普查 | 各自 ledger | 是（普查本身由 census builder 刷新） |
+| capability / blocker / 形态普查 | 各自 ledger | 是（普查本身由 census builder 刷新） |
 | 各轴“历史源分母分类” | `tools/machine_tree_denominators/*.json` | 否，冻结分母 |
 | 物品/流体生成域的“CC 域” | `itemgenerator_domains.json` | 否，冻结分母 |
 
@@ -252,7 +252,7 @@ CI 上没有配方 dump。`source_attribution.json` 记录了：
 ## 6. 改写本页或 builder 时的规则
 
 - 新增的每一列都必须从被跟踪的 live 来源算出来，或者明确标成冻结分母。
-  不要往 builder 里写只能手工维护的数字；只有人能判断的事（例如试玩签收），链接过去，不要抄进来。
+  不要往 builder 里写只能手工维护的数字；只有人能判断的事，链接到对应账本，不要抄进来。
 - 如果某个缺口没法从工作树自动判断，先改证据来源（让 wave 写出 provenance、让目录记录宿主），
   不要在本页加手写表。
 - `LOCAL_MAP_ALIASES`、`CC_MAP_GT6_OWNERS` 这类别名只能根据行级证据或 normalized reference 添加，

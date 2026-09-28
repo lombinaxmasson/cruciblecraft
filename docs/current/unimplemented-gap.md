@@ -6,7 +6,7 @@
 > 与 [blocked.md](blocked.md) 是它们的投影，不要手改。
 > 全量 GT6 源覆盖、RecipeMap 对账和四轴缺口见
 > [gt6-full-coverage.md](gt6-full-coverage.md)；本页不再承担全量进度判断。
-> unique-active、prep 文件列表与试玩 cycle 以状态页为准；
+> unique-active 与 prep 文件列表以状态页为准；
 > blocker 排期以 catalog / blocked 为准。
 > `*_READY` 只表示分母、来源或机制可跑，不表示游戏里已经有完整内容。
 > Prep 计划文件存在 ≠ runtime 没做。R0 disposition 标签 ≠ 剩余 dummy。
@@ -15,7 +15,7 @@
 
 | 用途 | 权威 |
 | --- | --- |
-| 当前 unique-active / prep / 试玩 cycle | [project-status.md](project-status.md) |
+| 当前 unique-active / prep | [project-status.md](project-status.md) |
 | 跨能力 blocked 总账 | [blocked.md](blocked.md) / [`catalog.json`](../../tools/blockers/catalog.json) / [`ledger.json`](../../tools/blockers/ledger.json) |
 | 批处理关系 | [`batches.json`](../../tools/blockers/batches.json) |
 | 状态与交付流程 | [capability-delivery-workflow.md](capability-delivery-workflow.md) |

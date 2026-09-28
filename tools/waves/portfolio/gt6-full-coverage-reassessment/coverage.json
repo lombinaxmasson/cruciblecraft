@@ -29,8 +29,7 @@
       "recipe_waves": "tools/waves/**/production_lock.json",
       "recipe_overflow": "tools/waves/**/overflow.json",
       "material_form_census": "tools/waves/prep/material-form-demand-census/census.json",
-      "mte_disposition": "tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json",
-      "playtest": "tools/playtest/current_cycle.json"
+      "mte_disposition": "tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json"
     },
     "target_boundary": {
       "full_gt6_source": "All source-backed canonical identities in the frozen denominator unless explicitly marked out_of_scope.",
@@ -24168,53 +24167,5 @@
         "identity_only": 1
       }
     }
-  },
-  "playtest": {
-    "schema_version": 1,
-    "id": "2026-09-15-obtain-reset",
-    "status": "pending",
-    "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine; closed energy/fusion-quantum; closed presentation/multiblock-emi-projection; closed presentation/multiblock-schema-preview; closed registry/gt6-form-open-followup",
-    "scope": [
-      "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
-      "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
-      "capability close content/gt6-crucible-mold-interaction (major)",
-      "capability close content/gt6-foundry-art (major)",
-      "capability close worldgen/gt-surface-rocks (major)",
-      "capability close worldgen/gt-stone-layer-rocks (major)",
-      "capability close registry/prefix-material-component (major)",
-      "registry: public-exchange prefixes moved off PrefixMaterialItem onto per-material MaterialItem plus exact c: tags; leftover mill JSON rewritten",
-      "capability close registry/hybrid-material-identity (major)",
-      "content/gt6-storage-art: replace vanilla oak/iron placeholders with gregtech6_w colored+overlay",
-      "capability close content/gt6-storage-art (major)",
-      "capability close machines/bath (major)",
-      "capability close machines/hammer-squeezer-laser (major)",
-      "capability close machines/distillation-tower (major)",
-      "capability close energy/large-gas-turbine (major)",
-      "worldgen/gt-trees rubber tree to rubber chain",
-      "capability close machines/large-processing-parts (major)",
-      "capability close machines/implosion-compressor (major)",
-      "capability close fluid/gt6-missing-fluids (major)",
-      "capability close recipe/gt6-bulk-capacity (major)",
-      "capability close recipe/gt6-extruder-bulk (major)",
-      "capability close recipe/gt6-extruder-remainder (major)",
-      "capability close recipe/gt6-prefix-regular-bulk (major)",
-      "capability close recipe/gt6-chemical-misc-bulk (major)",
-      "capability close machines/gt6-basic-machine-batch (major)",
-      "recipe/gt6-steamcracking-bulk",
-      "capability close recipe/gt6-steamcracking-bulk (major)",
-      "energy/gt6-laser-magnet-zpm-converters",
-      "capability close energy/gt6-remainder-devices (major)",
-      "capability close content/gt6-fluid-barrel (major)",
-      "capability close machines/gt6-multiblock-tanks (major)",
-      "capability close machines/large-autoclave (major)",
-      "capability close energy/large-heat-exchanger (major)",
-      "capability close energy/steam-turbine (major)",
-      "capability close energy/fusion-quantum (major)",
-      "capability close presentation/multiblock-emi-projection (major)",
-      "capability close presentation/multiblock-schema-preview (major)",
-      "capability close registry/gt6-form-open-followup (major)"
-    ],
-    "accepted": null
   }
 }

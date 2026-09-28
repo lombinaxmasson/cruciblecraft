@@ -124,28 +124,6 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     lines.extend(
         [
             "",
-            "## Playtest cycle",
-            "",
-        ]
-    )
-    try:
-        from tools import playtest as playtest_cycle
-
-        cycle = playtest_cycle.load_cycle()
-        lines.append(
-            f"`{cycle['id']}` **{cycle['status']}**. "
-            "Major worldgen / gameplay / obtain / GUI / save / network changes "
-            "open or extend this cycle. Ordinary bugfix does not invalidate it. "
-            "Accept only after a human `runClient`; CI never auto-signs."
-        )
-        if cycle.get("reason"):
-            lines.append("")
-            lines.append(str(cycle["reason"]))
-    except Exception:
-        lines.append("missing `tools/playtest/current_cycle.json`.")
-    lines.extend(
-        [
-            "",
             f"## runtime_ready accepted（{len(runtime_ready)}）",
             "",
             "机制可跑。`survival_access` 独立、不挡关闭。"
@@ -216,7 +194,6 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             "与 [unimplemented-gap.md](unimplemented-gap.md)。",
             "跨能力 blocked 总账见 [blocked.md](blocked.md)。",
             "关闭一张卡：`python tools/close_capability.py --capability <slug> --change-class major`。",
-            "试玩签收：`python tools/playtest.py record-accept --id <cycle> --signer <name> --i-playtested`。",
             "",
         ]
     )

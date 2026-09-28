@@ -30,12 +30,6 @@
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 - `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## Playtest cycle
-
-`2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
-
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine; closed energy/fusion-quantum; closed presentation/multiblock-emi-projection; closed presentation/multiblock-schema-preview; closed registry/gt6-form-open-followup
-
 ## runtime_ready accepted（123）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
@@ -194,4 +188,3 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 与 [unimplemented-gap.md](unimplemented-gap.md)。
 跨能力 blocked 总账见 [blocked.md](blocked.md)。
 关闭一张卡：`python tools/close_capability.py --capability <slug> --change-class major`。
-试玩签收：`python tools/playtest.py record-accept --id <cycle> --signer <name> --i-playtested`。

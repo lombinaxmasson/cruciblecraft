@@ -792,7 +792,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--client",
         action="store_true",
-        help="optional startup smoke runClient; never a playtest accept",
+        help="optional startup smoke runClient",
     )
     parser.add_argument(
         "--gametest-receipt",

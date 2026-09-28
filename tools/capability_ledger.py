@@ -321,7 +321,7 @@ def compile_ledger() -> dict[str, Any]:
         "profiles": compiled_profiles,
         "progress_rule": (
             "runtime_ready is the close maturity; survival_access is independent "
-            "and does not gate close; playtest is a project-level human cycle"
+            "and does not gate close"
         ),
         "schema_version": 2,
         "unique_active_slug": unique_active_slug,
