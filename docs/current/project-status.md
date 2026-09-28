@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`runtime/compact-family-jar-bundles`（Compact Family Jar Bundles，`workflow=active`，`maturity=frozen`）；计划 [紧凑配方发行包详细计划](../history/card-plans/active/紧凑配方发行包详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -37,7 +37,7 @@
 
 Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine; closed energy/fusion-quantum
 
-## runtime_ready accepted（119）
+## runtime_ready accepted（120）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -155,6 +155,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `registry/hybrid-material-identity` — Hybrid material identity — [材料身份分层混合详细计划](../history/card-plans/closed/材料身份分层混合详细计划.md)
 - `registry/prefix-material-component` — Prefix Material Component — [材料前缀组件身份详细计划](../history/card-plans/closed/材料前缀组件身份详细计划.md)
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
+- `runtime/compact-family-jar-bundles` — Compact Family Jar Bundles — [紧凑配方发行包详细计划](../history/card-plans/closed/紧凑配方发行包详细计划.md)
 - `runtime/workbench-tool-runtime-recipes` — Workbench Tool Runtime Recipes — [工作台工具运行时配方详细计划](../history/card-plans/closed/工作台工具运行时配方详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-stone-layer-rocks` — GT Stone Layer Rocks — [GT6 石层石子](../history/card-plans/closed/GT6石层石子详细计划.md)
@@ -170,7 +171,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## frozen（9）
+## frozen（8）
 
 分母已冻。仍 `paused` 的 PUV/OMEGA 卡代码已在 `src/main`，机器和 PUV2–OMEGA 零件是 GT6 注册内容，停在这里是因为还没关卡。中性物质 bootstrap 和 `MT.Neutronium` 生存链才是 `CC_EXTENSION`。地牢是结构载体，房间内容仍 blocked。
 
@@ -181,7 +182,6 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
-- `runtime/compact-family-jar-bundles` — Compact Family Jar Bundles（`workflow=active`） — [紧凑配方发行包详细计划](../history/card-plans/active/紧凑配方发行包详细计划.md)
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 
 ## 关闭计划
