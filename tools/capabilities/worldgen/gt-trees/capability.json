@@ -47,6 +47,7 @@
     "biomeFilterMatchesFrozenMap",
     "everySpeciesGrowsLogsAndLeaves",
     "handDrillTapsMapleAndRainbowood",
+    "mapleHoleFillsMapleSap",
     "mapleAndRainbowoodGrowPlaceNoHoles",
     "playerSurfaceIsRegistered",
     "rubberGrowPlacesOneHole",
@@ -176,9 +177,11 @@
     },
     {
       "semantic_key": "fluid:FL.Sap_Maple",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "FL.Sap_Maple is missing; maple hole still freezes and drills."
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:maplesap"
+      ],
+      "reason": "GT6 FL.Sap_Maple is a named fluid; maple tree holes return 250 mB of the exact named identity."
     },
     {
       "semantic_key": "fluid:FL.Sap_Rainbow",
@@ -189,5 +192,5 @@
       "reason": "bath_remainder_fluid_mapping already names rainbow_sap."
     }
   ],
-  "note": "Nine WorldgenTree* features plus three tree holes. Close at runtime_ready, not player_complete. Do not delete press/slime_ball_to_rubber_plate. Rubber tree sap is live; maple sap stays blocked. Dungeon, planet rocks, and Center stay queued prep."
+  "note": "Nine WorldgenTree* features plus three tree holes. Close at runtime_ready, not player_complete. Do not delete press/slime_ball_to_rubber_plate. Rubber and maple sap are live named fluids. Dungeon, planet rocks, and Center stay queued prep."
 }

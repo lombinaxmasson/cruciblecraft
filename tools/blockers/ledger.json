@@ -29,33 +29,6 @@
       {
         "auto_promote_player_complete": false,
         "boundary_notes": [
-          "3 个 MV/HV/IV host 是实现目标。",
-          "535 条 overflow 是重算上下文，不承诺顺便清掉全部行。",
-          "source-exact LV 与 Chromium EV host 不授权为其余 host 使用 stand-in。"
-        ],
-        "does_not_merge_counts": true,
-        "excluded_blocker_ids": [],
-        "id": "batch/machines-injector-host-closure",
-        "kind": "machine_closure",
-        "members": [
-          {
-            "blocker_id": "obtain/injector-mv-hv-iv-hosts",
-            "role": "primary"
-          },
-          {
-            "blocker_id": "recipe/injector-overflow",
-            "role": "scale_context"
-          }
-        ],
-        "production_lock_policy": "host_lock_then_overflow_recompute",
-        "production_locks": [
-          "tools/waves/machines/injector/production_lock.json"
-        ],
-        "title": "注射机主机获得格收口"
-      },
-      {
-        "auto_promote_player_complete": false,
-        "boundary_notes": [
           "两个 identity 都影响 energy/nuclear-fission-hot-fluids 与注射机 source review。",
           "不能因为 root cause class 都是 missing_fluid，就并入印刷机染料或熔炉油 / XP 流体。",
           "解决这些 identity 不会重开或自动重关已经完成的 hot-fluid capability。"
@@ -84,26 +57,26 @@
       {
         "auto_promote_player_complete": false,
         "boundary_notes": [
-          "Maple sap still belongs to worldgen/gt-trees freeze / drill source path.",
-          "Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.",
-          "印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。"
+          "All five Injector hosts 20261-20265 were closed by machines/injector.",
+          "535 overflow rows remain scale context and are not a task count."
         ],
         "does_not_merge_counts": true,
         "excluded_blocker_ids": [
-          "recipe/printer-dye-fluids",
-          "recipe/oven-cooking-oil-xp"
+          "obtain/injector-mv-hv-iv-hosts"
         ],
-        "id": "batch/fluid-gt-tree-identity",
-        "kind": "domain_fluid_closure",
+        "id": "batch/machines-injector-host-closure",
+        "kind": "machine_closure",
         "members": [
           {
-            "blocker_id": "fluid/sap-maple",
-            "role": "primary"
+            "blocker_id": "recipe/injector-overflow",
+            "role": "scale_context"
           }
         ],
-        "production_lock_policy": "separate_fluid_identity_validation",
-        "production_locks": [],
-        "title": "GT 树流体身份收口"
+        "production_lock_policy": "host_lock_then_overflow_recompute",
+        "production_locks": [
+          "tools/waves/machines/injector/production_lock.json"
+        ],
+        "title": "注射机 overflow 重算上下文"
       }
     ],
     "closed_before_batch_selection": [
@@ -196,16 +169,12 @@
         "batch_id": "batch/identity-eu-gauge-closure"
       },
       {
-        "basis": "3 个已冻结 host 是有界的机器获得格目标；535 条 overflow 只保留为规模上下文。",
-        "batch_id": "batch/machines-injector-host-closure"
-      },
-      {
         "basis": "2 个相关裂变流体 identity 共享热流体与注射机影响面。",
         "batch_id": "batch/fluid-fission-identity"
       },
       {
-        "basis": "Maple sap remains the GT tree fluid identity; rubber tree sap is live.",
-        "batch_id": "batch/fluid-gt-tree-identity"
+        "basis": "Host acquisition is closed; retain the batch only for 535-row overflow recomputation context.",
+        "batch_id": "batch/machines-injector-host-closure"
       }
     ],
     "schema_version": 1
@@ -366,7 +335,7 @@
       "blocks_maturity": "player_complete",
       "claimed_by": [
         {
-          "note_marker": "MV/HV/IV stay acquisition-blocked",
+          "note_marker": "All five hosts 20261-20265 have source-exact acquisition recipes",
           "slug": "machines/injector"
         }
       ],
@@ -375,13 +344,13 @@
       "id": "obtain/injector-mv-hv-iv-hosts",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "LV and Chromium EV hosts are source-exact. Do not stand in other motors.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "All five Injector hosts 20261-20265 have source-exact acquisition recipes and pass the injector GameTest. The 535-row overflow remains a separate scale context.",
+      "planning_bucket": "not_work",
+      "resolved_by": "machines/injector",
       "root_cause": "missing_host_acquisition_parts",
       "root_cause_class": "missing_form",
-      "status": "open",
-      "title": "注射机 MV/HV/IV 主机获得格仍 blocked",
+      "status": "resolved",
+      "title": "注射机五档主机获得格已按 source-exact 收口",
       "unit": "hosts"
     },
     {
@@ -1453,24 +1422,19 @@
         "tools/capabilities/worldgen/gt-trees/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "fluid:FL.Sap_Maple",
-          "slug": "worldgen/gt-trees"
-        }
-      ],
+      "claimed_by": [],
       "count": 1,
       "discovered_by": "worldgen/gt-trees",
       "id": "fluid/sap-maple",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Maple hole still freezes and drills.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "GT6 FL.Sap_Maple is registered as cruciblecraft:maplesap; maple tree holes return the exact 250 mB named fluid. No stand-in fluid is used.",
+      "planning_bucket": "not_work",
+      "resolved_by": "worldgen/gt-trees",
       "root_cause": "missing_maple_sap_fluid",
       "root_cause_class": "missing_fluid",
-      "status": "open",
-      "title": "FL.Sap_Maple 缺失",
+      "status": "resolved",
+      "title": "FL.Sap_Maple 已注册并接入枫树树洞",
       "unit": "fluids"
     },
     {
@@ -1898,12 +1862,6 @@
     },
     {
       "count": 1,
-      "id": "fluid/sap-maple",
-      "planning_bucket": "schedulable",
-      "unit": "fluids"
-    },
-    {
-      "count": 1,
       "id": "fluid/thorium-salt",
       "planning_bucket": "schedulable",
       "unit": "fluids"
@@ -1919,12 +1877,6 @@
       "id": "identity/processing-ungated-families",
       "planning_bucket": "schedulable",
       "unit": "families"
-    },
-    {
-      "count": 3,
-      "id": "obtain/injector-mv-hv-iv-hosts",
-      "planning_bucket": "schedulable",
-      "unit": "hosts"
     },
     {
       "count": 3,
@@ -2005,15 +1957,13 @@
     ],
     "missing_fluid": [
       "fluid/ic2-coolant",
-      "fluid/sap-maple",
       "fluid/thorium-salt",
       "recipe/oven-cooking-oil-xp",
       "recipe/printer-dye-fluids"
     ],
     "missing_form": [
       "energy/reactor-backpack-radioactivity",
-      "material-form/copper-family-curved-plate",
-      "obtain/injector-mv-hv-iv-hosts"
+      "material-form/copper-family-curved-plate"
     ],
     "missing_mod_bridge": [
       "peripheral/sensors-computercraft"
@@ -2157,11 +2107,6 @@
       },
       {
         "count": 1,
-        "id": "fluid/sap-maple",
-        "unit": "fluids"
-      },
-      {
-        "count": 1,
         "id": "fluid/thorium-salt",
         "unit": "fluids"
       },
@@ -2179,11 +2124,6 @@
         "count": null,
         "id": "material-form/copper-family-curved-plate",
         "unit": ""
-      },
-      {
-        "count": 3,
-        "id": "obtain/injector-mv-hv-iv-hosts",
-        "unit": "hosts"
       },
       {
         "count": 3,
@@ -2221,15 +2161,15 @@
     "audit_first": 10,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 13
+    "schedulable": 11
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 29,
+    "open": 27,
     "out_of_scope": 6,
     "partial": 2,
-    "resolved": 20,
+    "resolved": 22,
     "superseded": 5,
     "total": 62
   }

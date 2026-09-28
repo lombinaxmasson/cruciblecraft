@@ -14,7 +14,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39033（5.4%）；缺身份 89907（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 1，`bounded_subset` 40，`runtime_accepted` 33，`full_replay` 11 |
 | 多方块控制器 | 30 canonical kinds | `runtime_paused` 2，`runtime_accepted` 28 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -22,17 +22,17 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
-| 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 133 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 121，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 10，`partial` 29，`unreviewed` 30，`unset` 61 |
-| Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
+| 材料形态需求 | 6619 demand pairs | openable 220，gated_unresolved 1207，ungated 规模 3173（规模，非待办） |
+| Capability | 135 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 123，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 11，`partial` 29，`unreviewed` 31，`unset` 61 |
+| Blocker | 62 | `open` 27，`out_of_scope` 6，`partial` 2，`resolved` 22，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
 - **已证明** 565619（78.5%）：`source_exact` 558645，`translated_exact` 6974
 - **部分一致** 3064（0.4%）：`translated_io_only` 0，`translated_item_io` 3064
-- **缺配方** 39032（5.4%）：`translatable_missing` 39032
-- **缺身份** 89908（12.5%）：`missing_material_form` 66811，`missing_material` 0，`missing_fluid` 7978，`missing_object` 15119
+- **缺配方** 39033（5.4%）：`translatable_missing` 39033
+- **缺身份** 89907（12.5%）：`missing_material_form` 66810，`missing_material` 0，`missing_fluid` 7978，`missing_object` 15119
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
 
@@ -69,7 +69,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.fuels.turbine` | 1 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.hammer` | 309 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | identity/processing-ungated-families, tools/world-behaviors |
 | `gt.recipe.juicer` | 96 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | recipe/squeezer-dump-5322, worldgen/food |
-| `gt.recipe.other` | 71 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | obtain/injector-mv-hv-iv-hosts, obtain/wooden-bathing-pot-glue, recipe/loom-overflow |
+| `gt.recipe.other` | 71 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | obtain/wooden-bathing-pot-glue, recipe/loom-overflow |
 | `gt.recipe.scannervisuals` | 50 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.toolhead` | 10960 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.trees` | 15 | deferred_with_reason | `denominator_only` | 0 | 0 | — | 0 | — | 0 | — | fluid/resin-rubber, fluid/sap-maple, worldgen/crops-glowtus-bush |
@@ -190,7 +190,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.bath` | 59855 | 59791 | 82.7% | 91.8% | 49407 | 9 | 0 | 2981 | 2505 | 3568 | 0 | 1382 | 1 | 2 | 0 |
 | `gt.recipe.shredder` | 41246 | 41245 | 71.6% | 86.3% | 29180 | 363 | 0 | 0 | 6061 | 5359 | 0 | 0 | 283 | 0 | 0 |
 | `gt.recipe.cutter` | 27454 | 27446 | 92.5% | 92.6% | 25389 | 5 | 0 | 12 | 0 | 0 | 0 | 0 | 2048 | 0 | 0 |
-| `gt.recipe.boxinator` | 27291 | 27291 | 0.0% | 41.9% | 0 | 0 | 0 | 0 | 11439 | 15440 | 0 | 0 | 412 | 0 | 0 |
+| `gt.recipe.boxinator` | 27291 | 27291 | 0.0% | 41.9% | 0 | 0 | 0 | 0 | 11440 | 15439 | 0 | 0 | 412 | 0 | 0 |
 | `gt.recipe.smelter` | 21969 | 21968 | 83.8% | 84.0% | 18209 | 201 | 0 | 3 | 35 | 3442 | 0 | 58 | 21 | 0 | 0 |
 | `gt.recipe.unboxinator` | 17513 | 17505 | 0.0% | 43.4% | 0 | 0 | 0 | 0 | 7594 | 9816 | 0 | 0 | 95 | 8 | 0 |
 | `gt.recipe.crusher` | 12932 | 12932 | 94.4% | 94.6% | 12210 | 3 | 0 | 0 | 24 | 493 | 0 | 0 | 202 | 0 | 0 |
@@ -562,17 +562,17 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 - 来源：`tools/waves/prep/material-form-demand-census/census.json`
 - `already_gated_live`：2
-- `deferred_by_decision`：347
-- `demand_pairs`：1652
-- `dump_demand_pairs`：1584
-- `dump_demand_rows`：17567
+- `deferred_by_decision`：5190
+- `demand_pairs`：6619
+- `dump_demand_pairs`：6551
+- `dump_demand_rows`：28623
 - `gated_unresolved`：1207
 - `not_form`：74
-- `openable`：96
+- `openable`：220
 - `skipped`：0
-- `ungated_generated_flag_pairs`：3298
+- `ungated_generated_flag_pairs`：3173
 
-## 12. Capability（133）
+## 12. Capability（135）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -688,6 +688,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `portfolio/publication-reload-performance` | runtime_ready | accepted | not_applicable |
 | `portfolio/test-authoring-workflow` | runtime_ready | accepted | not_applicable |
 | `presentation/multiblock-emi-projection` | runtime_ready | accepted | not_applicable |
+| `presentation/multiblock-schema-preview` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-bulk-capacity` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-chemical-misc-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
@@ -695,6 +696,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/gt6-prefix-regular-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-steamcracking-bulk` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
+| `registry/gt6-form-open-followup` | runtime_ready | accepted | unreviewed |
 | `registry/gt6-long-tail-forms` | runtime_ready | accepted | unreviewed |
 | `registry/gt6-storage-dust-blocks` | runtime_ready | accepted | unreviewed |
 | `registry/hybrid-material-identity` | runtime_ready | accepted | not_applicable |
@@ -710,7 +712,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `worldgen/gt-surface-rocks` | runtime_ready | accepted | partial |
 | `worldgen/gt-trees` | runtime_ready | accepted | — |
 
-## 13. 未关闭 blocker（31）
+## 13. 未关闭 blocker（29）
 
 | blocker | 状态 | 排期桶 | 规模 | 根因 | 标题 |
 | --- | --- | --- | --- | --- | --- |
@@ -733,12 +735,10 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/nanofab-overflow` | open | scale_not_todo | 57 rows | unmapped_operand | 纳米加工机 overflow 仍 blocked |
 | `worldgen/food` | open | scale_not_todo | n/a | missing_runtime | Food 榨汁/发酵仍缺 runtime |
 | `fluid/ic2-coolant` | open | schedulable | 1 fluids | missing_fluid | IC2 工业冷却液不是 CC 流体 |
-| `fluid/sap-maple` | open | schedulable | 1 fluids | missing_fluid | FL.Sap_Maple 缺失 |
 | `fluid/thorium-salt` | open | schedulable | 1 fluids | missing_fluid | 钍盐到 LiCl 无 CC 身份 |
 | `identity/converter-turbines-battery-boxes` | open | schedulable | 8 items | unmapped_identity | 转换机折回 6 轮机 + 2 电池箱 |
 | `identity/processing-ungated-families` | open | schedulable | 3 families | unmapped_identity | 加工机折回未开门家族 |
 | `material-form/copper-family-curved-plate` | open | schedulable | n/a | missing_form | 流体/物品管五档工作台缺 live curved_plate/double_plate |
-| `obtain/injector-mv-hv-iv-hosts` | open | schedulable | 3 hosts | missing_form | 注射机 MV/HV/IV 主机获得格仍 blocked |
 | `obtain/redstone-wiregt01` | open | schedulable | 3 items | missing_obtain | 红石 wireGt01 获得格仍 blocked |
 | `obtain/wooden-bathing-pot-glue` | open | schedulable | 2 hosts | unmapped_operand | 木浸洗盆胶水获得格仍 blocked |
 | `recipe/laminator-overflow` | open | schedulable | 12 rows | unmapped_operand | 层压机 unmapped MTE overflow |
@@ -839,7 +839,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 物品/方块 | `gregtech:gt.multitileentity` | 145 | — | extruder 144, shredder 1 |  |
 | 物品/方块 | `gregtech:gt.stone.andesite` | 140 | — | laserengraver 75, extruder 56, cutter 5 |  |
 
-按类型合计（第一缺口口径）：材料形态 66811，物品/方块 14958，流体 7832
+按类型合计（第一缺口口径）：材料形态 66810，物品/方块 14958，流体 7832
 
 ### 17.2 缺配方（按机器，前 20 项）
 
@@ -847,7 +847,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 map | 缺配方行 | 部分一致 | 已证明 | 交付深度 | 提示 |
 | --- | ---: | ---: | ---: | --- | --- |
-| `gt.recipe.boxinator` | 11439 | 0 | 0 | `runtime_only` | 新开 dump wave |
+| `gt.recipe.boxinator` | 11440 | 0 | 0 | `runtime_only` | 新开 dump wave |
 | `gt.recipe.unboxinator` | 7594 | 0 | 0 | `denominator_only` | 先做机器，再做 wave |
 | `gt.recipe.shredder` | 6061 | 0 | 29543 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.sluice` | 4840 | 0 | 0 | `bounded_subset` | 新开 dump wave |

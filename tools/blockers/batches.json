@@ -90,16 +90,12 @@
       "basis": "EU dummy catalog leftover rows still need audit; HSLA alias dummies and connector duals with live hosts are folded."
     },
     {
-      "batch_id": "batch/machines-injector-host-closure",
-      "basis": "3 个已冻结 host 是有界的机器获得格目标；535 条 overflow 只保留为规模上下文。"
-    },
-    {
       "batch_id": "batch/fluid-fission-identity",
       "basis": "2 个相关裂变流体 identity 共享热流体与注射机影响面。"
     },
     {
-      "batch_id": "batch/fluid-gt-tree-identity",
-      "basis": "Maple sap remains the GT tree fluid identity; rubber tree sap is live."
+      "batch_id": "batch/machines-injector-host-closure",
+      "basis": "Host acquisition is closed; retain the batch only for 535-row overflow recomputation context."
     }
   ],
   "batches": [
@@ -124,33 +120,6 @@
         "addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。",
         "石墨烯/超导 EU dummy catalog 行不是删除集合。",
         "HSLA alias dummies and connector duals with live hosts are already folded."
-      ],
-      "does_not_merge_counts": true,
-      "auto_promote_player_complete": false
-    },
-    {
-      "id": "batch/machines-injector-host-closure",
-      "title": "注射机主机获得格收口",
-      "kind": "machine_closure",
-      "members": [
-        {
-          "blocker_id": "obtain/injector-mv-hv-iv-hosts",
-          "role": "primary"
-        },
-        {
-          "blocker_id": "recipe/injector-overflow",
-          "role": "scale_context"
-        }
-      ],
-      "production_lock_policy": "host_lock_then_overflow_recompute",
-      "production_locks": [
-        "tools/waves/machines/injector/production_lock.json"
-      ],
-      "excluded_blocker_ids": [],
-      "boundary_notes": [
-        "3 个 MV/HV/IV host 是实现目标。",
-        "535 条 overflow 是重算上下文，不承诺顺便清掉全部行。",
-        "source-exact LV 与 Chromium EV host 不授权为其余 host 使用 stand-in。"
       ],
       "does_not_merge_counts": true,
       "auto_promote_player_complete": false
@@ -184,25 +153,25 @@
       "auto_promote_player_complete": false
     },
     {
-      "id": "batch/fluid-gt-tree-identity",
-      "title": "GT 树流体身份收口",
-      "kind": "domain_fluid_closure",
+      "id": "batch/machines-injector-host-closure",
+      "title": "注射机 overflow 重算上下文",
+      "kind": "machine_closure",
       "members": [
         {
-          "blocker_id": "fluid/sap-maple",
-          "role": "primary"
+          "blocker_id": "recipe/injector-overflow",
+          "role": "scale_context"
         }
       ],
-      "production_lock_policy": "separate_fluid_identity_validation",
-      "production_locks": [],
+      "production_lock_policy": "host_lock_then_overflow_recompute",
+      "production_locks": [
+        "tools/waves/machines/injector/production_lock.json"
+      ],
       "excluded_blocker_ids": [
-        "recipe/printer-dye-fluids",
-        "recipe/oven-cooking-oil-xp"
+        "obtain/injector-mv-hv-iv-hosts"
       ],
       "boundary_notes": [
-        "Maple sap still belongs to worldgen/gt-trees freeze / drill source path.",
-        "Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.",
-        "印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。"
+        "All five Injector hosts 20261-20265 were closed by machines/injector.",
+        "535 overflow rows remain scale context and are not a task count."
       ],
       "does_not_merge_counts": true,
       "auto_promote_player_complete": false

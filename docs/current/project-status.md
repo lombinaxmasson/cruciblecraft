@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`presentation/multiblock-schema-preview`（Multiblock Schema Preview，`workflow=active`，`maturity=frozen`）；计划 [多方块结构预览重做详细计划](../history/card-plans/active/多方块结构预览重做详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -34,9 +34,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine; closed energy/fusion-quantum; closed presentation/multiblock-emi-projection
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine; closed energy/fusion-quantum; closed presentation/multiblock-emi-projection; closed presentation/multiblock-schema-preview; closed registry/gt6-form-open-followup
 
-## runtime_ready accepted（121）
+## runtime_ready accepted（123）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -143,6 +143,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `portfolio/publication-reload-performance` — Publication Reload Performance — [配方发布重载性能详细计划](../history/card-plans/closed/配方发布重载性能详细计划.md)
 - `portfolio/test-authoring-workflow` — Test Authoring Workflow — [测试制作流程详细计划](../history/card-plans/closed/测试制作流程详细计划.md)
 - `presentation/multiblock-emi-projection` — Multiblock EMI Projection — [多方块结构 EMI 投影详细计划](../history/card-plans/closed/多方块结构EMI投影详细计划.md)
+- `presentation/multiblock-schema-preview` — Multiblock Schema Preview — [多方块结构预览重做详细计划](../history/card-plans/closed/多方块结构预览重做详细计划.md)
 - `recipe/gt6-bulk-capacity` — GT6 Bulk Recipe Capacity Gate — [GT6 批量配方容量门详细计划](../history/card-plans/closed/GT6批量配方容量门详细计划.md)
 - `recipe/gt6-chemical-misc-bulk` — GT6 Chemical and Misc Recipe Bulk — [GT6 化学杂项配方批量详细计划](../history/card-plans/closed/GT6化学杂项配方批量详细计划.md)
 - `recipe/gt6-extruder-bulk` — GT6 Extruder Recipe Bulk — [GT6 挤压机配方批量详细计划](../history/card-plans/closed/GT6挤压机配方批量详细计划.md)
@@ -150,6 +151,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `recipe/gt6-prefix-regular-bulk` — GT6 Prefix Regular Recipe Bulk — [GT6 前缀规则类配方批量详细计划](../history/card-plans/closed/GT6前缀规则类配方批量详细计划.md)
 - `recipe/gt6-steamcracking-bulk` — GT6 Steam Cracking Recipe Bulk — [GT6 蒸汽裂化配方批量详细计划](../history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
+- `registry/gt6-form-open-followup` — GT6 Material Form Open Follow-up — [GT6 材料形态开门后续详细计划](../history/card-plans/closed/GT6材料形态开门后续详细计划.md)
 - `registry/gt6-long-tail-forms` — GT6 Long-tail Forms — [GT6 长尾形态开门详细计划](../history/card-plans/closed/GT6长尾形态开门详细计划.md)
 - `registry/gt6-storage-dust-blocks` — GT6 Storage Dust Blocks — [GT6 粉块批量详细计划](../history/card-plans/closed/GT6粉块批量详细计划.md)
 - `registry/hybrid-material-identity` — Hybrid material identity — [材料身份分层混合详细计划](../history/card-plans/closed/材料身份分层混合详细计划.md)
@@ -171,7 +173,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## frozen（9）
+## frozen（8）
 
 分母已冻。仍 `paused` 的 PUV/OMEGA 卡代码已在 `src/main`，机器和 PUV2–OMEGA 零件是 GT6 注册内容，停在这里是因为还没关卡。中性物质 bootstrap 和 `MT.Neutronium` 生存链才是 `CC_EXTENSION`。地牢是结构载体，房间内容仍 blocked。
 
@@ -181,7 +183,6 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
 - `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
-- `presentation/multiblock-schema-preview` — Multiblock Schema Preview（`workflow=active`） — [多方块结构预览重做详细计划](../history/card-plans/active/多方块结构预览重做详细计划.md)
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 

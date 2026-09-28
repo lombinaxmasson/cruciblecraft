@@ -25,7 +25,7 @@ public final class TreeHoleFluidCatalog {
     private static final Gson GSON = new Gson();
     private static final Catalog CATALOG = loadBundled();
 
-    public static final int FLUID_COUNT = 1;
+    public static final int FLUID_COUNT = 2;
 
     private TreeHoleFluidCatalog() {}
 

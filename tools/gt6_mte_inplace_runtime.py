@@ -961,6 +961,11 @@ def _copy_art(kinds: set[str]) -> list[dict[str, Any]]:
     dest_root = census.ROOT / "src" / "main" / "resources" / DEST_ROOT
     dest_root.mkdir(parents=True, exist_ok=True)
     for kind in sorted(kinds):
+        # Large Boiler barometer parts are rendered by the dedicated boiler
+        # model/renderer. GT6 has no standalone barometer texture in the local
+        # reference tree, so do not alias another MTE texture as a placeholder.
+        if kind == "LARGE_BOILER":
+            continue
         copies = ART_KIND.get(kind)
         if not copies:
             raise ValueError(f"no GT6 art mapping for kind {kind}")
@@ -1183,6 +1188,10 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
         path = str(row["dummy_path"])
         if kind in FLUID_MODEL_KINDS:
             _write_fluid_attachment_models(kind, path)
+            continue
+        if kind == "LARGE_BOILER":
+            # Dedicated LargeBoilerBlock/renderer owns these models and loot;
+            # the in-place MTE overlay must not invent a barometer texture.
             continue
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
         model_name = f"mte_inplace_{kind.lower()}"

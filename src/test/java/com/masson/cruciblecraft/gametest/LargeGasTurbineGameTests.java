@@ -32,7 +32,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class LargeGasTurbineGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_multiblock";
+            "cruciblecraft_wave_energy_large_gas_turbine";
     private static final String TEMPLATE = "empty";
     private static final BlockPos CONTROLLER = new BlockPos(1, 2, 2);
     private static final Direction FACING = Direction.WEST;

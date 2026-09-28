@@ -259,7 +259,7 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             "energy/large-gas-turbine",
             {cap["slug"] for cap in multiblocks["large_turbine_gas"]["capabilities"]},
         )
-        self.assertEqual("runtime_code_uncarded", multiblocks["large_boiler"]["delivery_depth"])
+        self.assertEqual("runtime_paused", multiblocks["large_boiler"]["delivery_depth"])
         self.assertEqual("runtime_accepted", multiblocks["tank_3x3x3"]["delivery_depth"])
         self.assertEqual("runtime_accepted", multiblocks["tank_5x5x5_metal"]["delivery_depth"])
         self.assertEqual("runtime_accepted", multiblocks["electrolyzer"]["delivery_depth"])

@@ -3784,7 +3784,7 @@
       "depends_on": [
         "presentation/multiblock-emi-projection"
       ],
-      "maturity": "frozen",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/active/多方块结构预览重做详细计划.md",
         "docs/history/card-plans/closed/多方块结构预览重做详细计划.md",
@@ -3806,7 +3806,7 @@
       "slug": "presentation/multiblock-schema-preview",
       "survival_access": "not_applicable",
       "title": "Multiblock Schema Preview",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -4036,6 +4036,30 @@
       "slug": "registry/catalog-modern-ids",
       "survival_access": "unreviewed",
       "title": "Catalog modern IDs",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/gt6-long-tail-forms"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6材料形态开门后续详细计划.md",
+        "docs/history/card-plans/closed/GT6材料形态开门后续详细计划.md",
+        "tools/capabilities/registry/gt6-form-open-followup/**",
+        "tools/waves/prep/gt6-form-open-followup/**",
+        "tools/material_form_authority.json",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+        "src/generated/resources/**"
+      ],
+      "path": "tools/capabilities/registry/gt6-form-open-followup/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/gt6-form-open-followup",
+      "survival_access": "unreviewed",
+      "title": "GT6 Material Form Open Follow-up",
       "workflow": "accepted"
     },
     {
@@ -4530,7 +4554,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 134,
+  "capability_count": 135,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5987,10 +6011,15 @@
       "machines/large-squeezer",
       "registry/catalog-modern-ids"
     ],
+    "registry/gt6-form-open-followup": [
+      "registry/gt6-form-open-followup"
+    ],
     "registry/gt6-long-tail-forms": [
+      "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms"
     ],
     "registry/gt6-storage-dust-blocks": [
+      "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
       "registry/gt6-storage-dust-blocks"
     ],
@@ -6151,6 +6180,7 @@
       "presentation/multiblock-schema-preview",
       "recipe/gt6-bulk-capacity",
       "registry/catalog-modern-ids",
+      "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
       "registry/gt6-storage-dust-blocks",
       "registry/hybrid-material-identity",
@@ -6189,5 +6219,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "presentation/multiblock-schema-preview"
+  "unique_active_slug": null
 }

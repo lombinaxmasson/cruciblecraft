@@ -10,8 +10,8 @@
 
 ## 统计
 
-- 条目 62：open 29，partial 2，resolved 20，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 13，有名字，分母未冻成工作量 10，不是活 3
+- 条目 62：open 27，partial 2，resolved 22，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 11，有名字，分母未冻成工作量 10，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -26,15 +26,13 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（13）
+### B. 分母已冻，可当卡排（11）
 
 - `fluid/ic2-coolant`：1 fluids
-- `fluid/sap-maple`：1 fluids
 - `fluid/thorium-salt`：1 fluids
 - `identity/converter-turbines-battery-boxes`：8 items
 - `identity/processing-ungated-families`：3 families
 - `material-form/copper-family-curved-plate`：n/a
-- `obtain/injector-mv-hv-iv-hosts`：3 hosts
 - `obtain/redstone-wiregt01`：3 items
 - `obtain/wooden-bathing-pot-glue`：2 hosts
 - `recipe/laminator-overflow`：12 rows
@@ -107,21 +105,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - 石墨烯/超导 EU dummy catalog 行不是删除集合。
   - HSLA alias dummies and connector duals with live hosts are already folded.
 
-### `batch/machines-injector-host-closure`：注射机主机获得格收口
-
-- 建议排序依据：3 个已冻结 host 是有界的机器获得格目标；535 条 overflow 只保留为规模上下文。
-- 类型：`machine_closure`；成员角色按各 blocker 保留
-- production lock：`host_lock_then_overflow_recompute`
-- 成员：
-  - `obtain/injector-mv-hv-iv-hosts`（`primary`）
-  - `recipe/injector-overflow`（`scale_context`）
-- 已有 lock：
-  - `tools/waves/machines/injector/production_lock.json`
-- 边界：
-  - 3 个 MV/HV/IV host 是实现目标。
-  - 535 条 overflow 是重算上下文，不承诺顺便清掉全部行。
-  - source-exact LV 与 Chromium EV host 不授权为其余 host 使用 stand-in。
-
 ### `batch/fluid-fission-identity`：裂变流体身份收口
 
 - 建议排序依据：2 个相关裂变流体 identity 共享热流体与注射机影响面。
@@ -139,36 +122,33 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - 不能因为 root cause class 都是 missing_fluid，就并入印刷机染料或熔炉油 / XP 流体。
   - 解决这些 identity 不会重开或自动重关已经完成的 hot-fluid capability。
 
-### `batch/fluid-gt-tree-identity`：GT 树流体身份收口
+### `batch/machines-injector-host-closure`：注射机 overflow 重算上下文
 
-- 建议排序依据：Maple sap remains the GT tree fluid identity; rubber tree sap is live.
-- 类型：`domain_fluid_closure`；成员角色按各 blocker 保留
-- production lock：`separate_fluid_identity_validation`
+- 建议排序依据：Host acquisition is closed; retain the batch only for 535-row overflow recomputation context.
+- 类型：`machine_closure`；成员角色按各 blocker 保留
+- production lock：`host_lock_then_overflow_recompute`
 - 成员：
-  - `fluid/sap-maple`（`primary`）
-- 已有 lock：无（按能力/流体身份分别验收）
+  - `recipe/injector-overflow`（`scale_context`）
+- 已有 lock：
+  - `tools/waves/machines/injector/production_lock.json`
 - 明确排除：
-  - `recipe/printer-dye-fluids`
-  - `recipe/oven-cooking-oil-xp`
+  - `obtain/injector-mv-hv-iv-hosts`
 - 边界：
-  - Maple sap still belongs to worldgen/gt-trees freeze / drill source path.
-  - Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.
-  - 印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。
+  - All five Injector hosts 20261-20265 were closed by machines/injector.
+  - 535 overflow rows remain scale context and are not a task count.
 
 ## 按根因（未关闭）
 
 - `invariant`（1）
   - `energy/reactor-temperature-kelvin`
-- `missing_fluid`（5）
+- `missing_fluid`（4）
   - `fluid/ic2-coolant`
-  - `fluid/sap-maple`
   - `fluid/thorium-salt`
   - `recipe/oven-cooking-oil-xp`
   - `recipe/printer-dye-fluids`
-- `missing_form`（3）
+- `missing_form`（2）
   - `energy/reactor-backpack-radioactivity`
   - `material-form/copper-family-curved-plate`
-  - `obtain/injector-mv-hv-iv-hosts`
 - `missing_mod_bridge`（1）
   - `peripheral/sensors-computercraft`
 - `missing_obtain`（1）
@@ -313,22 +293,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Not substituted. Injector overflow also names ic2coolant.
 
-### `fluid/sap-maple`
-
-- 标题：FL.Sap_Maple 缺失
-- 状态：`open`
-- 根因：`missing_fluid` / `missing_maple_sap_fluid`
-- 数量：1 fluids
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`worldgen/gt-trees`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`worldgen/gt-trees`
-- 权威：`tools/capabilities/worldgen/gt-trees/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Maple hole still freezes and drills.
-
 ### `fluid/thorium-salt`
 
 - 标题：钍盐到 LiCl 无 CC 身份
@@ -392,22 +356,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/gt6-fluid-pipe-acquisition/capability.json`, `tools/capabilities/content/gt6-item-pipe-acquisition/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Combo pack/unpack is live. Five-gauge table crafts stay blocked. Overlay on reuse_canonical rows, not a blocked identity_disposition.
-
-### `obtain/injector-mv-hv-iv-hosts`
-
-- 标题：注射机 MV/HV/IV 主机获得格仍 blocked
-- 状态：`open`
-- 根因：`missing_form` / `missing_host_acquisition_parts`
-- 数量：3 hosts
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`machines/injector`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`machines/injector`
-- 权威：`tools/capabilities/machines/injector/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：LV and Chromium EV hosts are source-exact. Do not stand in other motors.
 
 ### `obtain/redstone-wiregt01`
 
@@ -809,6 +757,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Latex is not a stand-in. Rubber hole harvests rubber_resin and 250 mB sap.
 
+### `fluid/sap-maple`
+
+- 标题：FL.Sap_Maple 已注册并接入枫树树洞
+- 状态：`resolved`
+- 根因：`missing_fluid` / `missing_maple_sap_fluid`
+- 数量：1 fluids
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`worldgen/gt-trees`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：worldgen/gt-trees
+- 影响：`worldgen/gt-trees`
+- 权威：`tools/capabilities/worldgen/gt-trees/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：GT6 FL.Sap_Maple is registered as cruciblecraft:maplesap; maple tree holes return the exact 250 mB named fluid. No stand-in fluid is used.
+
 ### `identity/connector-art-keep-distinct-dummies`
 
 - 标题：连接件美术卡仍保留 dummy 物品
@@ -888,6 +852,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/gt6-paper-tiny-plate/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：GT6 OP.plateTiny.forceItemGeneration(MT.Paper). Not a stand-in plate.
+
+### `obtain/injector-mv-hv-iv-hosts`
+
+- 标题：注射机五档主机获得格已按 source-exact 收口
+- 状态：`resolved`
+- 根因：`missing_form` / `missing_host_acquisition_parts`
+- 数量：3 hosts
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`machines/injector`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：machines/injector
+- 影响：`machines/injector`
+- 权威：`tools/capabilities/machines/injector/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：All five Injector hosts 20261-20265 have source-exact acquisition recipes and pass the injector GameTest. The 535-row overflow remains a separate scale context.
 
 ### `obtain/mte-inplace-runtime`
 

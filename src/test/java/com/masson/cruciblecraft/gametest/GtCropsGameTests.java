@@ -36,7 +36,8 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(GtCropsGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtCropsGameTests {
-    public static final String NAMESPACE = "cruciblecraft_worldgen";
+    public static final String NAMESPACE =
+            "cruciblecraft_wave_worldgen_gt_crops";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(8, 2, 8);
 

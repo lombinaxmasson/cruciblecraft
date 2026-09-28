@@ -225,6 +225,9 @@ public enum GtTreeSpecies {
 
     public Optional<ResourceLocation> holeFluidId() {
         return switch (this) {
+            case MAPLE -> Optional.of(
+                    ResourceLocation.fromNamespaceAndPath(
+                            "cruciblecraft", "maplesap"));
             case RUBBER -> Optional.of(
                     ResourceLocation.fromNamespaceAndPath(
                             "cruciblecraft", "rubber_tree_sap"));

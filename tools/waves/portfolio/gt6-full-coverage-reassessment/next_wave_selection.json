@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "PREP_SELECTION",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "selected": {
+    "gt6_map": "gt.recipe.sluice",
+    "target_map": "cruciblecraft:sluice",
+    "source_rows": 4840,
+    "missing_recipe_rows": 4840,
+    "host_capability": "machines/large-sluice",
+    "selection_reason": [
+      "The host capability is accepted and the map is bounded.",
+      "The current report classifies all 4840 rows as translatable_missing.",
+      "The next card must create a dump-backed Source Pack and production lock before live publication."
+    ]
+  },
+  "not_selected": [
+    "gt.recipe.boxinator",
+    "gt.recipe.unboxinator",
+    "crate.*",
+    "bulletGt*",
+    "arrowGt*"
+  ]
+}

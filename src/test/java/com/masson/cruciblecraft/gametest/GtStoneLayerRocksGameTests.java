@@ -40,7 +40,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class GtStoneLayerRocksGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_worldgen";
+            "cruciblecraft_wave_worldgen_gt_stone_layer_rocks";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(8, 2, 8);
 

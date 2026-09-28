@@ -2496,8 +2496,15 @@ public class ModLanguageProvider extends LanguageProvider {
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
         com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog.fluids().forEach(fluid ->
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+        java.util.Set<String> semanticFluidIds = new java.util.HashSet<>();
+        com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(
+                fluid -> semanticFluidIds.add(fluid.id().getPath()));
         com.masson.cruciblecraft.worldgen.tree.TreeHoleFluidCatalog.fluids().forEach(fluid ->
-                addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+                {
+                    if (!semanticFluidIds.contains(fluid.id().getPath())) {
+                        addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName());
+                    }
+                });
         com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(fluid ->
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
     }

@@ -239,6 +239,35 @@ public final class GtTreesGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void mapleHoleFillsMapleSap(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.treeHole(GtTreeSpecies.MAPLE)
+                        .get()
+                        .defaultBlockState()
+                        .setValue(GtTreeHoleBlock.FACING, Direction.NORTH)
+                        .setValue(GtTreeHoleBlock.HAS_PRODUCT, Boolean.TRUE));
+        helper.assertTrue(
+                helper.getBlockEntity(pos) instanceof GtTreeHoleBlockEntity,
+                "maple hole has no block entity");
+        GtTreeHoleBlockEntity hole = (GtTreeHoleBlockEntity) helper.getBlockEntity(pos);
+        hole.setHasProduct(true);
+        var sap = BuiltInRegistries.FLUID.get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "maplesap"));
+        helper.assertTrue(
+                sap != null && !sap.defaultFluidState().isEmpty(),
+                "maplesap is not registered");
+        helper.assertTrue(
+                hole.hasProduct()
+                        && hole.fluids().getFluidInTank(0).getAmount()
+                                == GtTreeSpecies.HOLE_FLUID_MILLIBUCKETS
+                        && hole.fluids().getFluidInTank(0).getFluid().isSame(sap),
+                "maple hole did not fill 250 mB maplesap");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void rubberCoagulatorLatexMakesNugget(GameTestHelper helper) {
         helper.assertTrue(
                 ModRecipeMaps.COAGULATOR.entries().stream().anyMatch(entry ->

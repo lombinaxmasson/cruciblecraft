@@ -154,7 +154,7 @@
       "blocks_maturity": "player_complete",
       "claimed_by": [
         {
-          "note_marker": "MV/HV/IV stay acquisition-blocked",
+          "note_marker": "All five hosts 20261-20265 have source-exact acquisition recipes",
           "slug": "machines/injector"
         }
       ],
@@ -163,13 +163,13 @@
       "id": "obtain/injector-mv-hv-iv-hosts",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "LV and Chromium EV hosts are source-exact. Do not stand in other motors.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "All five Injector hosts 20261-20265 have source-exact acquisition recipes and pass the injector GameTest. The 535-row overflow remains a separate scale context.",
+      "planning_bucket": "not_work",
+      "resolved_by": "machines/injector",
       "root_cause": "missing_host_acquisition_parts",
       "root_cause_class": "missing_form",
-      "status": "open",
-      "title": "注射机 MV/HV/IV 主机获得格仍 blocked",
+      "status": "resolved",
+      "title": "注射机五档主机获得格已按 source-exact 收口",
       "unit": "hosts"
     },
     {
@@ -1241,24 +1241,19 @@
         "tools/capabilities/worldgen/gt-trees/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "fluid:FL.Sap_Maple",
-          "slug": "worldgen/gt-trees"
-        }
-      ],
+      "claimed_by": [],
       "count": 1,
       "discovered_by": "worldgen/gt-trees",
       "id": "fluid/sap-maple",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Maple hole still freezes and drills.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "GT6 FL.Sap_Maple is registered as cruciblecraft:maplesap; maple tree holes return the exact 250 mB named fluid. No stand-in fluid is used.",
+      "planning_bucket": "not_work",
+      "resolved_by": "worldgen/gt-trees",
       "root_cause": "missing_maple_sap_fluid",
       "root_cause_class": "missing_fluid",
-      "status": "open",
-      "title": "FL.Sap_Maple 缺失",
+      "status": "resolved",
+      "title": "FL.Sap_Maple 已注册并接入枫树树洞",
       "unit": "fluids"
     },
     {

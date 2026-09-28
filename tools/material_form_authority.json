@@ -258,6 +258,19 @@
       "required_forms_sha256": "4764a7ba17a6db5556fa06a29e42653502b80221f905b43646d2547d68c05962",
       "slice_sha256": "726315b96588dbff2913941c278161463d8b4edfe5a5d8ce4c62e8b1e8ba83eb"
     },
+    "gt6_form_open_followup_required_forms": {
+      "extra_factual_forms": [
+        "arrow_gt_plastic",
+        "arrow_gt_wood",
+        "chem_tube",
+        "small_casing",
+        "washed_crushed_ore"
+      ],
+      "gate_section": "gt6_form_open_followup_required_forms",
+      "required_factual_prereqs": {},
+      "required_forms_sha256": "0331dd31a4ddfee5923ca0297538f8b21f5a487b72afca7885cdb26d1caaf52a",
+      "slice_sha256": "3a0657b8772d9ce979becbc8411dda78dcfe4b7b77e227ab8ede5b6f8c7da441"
+    },
     "gt6_long_tail_forms_required_forms": {
       "extra_factual_forms": [
         "arrow_gt_plastic",
@@ -611,7 +624,8 @@
     "coke_oven_recipe_forms_required_forms",
     "fluid_attachment_required_forms",
     "gt6_storage_dust_blocks_required_forms",
-    "gt6_long_tail_forms_required_forms"
+    "gt6_long_tail_forms_required_forms",
+    "gt6_form_open_followup_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -1274,6 +1288,22 @@
           "dust"
         ]
       }
+    },
+    {
+      "extra_factual_forms": [
+        "arrow_gt_plastic",
+        "arrow_gt_wood",
+        "chem_tube",
+        "small_casing",
+        "washed_crushed_ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "gt6_form_open_followup_required_forms",
+      "id": "gt6_form_open_followup_required_forms",
+      "java_runtime_visible": true,
+      "owner": "registry/gt6-form-open-followup",
+      "path": "tools/waves/prep/gt6-form-open-followup/required_forms.json",
+      "required_factual_prereqs": {}
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",
@@ -1284,5 +1314,5 @@
     "worldgen_acquisition_ore_delta": 10,
     "worldgen_catalog": "independent catalog, not the chemical vein ledger"
   },
-  "whole_file_sha256": "5366b7e7614d4e3b69f6195d8efc89a6f1485c87174ce6d2a96924d227621bd5"
+  "whole_file_sha256": "1bcbec4f37d885a1d2f20ad020d5c1bdb5f18babfd50c81ac0363cf722c9be98"
 }

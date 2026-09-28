@@ -7371,13 +7371,13 @@
     "materials": 1777,
     "metadata_only_materials": 665,
     "missing_wire_forms": 203,
-    "ore_chain_forms": 2443,
+    "ore_chain_forms": 2459,
     "ore_source_blocks": 274,
     "ore_source_forms": 822,
     "ore_source_materials": 137,
     "pipe_forms": 263,
     "recipe_gated_forms": 13173,
-    "registered_forms": 46983,
+    "registered_forms": 46984,
     "restrictive_pipe_forms": 63,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -7989,6 +7989,11 @@
     "tungsten": [
       "curved_plate",
       "round"
+    ]
+  },
+  "gt6_form_open_followup_required_forms": {
+    "magic": [
+      "small_casing"
     ]
   },
   "gt6_long_tail_forms_required_forms": {
@@ -20815,7 +20820,8 @@
     "coke_oven_recipe_forms_required_forms",
     "fluid_attachment_required_forms",
     "gt6_storage_dust_blocks_required_forms",
-    "gt6_long_tail_forms_required_forms"
+    "gt6_long_tail_forms_required_forms",
+    "gt6_form_open_followup_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -54264,6 +54270,7 @@
       "ring",
       "rod",
       "screw",
+      "small_casing",
       "storage_plate",
       "tiny_plate",
       "tool_head_axe",
@@ -89412,6 +89419,12 @@
       "path": "tools/waves/prep/material-form-demand-census/fluid_attachment_required_forms.json",
       "sha256": "4764a7ba17a6db5556fa06a29e42653502b80221f905b43646d2547d68c05962"
     },
+    "gt6_form_open_followup_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/prep/gt6-form-open-followup/required_forms.json",
+      "sha256": "0331dd31a4ddfee5923ca0297538f8b21f5a487b72afca7885cdb26d1caaf52a"
+    },
     "gt6_long_tail_forms_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
       "field": "required_forms",
@@ -89439,7 +89452,7 @@
     },
     "l1b_recipe_operands": {
       "path": "tools/gt6_l1b_selected_recipe_operands.json",
-      "sha256": "58ee7f05b6da8b87b94180340f20f70c70e30a4378cf82347c790662ab13e64e"
+      "sha256": "382420526072ecd97ecb8a536934414128ee6b6ee4b7316dca3c908dbd6508b7"
     },
     "machines_cluster_mill_required_forms": {
       "classification": "semantic_ordinary_runtime_required",
@@ -89473,7 +89486,7 @@
     },
     "ore_chain_operands": {
       "path": "tools/gt6_ore_chain_operands.json",
-      "sha256": "e3abb10d332cebcc9c4db49347b0ba94babe223d4a48e6a84a2a83dc94981046"
+      "sha256": "6af16557e46f12e5bf86df3a5ff3b59c1eed7aea737a578fec57e8d8e5d0b09a"
     },
     "pipe_source_backed_pipe_forms": {
       "classification": "pipe_source_backed_runtime_required",

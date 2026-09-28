@@ -1,6 +1,6 @@
 {
   "counts": {
-    "mapped": 1
+    "mapped": 2
   },
   "generated_by": "handwritten",
   "mapping": [
@@ -12,6 +12,15 @@
       "mapping_evidence": "GT6 FL.Resin_Rubber / fluidrubbertreesap; latex is not a stand-in",
       "registration_state": "tree_hole_fluid_catalog",
       "source_fluid": "fluidrubbertreesap"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:maplesap",
+      "chinese_name": "枫树汁",
+      "color_rgb": 11908509,
+      "english_name": "Maple Sap",
+      "mapping_evidence": "GT6 FL.Sap_Maple / MultiTileEntitySapHoleMaple returns 250 mB; no CC material-fluid alias or stand-in",
+      "registration_state": "tree_hole_fluid_catalog",
+      "source_fluid": "maplesap"
     }
   ],
   "note": "Tree-hole overlay only. Does not rewrite hydrocarbon, bath/mte, remainder, or semantic fluid mapping.",
