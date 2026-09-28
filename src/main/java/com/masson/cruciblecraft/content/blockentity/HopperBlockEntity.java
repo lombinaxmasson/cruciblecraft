@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.masson.cruciblecraft.content.block.HopperBlock;
 import com.masson.cruciblecraft.content.menu.HopperMenu;
+import com.masson.cruciblecraft.logistics.hopper.HopperEject;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperSidedHandler;
 import com.masson.cruciblecraft.logistics.hopper.HopperTransferCore;
@@ -19,6 +20,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -276,23 +278,60 @@ public final class HopperBlockEntity extends MachineCoverHostBlockEntity impleme
         if (facing == Direction.UP) {
             return;
         }
+        BlockPos target = pos.relative(facing);
         IItemHandler dest = level.getCapability(
                 Capabilities.ItemHandler.BLOCK,
-                pos.relative(facing),
+                target,
                 facing.getOpposite());
-        if (dest == null) {
-            return;
-        }
         transferring = true;
         try {
+            if (dest != null) {
+                if (variant.kind() == HopperKind.QUEUE_HOPPER) {
+                    HopperTransferCore.pushQueue(inventory, dest, slotSize, false);
+                } else {
+                    HopperTransferCore.push(inventory, dest, mode, exactMode, false);
+                }
+                return;
+            }
+            if (!(level instanceof ServerLevel server)) {
+                return;
+            }
+            HopperEject.Target outlet = HopperEject.classify(
+                    server, target, server.getMinBuildHeight());
+            if (outlet == HopperEject.Target.BLOCKED) {
+                return;
+            }
+            List<ItemStack> ejected = new ArrayList<>();
             if (variant.kind() == HopperKind.QUEUE_HOPPER) {
-                HopperTransferCore.pushQueue(inventory, dest, slotSize, false);
+                HopperEject.drainQueue(inventory, slotSize, ejected);
             } else {
-                HopperTransferCore.push(inventory, dest, mode, exactMode, false);
+                HopperEject.drain(inventory, mode, exactMode, ejected);
+            }
+            if (outlet == HopperEject.Target.TRASH) {
+                return;
+            }
+            for (ItemStack stack : ejected) {
+                spawnStill(server, target, stack);
             }
         } finally {
             transferring = false;
         }
+    }
+
+    /** GT6 {@code ST.place}: block center, no ejection velocity. */
+    private static void spawnStill(
+            ServerLevel level, BlockPos pos, ItemStack stack) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        ItemEntity entity = new ItemEntity(
+                level,
+                pos.getX() + 0.5D,
+                pos.getY() + 0.5D,
+                pos.getZ() + 0.5D,
+                stack);
+        entity.setDeltaMovement(0.0D, 0.0D, 0.0D);
+        level.addFreshEntity(entity);
     }
 
     private void suck(Level level, BlockPos pos) {

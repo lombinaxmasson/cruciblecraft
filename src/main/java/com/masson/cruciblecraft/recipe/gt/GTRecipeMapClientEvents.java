@@ -16,16 +16,19 @@ public final class GTRecipeMapClientEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void recipesUpdated(RecipesUpdatedEvent event) {
+        long started = System.nanoTime();
         var manager = event.getRecipeManager();
         PipeCraftingGridGuard.dropTokenRecipes(manager);
+        long dropped = System.nanoTime();
         Minecraft minecraft = Minecraft.getInstance();
         boolean integratedServer = minecraft.hasSingleplayerServer()
                 || minecraft.getConnection() != null
                         && minecraft.getConnection().getConnection().isMemoryConnection()
                 || ServerLifecycleHooks.getCurrentServer() != null;
-        if (GTRecipeReloadDecision.onClientRecipesUpdated(
+        boolean reload = GTRecipeReloadDecision.onClientRecipesUpdated(
                 manager,
-                integratedServer)) {
+                integratedServer);
+        if (reload) {
             // Dedicated clients rebuild Extruder and compact family snapshots
             // from the synced recipe manager. Integrated clients skip this
             // path and reuse the server epoch.
@@ -34,5 +37,14 @@ public final class GTRecipeMapClientEvents {
                     ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
                     GTRecipeReloadCoordinator.Cause.CLIENT_RECIPES_UPDATED);
         }
+        CrucibleCraft.LOGGER.info(
+                "Client recipes updated: dropTokens={}ms clientReload={}ms ranReload={}",
+                elapsedMillis(started, dropped),
+                elapsedMillis(dropped, System.nanoTime()),
+                reload);
+    }
+
+    private static long elapsedMillis(long started, long ended) {
+        return (ended - started) / 1_000_000L;
     }
 }

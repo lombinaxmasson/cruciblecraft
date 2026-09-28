@@ -10,12 +10,13 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 /**
- * Reliable EMI is an optional dev client mod. Its mixins must not apply when
- * that jar is absent.
+ * Reliable EMI and EMI are optional dev client mods. Their mixins must not
+ * apply when the jar is absent.
  */
 public final class CrucibleCraftMixinPlugin implements IMixinConfigPlugin {
     private static final String REMI_LOCK = "RemiStackGroupLockMixin";
     private static final String REMI_FIELDS = "RemiStackGroupFields";
+    private static final String EMI_VANILLA_TIMING = "EmiVanillaPluginTimingMixin";
 
     @Override
     public void onLoad(String mixinPackage) {}
@@ -28,10 +29,17 @@ public final class CrucibleCraftMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.endsWith(REMI_LOCK) || mixinClassName.endsWith(REMI_FIELDS)) {
-            LoadingModList mods = LoadingModList.get();
-            return mods != null && mods.getModFileById("remi") != null;
+            return modPresent("remi");
+        }
+        if (mixinClassName.endsWith(EMI_VANILLA_TIMING)) {
+            return modPresent("emi");
         }
         return true;
+    }
+
+    private static boolean modPresent(String modId) {
+        LoadingModList mods = LoadingModList.get();
+        return mods != null && mods.getModFileById(modId) != null;
     }
 
     @Override
