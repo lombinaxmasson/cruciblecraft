@@ -4141,7 +4141,7 @@
       "depends_on": [
         "portfolio/default-gametest-recovery"
       ],
-      "maturity": "frozen",
+      "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/active/工作台工具运行时配方详细计划.md",
         "tools/capabilities/runtime/workbench-tool-runtime-recipes/**",
@@ -4165,7 +4165,7 @@
       "slug": "runtime/workbench-tool-runtime-recipes",
       "survival_access": "not_applicable",
       "title": "Workbench Tool Runtime Recipes",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -6088,5 +6088,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "runtime/workbench-tool-runtime-recipes"
+  "unique_active_slug": null
 }
