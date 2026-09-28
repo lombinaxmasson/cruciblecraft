@@ -15,9 +15,10 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionGrid;
+import com.masson.cruciblecraft.compat.emi.multiblock.RegistryBlockFormIndex;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex;
@@ -47,6 +48,8 @@ import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.resources.MultiPackResourceManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -566,59 +569,48 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             Set<ResourceLocation> addedCategories) {
         addCategory(registry, MULTIBLOCK_BLUEPRINT, addedCategories);
         Map<ResourceLocation, MultiblockStructureDefinition> structures =
-                MultiblockStructureCatalog.prepare(
-                        Minecraft.getInstance().getResourceManager());
+                blueprintStructures();
+        CrucibleCraft.LOGGER.info(
+                "EMI multiblock blueprints: {} structures", structures.size());
         for (var entry : structures.entrySet()) {
-            List<Block> controllers = multiblockControllers(entry.getValue());
-            if (controllers.isEmpty()) {
+            MultiblockProjectionGrid grid = MultiblockProjectionGrid.project(
+                    entry.getKey(),
+                    entry.getValue(),
+                    RegistryBlockFormIndex.INSTANCE);
+            boolean hasController = grid.controllers().stream()
+                    .anyMatch(BuiltInRegistries.BLOCK::containsKey);
+            if (!hasController) {
                 CrucibleCraft.LOGGER.warn(
                         "Skipping EMI blueprint without controller: {}",
                         entry.getKey());
                 continue;
             }
-            for (Block controller : controllers) {
-                registry.addWorkstation(
-                        MULTIBLOCK_BLUEPRINT,
-                        EmiStack.of(controller));
-            }
-            entry.getValue().structure().stream()
-                    .map(element -> element.offset().y())
-                    .distinct()
-                    .sorted()
-                    .forEach(layer -> registry.addRecipe(
-                            new MultiblockEmiRecipe(
-                                    entry.getKey(),
-                                    entry.getValue(),
-                                    MULTIBLOCK_BLUEPRINT,
-                                    EmiStack.of(controllers.getFirst()),
-                                    layer)));
+            // No category workstations: EMI lists every recipe of a
+            // workstation's category on its uses page, which put all
+            // blueprints behind each controller.
+            registry.addRecipe(new MultiblockEmiRecipe(
+                    grid, MULTIBLOCK_BLUEPRINT));
         }
     }
 
-    private static List<Block> multiblockControllers(
-            MultiblockStructureDefinition definition) {
-        return definition.palette().values().stream()
-                .filter(predicate -> predicate.kind() == PredicateKind.CONTROLLER)
-                .findFirst()
-                .map(predicate -> {
-                    List<Block> controllers = new ArrayList<>();
-                    predicate.block().ifPresent(id ->
-                            BuiltInRegistries.BLOCK.getOptional(id)
-                                    .ifPresent(controllers::add));
-                    predicate.tag().ifPresent(tagId -> {
-                        var tag = net.minecraft.tags.TagKey.create(
-                                net.minecraft.core.registries.Registries.BLOCK,
-                                tagId);
-                        BuiltInRegistries.BLOCK.forEach(block -> {
-                            if (block.builtInRegistryHolder().is(tag)
-                                    && !controllers.contains(block)) {
-                                controllers.add(block);
-                            }
-                        });
-                    });
-                    return List.copyOf(controllers);
-                })
-                .orElseGet(List::of);
+    /**
+     * Structures are server data. The client resource manager only lists
+     * {@code assets/}, so read the integrated server's snapshot when there
+     * is one, otherwise open the selected packs as server data.
+     */
+    private static Map<ResourceLocation, MultiblockStructureDefinition>
+            blueprintStructures() {
+        Map<ResourceLocation, MultiblockStructureDefinition> loaded =
+                MultiblockStructureCatalog.all();
+        if (!loaded.isEmpty()) {
+            return loaded;
+        }
+        try (MultiPackResourceManager data = new MultiPackResourceManager(
+                PackType.SERVER_DATA,
+                Minecraft.getInstance().getResourcePackRepository()
+                        .openAllSelected())) {
+            return MultiblockStructureCatalog.prepare(data);
+        }
     }
 
     private static ResourceLocation id(String path) {

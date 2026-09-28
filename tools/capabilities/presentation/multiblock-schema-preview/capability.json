@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "slug": "presentation/multiblock-schema-preview",
+  "title": "Multiblock Schema Preview",
+  "maturity": "frozen",
+  "workflow": "active",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/多方块结构预览重做详细计划.md",
+    "docs/history/card-plans/closed/多方块结构预览重做详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+    "src/main/java/com/masson/cruciblecraft/client/multiblockpreview/**",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/MultiblockEmiRecipe.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+    "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+    "src/test/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+    "tools/capabilities/presentation/multiblock-schema-preview/**"
+  ],
+  "depends_on": [
+    "presentation/multiblock-emi-projection"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "note": "GTCEu-style multiblock info page: fake-level perspective preview in EMI plus a client-only in-world ghost preview. Not an obtain path."
+}

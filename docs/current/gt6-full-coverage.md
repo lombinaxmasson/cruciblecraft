@@ -23,7 +23,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 130 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 118，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 30，`unset` 61 |
+| Capability | 133 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 121，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 10，`partial` 29，`unreviewed` 30，`unset` 61 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（130）
+## 12. Capability（133）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -687,6 +687,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `portfolio/gt6-machine-ledger-audit` | runtime_ready | accepted | not_applicable |
 | `portfolio/publication-reload-performance` | runtime_ready | accepted | not_applicable |
 | `portfolio/test-authoring-workflow` | runtime_ready | accepted | not_applicable |
+| `presentation/multiblock-emi-projection` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-bulk-capacity` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-chemical-misc-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
@@ -700,6 +701,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `registry/prefix-material-component` | runtime_ready | accepted | not_applicable |
 | `registry/tool-head-prefix-reclaim` | runtime_ready | accepted | — |
 | `registry/tool-head-remainder` | frozen | accepted | — |
+| `runtime/compact-family-jar-bundles` | runtime_ready | accepted | not_applicable |
+| `runtime/workbench-tool-runtime-recipes` | runtime_ready | accepted | not_applicable |
 | `worldgen/gt-crops` | runtime_ready | accepted | — |
 | `worldgen/gt-dungeon` | frozen | paused | — |
 | `worldgen/gt-small-ores` | runtime_ready | paused | partial |

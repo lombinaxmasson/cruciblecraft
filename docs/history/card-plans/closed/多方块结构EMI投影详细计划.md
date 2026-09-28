@@ -1,16 +1,16 @@
 # 多方块结构 EMI 投影详细计划
 
 > 计划 slug：`presentation/multiblock-emi-projection`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：已关，runtime_ready。本文件位于 `card-plans/closed/`。
 > 正式名称：多方块结构 EMI 投影
 > 性质：把数据包里的多方块在 EMI 里画成可转的方块模型，换掉现在按 Y 层铺开的物品格。
-> 不占 unique-active。不新增结构、机器、配方、形态。不改形成检查和建筑权杖。
+> 不新增结构、机器、配方、形态。不改形成检查和建筑权杖。
 > 不是获得路径。
 
 ```text
-lane                    = prep
+lane                    = active
 capability_slug         = presentation/multiblock-emi-projection
-unique_active_wave      = null
+unique_active_wave      = presentation/multiblock-emi-projection
 prep_owned_paths        = src/main/java/com/masson/cruciblecraft/compat/emi/multiblock/**
                           src/test/java/com/masson/cruciblecraft/compat/emi/multiblock/**
 landing_owned_paths     = CrucibleCraftEmiPlugin.registerMultiblockBlueprints
@@ -132,4 +132,4 @@ EMI 搜索靠这些槽。投影格子不是槽。
 - 格子表有 JUnit。画面不靠 GameTest。
 - 关闭走
   `python tools/close_capability.py --capability presentation/multiblock-emi-projection --change-class major`。
-  这是玩家看的界面。本卡未关。
+  这是玩家看的界面。

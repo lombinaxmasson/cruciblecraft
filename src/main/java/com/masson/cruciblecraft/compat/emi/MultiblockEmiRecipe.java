@@ -1,97 +1,76 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.Element;
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PalettePredicate;
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
+import com.masson.cruciblecraft.client.multiblockpreview.WorldPreviewRenderer;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionGrid;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionView;
+import com.masson.cruciblecraft.compat.emi.multiblock.MultiblockProjectionWidget;
+import com.masson.cruciblecraft.compat.emi.multiblock.ProjectionButtonWidget;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.stack.ListEmiIngredient;
 import dev.emi.emi.api.widget.WidgetHolder;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
 /**
- * A clickable, layer-by-layer material blueprint for one data-owned
- * multiblock. Every displayed cell is an EMI ingredient, so both the compact
- * material list and the actual blueprint can be used as EMI search targets.
+ * One data-owned multiblock, laid out like GTCEu's multiblock info page:
+ * the controller is the output, structure blocks are the counted inputs.
+ * The projection is a picture; the slots are what EMI indexes.
  */
 final class MultiblockEmiRecipe implements EmiRecipe {
     private static final int CELL = 18;
-    private static final int LEFT = 8;
-    private static final int TOP = 22;
-    private static final int MATERIALS_LEFT = 120;
-    private static final int MATERIALS_TOP = 22;
+    private static final int TOP = 11;
+    private static final int VIEW_W = 132;
+    private static final int VIEW_H = 96;
+    private static final int BUTTON = 12;
+    private static final int BUTTON_STEP = BUTTON + 1;
+    private static final int BUTTONS_LEFT = VIEW_W + 2;
+    private static final int MATERIALS_LEFT = BUTTONS_LEFT + BUTTON + 4;
+    private static final int MATERIAL_COLUMNS = 3;
 
     private final ResourceLocation id;
     private final EmiRecipeCategory category;
-    private final ResourceLocation structureId;
-    private final MultiblockStructureDefinition definition;
-    private final Map<String, EmiIngredient> paletteIngredients;
+    private final MultiblockProjectionGrid grid;
+    private final MultiblockProjectionView view = new MultiblockProjectionView();
     private final List<EmiIngredient> inputs;
-    private final EmiStack controller;
-    private final int layer;
+    private final List<EmiStack> outputs;
+    private final EmiIngredient catalyst;
     private final int width;
     private final int height;
 
     MultiblockEmiRecipe(
-            ResourceLocation structureId,
-            MultiblockStructureDefinition definition,
-            EmiRecipeCategory category,
-            EmiStack controller,
-            int layer) {
-        this.structureId = Objects.requireNonNull(structureId, "structureId");
-        this.definition = Objects.requireNonNull(definition, "definition");
+            MultiblockProjectionGrid grid,
+            EmiRecipeCategory category) {
+        this.grid = Objects.requireNonNull(grid, "grid");
         this.category = Objects.requireNonNull(category, "category");
-        this.controller = Objects.requireNonNull(controller, "controller");
-        this.layer = layer;
-        this.id = EmiIds.synthetic(
-                category.getId(),
-                ResourceLocation.fromNamespaceAndPath(
-                        structureId.getNamespace(),
-                        structureId.getPath() + "/layer_" + layer));
-
-        paletteIngredients = new LinkedHashMap<>();
-        List<EmiIngredient> materialInputs = new ArrayList<>();
-        definition.palette().forEach((key, predicate) -> {
-            if (predicate.kind() == PredicateKind.AIR) {
-                return;
+        this.id = MultiblockProjectionGrid.recipeId(grid.structureId());
+        List<EmiIngredient> materials = new ArrayList<>();
+        for (MultiblockProjectionGrid.Material material : grid.materials()) {
+            EmiIngredient ingredient = ingredient(
+                    material.itemBlocks(), material.count());
+            if (ingredient != null) {
+                materials.add(ingredient);
             }
-            EmiIngredient cellIngredient = ingredient(predicate, 1);
-            EmiIngredient materialIngredient = ingredient(predicate, count(key));
-            if (cellIngredient != null && materialIngredient != null) {
-                paletteIngredients.put(key, cellIngredient);
-                materialInputs.add(materialIngredient);
-            }
-        });
-        inputs = List.copyOf(materialInputs);
-
-        int minX = definition.structure().stream()
-                .mapToInt(element -> element.offset().x()).min().orElse(0);
-        int maxX = definition.structure().stream()
-                .mapToInt(element -> element.offset().x()).max().orElse(0);
-        int minZ = definition.structure().stream()
-                .mapToInt(element -> element.offset().z()).min().orElse(0);
-        int maxZ = definition.structure().stream()
-                .mapToInt(element -> element.offset().z()).max().orElse(0);
-        int gridWidth = maxX - minX + 1;
-        int gridDepth = maxZ - minZ + 1;
-        int materialLines = Math.max(1, materialInputs.size() + 1);
-        width = Math.max(MATERIALS_LEFT + 100, LEFT + gridWidth * CELL + 8);
-        height = Math.max(
-                MATERIALS_TOP + materialLines * CELL + 10,
-                TOP + gridDepth * CELL + 16);
+        }
+        inputs = List.copyOf(materials);
+        outputs = controllerOutputs(grid.controllers());
+        catalyst = ingredient(grid.controllers(), 1);
+        int slots = inputs.size() + (catalyst == null ? 0 : 1);
+        int rows = Math.max(1, (slots + MATERIAL_COLUMNS - 1) / MATERIAL_COLUMNS);
+        width = MATERIALS_LEFT + MATERIAL_COLUMNS * CELL;
+        height = TOP + Math.max(VIEW_H, rows * CELL);
     }
 
     @Override
@@ -111,12 +90,12 @@ final class MultiblockEmiRecipe implements EmiRecipe {
 
     @Override
     public List<EmiIngredient> getCatalysts() {
-        return List.of(controller);
+        return catalyst == null ? List.of() : List.of(catalyst);
     }
 
     @Override
     public List<EmiStack> getOutputs() {
-        return List.of();
+        return outputs;
     }
 
     @Override
@@ -136,100 +115,96 @@ final class MultiblockEmiRecipe implements EmiRecipe {
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
+        Font font = Minecraft.getInstance().font;
+        Component title = Component.translatable(
+                "emi.cruciblecraft.multiblock.blueprint", controllerName());
         widgets.addText(
-                net.minecraft.network.chat.Component.translatable(
-                        "emi.cruciblecraft.multiblock.blueprint",
-                        structureId.toString()),
-                LEFT,
-                4,
-                0xFF000000,
+                Language.getInstance().getVisualOrder(
+                        font.substrByWidth(title, width)),
+                0,
+                0,
+                0xFF404040,
                 false);
-        widgets.addText(
-                net.minecraft.network.chat.Component.translatable(
-                        "emi.cruciblecraft.multiblock.materials"),
-                MATERIALS_LEFT,
-                4,
-                0xFF000000,
-                false);
+        widgets.add(new MultiblockProjectionWidget(
+                grid, view, 0, TOP, VIEW_W, VIEW_H));
 
-        int minX = definition.structure().stream()
-                .mapToInt(element -> element.offset().x()).min().orElse(0);
-        int minY = definition.structure().stream()
-                .mapToInt(element -> element.offset().y()).min().orElse(0);
-        int minZ = definition.structure().stream()
-                .mapToInt(element -> element.offset().z()).min().orElse(0);
-        int maxZ = definition.structure().stream()
-                .mapToInt(element -> element.offset().z()).max().orElse(0);
-        int gridWidth = definition.structure().stream()
-                .mapToInt(element -> element.offset().x()).max().orElse(0)
-                - minX + 1;
-        int gridDepth = maxZ - minZ + 1;
+        int buttonY = TOP;
+        buttonY = addButton(widgets, buttonY, "Y", "cycle_layer", () ->
+                view.cycleLayer(grid.layers().size()));
+        buttonY = addButton(widgets, buttonY, "R", "reset", view::reset);
+        addButton(widgets, buttonY, "W", "world_preview", () ->
+                WorldPreviewRenderer.toggle(grid));
 
-        Map<Integer, List<Element>> byLayer = new java.util.TreeMap<>();
-        definition.structure().forEach(element ->
-                byLayer.computeIfAbsent(element.offset().y(), ignored ->
-                        new ArrayList<>()).add(element));
-        List<Element> elements = byLayer.getOrDefault(layer, List.of());
-        int y = TOP;
-        widgets.addText(
-                net.minecraft.network.chat.Component.translatable(
-                        "emi.cruciblecraft.multiblock.layer", layer),
-                LEFT,
-                y - 10,
-                0xFF000000,
-                false);
-        for (Element element : elements) {
-            EmiIngredient ingredient = paletteIngredients.get(
-                    element.predicate());
-            if (ingredient == null) {
-                continue;
-            }
-            int x = LEFT + (element.offset().x() - minX) * CELL;
-            int z = y + (element.offset().z() - minZ) * CELL;
-            widgets.addSlot(ingredient, x, z).drawBack(false);
-        }
-
-        int materialY = MATERIALS_TOP;
+        int index = 0;
         for (EmiIngredient ingredient : inputs) {
-            widgets.addSlot(ingredient, MATERIALS_LEFT, materialY)
-                    .drawBack(false);
-            materialY += CELL;
+            addMaterialSlot(widgets, ingredient, index++);
         }
-        widgets.addSlot(controller, MATERIALS_LEFT, materialY)
-                .drawBack(false)
-                .catalyst(true);
+        if (catalyst != null) {
+            int column = index % MATERIAL_COLUMNS;
+            int row = index / MATERIAL_COLUMNS;
+            widgets.addSlot(catalyst, MATERIALS_LEFT + column * CELL, TOP + row * CELL)
+                    .catalyst(true);
+        }
     }
 
-    private int count(String paletteKey) {
-        return (int) definition.structure().stream()
-                .filter(element -> element.predicate().equals(paletteKey))
-                .count();
+    private static void addMaterialSlot(
+            WidgetHolder widgets, EmiIngredient ingredient, int index) {
+        int column = index % MATERIAL_COLUMNS;
+        int row = index / MATERIAL_COLUMNS;
+        widgets.addSlot(ingredient, MATERIALS_LEFT + column * CELL, TOP + row * CELL);
+    }
+
+    private static int addButton(
+            WidgetHolder widgets,
+            int y,
+            String label,
+            String name,
+            Runnable action) {
+        widgets.add(new ProjectionButtonWidget(
+                BUTTONS_LEFT,
+                y,
+                BUTTON,
+                label,
+                Component.translatable("emi.cruciblecraft.multiblock." + name),
+                action));
+        return y + BUTTON_STEP;
+    }
+
+    private Component controllerName() {
+        for (ResourceLocation id : grid.controllers()) {
+            var block = BuiltInRegistries.BLOCK.getOptional(id);
+            if (block.isPresent()) {
+                return block.get().getName();
+            }
+        }
+        return Component.literal(grid.structureId().toString());
+    }
+
+    /**
+     * GTCEu indexes the controller as the recipe output, so View Recipes
+     * on the core opens this page. View Uses comes from the catalyst.
+     */
+    private static List<EmiStack> controllerOutputs(List<ResourceLocation> blocks) {
+        List<EmiStack> stacks = new ArrayList<>();
+        for (ResourceLocation id : blocks) {
+            BuiltInRegistries.BLOCK.getOptional(id).ifPresent(block ->
+                    addItemChoice(stacks, block));
+        }
+        return List.copyOf(stacks);
     }
 
     private static EmiIngredient ingredient(
-            PalettePredicate predicate,
+            List<ResourceLocation> blocks,
             int amount) {
         List<EmiStack> choices = new ArrayList<>();
-        if (predicate.block().isPresent()) {
-            addBlockChoice(choices, predicate.block().orElseThrow());
-        } else if (predicate.tag().isPresent()) {
-            var tag = net.minecraft.tags.TagKey.create(
-                    net.minecraft.core.registries.Registries.BLOCK,
-                    predicate.tag().orElseThrow());
-            BuiltInRegistries.BLOCK.forEach(block -> {
-                if (block.builtInRegistryHolder().is(tag)) {
-                    addItemChoice(choices, block);
-                }
-            });
+        for (ResourceLocation id : blocks) {
+            BuiltInRegistries.BLOCK.getOptional(id).ifPresent(block ->
+                    addItemChoice(choices, block));
         }
-        return choices.isEmpty() ? null : new ListEmiIngredient(choices, amount);
-    }
-
-    private static void addBlockChoice(
-            List<EmiStack> choices,
-            ResourceLocation id) {
-        BuiltInRegistries.BLOCK.getOptional(id).ifPresent(
-                block -> addItemChoice(choices, block));
+        if (choices.isEmpty()) {
+            return null;
+        }
+        return EmiIngredient.of(choices, amount);
     }
 
     private static void addItemChoice(List<EmiStack> choices, Block block) {

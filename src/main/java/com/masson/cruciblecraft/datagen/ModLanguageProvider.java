@@ -468,8 +468,27 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.cruciblecraft.processing.special", "%s");
             add("emi.cruciblecraft.fusion.start", "启动：%s LU");
             add("emi.cruciblecraft.multiblock.blueprint", "结构：%s");
-            add("emi.cruciblecraft.multiblock.materials", "材料清单");
+            add("emi.cruciblecraft.multiblock.cycle_facing", "朝向");
+            add("emi.cruciblecraft.multiblock.cycle_layer", "层");
+            add("emi.cruciblecraft.multiblock.facing.east", "东");
+            add("emi.cruciblecraft.multiblock.facing.north", "北");
+            add("emi.cruciblecraft.multiblock.facing.south", "南");
+            add("emi.cruciblecraft.multiblock.facing.west", "西");
             add("emi.cruciblecraft.multiblock.layer", "层 Y=%s");
+            add("emi.cruciblecraft.multiblock.materials", "材料清单");
+            add("emi.cruciblecraft.multiblock.pitch", "俯仰");
+            add("emi.cruciblecraft.multiblock.status_all", "%s · 全部");
+            add("emi.cruciblecraft.multiblock.status_layer", "%s · Y=%s");
+            add("emi.cruciblecraft.multiblock.turn_left", "左转");
+            add("emi.cruciblecraft.multiblock.turn_right", "右转");
+            add("emi.cruciblecraft.multiblock.zoom_in", "放大");
+            add("emi.cruciblecraft.multiblock.zoom_out", "缩小");
+            add("emi.cruciblecraft.multiblock.reset", "重置视角");
+            add("emi.cruciblecraft.multiblock.world_preview", "在世界中预览");
+            add("emi.cruciblecraft.multiblock.preview_needs_controller",
+                    "先把准星对准这台机器的核心");
+            add("emi.cruciblecraft.multiblock.candidates", "可用方块（%s）");
+            add("emi.cruciblecraft.multiblock.candidates_more", "其余 %s 种");
             add("device.cruciblecraft.anvil", "砧");
             add("device.cruciblecraft.crucible", "坩埚");
             add("device.cruciblecraft.large_crucible", "大型坩埚");
@@ -1373,8 +1392,27 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.cruciblecraft.processing.special", "%s");
         add("emi.cruciblecraft.fusion.start", "Start: %s LU");
         add("emi.cruciblecraft.multiblock.blueprint", "Structure: %s");
-        add("emi.cruciblecraft.multiblock.materials", "Materials");
+        add("emi.cruciblecraft.multiblock.cycle_facing", "Facing");
+        add("emi.cruciblecraft.multiblock.cycle_layer", "Layer");
+        add("emi.cruciblecraft.multiblock.facing.east", "East");
+        add("emi.cruciblecraft.multiblock.facing.north", "North");
+        add("emi.cruciblecraft.multiblock.facing.south", "South");
+        add("emi.cruciblecraft.multiblock.facing.west", "West");
         add("emi.cruciblecraft.multiblock.layer", "Layer Y=%s");
+        add("emi.cruciblecraft.multiblock.materials", "Materials");
+        add("emi.cruciblecraft.multiblock.pitch", "Pitch");
+        add("emi.cruciblecraft.multiblock.status_all", "%s · All");
+        add("emi.cruciblecraft.multiblock.status_layer", "%s · Y=%s");
+        add("emi.cruciblecraft.multiblock.turn_left", "Turn left");
+        add("emi.cruciblecraft.multiblock.turn_right", "Turn right");
+        add("emi.cruciblecraft.multiblock.zoom_in", "Zoom in");
+        add("emi.cruciblecraft.multiblock.zoom_out", "Zoom out");
+        add("emi.cruciblecraft.multiblock.reset", "Reset view");
+        add("emi.cruciblecraft.multiblock.world_preview", "Preview in world");
+        add("emi.cruciblecraft.multiblock.preview_needs_controller",
+                "Look at this machine's controller first");
+        add("emi.cruciblecraft.multiblock.candidates", "Accepted blocks (%s)");
+        add("emi.cruciblecraft.multiblock.candidates_more", "%s more");
 
         add("message.cruciblecraft.air_injection_started", "Airflow started; decarburization is underway");
         add("message.cruciblecraft.air_injection_continued", "Airflow duration extended");

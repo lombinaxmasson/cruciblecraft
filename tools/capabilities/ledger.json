@@ -3758,6 +3758,60 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/prep/多方块结构EMI投影详细计划.md",
+        "docs/history/card-plans/active/多方块结构EMI投影详细计划.md",
+        "docs/history/card-plans/closed/多方块结构EMI投影详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/MultiblockEmiRecipe.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+        "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+        "src/test/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+        "tools/capabilities/presentation/multiblock-emi-projection/**"
+      ],
+      "path": "tools/capabilities/presentation/multiblock-emi-projection/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "presentation/multiblock-emi-projection",
+      "survival_access": "not_applicable",
+      "title": "Multiblock EMI Projection",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "presentation/multiblock-emi-projection"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/多方块结构预览重做详细计划.md",
+        "docs/history/card-plans/closed/多方块结构预览重做详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+        "src/main/java/com/masson/cruciblecraft/client/multiblockpreview/**",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/MultiblockEmiRecipe.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+        "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+        "src/test/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+        "tools/capabilities/presentation/multiblock-schema-preview/**"
+      ],
+      "path": "tools/capabilities/presentation/multiblock-schema-preview/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "presentation/multiblock-schema-preview",
+      "survival_access": "not_applicable",
+      "title": "Multiblock Schema Preview",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/GT6批量配方容量门详细计划.md",
         "docs/current/recipe-wave-workflow.md",
         "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
@@ -4476,7 +4530,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 132,
+  "capability_count": 134,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5832,6 +5886,13 @@
     "portfolio/test-authoring-workflow": [
       "portfolio/test-authoring-workflow"
     ],
+    "presentation/multiblock-emi-projection": [
+      "presentation/multiblock-emi-projection",
+      "presentation/multiblock-schema-preview"
+    ],
+    "presentation/multiblock-schema-preview": [
+      "presentation/multiblock-schema-preview"
+    ],
     "recipe/gt6-bulk-capacity": [
       "recipe/gt6-bulk-capacity",
       "recipe/gt6-chemical-misc-bulk",
@@ -6086,6 +6147,8 @@
       "machines/sanding",
       "machines/slicer",
       "portfolio/gt6-machine-ledger-audit",
+      "presentation/multiblock-emi-projection",
+      "presentation/multiblock-schema-preview",
       "recipe/gt6-bulk-capacity",
       "registry/catalog-modern-ids",
       "registry/gt6-long-tail-forms",
@@ -6126,5 +6189,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "presentation/multiblock-schema-preview"
 }

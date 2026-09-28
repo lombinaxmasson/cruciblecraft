@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "slug": "presentation/multiblock-emi-projection",
+  "title": "Multiblock EMI Projection",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/prep/多方块结构EMI投影详细计划.md",
+    "docs/history/card-plans/active/多方块结构EMI投影详细计划.md",
+    "docs/history/card-plans/closed/多方块结构EMI投影详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/MultiblockEmiRecipe.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+    "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+    "src/test/java/com/masson/cruciblecraft/compat/emi/multiblock/**",
+    "tools/capabilities/presentation/multiblock-emi-projection/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "note": "One EMI uses-page block projection per multiblock structure JSON. Material slots stay searchable. Not an obtain path."
+}
