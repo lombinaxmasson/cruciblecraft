@@ -105,6 +105,12 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_text_file(path: Path) -> str:
+    """Hash text after normalizing CRLF so Windows checkouts match the git blob."""
+    data = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
+
+
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -279,7 +285,7 @@ def translator_fingerprint() -> dict[str, str]:
     ]
     if EXCLUSIONS_PATH.is_file():
         paths.append(EXCLUSIONS_PATH)
-    return {path.relative_to(ROOT).as_posix(): sha256_file(path) for path in paths}
+    return {path.relative_to(ROOT).as_posix(): sha256_text_file(path) for path in paths}
 
 
 # --------------------------------------------------------------------------
