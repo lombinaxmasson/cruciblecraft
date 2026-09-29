@@ -154,11 +154,8 @@ class LargeGasTurbineCardTest(unittest.TestCase):
         self.assertIn("GAS_TURBINE", kind)
         self.assertIn("STEAM_TURBINE", kind)
 
-    def test_required_game_tests_exist(self) -> None:
-        capability = io.load_json(CAPABILITY)
+    def test_holder_stays_on_the_multiblock_grid(self) -> None:
         source = GAME_TESTS.read_text(encoding="utf-8")
-        for test_id in capability["required_test_ids"]:
-            self.assertIn(f"void {test_id}", source)
         self.assertIn("cruciblecraft_multiblock", source)
         self.assertNotIn("bronze_small_gas_turbine", source)
 

@@ -120,3 +120,9 @@
 - 用替身零件、创造栏或 GameTest 注入冒充玩家获得。
 - 为了变绿抬预算常数、改写死数字而不写原因。
 - 在内容卡里顺手搬 GameTest 类或合并命名空间（需落地卡）。
+- 关卡时往 `capability-runtime` 加账本式 Python 测试（哈希钉、源码 needle、
+  别的卡的文件探测）。这类检查放 `manual_replay`。卡要证明自己持续有效，
+  写 GameTest 或 JUnit。
+- 生成类 builder 的 `check()` 只核对它写进 `src/` 或波次文档、且游戏或
+  `--check` 会读的输出。不要在 `check()` 里搜 Java 源码字符串，也不要探测
+  别的卡的计划或 workflow。

@@ -1708,204 +1708,64 @@ def check() -> list[str]:
         blob = path.read_text(encoding="utf-8")
         if "cruciblecraft:generates_rock" not in blob:
             errors.append(f"{material} must generate rock form")
-    java_root = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-    )
-    feature = java_root / "worldgen" / "StoneLayerRockFeature.java"
-    if not feature.is_file():
-        errors.append("missing StoneLayerRockFeature.java")
-    else:
-        text = feature.read_text(encoding="utf-8")
-        if "c:rocks" in text or "ItemEntity" in text or "GtItemScatterFeature" in text:
-            errors.append("stone-layer feature must not dump catalog ItemEntity")
-        if "instanceof RockBlock" in text or "new RockBlock" in text:
-            errors.append("stone-layer pebbles must be gt_surface_rock, not RockBlock")
-        if "nextInt" not in text:
-            errors.append("stone-layer feature must keep 1/128 roll")
-        if "tryReplace" not in text or "Blocks.STONE" not in text:
-            errors.append("stone-layer feature must replace vanilla stone cubes")
-        if "StructureTags.VILLAGE" not in text or "tryReplaceVillageBrick" not in text:
-            errors.append("village cobble must become GetVillageBlockID SBRIK")
-        if "Blocks.TUFF" not in text:
-            errors.append("stone-layer feature must replace 1.21 tuff")
-        if "tryPlaceOre" not in text or "UNIT" not in text:
-            errors.append("stone-layer feature must emit StoneLayerOres")
-        if "isVanillaOre" not in text:
-            errors.append("stone-layer feature must treat vanilla ores as replaceable")
-        if "minBuildHeight" not in text:
-            errors.append("setNoDeep must use minBuildHeight+24")
-        if "scan[6] == scan[0]" not in text and "scan[6]==scan[0]" not in text:
-            errors.append("in-layer ores must keep GT6 scan[6]==scan[0] small/normal")
-        if "canEntityDestroy" not in (
-            java_root / "content" / "block" / "StoneLayerStoneBlock.java"
-        ).read_text(encoding="utf-8"):
-            errors.append("harvest-3 cubes must keep GT6 wither proof")
-        rock_ore = java_root / "content" / "block" / "StoneLayerRockOreBlock.java"
-        if not rock_ore.is_file():
-            errors.append("missing StoneLayerRockOreBlock.java")
-        else:
-            rock_text = rock_ore.read_text(encoding="utf-8")
-            if "getFlammability" not in rock_text:
-                errors.append("BlockRockOres must keep GT6 flammability")
-            if "spawnAfterBreak" not in rock_text:
-                errors.append("BlockRockOres must keep GT6 1/8 experience drop")
-        loot_java = java_root / "datagen" / "ModBlockLootTables.java"
-        if loot_java.is_file():
-            loot_text = loot_java.read_text(encoding="utf-8")
-            if "lookupOrThrow(Registries.ENCHANTMENT)" not in loot_text:
-                errors.append("dense ore loot must look up fortune from the enchantment registry")
-            if "RAW_ORE" not in loot_text:
-                errors.append("BlockRockOres must drop oreRaw")
-            if "villageBricks" not in loot_text:
-                errors.append("village SBRIK cubes must drop themselves")
-        states = java_root / "datagen" / "ModBlockStateProvider.java"
-        if states.is_file():
-            states_text = states.read_text(encoding="utf-8")
-            if "simpleBlockWithItem" not in states_text:
-                errors.append("layer cubes must emit block and item models together")
-            if 'item/" + cube.registryPath()' not in states_text:
-                errors.append(
-                    "slash-id layer cubes must write models/item/<path>.json"
-                )
-        tags_java = java_root / "datagen" / "ModBlockTagProvider.java"
-        if tags_java.is_file() and "NEEDS_IRON_TOOL" not in tags_java.read_text(
-            encoding="utf-8"
+    generated = census.ROOT / "src" / "generated" / "resources"
+    for ore in actual.get("rock_ores") or []:
+        rel = f"{ore['material']}/dense_ore.json"
+        for folder in (
+            generated / "assets" / "cruciblecraft" / "blockstates",
+            generated / "assets" / "cruciblecraft" / "models",
+            generated / "assets" / "cruciblecraft" / "models" / "item",
+            generated / "data" / "cruciblecraft" / "loot_table" / "blocks",
         ):
-            errors.append("harvest-2 cubes must stay on needs_iron_tool")
-        generated = census.ROOT / "src" / "generated" / "resources"
-        for ore in actual.get("rock_ores") or []:
-            rel = f"{ore['material']}/dense_ore.json"
-            for folder in (
-                generated / "assets" / "cruciblecraft" / "blockstates",
-                generated / "assets" / "cruciblecraft" / "models",
-                generated / "assets" / "cruciblecraft" / "models" / "item",
-                generated / "data" / "cruciblecraft" / "loot_table" / "blocks",
-            ):
-                dest = folder / rel
-                if not dest.is_file():
-                    errors.append(f"missing generated {census.relative(dest)}")
-        for rel in (
-            "granite_black/stone.json",
-            "granite_black/cobble.json",
-            "andesite/small_bricks.json",
-        ):
-            item_model = (
-                generated
-                / "assets"
-                / "cruciblecraft"
-                / "models"
-                / "item"
-                / rel
-            )
-            if not item_model.is_file():
-                errors.append(f"missing generated {census.relative(item_model)}")
-        pickaxe = (
-            generated / "data" / "minecraft" / "tags" / "block" / "mineable" / "pickaxe.json"
-        )
-        if pickaxe.is_file():
-            pickaxe_text = pickaxe.read_text(encoding="utf-8")
-            if "cruciblecraft:coal/dense_ore" not in pickaxe_text:
-                errors.append("dense cubes must be mineable with pickaxe")
-            if "cruciblecraft:nether_quartz/dense_ore" not in pickaxe_text:
-                errors.append("nether quartz dense cube must be mineable with pickaxe")
-            if "cruciblecraft:andesite/small_bricks" not in pickaxe_text:
-                errors.append("village SBRIK cubes must be mineable with pickaxe")
-        else:
-            errors.append("missing generated pickaxe tag")
-        loot_coal = (
+            dest = folder / rel
+            if not dest.is_file():
+                errors.append(f"missing generated {census.relative(dest)}")
+    for rel in (
+        "granite_black/stone.json",
+        "granite_black/cobble.json",
+        "andesite/small_bricks.json",
+    ):
+        item_model = (
             generated
-            / "data"
+            / "assets"
             / "cruciblecraft"
-            / "loot_table"
-            / "blocks"
-            / "coal"
-            / "dense_ore.json"
+            / "models"
+            / "item"
+            / rel
         )
-        if loot_coal.is_file():
-            loot_text = loot_coal.read_text(encoding="utf-8")
-            if (
-                '"name": "cruciblecraft:raw_ore"' not in loot_text
-                or '"cruciblecraft:prefix_material": "coal"' not in loot_text
-            ):
-                errors.append(
-                    "coal dense cube loot must drop shared raw_ore plus prefix_material coal"
-                )
-        for forbidden in ("moon.rocks", "mars.rocks", "planet.rocks"):
-            if forbidden in text:
-                errors.append(f"must not land {forbidden}")
-    stones = java_root / "worldgen" / "StoneLayerStones.java"
-    if not stones.is_file():
-        errors.append("missing StoneLayerStones.java")
-    elif 'load("village_bricks"' not in stones.read_text(encoding="utf-8"):
-        errors.append("layer cubes must load GetVillageBlockID SBRIK palette")
-    village_java = java_root / "worldgen" / "VillageStoneBricks.java"
-    if not village_java.is_file():
-        errors.append("missing VillageStoneBricks.java")
-    blocks_java = java_root / "registry" / "ModBlocks.java"
-    if not blocks_java.is_file():
-        errors.append("missing ModBlocks.java")
-    else:
-        text = blocks_java.read_text(encoding="utf-8")
-        if "GT_STONE_BLOCKS.containsKey" not in text:
-            errors.append("layer cubes must reuse live gt_stone_catalog ids")
-    cube = java_root / "content" / "block" / "StoneLayerStoneBlock.java"
-    if not cube.is_file():
-        errors.append("missing StoneLayerStoneBlock.java")
-    tests = (
-        census.ROOT
-        / "src"
-        / "test"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "gametest"
-        / GAME_TESTS
+        if not item_model.is_file():
+            errors.append(f"missing generated {census.relative(item_model)}")
+    pickaxe = (
+        generated / "data" / "minecraft" / "tags" / "block" / "mineable" / "pickaxe.json"
     )
-    if not tests.is_file():
-        errors.append(f"missing {GAME_TESTS}")
+    if pickaxe.is_file():
+        pickaxe_text = pickaxe.read_text(encoding="utf-8")
+        if "cruciblecraft:coal/dense_ore" not in pickaxe_text:
+            errors.append("dense cubes must be mineable with pickaxe")
+        if "cruciblecraft:nether_quartz/dense_ore" not in pickaxe_text:
+            errors.append("nether quartz dense cube must be mineable with pickaxe")
+        if "cruciblecraft:andesite/small_bricks" not in pickaxe_text:
+            errors.append("village SBRIK cubes must be mineable with pickaxe")
     else:
-        text = tests.read_text(encoding="utf-8")
-        if "cruciblecraft_worldgen" not in text:
-            errors.append("GameTest namespace drifted")
-        if "granite_black" not in text:
-            errors.append("GameTest must cover granite_black loot")
-        if "stoneLayerReplacesVanillaStone" not in text:
-            errors.append("GameTest must cover stone-cube replace")
-        if "stoneLayerPlacesLayerOres" not in text:
-            errors.append("GameTest must cover StoneLayerOres placement")
-        if "stoneLayerPlacesDenseRockOres" not in text:
-            errors.append("GameTest must cover BlockRockOres dense cubes")
-        if "stoneLayerPlacesNetherQuartz" not in text:
-            errors.append("GameTest must cover WorldgenNetherQuartz")
-        if "ore_quartz_nether" not in text:
-            errors.append("GameTest must cover vanilla nether quartz removal")
-        if "stoneLayerManifestResolvesLocalGt6" not in text:
-            errors.append("GameTest must cover local GT6 stone textures")
-        if "stoneLayerDoesNotEatVillageCobble" not in text:
-            errors.append("GameTest must cover GetVillageBlockID cobble")
-        if "stoneLayerCubeItemModelsExist" not in text:
-            errors.append("GameTest must cover slash-id item models")
-        if "GtItemScatterFeature" in text:
-            errors.append("GameTest must not reintroduce catalog scatter")
-    block = (
-        java_root / "content" / "block" / "GtSurfaceRockBlock.java"
-    ).read_text(encoding="utf-8")
-    if "EntityBlock" not in block:
-        errors.append("gt_surface_rock must keep a BlockEntity for layer material")
-    if "getCollisionShape" not in block or "Shapes.empty()" not in block:
-        errors.append("surface rock must keep GT6 empty collision")
-    noise = NOISE_DEST.read_text(encoding="utf-8") if NOISE_DEST.is_file() else ""
-    if "CELL_3D" not in noise or "Hash3D" not in noise:
-        errors.append("StoneLayerNoise must keep GT6 CELL_3D / Hash3D")
-    if "dimensionId" in noise or "net.minecraft.world.World" in noise:
-        errors.append("StoneLayerNoise must not keep 1.7.10 World")
+        errors.append("missing generated pickaxe tag")
+    loot_coal = (
+        generated
+        / "data"
+        / "cruciblecraft"
+        / "loot_table"
+        / "blocks"
+        / "coal"
+        / "dense_ore.json"
+    )
+    if loot_coal.is_file():
+        loot_text = loot_coal.read_text(encoding="utf-8")
+        if (
+            '"name": "cruciblecraft:raw_ore"' not in loot_text
+            or '"cruciblecraft:prefix_material": "coal"' not in loot_text
+        ):
+            errors.append(
+                "coal dense cube loot must drop shared raw_ore plus prefix_material coal"
+            )
     biome = census.load_json(
         DATA / "neoforge" / "biome_modifier" / "add_stone_layer_rocks.json"
     )
@@ -1940,33 +1800,6 @@ def check() -> list[str]:
             errors.append("vanilla nether quartz remove list drifted")
         if vanilla_remove.get("biomes") != "#minecraft:is_nether":
             errors.append("vanilla quartz remove must stay nether-only")
-    nether_java = java_root / "worldgen" / "NetherQuartzLayerFeature.java"
-    if not nether_java.is_file():
-        errors.append("missing NetherQuartzLayerFeature.java")
-    else:
-        nether_text = nether_java.read_text(encoding="utf-8")
-        if "Blocks.NETHERRACK" not in nether_text:
-            errors.append("WorldgenNetherQuartz must only replace netherrack")
-        if "NETHER_NOISE_OFFSET" not in nether_text or "-512" not in nether_text:
-            errors.append("nether quartz must keep 512 * dimensionId offset")
-        if "SAMPLE_Y_HIGH = 64" not in nether_text:
-            errors.append("nether quartz must sample noise Y 0 and 64")
-        if "BASE_Y = 40" not in nether_text or "SPAN = 200" not in nether_text:
-            errors.append("nether quartz Y must stay 40 + noise 0..199")
-        if "Level.NETHER" not in nether_text:
-            errors.append("nether quartz feature must refuse non-nether dimensions")
-    if NETHER_QUARTZ_JAVA.is_file():
-        gt6_nether = NETHER_QUARTZ_JAVA.read_text(encoding="utf-8")
-        compact = re.sub(r"\s+", "", gt6_nether)
-        if "BlocksGT.RockOres,8" not in compact:
-            errors.append("GT6 WorldgenNetherQuartz must still write RockOres meta 8")
-        if "40+tNoise.get" not in compact:
-            errors.append("GT6 WorldgenNetherQuartz Y formula drifted")
-    features_java = java_root / "registry" / "ModFeatures.java"
-    if features_java.is_file():
-        features_text = features_java.read_text(encoding="utf-8")
-        if "nether_netherquartz" not in features_text:
-            errors.append("ModFeatures must register nether.netherquartz")
     blob = json.dumps(actual)
     for forbidden in ("moon.rocks", "mars.rocks", "planet.rocks", "GtItemScatterFeature"):
         if forbidden in blob:

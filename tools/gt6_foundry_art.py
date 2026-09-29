@@ -442,17 +442,6 @@ def check() -> list[str]:
         errors.append("missing foundry-art structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append("missing foundry-art gametest/structure/empty.nbt")
-    tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
-        if FOUNDRY_TESTS.is_file() and name in FOUNDRY_TESTS.read_text(encoding="utf-8"):
-            errors.append(f"foundry runtime tests absorbed {name}")
-        if name in CORE_TESTS.read_text(encoding="utf-8"):
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
-    notes = census.load_json(WAVE / "runtime_notes.json") if (WAVE / "runtime_notes.json").is_file() else {}
-    if notes.get("reopens_foundry_required_test_ids"):
-        errors.append("runtime_notes reopens foundry required_test_ids")
     return errors
 
 

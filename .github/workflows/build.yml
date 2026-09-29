@@ -58,4 +58,4 @@ jobs:
         run: python3 tools/verify.py integration --profile semantic-generators --if-changed
 
       - name: Verify capability runtime
-        run: python3 tools/verify.py integration --profile capability-runtime
+        run: python3 tools/verify.py integration --profile capability-runtime --if-changed

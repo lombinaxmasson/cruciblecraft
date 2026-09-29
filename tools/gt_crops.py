@@ -481,27 +481,6 @@ def check() -> list[str]:
         errors.append("missing plant_glowtus configured_feature")
     if not (DATA / "worldgen" / "configured_feature" / "plant_bush.json").is_file():
         errors.append("missing plant_bush configured_feature")
-    java = (
-        census.ROOT
-        / "src"
-        / "test"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "gametest"
-        / GAME_TESTS
-    )
-    if not java.is_file():
-        errors.append(f"missing {GAME_TESTS}")
-    else:
-        text = java.read_text(encoding="utf-8")
-        if "must not reuse lilypad_glowtus/white_glowtus" not in text:
-            errors.append("GameTest must keep white_glowtus unaliased")
-        if "SWEET_BERRIES" not in text:
-            errors.append("GameTest must assert sweet berries")
-        if "Items.STRING" not in text:
-            errors.append("GameTest must reject string berries")
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing crops structure/empty.nbt")
     return errors

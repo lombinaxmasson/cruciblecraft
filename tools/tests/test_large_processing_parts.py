@@ -64,9 +64,6 @@ class LargeProcessingPartsCardTest(unittest.TestCase):
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
             self.assertEqual([], parts.close_errors())
-        source = GAME_TESTS.read_text(encoding="utf-8")
-        for test_id in capability["required_test_ids"]:
-            self.assertIn(f"void {test_id}", source)
 
     def test_later_host_would_not_block(self) -> None:
         self.assertEqual([], parts.close_errors())

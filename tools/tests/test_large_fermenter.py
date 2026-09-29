@@ -69,9 +69,6 @@ class LargeFermenterCardTest(unittest.TestCase):
             self.assertIsNone(topology["unique_active_wave"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
-        source = GAME_TESTS.read_text(encoding="utf-8")
-        for test_id in capability["required_test_ids"]:
-            self.assertIn(f"void {test_id}", source)
         self.assertNotIn("player_complete", capability.get("note") or "")
 
 

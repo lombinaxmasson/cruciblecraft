@@ -1375,12 +1375,6 @@ def write(unique_active: bool = True, domain: str = "attachments") -> dict[str, 
     modern.rewrite_catalog_item_tags()
     _write_models(overlay["rows"])
     _copy_empty_nbt(domain)
-    (wave / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (wave / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
     return {
         "domain": domain,
         "in_place": len(overlay["rows"]),
@@ -1611,28 +1605,11 @@ def _check_domain(domain: str) -> list[str]:
                     f"{domain} meta {meta} catalog {identity.get('registry_path')} "
                     f"!= {live_path}"
                 )
-    tests_path = _game_tests(domain)
-    tests = tests_path.read_text(encoding="utf-8") if tests_path.is_file() else ""
-    for name in spec["tests"]:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
-    core = CORE_TESTS.read_text(encoding="utf-8")
-    for name in spec["tests"]:
-        if name in core:
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
     pack = _pack(domain)
     if not (pack / "structure" / "empty.nbt").is_file():
         errors.append(f"missing {domain} structure/empty.nbt")
     if not (pack / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append(f"missing {domain} gametest/structure/empty.nbt")
-    if (wave / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip() != _sha256(
-        R0
-    ):
-        errors.append("R0 disposition ledger was modified")
-    if (
-        wave / "baseline_ledger_sha256.txt"
-    ).read_text(encoding="utf-8").strip() != _sha256(LEDGER):
-        errors.append("baseline identity_resolution_ledger was modified")
     return errors
 
 

@@ -69,9 +69,6 @@ class HammerSqueezerLaserCardTest(unittest.TestCase):
             self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
-        source = GAME_TESTS.read_text(encoding="utf-8")
-        for test_id in capability["required_test_ids"]:
-            self.assertIn(f"void {test_id}", source)
 
     def test_machine_tier_rows_are_exactly_the_new_hosts(self) -> None:
         document = load(TIERS)

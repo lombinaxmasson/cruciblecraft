@@ -10,21 +10,12 @@
     "NOTICE"
   ],
   "active_test_modules": [
-    "test_logistics_cover_net_remainder",
-    "test_energy_remainder",
-    "test_energy_converter_catalog",
-    "test_energy_batteries",
-    "test_energy_transformers",
-    "test_energy_heat_exchangers",
-    "test_large_gas_turbine",
-    "test_energy_coolers",
-    "test_energy_flux_converters",
-    "test_energy_nuclear_fission_survival",
-    "test_energy_nuclear_fission_hot_fluids",
+    "test_crosscut_art",
+    "test_crosscut_recipe_stand_in",
+    "test_crosscut_catalog_scatter",
+    "test_crosscut_registered_ids",
+    "test_required_test_ids",
     "test_blocked_recipe_ledger",
-    "test_logistics_core",
-    "test_display_cpu",
-    "test_cover_remainder",
     "test_verification_profiles",
     "test_check_gametest_hygiene",
     "test_bulk_port_verification",
@@ -42,59 +33,17 @@
     "test_cluster_mill_prep",
     "test_prep_machines",
     "test_gt_trees",
-    "test_gt_crops",
-    "test_gt6_crop_food_split",
-    "test_gt_stone_layer_rocks",
-    "test_gt_small_ores",
     "test_blockers",
-    "test_oven",
-    "test_large_processing_parts",
-    "test_large_electrolyzer",
-    "test_large_boiler",
-    "test_gt6_multiblock_tanks",
-    "test_large_oven",
-    "test_large_fermenter",
-    "test_large_autoclave",
-    "test_gt6_large_crusher",
-    "test_gt6_large_sluice",
-    "test_gt6_large_squeezer",
-    "test_large_bath",
-    "test_gt6_electric_tools",
-    "test_gt6_pipe_cable_baseline",
-    "test_technological_parts_foundation",
     "test_capability_ledger",
     "test_project_status",
     "test_capability_close",
-    "test_catalog_modern_ids",
-    "test_mte_redstone_wire",
-    "test_gt6_redstone_wire_correction",
-    "test_gt6_crucible_mold_behavior_correction",
-    "test_gt6_foundry_art",
-    "test_gt6_anvil_art",
-    "test_gt6_storage_art",
-    "test_gt6_fluid_pipe_runtime",
-    "test_gt6_item_pipe_runtime",
-    "test_gt6_eu_wire_cable_runtime",
-    "test_gt6_eu_missing_wire_gauges_runtime",
-    "test_gt6_connector_art",
-    "test_gt6_connector_alias_repair",
-    "test_gt6_connector_live_host_dummy_fold",
-    "test_gt6_fluid_combo_pipe_runtime",
-    "test_gt6_restrictive_item_pipe_runtime",
-    "test_gt6_insulated_redstone_runtime",
-    "test_gt6_fluid_dangerous_media_runtime",
-    "test_gt6_connector_acquisition",
-    "test_gt6_mte_host_fold",
-    "test_gt6_mte_runtime",
     "test_gt6_full_coverage_reassessment",
-    "test_gt6_paper_tiny_plate",
     "test_registry_identity",
     "test_player_complete",
     "test_block_art",
     "test_gt_building_blocks",
     "test_multiitem_art",
     "test_generated_resource_gate",
-    "test_jade_observation",
     "test_jade_source_mapping",
     "test_build_component_rules"
   ],
@@ -154,7 +103,63 @@
       "test_source_hygiene",
       "test_structure_plugin_whitelist",
       "test_tool_head_prefix",
-      "test_verification_runtime_failure_classes"
+      "test_verification_runtime_failure_classes",
+      "test_logistics_cover_net_remainder",
+      "test_logistics_core",
+      "test_display_cpu",
+      "test_cover_remainder",
+      "test_energy_remainder",
+      "test_energy_converter_catalog",
+      "test_energy_batteries",
+      "test_energy_transformers",
+      "test_energy_heat_exchangers",
+      "test_large_gas_turbine",
+      "test_energy_coolers",
+      "test_energy_flux_converters",
+      "test_energy_nuclear_fission_survival",
+      "test_energy_nuclear_fission_hot_fluids",
+      "test_jade_observation",
+      "test_oven",
+      "test_large_processing_parts",
+      "test_large_electrolyzer",
+      "test_large_boiler",
+      "test_gt6_multiblock_tanks",
+      "test_large_oven",
+      "test_large_fermenter",
+      "test_gt6_large_crusher",
+      "test_gt6_large_sluice",
+      "test_gt6_large_squeezer",
+      "test_large_bath",
+      "test_large_autoclave",
+      "test_gt6_electric_tools",
+      "test_gt6_pipe_cable_baseline",
+      "test_technological_parts_foundation",
+      "test_gt_crops",
+      "test_gt6_crop_food_split",
+      "test_gt_stone_layer_rocks",
+      "test_gt_small_ores",
+      "test_catalog_modern_ids",
+      "test_mte_redstone_wire",
+      "test_gt6_redstone_wire_correction",
+      "test_gt6_crucible_mold_behavior_correction",
+      "test_gt6_foundry_art",
+      "test_gt6_anvil_art",
+      "test_gt6_storage_art",
+      "test_gt6_fluid_pipe_runtime",
+      "test_gt6_item_pipe_runtime",
+      "test_gt6_eu_wire_cable_runtime",
+      "test_gt6_eu_missing_wire_gauges_runtime",
+      "test_gt6_connector_art",
+      "test_gt6_connector_alias_repair",
+      "test_gt6_connector_live_host_dummy_fold",
+      "test_gt6_fluid_combo_pipe_runtime",
+      "test_gt6_restrictive_item_pipe_runtime",
+      "test_gt6_insulated_redstone_runtime",
+      "test_gt6_fluid_dangerous_media_runtime",
+      "test_gt6_connector_acquisition",
+      "test_gt6_mte_host_fold",
+      "test_gt6_mte_runtime",
+      "test_gt6_paper_tiny_plate"
     ],
     "historical": [
       "test_apply_t10_form_flags",
@@ -205,6 +210,25 @@
     ]
   },
   "affected_rules": [
+    {
+      "paths": [
+        "tools/crosscut_lint.py",
+        "tools/crosscut_allowlist.json",
+        "tools/tests/test_crosscut_art.py",
+        "tools/tests/test_crosscut_recipe_stand_in.py",
+        "tools/tests/test_crosscut_catalog_scatter.py",
+        "tools/tests/test_crosscut_registered_ids.py",
+        "tools/player_complete.py",
+        "tools/tests/test_required_test_ids.py"
+      ],
+      "test_modules": [
+        "test_crosscut_art",
+        "test_crosscut_recipe_stand_in",
+        "test_crosscut_catalog_scatter",
+        "test_crosscut_registered_ids",
+        "test_required_test_ids"
+      ]
+    },
     {
       "paths": [
         "tools/verify.py",
@@ -259,156 +283,6 @@
       ],
       "test_modules": [
         "test_bulk_port_verification"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_logistics_cover_net_remainder.py"
-      ],
-      "test_modules": [
-        "test_logistics_cover_net_remainder"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_remainder.py"
-      ],
-      "test_modules": [
-        "test_energy_remainder"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_converter_catalog.py"
-      ],
-      "test_modules": [
-        "test_energy_converter_catalog"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_batteries.py"
-      ],
-      "test_modules": [
-        "test_energy_batteries"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_gt6_electric_tools.py",
-        "tools/capabilities/content/gt6-electric-tools/**",
-        "tools/waves/content/gt6-electric-tools/**",
-        "src/main/java/com/masson/cruciblecraft/content/item/MaterialElectricToolItem.java",
-        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCharge.java",
-        "src/main/java/com/masson/cruciblecraft/recipe/crafting/ElectricToolRecipes.java",
-        "src/main/resources/assets/cruciblecraft/gt6_electric_tools_art_manifest.json",
-        "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
-        "docs/history/card-plans/active/GT6电动工具详细计划.md",
-        "docs/history/card-plans/closed/GT6电动工具详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_electric_tools"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_transformers.py"
-      ],
-      "test_modules": [
-        "test_energy_transformers"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_heat_exchangers.py"
-      ],
-      "test_modules": [
-        "test_energy_heat_exchangers"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_large_gas_turbine.py",
-        "tools/capabilities/energy/large-gas-turbine/**",
-        "tools/waves/energy/large-gas-turbine/**",
-        "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
-        "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
-        "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
-        "docs/history/card-plans/closed/大型燃气轮机详细计划.md"
-      ],
-      "test_modules": [
-        "test_large_gas_turbine"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_coolers.py"
-      ],
-      "test_modules": [
-        "test_energy_coolers"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_flux_converters.py"
-      ],
-      "test_modules": [
-        "test_energy_flux_converters"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_nuclear_fission_survival.py"
-      ],
-      "test_modules": [
-        "test_energy_nuclear_fission_survival"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_energy_nuclear_fission_hot_fluids.py"
-      ],
-      "test_modules": [
-        "test_energy_nuclear_fission_hot_fluids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_logistics_core.py"
-      ],
-      "test_modules": [
-        "test_logistics_core"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_display_cpu.py"
-      ],
-      "test_modules": [
-        "test_display_cpu"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_cover_remainder.py",
-        "tools/capabilities/logistics/cover-remainder/**",
-        "tools/waves/runtime/cover-remainder/**",
-        "tools/wave_closeout.py",
-        "tools/recipe_bulk/slugs.py",
-        "src/main/java/com/masson/cruciblecraft/logistics/machinecover/**",
-        "src/main/java/com/masson/cruciblecraft/content/item/PipeCoverItem.java",
-        "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
-        "src/main/resources/data/cruciblecraft/machine_cover_definitions.json",
-        "src/main/resources/assets/cruciblecraft/gt6_machine_covers_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/*_cover.png",
-        "src/test/java/com/masson/cruciblecraft/datagen/CoverRemainderResourceTest.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java"
-      ],
-      "test_modules": [
-        "test_cover_remainder"
       ]
     },
     {
@@ -526,112 +400,6 @@
     },
     {
       "paths": [
-        "tools/gt_crops.py",
-        "tools/build_gt_crops.py",
-        "tools/tests/test_gt_crops.py",
-        "tools/waves/worldgen/gt-crops/**",
-        "src/main/java/com/masson/cruciblecraft/worldgen/crop/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/GlowtusBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/GtBushBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/GtBushBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/GtCropsGameTests.java",
-        "src/main/resources/assets/cruciblecraft/gt6_gt_crops_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6/iconsets/glowtus_*.png",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/plants/bush/**",
-        "src/main/resources/assets/cruciblecraft/blockstates/plant/**",
-        "src/main/resources/assets/cruciblecraft/models/block/plant/**",
-        "src/main/resources/assets/cruciblecraft/models/item/plant/**",
-        "src/main/resources/data/cruciblecraft/loot_table/blocks/plant/**",
-        "src/main/resources/data/cruciblecraft/worldgen/**/plant_*.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_plant_*.json",
-        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_crops/**",
-        "tools/capabilities/worldgen/gt-crops/**",
-        "docs/history/card-plans/active/GT作物世界生成详细计划.md",
-        "docs/history/card-plans/closed/GT作物世界生成详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt_crops"
-      ]
-    },
-    {
-      "paths": [
-        "tools/waves/prep/gt6-crop-food-split/**",
-        "tools/tests/test_gt6_crop_food_split.py",
-        "src/addons/crops/**",
-        "src/addons/foods/**",
-        "src/main/java/com/masson/cruciblecraft/api/agriculture/**",
-        "src/main/java/com/masson/cruciblecraft/api/food/**",
-        "src/main/java/com/masson/cruciblecraft/material/MaterialCatalog.java",
-        "src/test/java/com/masson/cruciblecraft/material/MaterialFormOverlayTest.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/CropFoodSplitGameTests.java",
-        "docs/current/gt6-crop-food-split.md",
-        "docs/history/card-plans/prep/GT6作物与Foods可选拆分详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_crop_food_split"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt_stone_layer_rocks.py",
-        "tools/build_gt_stone_layer_rocks.py",
-        "tools/tests/test_gt_stone_layer_rocks.py",
-        "tools/waves/worldgen/gt-stone-layer-rocks/**",
-        "src/main/java/com/masson/cruciblecraft/worldgen/StoneLayer*.java",
-        "src/main/java/com/masson/cruciblecraft/worldgen/NetherQuartzLayerFeature.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/StoneLayerStoneBlock.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/GtStoneLayerRocksGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeatureConfigTest.java",
-        "src/main/resources/assets/cruciblecraft/gt6_gt_stone_layer_rocks_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6/stones/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6/rock_ores/**",
-        "src/main/resources/data/cruciblecraft/worldgen_catalog/stone_layer_rocks.json",
-        "src/main/resources/data/cruciblecraft/worldgen/**/stone_layer_rocks.json",
-        "src/main/resources/data/cruciblecraft/worldgen/**/nether_netherquartz.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_stone_layer_rocks.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_netherquartz.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_vanilla_nether_quartz.json",
-        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_stone_layer_rocks/**",
-        "tools/capabilities/worldgen/gt-stone-layer-rocks/**",
-        "docs/history/card-plans/active/GT6石层石子详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt_stone_layer_rocks"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt_small_ores.py",
-        "tools/build_gt_small_ores.py",
-        "tools/tests/test_gt_small_ores.py",
-        "tools/waves/worldgen/gt-small-ores/**",
-        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
-        "src/main/resources/data/cruciblecraft/worldgen_catalog/small_ores.json",
-        "src/main/resources/data/cruciblecraft/worldgen/**/small_ores.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_small_ores.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_small_ores.json",
-        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_remaining_overworld_large_veins.json",
-        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_small_ores/**",
-        "tools/capabilities/worldgen/gt-small-ores/**",
-        "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
-        "docs/history/card-plans/active/GT6小矿世界生成详细计划.md",
-        "docs/history/card-plans/closed/GT6小矿世界生成详细计划.md",
-        "src/main/resources/assets/cruciblecraft/gt6_gt_small_ores_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/ore_small.png",
-        "src/main/resources/assets/cruciblecraft/models/block/material_small_ore.json",
-        "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/**",
-        "src/main/resources/assets/cruciblecraft/blockstates/gt_small_ore.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_*.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_bedrock_ore.json"
-      ],
-      "test_modules": [
-        "test_gt_small_ores"
-      ]
-    },
-    {
-      "paths": [
         "tools/build_blockers.py",
         "tools/tests/test_blockers.py",
         "tools/blockers/**",
@@ -640,681 +408,6 @@
       "test_modules": [
         "test_blockers",
         "test_capability_close"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_roll_former.py",
-        "tools/tests/test_cluster_mill.py",
-        "tools/tests/test_hammer_squeezer_laser.py",
-        "tools/tests/test_slicer.py",
-        "tools/tests/test_injector.py",
-        "tools/tests/test_laminator.py",
-        "tools/tests/test_bath.py",
-        "tools/gt6_bath.py",
-        "tools/tests/test_loom.py",
-        "tools/tests/test_nanofab.py",
-        "tools/tests/test_melter.py",
-        "tools/tests/test_sanding.py",
-        "tools/tests/test_oven.py",
-        "tools/tests/test_distillation_tower.py",
-        "tools/tests/test_large_processing_parts.py",
-        "tools/tests/test_large_electrolyzer.py",
-        "tools/tests/test_large_oven.py",
-        "tools/gt6_large_oven.py",
-        "tools/tests/test_gt6_coil_hosts.py",
-        "tools/gt6_coil_hosts.py",
-        "tools/tests/test_large_fermenter.py",
-        "tools/tests/test_large_bath.py",
-        "tools/tests/test_large_autoclave.py",
-        "tools/gt6_large_autoclave.py",
-        "tools/gt6_large_processing_parts.py",
-        "tools/gt6_large_electrolyzer.py",
-        "tools/gt6_large_fermenter.py",
-        "tools/gt6_large_crusher.py",
-        "tools/tests/test_gt6_large_crusher.py",
-        "tools/gt6_large_shredder.py",
-        "tools/waves/machines/large-shredder/**",
-        "tools/tests/test_gt6_large_shredder.py",
-        "tools/capabilities/machines/large-shredder/**",
-        "tools/gt6_large_sluice.py",
-        "tools/waves/machines/large-sluice/**",
-        "tools/tests/test_gt6_large_sluice.py",
-        "tools/capabilities/machines/large-sluice/**",
-        "tools/waves/machines/large-squeezer/**",
-        "tools/tests/test_gt6_large_squeezer.py",
-        "tools/capabilities/machines/large-squeezer/**",
-        "tools/tests/test_gt6_implosion_compressor.py",
-        "tools/capabilities/machines/implosion-compressor/**",
-        "tools/gt6_large_bath.py",
-        "tools/tests/test_gt6_electric_tools.py",
-        "tools/gt6_distillation_tower.py",
-        "tools/tests/test_electric_wire_cable_mte_fold.py",
-        "tools/tests/test_technological_parts_foundation.py",
-        "tools/technological_parts_foundation.py",
-        "tools/build_technological_parts_foundation.py",
-        "tools/waves/content/technological-parts-foundation/**",
-        "src/main/resources/data/cruciblecraft/technological_parts.json",
-        "tools/waves/machines/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_large_processing_parts/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_large_electrolyzer/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_large_oven/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_large_autoclave/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeAutoclaveGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_machines_large_fermenter/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeProcessingPartsGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeElectrolyzerGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeOvenGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeFermenterGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeCrusherGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/HammerSqueezerLaserGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_hammer_squeezer_laser/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
-        "src/main/resources/data/cruciblecraft_wave_machines_bath/**"
-      ],
-      "test_modules": [
-        "test_oven",
-        "test_large_processing_parts",
-        "test_large_electrolyzer",
-        "test_large_oven",
-        "test_large_fermenter",
-        "test_large_autoclave",
-        "test_gt6_large_crusher",
-        "test_gt6_large_sluice",
-        "test_large_bath",
-        "test_gt6_electric_tools",
-        "test_technological_parts_foundation"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_pipe_cable_baseline.py",
-        "tools/build_gt6_pipe_cable_baseline.py",
-        "tools/tests/test_gt6_pipe_cable_baseline.py",
-        "tools/waves/content/gt6-pipe-cable-baseline/**",
-        "tools/gt6_pipe_source.json",
-        "tools/gt6_pipes.py",
-        "docs/history/card-plans/closed/GT6管道与线缆语义重基线详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_pipe_cable_baseline"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_gt6_redstone_wire_correction.py",
-        "tools/capabilities/content/gt6-redstone-wire-correction/**",
-        "tools/waves/content/gt6-redstone-wire-correction/**",
-        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireSinks.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/RedstoneWireBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/RedstoneWireCorrectionGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_correction/**",
-        "docs/history/card-plans/active/GT6红石线行为校正详细计划.md",
-        "docs/history/card-plans/closed/GT6红石线行为校正详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_redstone_wire_correction",
-        "test_mte_redstone_wire",
-        "test_gt6_pipe_cable_baseline"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
-        "tools/capabilities/content/gt6-crucible-mold-behavior-correction/**",
-        "tools/waves/content/gt6-crucible-mold-behavior-correction/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/mte/MteFoundryTanks.java",
-        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_behavior_correction/**",
-        "tools/gt6_mte_inplace_runtime.py",
-        "docs/history/card-plans/closed/GT6坩埚模具行为校正详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_crucible_mold_behavior_correction",
-        "test_gt6_mte_runtime",
-        "test_capability_ledger"
-      ]
-    },
-    {
-      "paths": [
-        "tools/tests/test_gt6_crucible_mold_interaction.py",
-        "tools/capabilities/content/gt6-crucible-mold-interaction/**",
-        "tools/waves/content/gt6-crucible-mold-interaction/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/item/ThermometerItem.java",
-        "src/main/java/com/masson/cruciblecraft/content/mold/**",
-        "src/main/java/com/masson/cruciblecraft/heat/TemperatureDamage.java",
-        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
-        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/content/mold/MoldRecipesTest.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_crucible_mold_interaction/**",
-        "docs/history/card-plans/active/GT6坩埚模具交互详细计划.md",
-        "docs/history/card-plans/closed/GT6坩埚模具交互详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_crucible_mold_behavior_correction",
-        "test_capability_ledger"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_foundry_art.py",
-        "tools/build_gt6_foundry_art.py",
-        "tools/tests/test_gt6_foundry_art.py",
-        "tools/capabilities/content/gt6-foundry-art/**",
-        "tools/waves/content/gt6-foundry-art/**",
-        "src/main/java/com/masson/cruciblecraft/client/color/FoundryBlockColor.java",
-        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/FoundryArtGameTests.java",
-        "src/main/resources/assets/cruciblecraft/gt6_foundry_art_manifest.json",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_foundry_art/**",
-        "docs/history/card-plans/active/GT6铸造美术详细计划.md",
-        "docs/history/card-plans/closed/GT6铸造美术详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_foundry_art",
-        "test_gt6_mte_runtime",
-        "test_capability_ledger"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_anvil_art.py",
-        "tools/tests/test_gt6_anvil_art.py",
-        "src/main/resources/assets/cruciblecraft/gt6_anvil_art_manifest.json",
-        "src/main/java/com/masson/cruciblecraft/client/color/AnvilBlockColor.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/AnvilHosts.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/AnvilInteractions.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/AnvilBlock.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteMiscToolRuntimeGameTests.java"
-      ],
-      "test_modules": [
-        "test_gt6_anvil_art"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_storage_art.py",
-        "tools/build_gt6_storage_art.py",
-        "tools/tests/test_gt6_storage_art.py",
-        "tools/capabilities/content/gt6-storage-art/**",
-        "tools/waves/content/gt6-storage-art/**",
-        "src/main/java/com/masson/cruciblecraft/client/color/StorageArtColor.java",
-        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/MassStorageRenderer.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/BookshelfRenderer.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/BottleCrateRenderer.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/MteInPlaceStorageRenderer.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/StorageVoxelBuffer.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/MassStorageBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/BookshelfBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/BottleCrateBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageClientSync.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageCountFormat.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBookDisplay.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBottleDisplay.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageVariant.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/content/storage/StorageBehaviorProfile.java",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
-        "src/test/java/com/masson/cruciblecraft/content/storage/StorageFaceDisplayTest.java",
-        "src/main/resources/assets/cruciblecraft/gt6_storage_art_manifest.json",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_storage_art/**",
-        "docs/history/card-plans/active/GT6仓储美术详细计划.md",
-        "docs/history/card-plans/closed/GT6仓储美术详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_storage_art",
-        "test_gt6_mte_runtime",
-        "test_capability_ledger"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_fluid_pipe_runtime.py",
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/build_gt6_fluid_pipe_runtime.py",
-        "tools/tests/test_gt6_fluid_pipe_runtime.py",
-        "tools/capabilities/content/gt6-fluid-pipe-runtime/**",
-        "tools/waves/content/gt6-fluid-pipe-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeBlockedMedia.java",
-        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeCadence.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_runtime/**",
-        "docs/history/card-plans/active/GT6流体管运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6流体管运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids",
-        "test_gt6_connector_live_host_dummy_fold"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_item_pipe_runtime.py",
-        "tools/build_gt6_item_pipe_runtime.py",
-        "tools/tests/test_gt6_item_pipe_runtime.py",
-        "tools/capabilities/content/gt6-item-pipe-runtime/**",
-        "tools/waves/content/gt6-item-pipe-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/ItemPipeBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/ItemPipeRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_runtime/**",
-        "docs/history/card-plans/active/GT6物品管运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6物品管运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_item_pipe_runtime",
-        "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_eu_wire_cable_runtime.py",
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/build_gt6_eu_wire_cable_runtime.py",
-        "tools/tests/test_gt6_eu_wire_cable_runtime.py",
-        "tools/capabilities/content/gt6-eu-wire-cable-runtime/**",
-        "tools/waves/content/gt6-eu-wire-cable-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
-        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/EuWireCableRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_wire_cable_runtime/**",
-        "docs/history/card-plans/active/GT6导线电缆运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6导线电缆运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_eu_wire_cable_runtime",
-        "test_gt6_eu_missing_wire_gauges_runtime",
-        "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids",
-        "test_gt6_connector_live_host_dummy_fold"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_eu_missing_wire_gauges_runtime.py",
-        "tools/build_gt6_eu_missing_wire_gauges_runtime.py",
-        "tools/tests/test_gt6_eu_missing_wire_gauges_runtime.py",
-        "tools/capabilities/content/gt6-eu-missing-wire-gauges-runtime/**",
-        "tools/waves/content/gt6-eu-missing-wire-gauges-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/energy/cable/ElectricalConductorCatalog.java",
-        "src/main/java/com/masson/cruciblecraft/api/material/MaterialPrefixes.java",
-        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/EuMissingWireGaugesRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_missing_wire_gauges_runtime/**",
-        "docs/history/card-plans/active/GT6缺线规运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6缺线规运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_eu_missing_wire_gauges_runtime",
-        "test_gt6_eu_wire_cable_runtime",
-        "test_gt6_connector_art",
-        "test_gt6_connector_alias_repair",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_connector_art.py",
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/build_gt6_connector_art.py",
-        "tools/tests/test_gt6_connector_art.py",
-        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
-        "tools/capabilities/content/gt6-connector-art/**",
-        "tools/waves/content/gt6-connector-art/**",
-        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
-        "src/test/java/com/masson/cruciblecraft/datagen/PipeCableVisualResourceTest.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/ConnectorArtGameTests.java",
-        "src/main/resources/assets/cruciblecraft/gt6_fluid_pipe_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/gt6_item_pipe_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/gt6_eu_wire_cable_art_manifest.json",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_art/**",
-        "docs/history/card-plans/active/GT6连接件美术详细计划.md",
-        "docs/history/card-plans/closed/GT6连接件美术详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_connector_art",
-        "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids",
-        "test_gt6_connector_live_host_dummy_fold"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_connector_alias_repair.py",
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/build_gt6_connector_alias_repair.py",
-        "tools/tests/test_gt6_connector_alias_repair.py",
-        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
-        "tools/waves/content/gt6-connector-live-host-dummy-fold/**",
-        "tools/capabilities/content/gt6-connector-alias-repair/**",
-        "tools/waves/content/gt6-connector-alias-repair/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/ConnectorAliasRepairGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_connector_alias_repair/**",
-        "docs/history/card-plans/active/GT6连接件身份漏匹配详细计划.md",
-        "docs/history/card-plans/closed/GT6连接件身份漏匹配详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_connector_alias_repair",
-        "test_gt6_connector_live_host_dummy_fold",
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_eu_wire_cable_runtime",
-        "test_gt6_connector_art",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
-        "tools/waves/content/gt6-connector-live-host-dummy-fold/**",
-        "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
-        "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
-        "tools/smelter_mte_identity_catalog.json",
-        "tools/bath_mte_identity_catalog.json",
-        "src/main/java/com/masson/cruciblecraft/content/item/BathMteIdentityCatalog.java",
-        "src/main/resources/assets/cruciblecraft/models/item/electric_wire/**",
-        "src/main/resources/assets/cruciblecraft/models/item/quadruple/**",
-        "src/main/resources/assets/cruciblecraft/models/item/nonuple/**",
-        "src/main/resources/assets/cruciblecraft/models/item/fluid_pipe_tile/**"
-      ],
-      "test_modules": [
-        "test_gt6_connector_live_host_dummy_fold",
-        "test_gt6_connector_alias_repair",
-        "test_gt6_connector_art",
-        "test_gt6_eu_wire_cable_runtime",
-        "test_gt6_eu_missing_wire_gauges_runtime",
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_fluid_combo_pipe_runtime",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_fluid_combo_pipe_runtime.py",
-        "tools/build_gt6_fluid_combo_pipe_runtime.py",
-        "tools/tests/test_gt6_fluid_combo_pipe_runtime.py",
-        "tools/capabilities/content/gt6-fluid-combo-pipe-runtime/**",
-        "tools/waves/content/gt6-fluid-combo-pipe-runtime/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/FluidComboPipeRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_combo_pipe_runtime/**",
-        "docs/history/card-plans/active/GT6流体组合管运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6流体组合管运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_fluid_combo_pipe_runtime",
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_connector_art",
-        "test_gt6_connector_alias_repair",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_restrictive_item_pipe_runtime.py",
-        "tools/build_gt6_restrictive_item_pipe_runtime.py",
-        "tools/tests/test_gt6_restrictive_item_pipe_runtime.py",
-        "tools/capabilities/content/gt6-restrictive-item-pipe-runtime/**",
-        "tools/waves/content/gt6-restrictive-item-pipe-runtime/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/RestrictiveItemPipeRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_restrictive_item_pipe_runtime/**",
-        "docs/history/card-plans/active/GT6限制物品管运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6限制物品管运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_restrictive_item_pipe_runtime",
-        "test_gt6_item_pipe_runtime",
-        "test_gt6_connector_art",
-        "test_gt6_connector_alias_repair",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_insulated_redstone_runtime.py",
-        "tools/build_gt6_insulated_redstone_runtime.py",
-        "tools/tests/test_gt6_insulated_redstone_runtime.py",
-        "tools/capabilities/content/gt6-insulated-redstone-runtime/**",
-        "tools/waves/content/gt6-insulated-redstone-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireKind.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/InsulatedRedstoneRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_insulated_redstone_runtime/**",
-        "docs/history/card-plans/active/GT6绝缘红石运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6绝缘红石运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_insulated_redstone_runtime",
-        "test_mte_redstone_wire",
-        "test_gt6_redstone_wire_correction",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_fluid_dangerous_media_runtime.py",
-        "tools/build_gt6_fluid_dangerous_media_runtime.py",
-        "tools/tests/test_gt6_fluid_dangerous_media_runtime.py",
-        "tools/capabilities/content/gt6-fluid-dangerous-media-runtime/**",
-        "tools/waves/content/gt6-fluid-dangerous-media-runtime/**",
-        "src/main/java/com/masson/cruciblecraft/logistics/pipe/fluid/FluidPipeDangerousMedia.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/FluidDangerousMediaRuntimeGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_dangerous_media_runtime/**",
-        "docs/history/card-plans/active/GT6流体危险介质运行时详细计划.md",
-        "docs/history/card-plans/closed/GT6流体危险介质运行时详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_fluid_dangerous_media_runtime",
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_fluid_combo_pipe_runtime",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_connector_acquisition.py",
-        "tools/build_gt6_connector_acquisition.py",
-        "tools/tests/test_gt6_connector_acquisition.py",
-        "tools/capabilities/content/gt6-fluid-pipe-acquisition/**",
-        "tools/waves/content/gt6-fluid-pipe-acquisition/**",
-        "tools/capabilities/content/gt6-item-pipe-acquisition/**",
-        "tools/waves/content/gt6-item-pipe-acquisition/**",
-        "tools/capabilities/content/gt6-eu-cable-acquisition/**",
-        "tools/waves/content/gt6-eu-cable-acquisition/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/FluidPipeAcquisitionGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/ItemPipeAcquisitionGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/EuCableAcquisitionGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_fluid_pipe_acquisition/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_item_pipe_acquisition/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_eu_cable_acquisition/**",
-        "docs/history/card-plans/active/GT6流体管获得格详细计划.md",
-        "docs/history/card-plans/closed/GT6流体管获得格详细计划.md",
-        "docs/history/card-plans/active/GT6物品管获得格详细计划.md",
-        "docs/history/card-plans/closed/GT6物品管获得格详细计划.md",
-        "docs/history/card-plans/active/GT6EU线缆获得格详细计划.md",
-        "docs/history/card-plans/closed/GT6EU线缆获得格详细计划.md",
-        "tools/capabilities/content/gt6-redstone-wire-acquisition/**",
-        "tools/waves/content/gt6-redstone-wire-acquisition/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_redstone_wire_acquisition/**",
-        "docs/history/card-plans/active/GT6绝缘红石获得格详细计划.md",
-        "docs/history/card-plans/closed/GT6绝缘红石获得格详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_connector_acquisition",
-        "test_gt6_fluid_combo_pipe_runtime",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_mte_host_fold.py",
-        "tools/build_gt6_mte_host_fold.py",
-        "tools/tests/test_gt6_mte_host_fold.py",
-        "tools/hopper_hopper_source_evidence.json",
-        "tools/capabilities/content/gt6-mte-converter-host-fold/**",
-        "tools/waves/content/gt6-mte-converter-host-fold/**",
-        "tools/capabilities/content/gt6-mte-hopper-host-fold/**",
-        "tools/waves/content/gt6-mte-hopper-host-fold/**",
-        "tools/capabilities/content/gt6-mte-processing-host-fold/**",
-        "tools/waves/content/gt6-mte-processing-host-fold/**",
-        "tools/capabilities/content/gt6-mte-reactor-rod-host-fold/**",
-        "tools/waves/content/gt6-mte-reactor-rod-host-fold/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteConverterHostFoldGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteHopperHostFoldGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteProcessingHostFoldGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteReactorRodHostFoldGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_host_fold/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_hopper_host_fold/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_processing_host_fold/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_reactor_rod_host_fold/**",
-        "docs/history/card-plans/active/GT6能源转换器主机折回详细计划.md",
-        "docs/history/card-plans/closed/GT6能源转换器主机折回详细计划.md",
-        "docs/history/card-plans/active/GT6漏斗主机折回详细计划.md",
-        "docs/history/card-plans/closed/GT6漏斗主机折回详细计划.md",
-        "docs/history/card-plans/active/GT6加工机主机折回详细计划.md",
-        "docs/history/card-plans/closed/GT6加工机主机折回详细计划.md",
-        "docs/history/card-plans/active/GT6反应棒主机折回详细计划.md",
-        "docs/history/card-plans/closed/GT6反应棒主机折回详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_mte_host_fold",
-        "test_catalog_modern_ids"
-      ]
-    },
-    {
-      "paths": [
-        "tools/gt6_mte_inplace_runtime.py",
-        "tools/build_gt6_mte_inplace_runtime.py",
-        "tools/tests/test_gt6_mte_runtime.py",
-        "tools/gt6_fluid_attachment_contract.py",
-        "tools/tests/test_gt6_fluid_attachment_contract.py",
-        "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/**",
-        "tools/waves/content/gt6-mte-fluid-attachments-runtime/**",
-        "tools/capabilities/content/gt6-mte-extender-runtime/**",
-        "tools/waves/content/gt6-mte-extender-runtime/**",
-        "tools/capabilities/content/gt6-mte-converter-remainder-runtime/**",
-        "tools/waves/content/gt6-mte-converter-remainder-runtime/**",
-        "tools/capabilities/content/gt6-mte-decorative-runtime/**",
-        "tools/waves/content/gt6-mte-decorative-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-chest-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-chest-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-safe-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-safe-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-table-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-table-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-scaffold-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-scaffold-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-barrel-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-barrel-runtime/**",
-        "tools/capabilities/content/gt6-mte-furniture-storage-runtime/**",
-        "tools/waves/content/gt6-mte-furniture-storage-runtime/**",
-        "tools/capabilities/content/gt6-mte-drive-runtime/**",
-        "tools/waves/content/gt6-mte-drive-runtime/**",
-        "tools/capabilities/content/gt6-mte-misc-tool-runtime/**",
-        "tools/waves/content/gt6-mte-misc-tool-runtime/**",
-        "tools/capabilities/content/gt6-mte-multiblock-runtime/**",
-        "tools/waves/content/gt6-mte-multiblock-runtime/**",
-        "tools/capabilities/content/gt6-mte-crucible-foundry-runtime/**",
-        "tools/waves/content/gt6-mte-crucible-foundry-runtime/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFluidAttachmentsRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteExtenderRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteInPlaceGameTestSupport.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteConverterRemainderRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteDecorativeRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureChestRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureSafeRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureTableRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureScaffoldRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureBarrelRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteFurnitureStorageRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteDriveRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteMiscToolRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteMultiblockRuntimeGameTests.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/MteCrucibleFoundryRuntimeGameTests.java",
-        "src/main/java/com/masson/cruciblecraft/content/mte/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
-        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_fluid_attachments_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_extender_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_converter_remainder_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_decorative_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_chest_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_safe_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_table_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_scaffold_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_barrel_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_furniture_storage_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_drive_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_misc_tool_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_multiblock_runtime/**",
-        "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_crucible_foundry_runtime/**",
-        "docs/history/card-plans/active/GT6流体附件runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6流体附件runtime详细计划.md",
-        "docs/history/card-plans/active/GT6扩展器runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6扩展器runtime详细计划.md",
-        "docs/history/card-plans/active/GT6能源转换器余量runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6能源转换器余量runtime详细计划.md",
-        "docs/history/card-plans/active/GT6装饰件runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6装饰件runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具箱子runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具箱子runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具保险箱runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具保险箱runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具工作台runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具工作台runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具脚手架runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具脚手架runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具木桶runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具木桶runtime详细计划.md",
-        "docs/history/card-plans/active/GT6家具储物runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6家具储物runtime详细计划.md",
-        "docs/history/card-plans/active/GT6传动件runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6传动件runtime详细计划.md",
-        "docs/history/card-plans/active/GT6杂项工具runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6杂项工具runtime详细计划.md",
-        "docs/history/card-plans/active/GT6多方块设备runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6多方块设备runtime详细计划.md",
-        "docs/history/card-plans/active/GT6坩埚铸造runtime详细计划.md",
-        "docs/history/card-plans/closed/GT6坩埚铸造runtime详细计划.md"
-      ],
-      "test_modules": [
-        "test_gt6_mte_runtime",
-        "test_catalog_modern_ids"
       ]
     },
     {
@@ -1346,7 +439,6 @@
         "docs/history/card-plans/closed/MTE原地获得格详细计划.md"
       ],
       "test_modules": [
-        "test_gt6_mte_runtime",
         "test_blockers"
       ]
     },
@@ -1365,7 +457,6 @@
         "src/main/resources/data/cruciblecraft/material_registration_gate.json"
       ],
       "test_modules": [
-        "test_gt6_paper_tiny_plate",
         "test_material_form_authority"
       ]
     },
@@ -1425,225 +516,6 @@
     },
     {
       "paths": [
-        "tools/capabilities/**",
-        "tools/capability_ledger.py",
-        "tools/build_capability_ledger.py",
-        "tools/project_status.py",
-        "tools/build_project_status.py",
-        "tools/close_capability.py",
-        "tools/tests/test_capability_ledger.py",
-        "tools/tests/test_project_status.py",
-        "tools/tests/test_capability_close.py",
-        "tools/catalog_modern_ids.py",
-        "tools/gt6_connector_live_host_dummy_fold.py",
-        "tools/catalog_modern_id_map.json",
-        "tools/tests/test_catalog_modern_ids.py",
-        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
-        "tools/tests/test_mte_redstone_wire.py",
-        "tools/tests/test_gt6_redstone_wire_correction.py",
-        "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
-        "tools/tests/test_gt6_crucible_mold_interaction.py",
-        "tools/tests/test_gt6_foundry_art.py",
-        "tools/tests/test_gt6_anvil_art.py",
-        "tools/tests/test_gt6_storage_art.py",
-        "tools/tests/test_gt6_fluid_pipe_runtime.py",
-        "tools/tests/test_gt6_item_pipe_runtime.py",
-        "tools/tests/test_gt6_eu_wire_cable_runtime.py",
-        "tools/tests/test_gt6_connector_art.py",
-        "tools/registry_identity.py",
-        "tools/build_registry_identity.py",
-        "tools/registry_identity_manifest.json",
-        "tools/tests/test_registry_identity.py",
-        "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
-        "src/main/resources/data/cruciblecraft/fluid_network_cover_definitions.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_fluid_network_basic_transfer/**",
-        "src/test/java/com/masson/cruciblecraft/logistics/fluidnet/**",
-        "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
-        "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_item_network_core/**",
-        "src/test/java/com/masson/cruciblecraft/logistics/itemnet/**",
-        "src/main/java/com/masson/cruciblecraft/logistics/genericnet/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/GenericNetworkCoreGameTests.java",
-        "src/main/resources/data/cruciblecraft/generic_network_cover_definitions.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_generic_network_core/**",
-        "src/test/java/com/masson/cruciblecraft/logistics/genericnet/**",
-        "src/main/java/com/masson/cruciblecraft/logistics/core/**",
-        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCoreBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCorePartBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/LogisticsCoreWallBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/LogisticsCoreBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/LogisticsCoreWallBlockEntity.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/LogisticsCoreGameTests.java",
-        "src/main/java/com/masson/cruciblecraft/client/color/LogisticsCoreBlockColor.java",
-        "src/main/resources/data/cruciblecraft/logistics_dump_cover_definitions.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_logistics_core/**",
-        "src/main/resources/assets/cruciblecraft/logistics_core_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/logistics_core/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/galvanized_steel_wall/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/ventilation_unit/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/*_processor_unit/**",
-        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/logistics_generic_dump_cover.png",
-        "src/test/java/com/masson/cruciblecraft/logistics/core/**",
-        "src/test/java/com/masson/cruciblecraft/datagen/LogisticsCoreResourceTest.java",
-        "src/main/java/com/masson/cruciblecraft/logistics/displaycpu/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/DisplayCpuGameTests.java",
-        "src/main/resources/data/cruciblecraft/logistics_display_cpu_cover_definitions.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_display_cpu/**",
-        "src/main/resources/assets/cruciblecraft/display_cpu_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/logistics_display_cpu_*.png",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/covers/display_cpu_*/**",
-        "src/test/java/com/masson/cruciblecraft/logistics/displaycpu/**",
-        "src/test/java/com/masson/cruciblecraft/datagen/DisplayCpuResourceTest.java",
-        "tools/capabilities/logistics/display-cpu/**",
-        "tools/waves/runtime/display-cpu/**",
-        "tools/tests/test_logistics_cover_net_remainder.py",
-        "tools/tests/test_logistics_core.py",
-        "tools/tests/test_display_cpu.py",
-        "src/main/java/com/masson/cruciblecraft/energy/converter/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_runtime_converter_catalog/**",
-        "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
-        "src/main/resources/data/cruciblecraft/energy_converter_tiers.json",
-        "src/main/resources/assets/cruciblecraft/gt6_converter_catalog_art_manifest.json",
-        "tools/capabilities/energy/converter-catalog/**",
-        "tools/waves/runtime/converter-catalog/**",
-        "tools/tests/test_energy_converter_catalog.py",
-        "src/main/java/com/masson/cruciblecraft/energy/battery/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyBatteriesGameTests.java",
-        "src/main/resources/data/cruciblecraft/energy_battery_kinds.json",
-        "src/main/resources/data/cruciblecraft/energy_battery_tiers.json",
-        "src/main/resources/data/cruciblecraft_wave_runtime_batteries/**",
-        "src/main/resources/assets/cruciblecraft/gt6_batteries_art_manifest.json",
-        "tools/capabilities/energy/batteries/**",
-        "tools/waves/runtime/batteries/**",
-        "tools/tests/test_energy_batteries.py",
-        "src/main/java/com/masson/cruciblecraft/energy/transformer/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyTransformersGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_runtime_transformers/**",
-        "src/main/resources/data/cruciblecraft/energy_transformer_kinds.json",
-        "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json",
-        "src/main/resources/assets/cruciblecraft/gt6_transformers_art_manifest.json",
-        "src/test/java/com/masson/cruciblecraft/energy/transformer/**",
-        "tools/capabilities/energy/transformers/**",
-        "tools/waves/runtime/transformers/**",
-        "tools/tests/test_energy_transformers.py",
-        "src/main/java/com/masson/cruciblecraft/energy/heatexchanger/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_runtime_heat_exchangers/**",
-        "src/main/resources/data/cruciblecraft/heat_exchangers.json",
-        "src/main/resources/assets/cruciblecraft/gt6_heat_exchangers_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_exchanger/**",
-        "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/**",
-        "tools/capabilities/energy/heat-exchangers/**",
-        "tools/waves/runtime/heat-exchangers/**",
-        "tools/tests/test_energy_heat_exchangers.py",
-        "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
-        "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
-        "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
-        "tools/capabilities/energy/large-gas-turbine/**",
-        "tools/waves/energy/large-gas-turbine/**",
-        "tools/tests/test_large_gas_turbine.py",
-        "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_runtime_cooler/**",
-        "src/main/resources/data/cruciblecraft/coolers.json",
-        "src/main/resources/assets/cruciblecraft/gt6_coolers_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/cooler/**",
-        "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
-        "tools/capabilities/energy/cooler/**",
-        "tools/waves/runtime/cooler/**",
-        "tools/tests/test_energy_coolers.py",
-        "tools/emit_coolers.py",
-        "src/main/java/com/masson/cruciblecraft/energy/flux/**",
-        "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
-        "src/main/resources/data/cruciblecraft_wave_runtime_flux_converters/**",
-        "src/main/resources/data/cruciblecraft/flux_converters.json",
-        "src/main/resources/assets/cruciblecraft/gt6_flux_converters_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_heater/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_engine/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_motor/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_magnet/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_laser/**",
-        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_dynamo/**",
-        "src/test/java/com/masson/cruciblecraft/energy/flux/**",
-        "tools/capabilities/energy/flux-converters/**",
-        "tools/waves/runtime/flux-converters/**",
-        "tools/tests/test_energy_flux_converters.py",
-        "tools/emit_flux_converters.py",
-        "tools/waves/runtime/fission-survival/**",
-        "tools/capabilities/energy/nuclear-fission-survival/**",
-        "tools/tests/test_energy_nuclear_fission_survival.py",
-        "tools/waves/runtime/fission-hot-fluids/**",
-        "tools/capabilities/energy/nuclear-fission-hot-fluids/**",
-        "tools/tests/test_energy_nuclear_fission_hot_fluids.py",
-        "tools/waves/runtime/fission-observation-safety/**",
-        "tools/capabilities/energy/nuclear-fission-observation-safety/**",
-        "tools/tests/test_energy_nuclear_fission_observation_safety.py",
-        "tools/jade_observation.py",
-        "tools/build_jade_observation.py",
-        "tools/jade_observation_matrix.json",
-        "tools/tests/test_jade_observation.py",
-        "tools/tests/test_jade_source_mapping.py",
-        "tools/waves/presentation/gt6-tfru-waila-jade/source_inventory.json",
-        "tools/waves/presentation/gt6-tfru-waila-jade/mapping.json",
-        "tools/waves/presentation/gt6-tfru-waila-jade/live_provider_mapping.json"
-      ],
-      "test_modules": [
-        "test_capability_ledger",
-        "test_project_status",
-        "test_capability_close",
-        "test_blockers",
-        "test_catalog_modern_ids",
-        "test_gt6_connector_live_host_dummy_fold",
-        "test_mte_redstone_wire",
-        "test_gt6_redstone_wire_correction",
-        "test_gt6_crucible_mold_behavior_correction",
-        "test_gt6_foundry_art",
-        "test_gt6_anvil_art",
-        "test_gt6_storage_art",
-        "test_gt6_insulated_redstone_runtime",
-        "test_gt6_fluid_dangerous_media_runtime",
-        "test_gt6_connector_acquisition",
-        "test_gt6_mte_host_fold",
-        "test_gt6_mte_runtime",
-        "test_gt6_fluid_pipe_runtime",
-        "test_gt6_item_pipe_runtime",
-        "test_gt6_eu_wire_cable_runtime",
-        "test_gt6_connector_art",
-        "test_gt6_pipe_cable_baseline",
-        "test_logistics_cover_net_remainder",
-        "test_logistics_core",
-        "test_display_cpu",
-        "test_energy_converter_catalog",
-        "test_energy_batteries",
-        "test_energy_transformers",
-        "test_energy_heat_exchangers",
-        "test_large_gas_turbine",
-        "test_energy_coolers",
-        "test_energy_flux_converters",
-        "test_energy_nuclear_fission_survival",
-        "test_energy_nuclear_fission_hot_fluids",
-        "test_registry_identity",
-        "test_jade_observation",
-        "test_oven",
-        "test_large_processing_parts",
-        "test_large_electrolyzer",
-        "test_large_oven",
-        "test_large_fermenter",
-        "test_large_autoclave",
-        "test_gt6_large_crusher",
-        "test_large_bath",
-        "test_gt6_electric_tools"
-      ]
-    },
-    {
-      "paths": [
         "tools/player_complete.py",
         "tools/build_player_complete.py",
         "tools/tests/test_player_complete.py",
@@ -1675,47 +547,50 @@
         "src/main/resources/data/cruciblecraft/material_prefixes/**"
       ],
       "test_modules": [
-        "test_material_form_authority",
-        "test_technological_parts_foundation"
+        "test_material_form_authority"
       ]
     },
     {
       "paths": [
-        "docs/history/card-plans/active/大型锅炉详细计划.md",
-        "docs/history/card-plans/closed/大型锅炉详细计划.md",
-        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/LargeBoilerWallParts.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTank.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTier.java",
-        "src/main/java/com/masson/cruciblecraft/client/render/LargeBoilerRenderer.java",
-        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerContractTest.java",
-        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTankTest.java",
-        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerTierTest.java",
-        "tools/capabilities/machines/large-boiler/**",
-        "tools/tests/test_large_boiler.py"
+        "tools/project_status.py",
+        "tools/build_project_status.py",
+        "tools/tests/test_project_status.py",
+        "docs/current/project-status.md"
       ],
       "test_modules": [
-        "test_large_boiler"
+        "test_project_status"
       ]
     },
     {
       "paths": [
-        "docs/history/card-plans/active/GT6多方块储罐详细计划.md",
-        "docs/history/card-plans/closed/GT6多方块储罐详细计划.md",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankBlockEntity.java",
-        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankFluidSafety.java",
-        "src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles.java",
-        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json",
-        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_5x5x5.json",
-        "src/main/resources/data/cruciblecraft/tags/block/tank_5x5x5_controllers.json",
-        "src/test/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfilesTest.java",
-        "src/test/java/com/masson/cruciblecraft/gametest/Tank5x5GameTests.java",
-        "tools/capabilities/machines/gt6-multiblock-tanks/**",
-        "tools/tests/test_gt6_multiblock_tanks.py"
+        "tools/registry_identity.py",
+        "tools/build_registry_identity.py",
+        "tools/registry_identity_manifest.json",
+        "tools/tests/test_registry_identity.py"
       ],
       "test_modules": [
-        "test_gt6_multiblock_tanks"
+        "test_registry_identity"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_jade_source_mapping.py",
+        "tools/waves/presentation/gt6-tfru-waila-jade/**"
+      ],
+      "test_modules": [
+        "test_jade_source_mapping"
+      ]
+    },
+    {
+      "paths": [
+        "tools/capability_ledger.py",
+        "tools/build_capability_ledger.py",
+        "tools/tests/test_capability_ledger.py",
+        "tools/capabilities/**"
+      ],
+      "test_modules": [
+        "test_capability_ledger",
+        "test_required_test_ids"
       ]
     }
   ]

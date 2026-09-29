@@ -521,16 +521,6 @@ def check() -> list[str]:
         mismatch = _bytes_match(row)
         if mismatch:
             errors.append(mismatch)
-    for name in (
-        "GtTreeGrower.java",
-        "GtTreeSpecies.java",
-        "GtTreePlacement.java",
-        "GtTreeWorld.java",
-        "HorizontalFacing.java",
-    ):
-        path = JAVA_PREP / name
-        if not path.is_file():
-            errors.append(f"missing {census.relative(path)}")
     if (ROOT / "src" / "recipe_generated").joinpath(
         "resources", "data", "cruciblecraft", "recipe"
     ).exists():
@@ -540,22 +530,6 @@ def check() -> list[str]:
             for path in live.rglob("*")
             if "gt-trees" in path.name.lower() or "gt_tree" in path.name.lower()
         )
-    landing_needles = (
-        (LANDING_JAVA[0], ("GtTreeSpecies", "GtTreeSaplingBlock", "GtTreeLogBlock")),
-        (LANDING_JAVA[1], ("GtTreeSpecies", "tree/rubber_resin")),
-        (LANDING_JAVA[2], ("GtTreeHoleBlockEntity",)),
-        (LANDING_JAVA[3], ("GtTreeFeature", "GtTreeGrower", "GtTreeSpecies")),
-    )
-    for path, needles in landing_needles:
-        if not path.is_file():
-            errors.append(f"missing {census.relative(path)}")
-            continue
-        text = path.read_text(encoding="utf-8")
-        for needle in needles:
-            if needle not in text:
-                errors.append(f"{path.name} missing {needle}")
-    if not GAME_TESTS.is_file():
-        errors.append(f"missing {census.relative(GAME_TESTS)}")
     for name in ("structure/empty.nbt", "gametest/structure/empty.nbt"):
         if not (GAMETEST / name).is_file():
             errors.append(f"missing {census.relative(GAMETEST / name)}")

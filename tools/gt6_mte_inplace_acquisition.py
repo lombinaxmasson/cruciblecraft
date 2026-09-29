@@ -1215,7 +1215,6 @@ def contract_document(summaries: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "child_order": list(CHILD_ORDER),
         "families": summaries,
-        "r0_sha256": _sha256(inplace.R0),
         "loader_sha256": _sha256(LOADER),
     }
 
@@ -1433,7 +1432,6 @@ def check() -> list[str]:
         pass
     if len(CHILD_ORDER) != 14:
         errors.append("child order must list 14 families")
-    r0 = _sha256(inplace.R0)
     for domain in CHILD_ORDER:
         spec = inplace.DOMAINS[domain]
         runtime_overlay = inplace._wave(domain) / "runtime_overlay.json"
@@ -1469,9 +1467,6 @@ def check() -> list[str]:
         if not landed and lock.get("live_recipes"):
             errors.append(f"{domain}: isolated lock marked live recipes")
         errors.extend(_stand_in_errors(matrix))
-        runtime_hash = inplace._wave(domain) / "r0_disposition_sha256.txt"
-        if runtime_hash.is_file() and runtime_hash.read_text(encoding="utf-8").strip() != r0:
-            errors.append(f"{domain}: runtime R0 hash drifted")
         for host in matrix["hosts"]:
             if not host.get("source_path", "").endswith("Loader_MultiTileEntities.java"):
                 errors.append(f"{domain} {host['stable_id']}: missing GT6 source path")
@@ -1498,8 +1493,6 @@ def check() -> list[str]:
             errors.append("contract must not auto-promote player_complete")
         if len(contract.get("child_order") or []) != 14:
             errors.append("contract child_order must have 14 families")
-        if contract.get("r0_sha256") != r0:
-            errors.append("contract R0 hash drifted; do not rewrite R0")
         if list(contract.get("landed_domains") or []) != list(LANDED_DOMAINS):
             errors.append("contract landed_domains drifted")
     if LANDED_DOMAINS:

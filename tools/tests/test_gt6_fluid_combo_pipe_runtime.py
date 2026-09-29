@@ -2,7 +2,6 @@
 """GT6 quadruple/nonuple fluid-pipe runtime child."""
 from __future__ import annotations
 
-import hashlib
 import unittest
 
 from tools import capability_ledger as ledger
@@ -68,7 +67,6 @@ class Gt6FluidComboPipeRuntimeTest(unittest.TestCase):
     def test_multi_tank_and_not_huge(self) -> None:
         be = runtime.BE.read_text(encoding="utf-8")
         catalog = runtime.CATALOG_JAVA.read_text(encoding="utf-8")
-        tests = runtime.GAME_TESTS.read_text(encoding="utf-8")
         core = runtime.CORE_TESTS.read_text(encoding="utf-8")
         self.assertIn('tag.put("tanks"', be)
         self.assertIn("fillMatching", be)
@@ -77,23 +75,12 @@ class Gt6FluidComboPipeRuntimeTest(unittest.TestCase):
         self.assertIn("MAX_RUNTIME_BLOCKS = 500", catalog)
         self.assertNotIn("8_000", be)
         for name in runtime.EXPECTED_TESTS:
-            self.assertIn(f"void {name}", tests)
             self.assertNotIn(name, core)
         overlay = census.load_json(runtime.OVERLAY_PATH)
         self.assertEqual(56, int(overlay["counts"]["fold_live_block"]))
         self.assertEqual(28, overlay["counts"]["quadruple"])
         self.assertEqual(
             overlay["counts"]["quadruple"], overlay["counts"]["nonuple"]
-        )
-        self.assertEqual(
-            hashlib.sha256(R0.read_bytes()).hexdigest(),
-            (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
-        self.assertEqual(
-            hashlib.sha256(LEDGER.read_bytes()).hexdigest(),
-            (WAVE / "baseline_ledger_sha256.txt")
-            .read_text(encoding="utf-8")
-            .strip(),
         )
 
     def test_unique_active_docs_and_ledger_hand_off(self) -> None:

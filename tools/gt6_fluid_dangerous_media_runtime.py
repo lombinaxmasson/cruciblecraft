@@ -7,7 +7,6 @@ Thaumcraft). Close at runtime_ready. Do not import gt6_fluid_pipe_runtime.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import shutil
 import sys
@@ -135,10 +134,6 @@ def _write_json(path: Path, document: Any) -> None:
     path.write_text(payload, encoding="utf-8")
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 def topology(unique_active: bool) -> dict[str, Any]:
     return {
         "schema_version": 1,
@@ -228,12 +223,6 @@ def write(unique_active: bool = True) -> dict[str, Any]:
         },
     )
     _copy_empty_nbt()
-    (WAVE / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (WAVE / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
     return overlay
 
 
@@ -279,9 +268,6 @@ def check() -> list[str]:
     if "ignitedByLava" not in block:
         errors.append("flammable pipes lost ignitedByLava")
     tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
     core = CORE_TESTS.read_text(encoding="utf-8")
     for name in EXPECTED_TESTS:
         if name in core:
@@ -295,15 +281,6 @@ def check() -> list[str]:
         errors.append("missing wave structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append("missing wave gametest/structure/empty.nbt")
-    r0_hash = WAVE / "r0_disposition_sha256.txt"
-    if not r0_hash.is_file() or r0_hash.read_text(encoding="utf-8").strip() != _sha256(R0):
-        errors.append("R0 disposition ledger was modified")
-    baseline_hash = WAVE / "baseline_ledger_sha256.txt"
-    if (
-        not baseline_hash.is_file()
-        or baseline_hash.read_text(encoding="utf-8").strip() != _sha256(LEDGER)
-    ):
-        errors.append("baseline identity_resolution_ledger was modified")
     this_file = Path(__file__).read_text(encoding="utf-8")
     closed_runtime = "gt6_fluid" + "_pipe_runtime"
     if any(

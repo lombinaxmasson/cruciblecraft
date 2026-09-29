@@ -23,6 +23,7 @@
 - `portfolio/gt6-bulk-port-verification` — [GT6 批量移植基础设施收口](../history/card-plans/prep/GT6批量移植基础设施收口详细计划.md)
 - `portfolio/gt6-machine-multiblock` — [GT6 机器与多方块总计划](../history/card-plans/prep/GT6机器与多方块总计划.md)
 - `presentation/gt6-item-tooltip` — [GT6 物品说明对齐详细计划](../history/card-plans/prep/GT6物品说明对齐详细计划.md)
+- `presentation/jade-player-surface` — [Jade 玩家表面整顿详细计划](../history/card-plans/prep/Jade玩家表面整顿详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -30,7 +31,7 @@
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 - `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## runtime_ready accepted（123）
+## runtime_ready accepted（124）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -153,6 +154,7 @@
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `runtime/compact-family-jar-bundles` — Compact Family Jar Bundles — [紧凑配方发行包详细计划](../history/card-plans/closed/紧凑配方发行包详细计划.md)
 - `runtime/workbench-tool-runtime-recipes` — Workbench Tool Runtime Recipes — [工作台工具运行时配方详细计划](../history/card-plans/closed/工作台工具运行时配方详细计划.md)
+- `tooling/verification-decoupling` — Verification decoupling — [验证去耦与横切守卫详细计划](../history/card-plans/closed/验证去耦与横切守卫详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-stone-layer-rocks` — GT Stone Layer Rocks — [GT6 石层石子](../history/card-plans/closed/GT6石层石子详细计划.md)
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)

@@ -597,10 +597,4 @@ def check() -> list[str]:
         capability = census.load_json(CAPABILITY)
         if capability.get("slug") != SLUG:
             errors.append("capability slug drifted")
-        if capability.get("maturity") != "runtime_ready":
-            errors.append("foundation card stays runtime_ready")
-        if capability.get("workflow") not in {"active", "accepted"}:
-            errors.append("foundation workflow must be active or accepted")
-        if "player_complete" in str(capability.get("note") or "") and "not player_complete" not in str(capability.get("note") or ""):
-            errors.append("note must not claim player_complete")
     return errors

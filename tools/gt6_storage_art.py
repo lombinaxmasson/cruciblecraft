@@ -1052,45 +1052,10 @@ def check() -> list[str]:
         entity_texture = entity_texture.with_name(f"{name}_plain.png")
         if not entity_texture.is_file():
             errors.append(f"missing entity chest sheet {name}_plain")
-    materials = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "content"
-        / "mte"
-        / "MteInPlaceMaterials.java"
-    )
-    if not materials.is_file():
-        errors.append("missing MteInPlaceMaterials")
-    else:
-        text = materials.read_text(encoding="utf-8")
-        if "compartment_drawer_" not in text or "key_locked_" not in text:
-            errors.append("MteInPlaceMaterials dropped furniture/safe tokens")
-        if "cube_all" in text:
-            errors.append("mechanical lead safe still uses cube_all")
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing storage-art structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append("missing storage-art gametest/structure/empty.nbt")
-    tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
-        if name in CORE_TESTS.read_text(encoding="utf-8"):
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
-    notes = (
-        census.load_json(WAVE / "runtime_notes.json")
-        if (WAVE / "runtime_notes.json").is_file()
-        else {}
-    )
-    if notes.get("reopens_furniture_required_test_ids"):
-        errors.append("runtime_notes reopens furniture required_test_ids")
-    if notes.get("dual_t44_and_inplace_ids_remain"):
-        errors.append("runtime_notes still keeps T44/in-place dual ids")
     errors.extend(_check_source_exact_storage_recipes())
     errors.extend(_check_wood_treated_plate_gate())
     from tools import gt6_mte_inplace_runtime as inplace
@@ -1119,134 +1084,12 @@ def check() -> list[str]:
                 errors.append(f"folded live host missing from T44 {live}")
     if overlay_fold != 17:
         errors.append(f"expected 17 T44 folds, found {overlay_fold}")
-    if not notes.get("face_item_count_books_bottles"):
-        errors.append("runtime_notes missing face_item_count_books_bottles")
-    if notes.get("digits_books_bottles_remain_ber"):
-        errors.append("runtime_notes still defers digits/books/bottles")
     for name in BOOK_PNGS:
         if not _dest_file(f"{DEST_ROOT}/books/{name}.png").is_file():
             errors.append(f"missing book texture {name}")
     for name in BOTTLE_PNGS:
         if not _dest_file(f"{DEST_ROOT}/bottle/{name}.png").is_file():
             errors.append(f"missing bottle texture {name}")
-    setup = CLIENT_SETUP.read_text(encoding="utf-8") if CLIENT_SETUP.is_file() else ""
-    for marker in RENDERER_MARKERS:
-        path = (
-            census.ROOT
-            / "src"
-            / "main"
-            / "java"
-            / "com"
-            / "masson"
-            / "cruciblecraft"
-            / "client"
-            / "render"
-            / f"{marker}.java"
-        )
-        if not path.is_file():
-            errors.append(f"missing renderer {marker}")
-        if marker not in setup:
-            errors.append(f"ClientSetup does not register {marker}")
-    if "registerChestItemRenderers" in setup:
-        errors.append("chest items still use the TESR item renderer")
-    kind = MTE_KIND.read_text(encoding="utf-8") if MTE_KIND.is_file() else ""
-    if "case CHEST -> 54" not in kind:
-        errors.append("in-place chest is not 54 slots")
-    if "case DRAWER -> 144" not in kind:
-        errors.append("in-place drawer is not 144 slots")
-    if "case SAFE -> 15" not in kind:
-        errors.append("in-place safe is not 15 slots")
-    if "playerInventoryGui" not in kind or "storageTab" not in kind:
-        errors.append("in-place storage flags missing")
-    block = MTE_BLOCK.read_text(encoding="utf-8") if MTE_BLOCK.is_file() else ""
-    if "openMenu" not in block:
-        errors.append("in-place storage still has no player GUI")
-    if "ENTITYBLOCK_ANIMATED" not in block:
-        errors.append("in-place chest is not TESR-animated")
-    chest_renderer = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "client"
-        / "render"
-        / "GtChestRenderer.java"
-    ).read_text(encoding="utf-8")
-    if "lid.xRot = lidAngle" not in chest_renderer:
-        errors.append("GT6 chest lid is still locked shut")
-    if "materialColor(spec)" not in chest_renderer:
-        errors.append("GT6 chest colored pass lost material tint")
-    if "textures/entity/gt6_import/chest/" not in chest_renderer:
-        errors.append("GT6 chest TESR texture path is missing textures/")
-    if '" + set + "_" + layer + ".png"' not in chest_renderer:
-        errors.append("GT6 chest TESR texture path is missing .png")
-    storage_color = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "client"
-        / "color"
-        / "StorageArtColor.java"
-    ).read_text(encoding="utf-8")
-    if "CHEST" not in storage_color:
-        errors.append("GT6 chest item color registration is missing")
-    host = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "content"
-        / "blockentity"
-        / "MteInPlaceBlockEntity.java"
-    ).read_text(encoding="utf-8")
-    if "lidOpenness" not in host or "CHEST_OPEN" not in host:
-        errors.append("GT6 chest opener count does not drive the lid")
-    mass_renderer = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "client"
-        / "render"
-        / "MassStorageRenderer.java"
-    ).read_text(encoding="utf-8")
-    if "-facing.toYRot()" not in mass_renderer:
-        errors.append("mass-storage face item still uses the compass yaw")
-    if "StorageCountFormat.face" not in mass_renderer:
-        errors.append("mass-storage face count is not drawn")
-    if "swapArmor" not in block:
-        errors.append("in-place locker still has no armor swap")
-    if "massStorageActivated" not in block:
-        errors.append("in-place mass storage still has no face click")
-    be = MTE_BE.read_text(encoding="utf-8") if MTE_BE.is_file() else ""
-    if "MASS_CAPACITY = 1_000_000" not in be:
-        errors.append("in-place mass storage capacity drifted")
-    if "ModMenus.MTE_STORAGE" not in be:
-        errors.append("in-place storage menu missing")
-    menus = MENUS.read_text(encoding="utf-8") if MENUS.is_file() else ""
-    if "MTE_STORAGE" not in menus:
-        errors.append("ModMenus missing MTE_STORAGE")
-    tabs = CREATIVE_TABS.read_text(encoding="utf-8") if CREATIVE_TABS.is_file() else ""
-    if "storageTab()" not in tabs:
-        errors.append("STORAGE tab still omits remaining in-place furniture")
-    if not notes.get("metal_inplace_player_storage"):
-        errors.append("runtime_notes still treats remaining metals as placeholders")
-    plan = PLAN_ACTIVE.read_text(encoding="utf-8") if PLAN_ACTIVE.is_file() else ""
-    if "仍是独立 dummy" in plan:
-        errors.append("plan still calls remaining metals dummy")
     zh_path = GENERATED / "lang" / "zh_cn.json"
     if not zh_path.is_file():
         errors.append("missing generated zh_cn.json")

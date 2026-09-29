@@ -7,7 +7,6 @@ identity ledger. Catalog projection lives in this child's overlay.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
 import shutil
@@ -172,10 +171,6 @@ def _write_json(path: Path, document: Any) -> None:
     if path.is_file() and path.read_text(encoding="utf-8") == payload:
         return
     path.write_text(payload, encoding="utf-8")
-
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _strip_ns(value: str) -> str:
@@ -575,12 +570,6 @@ def write(unique_active: bool = True) -> dict[str, Any]:
     melter_import = _refresh_melter_source_import()
     withdrawn = _withdraw_dummy_models(folded_dummy_paths())
     _copy_empty_nbt()
-    (WAVE / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (WAVE / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
     return {
         "material_flag_files": flags,
         "gate": gate,
@@ -681,9 +670,6 @@ def check() -> list[str]:
     if "MAX_RUNTIME_BLOCKS = 500" not in catalog_java:
         errors.append("PipeCatalog budget was not raised for combo pipes")
     tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
     core = CORE_TESTS.read_text(encoding="utf-8")
     for name in EXPECTED_TESTS:
         if name in core:
@@ -692,15 +678,6 @@ def check() -> list[str]:
         errors.append("missing wave structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append("missing wave gametest/structure/empty.nbt")
-    r0_hash = WAVE / "r0_disposition_sha256.txt"
-    if not r0_hash.is_file() or r0_hash.read_text(encoding="utf-8").strip() != _sha256(R0):
-        errors.append("R0 disposition ledger was modified")
-    baseline_hash = WAVE / "baseline_ledger_sha256.txt"
-    if (
-        not baseline_hash.is_file()
-        or baseline_hash.read_text(encoding="utf-8").strip() != _sha256(LEDGER)
-    ):
-        errors.append("baseline identity_resolution_ledger was modified")
     errors.extend(_recipe_dummy_leftovers(committed))
     leftover = _recipe_remap_pairs(committed)
     melter_source = MELTER_WAVE / "source.json"

@@ -82,19 +82,116 @@ def discover_gametest_method_ids(capability: dict[str, Any]) -> list[str]:
     return sorted(ids)
 
 
+_TEST_ANNOTATION = re.compile(r"@(?:GameTest|ParameterizedTest|Test)\b")
+_TEST_METHOD = re.compile(
+    r"(?:public\s+)?(?:static\s+)?void\s+(\w+)\s*\("
+)
+_JAVA_ROOTS = (
+    ROOT / "src" / "test" / "java",
+    ROOT / "src" / "main" / "java",
+)
+
+
+def _record_test_method(
+    index: dict[str, list[str]],
+    name: str,
+    location: str,
+) -> None:
+    index.setdefault(name, []).append(location)
+
+
+@functools.lru_cache(maxsize=1)
+def test_method_index() -> dict[str, tuple[str, ...]]:
+    """@GameTest and @Test method name -> source locations."""
+    found: dict[str, list[str]] = {}
+    for root in _JAVA_ROOTS:
+        if not root.is_dir():
+            continue
+        for path in sorted(root.rglob("*.java")):
+            relative = path.relative_to(ROOT).as_posix()
+            lines = path.read_text(encoding="utf-8").splitlines()
+            armed_at = -1
+            for number, line in enumerate(lines, start=1):
+                inline = _TEST_ANNOTATION.search(line)
+                method = _TEST_METHOD.search(line)
+                if inline and method and method.start() > inline.start():
+                    _record_test_method(
+                        found, method.group(1), f"{relative}:{number}"
+                    )
+                    armed_at = -1
+                    continue
+                if inline:
+                    armed_at = number
+                    continue
+                if armed_at < 0:
+                    continue
+                if number - armed_at > 8:
+                    armed_at = -1
+                    continue
+                stripped = line.strip()
+                if not stripped or stripped.startswith(("*", "//", "@")):
+                    continue
+                if method:
+                    _record_test_method(
+                        found, method.group(1), f"{relative}:{number}"
+                    )
+                armed_at = -1
+    return {name: tuple(places) for name, places in found.items()}
+
+
+def evaluate_required_tests(
+    slug: str,
+    declared: list[str],
+    index: dict[str, tuple[str, ...] | list[str]],
+    owned_java: set[str] | None = None,
+) -> list[str]:
+    """Declared ids must exist once, or once inside the capability's Java.
+
+    Shared method names such as ``playerSurfaceIsRegistered`` are copied into
+    many GameTest holders. A capability that owns exactly one of those files
+    binds the name. Zero or several owned hits stay an error for a person to
+    resolve. ``owned_java`` paths are repo-relative, without line numbers.
+    """
+    errors: list[str] = []
+    if len(declared) != len(set(declared)):
+        duplicates = sorted(
+            {name for name in declared if declared.count(name) > 1}
+        )
+        errors.append(f"{slug}: required_test_ids has duplicates {duplicates}")
+    owned = owned_java or set()
+    for name in declared:
+        places = list(index.get(name) or ())
+        if not places:
+            errors.append(f"{slug}: required test {name} was not found")
+            continue
+        if len(places) == 1:
+            continue
+        owned_hits = [
+            place for place in places if place.split(":", 1)[0] in owned
+        ]
+        if len(owned_hits) == 1:
+            continue
+        errors.append(
+            f"{slug}: required test {name} is defined in multiple places: "
+            + ", ".join(places)
+        )
+    return errors
+
+
 def check_declared_test_ids(capability: dict[str, Any]) -> list[str]:
-    slug = capability["slug"]
+    slug = str(capability.get("slug") or "capability")
+    raw = capability.get("required_test_ids")
+    if not isinstance(raw, list) or not raw:
+        return []
     try:
         declared = required_test_ids(capability)
     except ValueError as error:
         return [str(error)]
-    discovered = discover_gametest_method_ids(capability)
-    if set(declared) != set(discovered):
-        return [
-            f"{slug}: required_test_ids {sorted(declared)} "
-            f"!= GameTest methods {discovered}"
-        ]
-    return []
+    owned = {
+        path.relative_to(ROOT).as_posix()
+        for path in owned_java_files(capability)
+    }
+    return evaluate_required_tests(slug, declared, test_method_index(), owned)
 
 
 def load_signoff(capability: dict[str, Any]) -> dict[str, Any]:

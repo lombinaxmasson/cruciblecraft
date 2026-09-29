@@ -321,17 +321,13 @@ def collect_gap_demand(
                 )
 
 
+# ANY.Cu already translated to these CC materials. The resident census
+# does not open the gitignored GT6 tree to re-read that family.
+COPPER_FAMILY_MEMBERS = ("copper", "annealed_copper")
+
+
 def copper_family_members() -> list[str]:
-    members = ["copper"]
-    try:
-        from tools import gt6_resolve
-    except Exception:
-        return members
-    resolved = gt6_resolve.resolve_material("Cu", family=True)
-    for member in resolved.get("cc_materials") or []:
-        if member not in members:
-            members.append(str(member))
-    return members
+    return list(COPPER_FAMILY_MEMBERS)
 
 
 def collect_catalog_demand(

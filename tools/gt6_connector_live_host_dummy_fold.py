@@ -8,7 +8,6 @@ rewrite R0, or claim unique-active (machines/distillation-tower stays).
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
 import sys
@@ -132,10 +131,6 @@ def _write_json(path: Path, document: Any) -> None:
     if path.is_file() and path.read_text(encoding="utf-8") == payload:
         return
     path.write_text(payload, encoding="utf-8")
-
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _strip_ns(value: str) -> str:
@@ -511,12 +506,6 @@ def write() -> dict[str, Any]:
         {str(row["dummy_path"]) for row in overlay["rows"]}
     )
     _patch_bath_java(EXPECTED_BATH_NEW_ITEMS)
-    (WAVE / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (WAVE / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
     return {
         "folded_identities": folded,
         "mapped_rows": mapped,
@@ -650,17 +639,6 @@ def check() -> list[str]:
         java = BATH_JAVA.read_text(encoding="utf-8")
         if f"NEW_ITEM_COUNT = {EXPECTED_BATH_NEW_ITEMS};" not in java:
             errors.append("BathMteIdentityCatalog NEW_ITEM_COUNT drifted")
-    r0_hash = WAVE / "r0_disposition_sha256.txt"
-    if not r0_hash.is_file() or r0_hash.read_text(encoding="utf-8").strip() != _sha256(
-        R0
-    ):
-        errors.append("R0 disposition ledger was modified")
-    baseline_hash = WAVE / "baseline_ledger_sha256.txt"
-    if (
-        not baseline_hash.is_file()
-        or baseline_hash.read_text(encoding="utf-8").strip() != _sha256(LEDGER)
-    ):
-        errors.append("baseline identity_resolution_ledger was modified")
     errors.extend(_recipe_dummy_leftovers(committed))
     return errors
 

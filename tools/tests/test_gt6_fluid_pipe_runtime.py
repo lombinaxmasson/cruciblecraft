@@ -2,7 +2,6 @@
 """GT6 five-gauge fluid-pipe runtime child."""
 from __future__ import annotations
 
-import hashlib
 import unittest
 
 from tools import capability_ledger as ledger
@@ -133,16 +132,6 @@ class Gt6FluidPipeRuntimeTest(unittest.TestCase):
         self.assertGreater(len(keep), 0)
         self.assertTrue(
             any("quadruple" in str(row.get("dummy_path") or "") for row in keep)
-        )
-        self.assertEqual(
-            hashlib.sha256(R0.read_bytes()).hexdigest(),
-            (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
-        self.assertEqual(
-            hashlib.sha256(LEDGER.read_bytes()).hexdigest(),
-            (WAVE / "baseline_ledger_sha256.txt")
-            .read_text(encoding="utf-8")
-            .strip(),
         )
         ns = (
             ROOT

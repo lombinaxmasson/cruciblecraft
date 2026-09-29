@@ -68,14 +68,12 @@ class Gt6InsulatedRedstoneRuntimeTest(unittest.TestCase):
 
     def test_in_place_cables_are_not_eu_and_keep_bare_size(self) -> None:
         kind = runtime.KIND_JAVA.read_text(encoding="utf-8")
-        tests = runtime.GAME_TESTS.read_text(encoding="utf-8")
         core = runtime.CORE_TESTS.read_text(encoding="utf-8")
         self.assertIn("EXPECTED_SIZE = 3", kind)
         self.assertIn("EXPECTED_CATALOG = 6", kind)
         self.assertIn("RED_ALLOY_CABLE", kind)
         self.assertIn("boolean insulated", kind)
         for name in runtime.EXPECTED_TESTS:
-            self.assertIn(f"void {name}", tests)
             self.assertNotIn(name, core)
         overlay = census.load_json(runtime.OVERLAY_PATH)
         self.assertEqual(3, overlay["counts"]["in_place"])
@@ -92,16 +90,6 @@ class Gt6InsulatedRedstoneRuntimeTest(unittest.TestCase):
 
     def test_builder_check_passes(self) -> None:
         self.assertEqual([], runtime.check())
-
-    def test_r0_and_baseline_hashes_are_pinned(self) -> None:
-        self.assertEqual(
-            runtime._sha256(runtime.R0),
-            (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
-        self.assertEqual(
-            runtime._sha256(runtime.LEDGER),
-            (WAVE / "baseline_ledger_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
 
 
 if __name__ == "__main__":

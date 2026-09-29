@@ -61,8 +61,4 @@ class LargeBoilerCardTest(unittest.TestCase):
             self.assertNotEqual(SLUG, compiled["unique_active_slug"])
             self.assertFalse(PLAN_ACTIVE.is_file())
             self.assertTrue(PLAN_CLOSED.is_file())
-        source = "\n".join(
-            path.read_text(encoding="utf-8") for path in GAME_TESTS
-        )
-        for test_id in capability["required_test_ids"]:
-            self.assertIn(f"void {test_id}", source)
+        self.assertNotIn("player_complete", capability.get("note") or "")

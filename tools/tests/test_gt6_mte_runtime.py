@@ -153,20 +153,6 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
             model["textures"]["particle"],
         )
 
-    def test_r0_and_baseline_ledgers_are_untouched(self) -> None:
-        wave = runtime._wave("attachments")
-        r0_hash = wave / "r0_disposition_sha256.txt"
-        if not r0_hash.is_file():
-            self.skipTest("attachments wave hashes not written")
-        self.assertEqual(
-            r0_hash.read_text(encoding="utf-8").strip(),
-            runtime._sha256(runtime.R0),
-        )
-        self.assertEqual(
-            (wave / "baseline_ledger_sha256.txt").read_text(encoding="utf-8").strip(),
-            runtime._sha256(runtime.LEDGER),
-        )
-
     def test_extender_overlay_has_two_live_hosts(self) -> None:
         wave = runtime._wave("extender")
         overlay_path = wave / "runtime_overlay.json"

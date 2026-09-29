@@ -60,17 +60,6 @@ CATALOG = (
     / "tool"
     / "ElectricToolCatalog.java"
 )
-GAME_TESTS = (
-    census.ROOT
-    / "src"
-    / "test"
-    / "java"
-    / "com"
-    / "masson"
-    / "cruciblecraft"
-    / "gametest"
-    / "ElectricToolGameTests.java"
-)
 
 
 class Gt6ElectricToolsTest(unittest.TestCase):
@@ -98,7 +87,7 @@ class Gt6ElectricToolsTest(unittest.TestCase):
             self.assertIsNone(topology["unique_active_wave"])
             self.assertIsNone(readiness["unique_active_wave"])
 
-    def test_catalog_and_required_game_tests_exist(self) -> None:
+    def test_catalog_lists_gt6_tool_ids(self) -> None:
         source = CATALOG.read_text(encoding="utf-8")
         for name in (
             "MINING_DRILL_LV",
@@ -122,14 +111,6 @@ class Gt6ElectricToolsTest(unittest.TestCase):
             "TRIMMER_LV",
         ):
             self.assertIn(name + "(", source)
-        tests = GAME_TESTS.read_text(encoding="utf-8")
-        for method in (
-            "electricMiningDrillSpendsEu",
-            "electricWrenchConvertsToMonkey",
-            "chargingLockerFillsElectricToolCapacity",
-            "jackhammerNoOresSkipsOreBlocks",
-        ):
-            self.assertIn(method, tests)
 
     def test_art_manifest_copies_exist(self) -> None:
         document = json.loads(MANIFEST.read_text(encoding="utf-8"))

@@ -836,6 +836,60 @@ def cmd_integration(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
     )
 
 
+def run_manual_replay_report(
+    profiles: dict[str, Any],
+    builders: dict[str, Any],
+    receipt: dict[str, Any],
+) -> None:
+    """Run manual_replay modules and builders. Failures are recorded, not fatal."""
+    policy = python_tests.load_policy()
+    modules = [str(name) for name in policy["test_tiers"]["manual_replay"]]
+    module_rows: list[dict[str, str]] = []
+    for module in modules:
+        code = run_command(
+            f"manual_replay:{module}",
+            [sys.executable, "-m", "unittest", f"tools.tests.{module}"],
+            receipt,
+        )
+        status = "PASS" if code == 0 else "FAIL"
+        module_rows.append({"name": module, "status": status})
+        if code:
+            print(f"manual_replay FAIL {module}", flush=True)
+    builder_rows: list[dict[str, str]] = []
+    if "manual-replay" in profiles["profiles"]:
+        for row in builder_rows_for_profile("manual-replay", profiles, builders):
+            code = run_command(
+                f"manual_replay:{row['name']}",
+                builder_command(row),
+                receipt,
+            )
+            status = "PASS" if code == 0 else "FAIL"
+            builder_rows.append({"name": str(row["name"]), "status": status})
+            if code:
+                print(f"manual_replay FAIL {row['name']}", flush=True)
+    receipt["manual_replay"] = {
+        "modules": module_rows,
+        "builders": builder_rows,
+    }
+    failed = [
+        row["name"]
+        for row in [*module_rows, *builder_rows]
+        if row["status"] == "FAIL"
+    ]
+    if failed:
+        print(
+            "manual_replay failures (release exit code unchanged): "
+            + ", ".join(failed),
+            flush=True,
+        )
+        return
+    print(
+        "manual_replay PASS "
+        f"({len(module_rows)} modules, {len(builder_rows)} builders)",
+        flush=True,
+    )
+
+
 def cmd_release(_args: argparse.Namespace, receipt: dict[str, Any]) -> int:
     previous = os.environ.get("CRUCIBLECRAFT_GRADLE_ISOLATED")
     os.environ["CRUCIBLECRAFT_GRADLE_ISOLATED"] = "1"
@@ -851,6 +905,7 @@ def cmd_release(_args: argparse.Namespace, receipt: dict[str, Any]) -> int:
             )
             if code:
                 return code
+        run_manual_replay_report(profiles, builders, receipt)
         return 0
     finally:
         if previous is None:

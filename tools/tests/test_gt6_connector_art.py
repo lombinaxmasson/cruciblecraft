@@ -2,7 +2,6 @@
 """GT6 connector art child."""
 from __future__ import annotations
 
-import hashlib
 import unittest
 
 from tools import capability_ledger as ledger
@@ -92,10 +91,6 @@ class Gt6ConnectorArtTest(unittest.TestCase):
         folded = art._subset_rows(art.EU_SUBSET, "fold_live_block")[0]
         leftover = art.ITEM_MODELS / f"{folded['dummy_path']}.json"
         self.assertFalse(leftover.is_file())
-        self.assertEqual(
-            hashlib.sha256(art.R0.read_bytes()).hexdigest(),
-            (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
 
     def test_unique_active_docs_and_ledger_hand_off(self) -> None:
         topology = census.load_json(WAVE / "topology.json")

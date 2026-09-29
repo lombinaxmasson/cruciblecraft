@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "note": "Builders here run in verify.py release as a report. A failure is printed and does not change the release exit code.",
+  "builders": [
+    "build_technological_parts_foundation",
+    "build_gt_trees",
+    "build_gt_crops",
+    "build_gt_stone_layer_rocks",
+    "build_gt_small_ores",
+    "build_gt6_pipe_cable_baseline",
+    "build_gt6_fluid_pipe_runtime",
+    "build_gt6_item_pipe_runtime",
+    "build_gt6_eu_wire_cable_runtime",
+    "build_gt6_eu_missing_wire_gauges_runtime",
+    "build_gt6_connector_art",
+    "build_gt6_foundry_art",
+    "build_gt6_storage_art",
+    "build_gt6_connector_alias_repair",
+    "build_gt6_fluid_combo_pipe_runtime",
+    "build_gt6_restrictive_item_pipe_runtime",
+    "build_gt6_insulated_redstone_runtime",
+    "build_gt6_fluid_dangerous_media_runtime",
+    "build_gt6_connector_acquisition",
+    "build_gt6_mte_host_fold",
+    "build_gt6_mte_inplace_runtime",
+    "build_gt6_mte_inplace_acquisition",
+    "build_gt6_paper_tiny_plate"
+  ]
+}

@@ -252,7 +252,7 @@ class PlayerCompleteTest(unittest.TestCase):
         capability = dict(self.capability)
         capability["required_test_ids"] = ["renamedTest"] + FLUID_TEST_IDS[1:]
         errors = player_complete.check_declared_test_ids(capability)
-        self.assertTrue(any("!= GameTest methods" in row for row in errors))
+        self.assertTrue(any("was not found" in row for row in errors))
 
     def test_gametest_server_receipt_is_not_client_evidence(self) -> None:
         receipt = self.client_receipt()

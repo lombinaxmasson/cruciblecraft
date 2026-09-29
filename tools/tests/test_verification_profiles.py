@@ -148,7 +148,7 @@ class VerificationProfileTest(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            ["capability-runtime", "player-complete"],
+            ["verification", "capability-runtime", "player-complete"],
             classified["selected_profiles"],
         )
 
@@ -170,10 +170,68 @@ class VerificationProfileTest(unittest.TestCase):
             verify_entry,
             "_configuration",
             return_value=(self.profiles, self.builder_policy),
-        ), mock.patch.object(verify_entry, "run_profile", side_effect=record):
+        ), mock.patch.object(verify_entry, "run_profile", side_effect=record), mock.patch.object(
+            verify_entry, "run_manual_replay_report"
+        ):
             code = verify_entry.cmd_release(argparse.Namespace(), receipt)
         self.assertEqual(0, code)
         self.assertEqual(self.profiles["release_profiles"], calls)
+
+    def test_manual_replay_failure_does_not_fail_release(self) -> None:
+        receipt = {"profiles": [], "commands": [], "results": []}
+
+        def replay(
+            _profiles: dict[str, object],
+            _builders: dict[str, object],
+            target: dict[str, object],
+        ) -> None:
+            target["manual_replay"] = {
+                "modules": [{"name": "test_example", "status": "FAIL"}],
+                "builders": [],
+            }
+
+        with mock.patch.object(
+            verify_entry,
+            "_configuration",
+            return_value=(self.profiles, self.builder_policy),
+        ), mock.patch.object(
+            verify_entry, "run_profile", return_value=0
+        ), mock.patch.object(
+            verify_entry, "run_manual_replay_report", side_effect=replay
+        ):
+            code = verify_entry.cmd_release(argparse.Namespace(), receipt)
+        self.assertEqual(0, code)
+        self.assertEqual("FAIL", receipt["manual_replay"]["modules"][0]["status"])
+
+    def test_manual_replay_report_records_each_module(self) -> None:
+        receipt: dict[str, object] = {"commands": [], "results": []}
+
+        def fake_run(
+            name: str,
+            command: list[str],
+            target: dict[str, object],
+        ) -> int:
+            del name, target
+            module = command[-1].rsplit(".", 1)[-1]
+            return 0 if module == "test_alpha" else 1
+
+        with mock.patch.object(
+            verify_entry.python_tests,
+            "load_policy",
+            return_value={"test_tiers": {"manual_replay": ["test_alpha", "test_beta"]}},
+        ), mock.patch.object(verify_entry, "run_command", side_effect=fake_run):
+            verify_entry.run_manual_replay_report(
+                {"profiles": {}},
+                {"builders": []},
+                receipt,
+            )
+        self.assertEqual(
+            [
+                {"name": "test_alpha", "status": "PASS"},
+                {"name": "test_beta", "status": "FAIL"},
+            ],
+            receipt["manual_replay"]["modules"],
+        )
 
     def test_latest_report_has_fresh_execution_fields_only(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -449,6 +507,10 @@ class VerificationProfileTest(unittest.TestCase):
             "python3 tools/verify.py integration --profile semantic-generators --if-changed",
             text,
         )
+        self.assertIn(
+            "python3 tools/verify.py integration --profile capability-runtime --if-changed",
+            text,
+        )
 
     def test_gradle_command_reruns_only_the_requested_task(self) -> None:
         os.environ.pop("CRUCIBLECRAFT_GRADLE_ISOLATED", None)
@@ -503,7 +565,14 @@ class VerificationProfileTest(unittest.TestCase):
 
     def test_verification_profile_has_no_global_text_scanners(self) -> None:
         verification = self.profiles["profiles"]["verification"]
-        self.assertEqual([], verification["builders"])
+        self.assertEqual(
+            [
+                "build_blockers",
+                "build_capability_ledger",
+                "build_project_status",
+            ],
+            verification["builders"],
+        )
         policy_names = {row["name"] for row in self.builder_policy["builders"]}
         self.assertNotIn("check_no_workflow_hashes", policy_names)
         self.assertNotIn("check_zero_milestone_names", policy_names)

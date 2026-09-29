@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "slug": "tooling/verification-decoupling",
+  "title": "Verification decoupling",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/closed/验证去耦与横切守卫详细计划.md",
+    "tools/capabilities/tooling/verification-decoupling/**",
+    "tools/verification_profiles.json",
+    "tools/verification_builder_policy.json",
+    "tools/python_test_policy.json",
+    "tools/player_complete.py",
+    "tools/verify.py",
+    "tools/known_issues/verification-debt.json",
+    ".github/workflows/build.yml",
+    "tools/gt6_*_runtime.py",
+    "tools/gt6_connector_*.py",
+    "tools/gt6_mte_*.py",
+    "tools/gt_trees.py",
+    "tools/gt_crops.py",
+    "tools/gt_stone_layer_rocks.py",
+    "tools/gt_small_ores.py",
+    "tools/waves/**/r0_disposition_sha256.txt",
+    "tools/waves/**/baseline_ledger_sha256.txt",
+    "tools/crosscut_lint.py",
+    "tools/crosscut_allowlist.json",
+    "tools/tests/test_crosscut_*.py",
+    "tools/tests/test_required_test_ids.py",
+    "docs/current/verification.md",
+    "docs/current/test-authoring.md"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "verification"
+  ],
+  "wave_slug": null,
+  "note": "Verification engineering card. Removes shared ledger hash pins, collects repeated rule checks into repository-wide lints, and moves closed-card ledger tests to manual_replay. No new block, item, fluid, or recipe. Occupies unique-active until accepted."
+}

@@ -308,7 +308,7 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
 
     def test_r0_and_machine_acquisition_are_untouched(self) -> None:
         contract = census.load_json(CONTRACT / "contract.json")
-        self.assertEqual(runtime._sha256(inplace.R0), contract["r0_sha256"])
+        self.assertNotIn("r0_sha256", contract)
         self.assertIs(False, contract["rewrites_r0"])
         self.assertIs(False, contract["writes_machine_acquisition"])
         self.assertNotIn(

@@ -3287,7 +3287,8 @@
         "tools/capabilities/machines/large-shredder/**",
         "tools/waves/machines/large-shredder/**",
         "tools/waves/machines/large-shredder/gt6_large_shredder.py",
-        "tools/tests/test_gt6_large_shredder.py"
+        "tools/tests/test_gt6_large_shredder.py",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeShredderGameTests.java"
       ],
       "path": "tools/capabilities/machines/large-shredder/capability.json",
       "player_signoff": null,
@@ -3337,7 +3338,8 @@
         "tools/gt6_large_sluice.py",
         "tools/waves/machines/large-sluice/**",
         "tools/tests/test_gt6_large_sluice.py",
-        "src/test/java/com/masson/cruciblecraft/content/multiblock/PortStoreRegistryTest.java"
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/PortStoreRegistryTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeSluiceGameTests.java"
       ],
       "path": "tools/capabilities/machines/large-sluice/capability.json",
       "player_signoff": null,
@@ -4276,6 +4278,45 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/验证去耦与横切守卫详细计划.md",
+        "tools/capabilities/tooling/verification-decoupling/**",
+        "tools/verification_profiles.json",
+        "tools/verification_builder_policy.json",
+        "tools/python_test_policy.json",
+        "tools/player_complete.py",
+        "tools/verify.py",
+        "tools/known_issues/verification-debt.json",
+        ".github/workflows/build.yml",
+        "tools/gt6_*_runtime.py",
+        "tools/gt6_connector_*.py",
+        "tools/gt6_mte_*.py",
+        "tools/gt_trees.py",
+        "tools/gt_crops.py",
+        "tools/gt_stone_layer_rocks.py",
+        "tools/gt_small_ores.py",
+        "tools/waves/**/r0_disposition_sha256.txt",
+        "tools/waves/**/baseline_ledger_sha256.txt",
+        "tools/crosscut_lint.py",
+        "tools/crosscut_allowlist.json",
+        "tools/tests/test_crosscut_*.py",
+        "tools/tests/test_required_test_ids.py",
+        "docs/current/verification.md",
+        "docs/current/test-authoring.md"
+      ],
+      "path": "tools/capabilities/tooling/verification-decoupling/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification"
+      ],
+      "slug": "tooling/verification-decoupling",
+      "survival_access": "not_applicable",
+      "title": "Verification decoupling",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [
         "worldgen/gt-trees"
       ],
@@ -4554,7 +4595,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 135,
+  "capability_count": 136,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6042,6 +6083,9 @@
       "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
+    "tooling/verification-decoupling": [
+      "tooling/verification-decoupling"
+    ],
     "worldgen/gt-crops": [
       "worldgen/gt-crops"
     ],
@@ -6214,7 +6258,8 @@
       "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow",
       "runtime/compact-family-jar-bundles",
-      "runtime/workbench-tool-runtime-recipes"
+      "runtime/workbench-tool-runtime-recipes",
+      "tooling/verification-decoupling"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close",

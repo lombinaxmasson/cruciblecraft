@@ -54,17 +54,6 @@ CREATIVE_TABS = (
     / "registry"
     / "ModCreativeTabs.java"
 )
-GAME_TESTS = (
-    ROOT
-    / "src"
-    / "test"
-    / "java"
-    / "com"
-    / "masson"
-    / "cruciblecraft"
-    / "gametest"
-    / "MteFluidAttachmentsRuntimeGameTests.java"
-)
 GT6_W = ROOT / "gt6_referencable_port_code" / "gregtech6_w"
 
 FAMILY_KINDS = frozenset({"FAUCET", "TAP", "FUNNEL", "NOZZLE", "CAP_NOZZLE"})
@@ -414,17 +403,6 @@ def _check_creative_route() -> list[str]:
     ]
 
 
-def _check_game_tests(contract: dict[str, Any]) -> list[str]:
-    if not GAME_TESTS.is_file():
-        return [f"missing {_relative(GAME_TESTS)}"]
-    source = GAME_TESTS.read_text(encoding="utf-8")
-    errors: list[str] = []
-    for name in contract["required_game_tests"]:
-        if not re.search(rf"\b{name}\s*\(", source):
-            errors.append(f"missing GameTest {name}")
-    return errors
-
-
 def check() -> list[str]:
     """Return all player-surface contract violations."""
     errors: list[str] = []
@@ -452,7 +430,6 @@ def check() -> list[str]:
         )
     errors.extend(_check_art_manifest(contract, texture_ids))
     errors.extend(_check_creative_route())
-    errors.extend(_check_game_tests(contract))
     return errors
 
 

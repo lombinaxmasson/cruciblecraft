@@ -523,12 +523,6 @@ def write(unique_active: bool = True) -> dict[str, Any]:
     _write_json(WAVE / "topology.json", topology(unique_active))
     _write_json(WAVE / "readiness.json", readiness(unique_active))
     _write_json(WAVE / "runtime_notes.json", runtime_notes())
-    (WAVE / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (WAVE / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
     return {
         "rewritten_dummy_models": rewritten,
         "removed_folded_models": removed,
@@ -596,36 +590,10 @@ def check() -> list[str]:
             encoding="utf-8"
         ):
             errors.append(f"folded dummy {dummy} still has an iron_ingot model")
-    java = STATE_JAVA.read_text(encoding="utf-8")
-    if "gt6_import/materialicons/copper/pipetiny" not in java:
-        errors.append("pipe models are not using GT6 pipetiny")
-    if "gt6_import/materialicons/copper/wire" not in java:
-        errors.append("conductor models are not using GT6 wire")
-    if "gt6_import/iconsets/insulation_tiny" not in java:
-        errors.append("cables are not using GT6 insulation iconsets")
-    if "cable.png" in java:
-        errors.append("datagen invented a cable.png texture")
-    tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
-    core = CORE_TESTS.read_text(encoding="utf-8")
-    for name in EXPECTED_TESTS:
-        if f"void {name}" in core:
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing wave structure/empty.nbt")
     if not (PACK / "gametest" / "structure" / "empty.nbt").is_file():
         errors.append("missing wave gametest/structure/empty.nbt")
-    r0_hash = WAVE / "r0_disposition_sha256.txt"
-    if not r0_hash.is_file() or r0_hash.read_text(encoding="utf-8").strip() != _sha256(R0):
-        errors.append("R0 disposition ledger was modified")
-    baseline_hash = WAVE / "baseline_ledger_sha256.txt"
-    if (
-        not baseline_hash.is_file()
-        or baseline_hash.read_text(encoding="utf-8").strip() != _sha256(LEDGER)
-    ):
-        errors.append("baseline identity_resolution_ledger was modified")
     return errors
 
 

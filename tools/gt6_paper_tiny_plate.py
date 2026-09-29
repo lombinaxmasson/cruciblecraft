@@ -425,19 +425,6 @@ def check() -> list[str]:
             errors.append("slicer overflow still names paper:tiny_plate")
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing paper tiny_plate structure/empty.nbt")
-    java = (
-        census.ROOT
-        / "src"
-        / "test"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "gametest"
-        / GAME_TESTS
-    )
-    if not java.is_file():
-        errors.append(f"missing {GAME_TESTS}")
     return errors
 
 

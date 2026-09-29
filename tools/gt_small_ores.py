@@ -813,48 +813,6 @@ def check() -> list[str]:
             errors.append("remaining large-vein remover drifted from ore_veins.json")
         if remaining.get("biomes") != "#minecraft:is_overworld":
             errors.append("remaining large-vein remover must stay overworld")
-    java = (
-        census.ROOT
-        / "src"
-        / "main"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "worldgen"
-        / "SmallOreFeature.java"
-    )
-    if not java.is_file():
-        errors.append("missing SmallOreFeature.java")
-    else:
-        text = java.read_text(encoding="utf-8")
-        if "placeCount" not in text or "gt6ChunkRandom" not in text:
-            errors.append("SmallOreFeature must keep GT6 amount and WD.random")
-        if "GtItemScatterFeature" in text:
-            errors.append("must not re-register catalog scatter")
-        if "programmed_circuit" in text:
-            errors.append("must not stand in programmed_circuit")
-    tests = (
-        census.ROOT
-        / "src"
-        / "test"
-        / "java"
-        / "com"
-        / "masson"
-        / "cruciblecraft"
-        / "gametest"
-        / GAME_TESTS
-    )
-    if not tests.is_file():
-        errors.append(f"missing {GAME_TESTS}")
-    else:
-        text = tests.read_text(encoding="utf-8")
-        if "must not reuse T20 large-vein ellipsoids" not in text:
-            errors.append("GameTest must reject T20 ellipsoid stand-in")
-        if "gt_item_scatter" not in text:
-            errors.append("GameTest must keep catalog scatter unregistered")
-        if "sylvite" not in text:
-            errors.append("GameTest must assert rocksalt→sylvite")
     if not (PACK / "structure" / "empty.nbt").is_file():
         errors.append("missing small-ore structure/empty.nbt")
     if ADD_CATALOG.is_file():

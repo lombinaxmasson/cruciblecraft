@@ -7,7 +7,6 @@ stays one slot. Do not import closed fluid/item/EU runtime modules.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import shutil
 import sys
@@ -367,10 +366,6 @@ def _write_json(path: Path, document: Any) -> None:
     if path.is_file() and path.read_text(encoding="utf-8") == payload:
         return
     path.write_text(payload, encoding="utf-8")
-
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _registered_ids() -> set[str]:
@@ -790,12 +785,6 @@ def _write_wave(
     _write_json(wave / "readiness.json", readiness_doc)
     _write_json(wave / "production_lock.json", {"note": lock_note})
     _copy_empty_nbt(pack)
-    (wave / "r0_disposition_sha256.txt").write_text(
-        _sha256(R0) + "\n", encoding="utf-8"
-    )
-    (wave / "baseline_ledger_sha256.txt").write_text(
-        _sha256(LEDGER) + "\n", encoding="utf-8"
-    )
 
 
 def write(unique_active: bool = True, domain: str = "fluid") -> dict[str, Any]:
@@ -929,9 +918,6 @@ def check() -> list[str]:
     if "CURVED_PLATE" not in provider or "DOUBLE_PLATE" not in provider:
         errors.append("five-gauge table crafts are not gated on curved/double plate")
     tests = GAME_TESTS.read_text(encoding="utf-8") if GAME_TESTS.is_file() else ""
-    for name in EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing GameTest {name}")
     core = CORE_TESTS.read_text(encoding="utf-8")
     for name in EXPECTED_TESTS:
         if name in core:
@@ -1012,14 +998,6 @@ def _check_item() -> list[str]:
         errors.append("item-pipe table crafts are not isolated from fluid table/")
     if "steel" not in provider or "RING" not in provider:
         errors.append("restrictive crafts are not gated on steel/ring")
-    tests = ITEM_GAME_TESTS.read_text(encoding="utf-8") if ITEM_GAME_TESTS.is_file() else ""
-    for name in ITEM_EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing item GameTest {name}")
-    core = CORE_TESTS.read_text(encoding="utf-8")
-    for name in ITEM_EXPECTED_TESTS:
-        if name in core and name != "nonmetalCatalogStaysTwentyFive":
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
     if not live["brass_medium_table"]:
         errors.append("missing generated brass medium item-pipe table recipe")
     if not live["brass_huge_table"]:
@@ -1106,14 +1084,6 @@ def _check_eu() -> list[str]:
         errors.append("EU shapeless cable is not gated on any_rubber_plates")
     if "cable/table/" not in provider:
         errors.append("EU plate2wire crafts are not isolated under cable/table/")
-    tests = EU_GAME_TESTS.read_text(encoding="utf-8") if EU_GAME_TESTS.is_file() else ""
-    for name in EU_EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing EU GameTest {name}")
-    core = CORE_TESTS.read_text(encoding="utf-8")
-    for name in EU_EXPECTED_TESTS:
-        if name in core:
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
     if not live["copper_plate2wire"]:
         errors.append("missing generated copper plate2wire recipe")
     if not live["copper_shapeless_cable"]:
@@ -1277,18 +1247,6 @@ def _check_redstone() -> list[str]:
         errors.append("ModRecipeProvider lost insulated redstone laminator")
     if "redstone/laminator/" not in provider:
         errors.append("redstone laminator crafts are not isolated")
-    tests = (
-        REDSTONE_GAME_TESTS.read_text(encoding="utf-8")
-        if REDSTONE_GAME_TESTS.is_file()
-        else ""
-    )
-    for name in REDSTONE_EXPECTED_TESTS:
-        if f"void {name}" not in tests:
-            errors.append(f"missing redstone GameTest {name}")
-    core = CORE_TESTS.read_text(encoding="utf-8")
-    for name in REDSTONE_EXPECTED_TESTS:
-        if name in core:
-            errors.append(f"CrucibleCraftGameTests absorbed {name}")
     if not live["red_alloy_plate"]:
         errors.append("missing generated red_alloy plate laminator recipe")
     if not live["signalum_plate"]:

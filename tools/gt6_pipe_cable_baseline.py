@@ -1600,16 +1600,6 @@ def check_artifacts() -> list[str]:
         errors.append("this card must not claim player_complete")
     if readiness["src_main_modified"]:
         errors.append("this card must not modify src/main")
-    if PLAN_PREP.is_file():
-        errors.append("prep plan copy must be moved to closed/")
-    if not PLAN_CLOSED.is_file():
-        errors.append("closed plan missing")
-    else:
-        text = PLAN_CLOSED.read_text(encoding="utf-8")
-        if "- [ ]" in text.split("## 5. Prep 验收门")[-1].split("## 6.")[0]:
-            errors.append("prep gates still unchecked")
-        if "不表示 `player_complete`" not in text:
-            errors.append("closed plan must not claim player_complete")
     return errors
 
 

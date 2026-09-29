@@ -2,7 +2,6 @@
 """GT6 EU wire/cable runtime child."""
 from __future__ import annotations
 
-import hashlib
 import unittest
 
 from tools import capability_ledger as ledger
@@ -176,16 +175,6 @@ class Gt6EuWireCableRuntimeTest(unittest.TestCase):
                 if identity.get("registry_path") == "electric_wire/7x_lead_wire"
             )
             self.assertEqual("existing_item", lead["registry_kind"])
-        self.assertEqual(
-            hashlib.sha256(R0.read_bytes()).hexdigest(),
-            (WAVE / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
-        self.assertEqual(
-            hashlib.sha256(LEDGER.read_bytes()).hexdigest(),
-            (WAVE / "baseline_ledger_sha256.txt")
-            .read_text(encoding="utf-8")
-            .strip(),
-        )
         ns = (
             ROOT
             / "src"

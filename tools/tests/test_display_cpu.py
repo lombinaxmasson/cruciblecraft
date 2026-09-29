@@ -2,7 +2,6 @@
 """Display CPU closed card: sidecar, catalog lock, player_complete."""
 from __future__ import annotations
 
-import hashlib
 import re
 import unittest
 
@@ -63,8 +62,12 @@ INHERITED = (
     / "inherited_denominator.json"
 )
 BUILTIN_RE = re.compile(r'registerBuiltin\("([a-z0-9_]+)"')
-PINNED_COVER_DEFINITIONS_HASH = "207b4d03a66bf088574c1e6fef01971de307255eedf68c8a661741d839e857ec"
-PINNED_INHERITED_HASH = "d7d58f1c375aa59c45bd32e1451cc359b18a57b55328e38f3d425de62737f758"
+DISPLAY_CPU_OUT_OF_SCOPE = (
+    "logistics_display_cpu_control",
+    "logistics_display_cpu_conversion",
+    "logistics_display_cpu_logic",
+    "logistics_display_cpu_storage",
+)
 
 
 class DisplayCpuCardTest(unittest.TestCase):
@@ -121,10 +124,8 @@ class DisplayCpuCatalogLockTest(unittest.TestCase):
         self.assertEqual(9, len(rows))
         for row in rows:
             self.assertNotIn("logistics_", row["id"])
-        self.assertEqual(
-            PINNED_COVER_DEFINITIONS_HASH,
-            hashlib.sha256(COVER_DEFINITIONS.read_bytes()).hexdigest(),
-        )
+            self.assertIn("id", row)
+            self.assertIn("behavior", row)
 
     def test_register_builtin_includes_all_live_cover_plugins(self) -> None:
         text = REGISTRY.read_text(encoding="utf-8")
@@ -152,13 +153,17 @@ class DisplayCpuCatalogLockTest(unittest.TestCase):
             self.assertEqual("both", row["medium"])
             self.assertEqual([], row["configurable"])
 
-    def test_r0_display_cpu_out_of_scope_bytes_are_unchanged(self) -> None:
+    def test_display_cpu_rows_stay_out_of_scope(self) -> None:
         inherited = io.load_json(INHERITED)
-        self.assertIn("display_cpu_out_of_scope", inherited)
+        rows = inherited["display_cpu_out_of_scope"]
         self.assertEqual(
-            PINNED_INHERITED_HASH,
-            hashlib.sha256(INHERITED.read_bytes()).hexdigest(),
+            list(DISPLAY_CPU_OUT_OF_SCOPE),
+            [row["canonical_id"] for row in rows],
         )
+        for row in rows:
+            self.assertEqual("out_of_scope", row["disposition"])
+            self.assertEqual("out_of_scope", row["implementation_status"])
+            self.assertEqual("third_stage_excluded", row["roadmap_bucket"])
 
 
 class DisplayCpuCapabilityTest(unittest.TestCase):

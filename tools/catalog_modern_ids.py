@@ -1605,6 +1605,12 @@ def check() -> list[str]:
         drift = census.first_json_diff(live, committed)
         if drift:
             errors.append(f"catalog_modern_id_map.json drifted: {drift}")
+    else:
+        print(
+            "SKIP catalog_modern_ids GT6 name source: "
+            "gt6_code/gregtech6 is not in this checkout",
+            flush=True,
+        )
     rows = committed.get("rows") or []
     if not rows:
         errors.append("catalog_modern_id_map.json has no rows")

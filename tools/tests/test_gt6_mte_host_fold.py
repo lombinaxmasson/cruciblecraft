@@ -2,7 +2,6 @@
 """GT6 MTE dummy identities fold onto live hosts."""
 from __future__ import annotations
 
-import hashlib
 import unittest
 
 from tools import capability_ledger as ledger
@@ -80,16 +79,6 @@ class Gt6MteHostFoldTest(unittest.TestCase):
         self.assertEqual(
             {1512, 1522, 1528, 1530, 1545, 1548, 10086, 10087},
             keep,
-        )
-        self.assertEqual(
-            hashlib.sha256(R0.read_bytes()).hexdigest(),
-            (wave / "r0_disposition_sha256.txt").read_text(encoding="utf-8").strip(),
-        )
-        self.assertEqual(
-            hashlib.sha256(LEDGER.read_bytes()).hexdigest(),
-            (wave / "baseline_ledger_sha256.txt")
-            .read_text(encoding="utf-8")
-            .strip(),
         )
 
     def test_hopper_overlay_folds_one_hundred_one_live_hosts(self) -> None:

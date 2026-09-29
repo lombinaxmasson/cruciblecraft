@@ -17,7 +17,7 @@ python tools/verify.py integration --profile runtime-java
 python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile recipes
-python tools/verify.py integration --profile capability-runtime
+python tools/verify.py integration --profile capability-runtime --if-changed
 python tools/verify.py integration --profile game-tests
 python tools/verify.py release
 ```
@@ -38,14 +38,29 @@ python tools/verify.py release
   JUnit 加上双 datagen。
 - `integration --profile` 默认 fresh 执行该 profile 的 builders、Python tests、
   Gradle tasks 和 datagen；不复用旧 PASS。CI 对 `runtime-java`、
-  `recipe-generators`、`recipes` 与 `semantic-generators` 加 `--if-changed`：有 diff base
-  且本 profile 未命中则 SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且
+  `recipe-generators`、`recipes`、`semantic-generators` 与 `capability-runtime`
+  加 `--if-changed`：有 diff base 且本 profile 未命中则 SKIP；没有 diff base（无 `GITHUB_BASE_REF`，且
   `GITHUB_EVENT_BEFORE` 为空或全零）时仍执行，避免覆盖收缩。`release` 始终跑全部
   release profiles。
 - 新增方块或物品但只改 registry、不改 `datagen/` 时，这次 PR 不会跑 `runData`。
   `*ResourceTest` 与 `release` 仍覆盖生成树。
-- `capability-runtime` 跑机制卡的 GameTest / JUnit 合同。CI 不自动
-  `runClient`。
+- `capability-runtime` 只跑横切 lint、`required_test_ids` 通用检查，以及
+  jade / catalog id / registry identity 三个 builder。CI 加 `--if-changed`。
+  已关卡的账本测试在 `manual_replay`：`verify.py release` 会跑并写入
+  `build/verification/latest.json`，失败会打印，但不改变 release 退出码。
+  关卡时不要把这类测试加回常驻 profile。持续有效的证明写 GameTest 或 JUnit。
+  拆分前这个 profile 有 69 个 Python 模块、30 个 builder；现在是 5 个模块、
+  3 个 builder。56 个模块降级前先跑过，243 个测试、190 秒、全部通过。
+  旧的整份 capability-runtime 墙钟没有测过。横切 lint 大约 14 秒。
+  改 `HopperBlock.java` 只选中 `runtime-java` 和 `game-tests`，不再带上那
+  56 个账本模块。改一份已关内容卡的 `capability.json` 只选中
+  `player-complete`，以及 `test_capability_ledger`、`test_required_test_ids`、
+  `test_player_complete`。共享账本哈希针已经删掉，改无关字段不会再因哈希变红。
+  生成类 builder 的 `--check` 只核对它写出的资源；不扫 Java 源码文本，也不读
+  别的卡的计划。常驻检查在没有 `gt6_code` 时不去读参考树：catalog id builder
+  会打印 `SKIP catalog_modern_ids GT6 name source` 并继续做结构核对。
+  石头层、连接件获得和对应测试在 `manual_replay`。材料形态需求普查用已翻译的
+  铜族名单，不再为了常驻测试打开 `gt6_code`。
 - `release` 对当前 checkout fresh 执行 release profiles。它不读取历史报告来代替运行。
 - Registry census 不是 active profile。日常由材料闸门与手写配方形态测试覆盖
   缺失形态；完整 registry 冻结子集探针用
@@ -131,22 +146,17 @@ active verification 单位。
 
 这些现在不挡日常 `dev`，但还是脆弱耦合。回头另开验证卡再改，不要在内容卡里顺手修。
 
-1. **VD-2026-09-001 capability affected_rule 一锅炖。** `tools/python_test_policy.json` 里那条
-   `tools/capabilities/**` 规则会一次选出物流 / 能量 / Jade 全部卡测试。改一张
-   capability 就会重跑一串已接受卡。
-2. **VD-2026-09-002 已废的晋级 `runClient`。** `player-complete` profile 的
+1. **VD-2026-09-002 已废的晋级 `runClient`。** `player-complete` profile 的
    `--run --all` 现在是空操作。CI `promotion` 不得再启动客户端。
-3. **VD-2026-09-003 Java 投影整数锁。** hopper 60/120、storage 625、EMI 28 台等
+2. **VD-2026-09-003 Java 投影整数锁。** hopper 60/120、storage 625、EMI 28 台等
    `assertEquals(N, catalog.size())` 仍在。来源分母（核能 11/9/8、电池 37）要留；
    全仓库投影计数不要。
-4. **VD-2026-09-004 display-cpu 字节钉。** `test_display_cpu.py` 仍钉 cover / inherited JSON
-   的 sha256。改无关盖板行会红。
-5. **VD-2026-09-005 `build_semantic_recipes.py --check` 预存在红。** smelter
+3. **VD-2026-09-005 `build_semantic_recipes.py --check` 预存在红。** smelter
    `gt_recipe_smelter_0099.json` 与重建不一致。已从 `recipe-generators`
    卸下；手工 `--check` 仍会失败。不要为了变绿去重挂回 verify。
-6. **VD-2026-09-006 gate overlay 与 authority 不一致。**
+4. **VD-2026-09-006 gate overlay 与 authority 不一致。**
    `material_registration_gate.json` 多了 `fission_survival_required_forms`，
    `material_form_authority.json` 没有。日常 `--check` 已不再比 overlay；
    数据漂移还在。
-7. **VD-2026-09-007 Gradle 隔离与 card-fast。** 精简卡已关，card-fast / 晋级分层 / 共享
+5. **VD-2026-09-007 Gradle 隔离与 card-fast。** 精简卡已关，card-fast / 晋级分层 / 共享
    `build/test-results` 并发保护未实施。
