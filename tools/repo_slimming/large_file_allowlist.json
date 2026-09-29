@@ -1,12 +1,11 @@
 {
   "schema_version": 1,
   "limit_bytes": 5242880,
-  "policy": "Tracked files larger than limit_bytes must be listed. Listed paths must stay over the limit. After this file is committed, paths may only be removed.",
+  "policy": "Sizes are stored Git blob sizes, not checkout sizes. Tracked files larger than limit_bytes must be listed. Listed paths must stay over the limit. After this file is committed, paths may only be removed.",
   "paths": [
     "tools/bath_identity_production_lock.json",
     "tools/census_recipe_families.json",
     "tools/census_runtime_registry.json",
-    "tools/chemical_axis_operand_reachability.json",
     "tools/chemical_axis_template_denominator.json",
     "tools/global_build_identity_ledger.v2.json",
     "tools/gt6_l1b_selected_recipe_operands.json",

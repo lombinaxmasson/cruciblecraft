@@ -61,6 +61,18 @@ class CheckLargeFilesTest(unittest.TestCase):
     def test_repository_ratchet_holds(self) -> None:
         self.assertEqual([], checker.collect_findings(ROOT))
 
+    def test_sizes_are_stored_blob_sizes_not_checkout_sizes(self) -> None:
+        relative = checker.ALLOWLIST_RELATIVE
+        stored = subprocess.run(
+            ["git", "cat-file", "-s", f":{relative}"],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+        sizes = checker.tracked_file_sizes(ROOT)
+        self.assertEqual(int(stored.stdout.strip()), sizes[relative])
+
     def test_archives_are_ignored_and_gradle_wrapper_is_not(self) -> None:
         ignored = subprocess.run(
             [

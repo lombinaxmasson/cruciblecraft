@@ -66,22 +66,42 @@ def allowlist_growth(previous: set[str] | None, current: set[str]) -> list[str]:
 
 
 def tracked_file_sizes(root: Path) -> dict[str, int]:
-    completed = subprocess.run(
-        ["git", "ls-files", "-z"],
+    """Index blob sizes, i.e. the bytes Git stores.
+
+    Working-tree sizes differ by platform when core.autocrlf rewrites line
+    endings, so a Windows checkout and a Linux CI runner would disagree.
+    """
+    listed = subprocess.run(
+        ["git", "ls-files", "-s", "-z"],
         cwd=root,
         capture_output=True,
         check=True,
     )
-    sizes: dict[str, int] = {}
-    for raw in completed.stdout.split(b"\0"):
+    blobs: dict[str, str] = {}
+    for raw in listed.stdout.split(b"\0"):
         if not raw:
             continue
-        relative = raw.decode("utf-8").replace("\\", "/")
-        path = root / relative
-        if not path.is_file():
+        meta, _, name = raw.partition(b"\t")
+        mode, sha, _stage = meta.decode("ascii").split()
+        if mode == "160000":
             continue
-        sizes[relative] = path.stat().st_size
-    return sizes
+        blobs[name.decode("utf-8").replace("\\", "/")] = sha
+    if not blobs:
+        return {}
+    unique = sorted(set(blobs.values()))
+    checked = subprocess.run(
+        ["git", "cat-file", "--batch-check=%(objectname) %(objectsize)"],
+        cwd=root,
+        input="\n".join(unique) + "\n",
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    size_by_sha: dict[str, int] = {}
+    for line in checked.stdout.splitlines():
+        sha, size = line.split()
+        size_by_sha[sha] = int(size)
+    return {relative: size_by_sha[sha] for relative, sha in blobs.items()}
 
 
 def _git_show(root: Path, revision: str, relative: str) -> str | None:
