@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "measured_on": "2026-09-29",
+  "threshold_bytes": 1000000,
+  "note": "tools/ root JSON at or above 1 MB. production_lock files under tools/waves are not in this list and were not edited. Readers are filename matches in tracked text, classified by whether the Python module is reachable from active builders/tests or only from manual_replay.",
+  "deleted": [
+    {
+      "path": "tools/chemical_axis_source_denominator.json",
+      "bytes": 7688692,
+      "reason": "No tracked file names this JSON. No builder, test, or --check input."
+    },
+    {
+      "path": "tools/hydrocarbon_preflight_projection.json",
+      "bytes": 3344414,
+      "reason": "No tracked file names this JSON. hydrocarbon_preflight_policy.json remains."
+    },
+    {
+      "path": "tools/recipe_load_materialization_decision.json",
+      "bytes": 2127791,
+      "reason": "No tracked file names this JSON. recipe_load_materialization_policy.json remains and is still referenced."
+    },
+    {
+      "path": "tools/electrical_readiness.json",
+      "bytes": 1910567,
+      "reason": "Named only from closed card plans. tools/build_t6_electrical_readiness.py is already gone. Not an active or manual_replay input."
+    },
+    {
+      "path": "tools/gt6_config_overlay.json",
+      "bytes": 3223401,
+      "reason": "Written only by tools/gt6_config_overlay.py, which is not imported and is not in verification_builder_policy. The writer script stays; it is not a --check input."
+    }
+  ],
+  "kept": [
+    {
+      "path": "tools/assembler_wood_operand_disposition.json",
+      "reader": "active: tools/assembler_wood_common.py"
+    },
+    {
+      "path": "tools/bath_identity_production_lock.json",
+      "reader": "active: tools/bath_identity_common.py, tools/recipe_bulk/waves.py"
+    },
+    {
+      "path": "tools/bath_identity_publication_group_manifest.json",
+      "reader": "active: tools/bath_identity_common.py"
+    },
+    {
+      "path": "tools/bath_remainder_production_lock.json",
+      "reader": "active: tools/bath_remainder_common.py, tools/recipe_bulk/waves.py"
+    },
+    {
+      "path": "tools/catalog_modern_id_map.json",
+      "reader": "active builder: tools/catalog_modern_ids.py"
+    },
+    {
+      "path": "tools/census_recipe_families.json",
+      "reader": "active: tools/census_common.py, tools/recipe_bulk/ordinary_r0.py"
+    },
+    {
+      "path": "tools/census_runtime_registry.json",
+      "reader": "active: tools/census_common.py"
+    },
+    {
+      "path": "tools/chemical_axis_operand_reachability.json",
+      "reader": "active: tools/operand_reachability.py, tools/owner_partition_common.py"
+    },
+    {
+      "path": "tools/chemical_axis_template_denominator.json",
+      "reader": "active: tools/roaster_common.py and other *_common.py readers"
+    },
+    {
+      "path": "tools/chemical_readiness.json",
+      "reader": "active: tools/currentness.py; historical test tools/tests/test_semantic_projection.py"
+    },
+    {
+      "path": "tools/distillery_projection.json",
+      "reader": "active: tools/currentness.py"
+    },
+    {
+      "path": "tools/extruder_compact.json",
+      "reader": "active builder: tools/build_component_rules.py; Java RecipeLoadBenchmarkHarness; gradle/scripts/verification.gradle"
+    },
+    {
+      "path": "tools/extruder_expected.json",
+      "reader": "active builder: tools/build_component_rules.py; ExtruderCompactRuleTest"
+    },
+    {
+      "path": "tools/extruder_legacy_replay.json",
+      "reader": "active builder: tools/build_component_rules.py"
+    },
+    {
+      "path": "tools/global_build_identity_ledger.json",
+      "reader": "active: tools/recipe_bulk/identity.py, tools/recipe_bulk/write_guard.py"
+    },
+    {
+      "path": "tools/global_build_identity_ledger.v2.json",
+      "reader": "active: tools/recipe_bulk/identity_v3.py, tools/recipe_bulk/ordinary_source.py"
+    },
+    {
+      "path": "tools/gt6_l1b_pending_t0b.json",
+      "reader": "manual_replay: tools/gt6_l1b_layer_select.py"
+    },
+    {
+      "path": "tools/gt6_l1b_selected.json",
+      "reader": "manual_replay: tools/build_gt6_material_form_gate.py, tools/tests/test_gt6_l1b_layer_select.py"
+    },
+    {
+      "path": "tools/gt6_l1b_selected_recipe_operands.json",
+      "reader": "active: tools/owner_partition_common.py; manual_replay: tools/build_gt6_material_form_gate.py"
+    },
+    {
+      "path": "tools/gt6_material_activation_policy.json",
+      "reader": "active builder: tools/build_component_rules.py"
+    },
+    {
+      "path": "tools/gt6_mixer_templates_index.json",
+      "reader": "manual_replay: tools/gt6_mixer_templates.py"
+    },
+    {
+      "path": "tools/gt6_ore_chain.json",
+      "reader": "active: tools/roaster_common.py; Java OreResourceTest"
+    },
+    {
+      "path": "tools/gt6_oredict_materials_normalized.json",
+      "reader": "active Java ComponentRuleDataTest; manual_replay tools/import_gt6_oredict.py"
+    },
+    {
+      "path": "tools/gt6_oredict_prefixes_normalized.json",
+      "reader": "active: tools/tool_head_prefix.py; Java ComponentRuleDataTest"
+    },
+    {
+      "path": "tools/gt6_recipe_compare_baseline.json",
+      "reader": "manual_replay: tools/compare_gt6_recipes.py, tools/tests/test_compare_gt6_recipes.py"
+    },
+    {
+      "path": "tools/gt6_recipe_expectations.json",
+      "reader": "manual_replay: tools/compare_gt6_recipes.py, tools/tests/test_compare_gt6_recipes.py"
+    },
+    {
+      "path": "tools/gt6_recipe_templates_index.json",
+      "reader": "active: tools/gt6_recipe_templates.py"
+    },
+    {
+      "path": "tools/gt6_recipe_templates_report.json",
+      "reader": "active: tools/gt6_recipe_templates.py"
+    },
+    {
+      "path": "tools/machine_row_classification.json",
+      "reader": "active: tools/roaster_common.py and other *_common.py readers"
+    },
+    {
+      "path": "tools/machine_tree_machine_energy_policy.json",
+      "reader": "active: tools/repair_common.py"
+    },
+    {
+      "path": "tools/machine_tree_source_symbol_inventory.json",
+      "reader": "historical test tools/tests/test_vanilla_replace_r0.py via tools/portfolio_vanilla_replace.py. Kept: historical tests stay, and this card does not delete that builder."
+    },
+    {
+      "path": "tools/mixer_groups.json",
+      "reader": "manual_replay: tools/gt6_mixer_templates.py"
+    },
+    {
+      "path": "tools/owner_blocker_overlay.json",
+      "reader": "active: tools/owner_partition_common.py, tools/owner_runtime_common.py"
+    },
+    {
+      "path": "tools/owner_disposition_lock.json",
+      "reader": "active: tools/owner_partition_common.py, tools/owner_runtime_common.py"
+    },
+    {
+      "path": "tools/owner_operand_disposition.json",
+      "reader": "active: tools/owner_partition_common.py"
+    },
+    {
+      "path": "tools/owner_remaining_catalog.json",
+      "reader": "active: tools/owner_partition_common.py"
+    },
+    {
+      "path": "tools/owner_runtime_disposition_lock.json",
+      "reader": "active: tools/owner_runtime_common.py, tools/recipe_bulk/ordinary_r0.py"
+    },
+    {
+      "path": "tools/owner_runtime_recovery_evidence.json",
+      "reader": "active: tools/owner_runtime_common.py"
+    },
+    {
+      "path": "tools/owner_runtime_track_overlay.json",
+      "reader": "active: tools/owner_runtime_common.py"
+    },
+    {
+      "path": "tools/registry_identity_manifest.json",
+      "reader": "active: tools/registry_identity.py"
+    },
+    {
+      "path": "tools/smelter_mte_identity_catalog.json",
+      "reader": "active: tools/catalog_modern_ids.py, tools/registry_identity.py; Java SmelterMteIdentityCatalog"
+    },
+    {
+      "path": "tools/tool_head_prefix_remap.json",
+      "reader": "active: tools/tool_head_prefix.py"
+    },
+    {
+      "path": "tools/tool_readiness.json",
+      "reader": "active: tools/currentness.py"
+    }
+  ]
+}

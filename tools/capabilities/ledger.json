@@ -4279,6 +4279,31 @@
     },
     {
       "depends_on": [],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/仓库瘦身详细计划.md",
+        "tools/capabilities/tooling/repo-slimming/**",
+        "tools/repo_slimming/**",
+        ".gitignore",
+        "tools/tests/test_check_large_files.py",
+        "tools/verification_profiles.json",
+        "tools/python_test_policy.json",
+        "tools/known_issues/verification-debt.json",
+        "tools/legacy_verification_index.json",
+        "docs/current/code-tree.md"
+      ],
+      "path": "tools/capabilities/tooling/repo-slimming/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification"
+      ],
+      "slug": "tooling/repo-slimming",
+      "survival_access": "not_applicable",
+      "title": "Repository slimming",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/closed/验证去耦与横切守卫详细计划.md",
@@ -4595,7 +4620,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 136,
+  "capability_count": 137,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6083,6 +6108,9 @@
       "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
+    "tooling/repo-slimming": [
+      "tooling/repo-slimming"
+    ],
     "tooling/verification-decoupling": [
       "tooling/verification-decoupling"
     ],
@@ -6259,10 +6287,11 @@
       "portfolio/test-authoring-workflow",
       "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes",
+      "tooling/repo-slimming",
       "tooling/verification-decoupling"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "tooling/repo-slimming"
 }

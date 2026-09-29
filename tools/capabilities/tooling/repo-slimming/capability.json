@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "slug": "tooling/repo-slimming",
+  "title": "Repository slimming",
+  "maturity": "frozen",
+  "workflow": "active",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/仓库瘦身详细计划.md",
+    "tools/capabilities/tooling/repo-slimming/**",
+    "tools/repo_slimming/**",
+    ".gitignore",
+    "tools/tests/test_check_large_files.py",
+    "tools/verification_profiles.json",
+    "tools/python_test_policy.json",
+    "tools/known_issues/verification-debt.json",
+    "tools/legacy_verification_index.json",
+    "docs/current/code-tree.md"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "verification"
+  ],
+  "wave_slug": null,
+  "note": "Repository engineering card. Blocks new archives and large files, removes dead tracked JSON, then rewrites history with git filter-repo in a fresh clone and force-pushes after user confirmation. No game content, recipe semantics, or registry change. Occupies unique-active until accepted."
+}

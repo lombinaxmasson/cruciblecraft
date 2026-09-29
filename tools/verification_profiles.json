@@ -49,6 +49,7 @@
         "test_python_test_workflow",
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
+        "test_check_large_files",
         "test_tree_compare",
         "test_blocked_recipe_ledger",
         "test_gt6_full_coverage_reassessment",
@@ -116,7 +117,9 @@
         "tools/registry_identity_manifest.json",
         "tools/tests/test_registry_identity.py",
         "tools/tests/test_jade_source_mapping.py",
-        "tools/waves/presentation/gt6-tfru-waila-jade/**"
+        "tools/waves/presentation/gt6-tfru-waila-jade/**",
+        "tools/repo_slimming/**",
+        "tools/tests/test_check_large_files.py"
       ]
     },
     "runtime-java": {

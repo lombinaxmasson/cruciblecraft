@@ -67,6 +67,7 @@ kTFRUAddon 里只依赖 GT6、不绑 Advanced Rocketry / TerraFirmaCraft 的部�
 | 确定性生成器 | `tools/build_*.py` 或已有子包；输出必须写进冻结的生成根 |
 | 验证 | `tools/verify.py`、`tools/run_python_tests.py`、profile JSON |
 | 波次账本 | `tools/waves/<slug>/` |
+| 仓库瘦身 | `tools/repo_slimming/`：新增大文件棘轮、历史删除清单、测量记录 |
 | 测试 | `tools/tests/`，并登记 `active` / `manual_replay` / `historical` |
 
 路径引用先查 `tools/python_test_policy.json` 和

@@ -7,7 +7,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`tooling/repo-slimming`（Repository slimming，`workflow=active`，`maturity=frozen`）；计划 [仓库瘦身详细计划](../history/card-plans/active/仓库瘦身详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -168,7 +168,7 @@
 - `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## frozen（8）
+## frozen（9）
 
 分母已冻。仍 `paused` 的 PUV/OMEGA 卡代码已在 `src/main`，机器和 PUV2–OMEGA 零件是 GT6 注册内容，停在这里是因为还没关卡。中性物质 bootstrap 和 `MT.Neutronium` 生存链才是 `CC_EXTENSION`。地牢是结构载体，房间内容仍 blocked。
 
@@ -179,6 +179,7 @@
 - `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
+- `tooling/repo-slimming` — Repository slimming（`workflow=active`） — [仓库瘦身详细计划](../history/card-plans/active/仓库瘦身详细计划.md)
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 
 ## 关闭计划

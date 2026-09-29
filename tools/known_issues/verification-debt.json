@@ -132,6 +132,18 @@
       "detect": "inspect tools/verify.py CRUCIBLECRAFT_GRADLE_ISOLATED and tools/verification_profiles.json player-complete builders",
       "blocks_profiles": [],
       "repair_rule": "Isolate Gradle result dirs per profile. Daily player-complete stays GameTest-only; promotion stays the only client launch. Do not finish this inside a content card."
+    },
+    {
+      "id": "VD-2026-09-008",
+      "summary": "semantic-v3 recipe compile --check cannot rebuild src/recipe_generated from the committed lock",
+      "owner": "future recipe-generated rebuild card",
+      "trigger": "python tools/build_recipe_bulk.py compile --wave all --authority semantic-v3 --check exits 0 on a fresh clone",
+      "evidence": "2026-09-29 tooling/repo-slimming: the command fails with 'lock stable_id policy requires a lock row' (tools/recipe_bulk/emit.py stable_id_for). src/recipe_generated stays tracked until a lock row exists for every relation that policy marks as lock.",
+      "status": "open",
+      "scope": "tooling",
+      "detect": "python tools/build_recipe_bulk.py compile --wave all --authority semantic-v3 --check",
+      "blocks_profiles": [],
+      "repair_rule": "Repair the missing lock rows on a recipe card so semantic-v3 --check can rebuild src/recipe_generated. Do not drop that tree from version control while the command fails, and do not invent lock rows to make the compile look green."
     }
   ]
 }
