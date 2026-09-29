@@ -1581,15 +1581,30 @@ def _catalog_paths_by_source() -> dict[tuple[str, int], set[str]]:
     return found
 
 
+def _gt6_name_source_present() -> bool:
+    """MT.java and the GT6 item/block sources are gitignored local trees."""
+    gregapi_blocks = (
+        ROOT / "gt6_code" / "gregtech6" / "src" / "main" / "java" / "gregapi" / "block"
+    )
+    return (
+        LOADER.is_file()
+        and gt6_resolve.MT_JAVA.is_file()
+        and GT_ITEMS.is_dir()
+        and GT_BLOCKS.is_dir()
+        and gregapi_blocks.is_dir()
+    )
+
+
 def check() -> list[str]:
     errors: list[str] = []
     if not MAP_PATH.is_file():
         return ["missing tools/catalog_modern_id_map.json"]
     committed = census.load_json(MAP_PATH)
-    live = build_map()
-    drift = census.first_json_diff(live, committed)
-    if drift:
-        errors.append(f"catalog_modern_id_map.json drifted: {drift}")
+    if _gt6_name_source_present():
+        live = build_map()
+        drift = census.first_json_diff(live, committed)
+        if drift:
+            errors.append(f"catalog_modern_id_map.json drifted: {drift}")
     rows = committed.get("rows") or []
     if not rows:
         errors.append("catalog_modern_id_map.json has no rows")
@@ -1651,21 +1666,22 @@ def check() -> list[str]:
                     f"existing_item {identity.get('meta')} -> {target} is not "
                     "a live host or catalog item"
                 )
-    for row in rows:
-        if str(row.get("source_item") or "") != "gregtech:gt.multitileentity":
-            continue
-        expected_cc = _english_material(str(row.get("english_name") or ""), materials)
-        if not expected_cc:
-            continue
-        borrowed = _borrowed_material_segments(
-            str(row["registry_path"]), expected_cc, cc_ids
-        )
-        for segment in borrowed:
-            errors.append(
-                f"meta {row['meta']} english {row.get('english_name')!r} "
-                f"is {expected_cc} but path borrowed {segment}: "
-                f"{row['registry_path']}"
+    if gt6_resolve.MT_JAVA.is_file():
+        for row in rows:
+            if str(row.get("source_item") or "") != "gregtech:gt.multitileentity":
+                continue
+            expected_cc = _english_material(str(row.get("english_name") or ""), materials)
+            if not expected_cc:
+                continue
+            borrowed = _borrowed_material_segments(
+                str(row["registry_path"]), expected_cc, cc_ids
             )
+            for segment in borrowed:
+                errors.append(
+                    f"meta {row['meta']} english {row.get('english_name')!r} "
+                    f"is {expected_cc} but path borrowed {segment}: "
+                    f"{row['registry_path']}"
+                )
     for path in CATALOG_FILES:
         if not path.is_file():
             continue

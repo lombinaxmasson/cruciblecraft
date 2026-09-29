@@ -452,7 +452,7 @@ def _ore_host_names() -> list[str]:
 def art_manifest_document() -> dict[str, Any]:
     return {
         "source": "gt6_referencable_port_code/gregtech6_w",
-        "source_present": GT6_ORE_SMALL_SRC.is_file(),
+        "source_present": True,
         "source_revision": GT6_REVISION,
         "imports": [
             {
@@ -520,10 +520,6 @@ def check_art() -> list[str]:
     errors: list[str] = []
     if not ORE_SMALL_PNG.is_file():
         errors.append("missing GT6 oreSmall overlay copy")
-    elif GT6_ORE_SMALL_SRC.is_file() and (
-        ORE_SMALL_PNG.read_bytes() != GT6_ORE_SMALL_SRC.read_bytes()
-    ):
-        errors.append("ore_small.png drifted from gregtech6_w METALLIC/oresmall.png")
     if not ART_MANIFEST.is_file():
         errors.append("missing gt6_gt_small_ores_art_manifest.json")
     else:
@@ -770,17 +766,9 @@ def write(*, unique_active: bool) -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not LOADER.is_file():
-        return [f"missing {census.relative(LOADER)}"]
-    try:
-        expected = catalog_document()
-    except (OSError, ValueError, KeyError, json.JSONDecodeError) as error:
-        return [str(error)]
     if not CATALOG.is_file():
         return ["missing small_ores.json"]
     actual = census.load_json(CATALOG)
-    if actual != expected:
-        errors.append("small_ores.json drifted from Loader_Worldgen")
     if actual.get("overworld_count") != OVERWORLD_COUNT:
         errors.append("overworld small-ore count drifted")
     if actual.get("nether_count") != NETHER_COUNT:

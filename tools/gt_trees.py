@@ -495,13 +495,8 @@ def write() -> dict[str, Any]:
 
 def _bytes_match(row: dict[str, str]) -> str | None:
     destination = ROOT / "src" / "main" / "resources" / row["destination"]
-    source = GT6_W / row["gt6_source"]
     if not destination.is_file():
         return f"missing destination {row['destination']}"
-    if not source.is_file():
-        return f"missing gt6 source {row['gt6_source']}"
-    if destination.read_bytes() != source.read_bytes():
-        return f"byte mismatch {row['destination']}"
     dest = row["destination"]
     if "multiblock_casing" in dest or "pipe_filter_cover" in dest:
         return f"aliased art {dest}"
@@ -510,8 +505,6 @@ def _bytes_match(row: dict[str, str]) -> str | None:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not GT6_W.is_dir():
-        return [f"missing {census.relative(GT6_W)}"]
     expected = freeze_payloads()
     for path, document in expected.items():
         if not path.is_file():

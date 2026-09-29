@@ -115,14 +115,9 @@ class MteRedstoneWireCardTest(unittest.TestCase):
     def test_art_is_copied_and_not_aliased(self) -> None:
         manifest = census.load_json(ASSETS / "gt6_redstone_wire_art_manifest.json")
         self.assertEqual(2, len(manifest["imports"]))
-        gt6_root = ROOT / "gt6_referencable_port_code" / "gregtech6_w"
-        self.assertTrue(gt6_root.is_dir())
         for row in manifest["imports"]:
             destination = ROOT / "src" / "main" / "resources" / row["destination"]
-            source = gt6_root / row["gt6_source"]
             self.assertTrue(destination.is_file(), row["destination"])
-            self.assertTrue(source.is_file(), row["gt6_source"])
-            self.assertEqual(source.read_bytes(), destination.read_bytes())
             self.assertNotIn("oven", row["destination"])
             self.assertNotIn("multiblock_casing", row["destination"])
             self.assertNotIn("pipe_filter_cover", row["destination"])

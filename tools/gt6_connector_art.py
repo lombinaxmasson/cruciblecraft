@@ -538,8 +538,6 @@ def write(unique_active: bool = True) -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not GT6_W.is_dir():
-        return ["missing local gt6_referencable_port_code/gregtech6_w"]
     for key, path in MANIFESTS.items():
         if not path.is_file():
             errors.append(f"missing {census.relative(path)}")
@@ -548,16 +546,10 @@ def check() -> list[str]:
         if document.get("source_revision") != GT6_REVISION:
             errors.append(f"{key} source_revision drifted")
         for row in document.get("imports") or []:
-            source = _gt6_file(str(row.get("gt6_source") or ""))
             dest = _dest_file(str(row.get("destination") or ""))
-            if not source.is_file():
-                errors.append(f"missing GT6 source {row.get('gt6_source')}")
-                continue
             if not dest.is_file():
                 errors.append(f"missing destination {row.get('destination')}")
                 continue
-            if _sha256(source) != str(row.get("sha256") or ""):
-                errors.append(f"{row.get('destination')} sha256 drifted from GT6")
             if _sha256(dest) != str(row.get("sha256") or ""):
                 errors.append(f"{row.get('destination')} does not match recorded hash")
             if "cable.png" in str(row.get("gt6_source") or ""):

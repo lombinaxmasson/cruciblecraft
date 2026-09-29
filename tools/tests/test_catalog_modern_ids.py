@@ -71,18 +71,19 @@ class CatalogModernIdsTest(unittest.TestCase):
         self.assertEqual([], sorted((mapped & live) - folded))
 
     def test_osmium_display_name_is_not_germanium_alias(self) -> None:
-        materials = modern._material_index()
-        self.assertEqual("osmium_elemental", materials["osmium"])
-        self.assertEqual("osmium_elemental", materials["os"])
-        self.assertEqual("germanium", materials["germanium"])
-        self.assertEqual(
-            "osmium_elemental",
-            modern._english_material("Osmium Item Pipe", materials),
-        )
-        self.assertEqual(
-            "germanium",
-            modern._english_material("Germanium Item Pipe", materials),
-        )
+        if modern.gt6_resolve.MT_JAVA.is_file():
+            materials = modern._material_index()
+            self.assertEqual("osmium_elemental", materials["osmium"])
+            self.assertEqual("osmium_elemental", materials["os"])
+            self.assertEqual("germanium", materials["germanium"])
+            self.assertEqual(
+                "osmium_elemental",
+                modern._english_material("Osmium Item Pipe", materials),
+            )
+            self.assertEqual(
+                "germanium",
+                modern._english_material("Germanium Item Pipe", materials),
+            )
         row = next(
             item
             for item in census.load_json(modern.MAP_PATH)["rows"]

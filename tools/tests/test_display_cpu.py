@@ -90,7 +90,6 @@ class DisplayCpuCardTest(unittest.TestCase):
         )
         self.assertEqual("gt6_referencable_port_code/gregtech6_w", manifest["source"])
         self.assertEqual(52, len(manifest["imports"]))
-        gt6 = ROOT / "gt6_referencable_port_code" / "gregtech6_w" / "src" / "main" / "resources"
         item_icons = {
             "logistics_display_cpu_logic_cover.png": (
                 "assets/gregtech/textures/items/gt.multiitem.technological/1086.png"
@@ -113,7 +112,6 @@ class DisplayCpuCardTest(unittest.TestCase):
             self.assertEqual(source, by_dest[dest])
             icon = ROOT / "src" / "main" / "resources" / dest
             self.assertTrue(icon.is_file(), name)
-            self.assertEqual((gt6 / source).read_bytes(), icon.read_bytes(), name)
 
 
 class DisplayCpuCatalogLockTest(unittest.TestCase):

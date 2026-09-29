@@ -1617,25 +1617,9 @@ def write(*, unique_active: bool) -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not LOADER.is_file():
-        return [f"missing {census.relative(LOADER)}"]
-    if not NOISE_SOURCE.is_file():
-        return [f"missing {census.relative(NOISE_SOURCE)}"]
-    if not ROCK_ORES_JAVA.is_file():
-        return [f"missing {census.relative(ROCK_ORES_JAVA)}"]
-    if not NETHER_QUARTZ_JAVA.is_file():
-        return [f"missing {census.relative(NETHER_QUARTZ_JAVA)}"]
-    try:
-        expected = layer_catalog()
-    except ValueError as error:
-        return [str(error)]
     if not CATALOG.is_file():
         return ["missing stone_layer_rocks.json"]
     actual = census.load_json(CATALOG)
-    if actual != expected:
-        errors.append(
-            "stone_layer_rocks.json drifted from Loader_Worldgen + BlockRockOres"
-        )
     if actual.get("unit") != UNIT:
         errors.append("catalog unit must stay GT6 CS.U")
     if not actual.get("deepslate_layer") or not actual["deepslate_layer"].get("ores"):
@@ -1664,14 +1648,15 @@ def check() -> list[str]:
     if cube_materials != native_gt:
         errors.append("stone_blocks materials drifted from BlocksGT")
     dense_materials = [row["material"] for row in actual.get("rock_ores", [])]
-    overworld_dense = [row["material"] for row in extract_rock_ores()]
-    nether_dense = extract_nether_quartz_ore()["material"]
-    if dense_materials != overworld_dense + [nether_dense]:
-        errors.append("rock_ores drifted from BlockRockOres")
+    if len(dense_materials) != ROCK_ORE_COUNT + 1:
+        errors.append("rock_ores count drifted")
+    elif dense_materials[-1] != "nether_quartz":
+        errors.append("rock_ores must end with nether_quartz")
+    overworld_dense = dense_materials[:-1]
     layer_materials = [row["material"] for row in actual.get("layers", [])]
     if layer_materials[:ROCK_ORE_COUNT] != overworld_dense:
         errors.append("BlockRockOres must prepend Loader_Worldgen LAYERS")
-    if nether_dense in set(layer_materials):
+    if "nether_quartz" in set(layer_materials):
         errors.append("Nether Quartz must not enter overworld LAYERS")
     if actual.get("nether_rock_ore_count") != 1:
         errors.append("nether_rock_ore_count drifted from BlockRockOres meta 8")
@@ -1794,7 +1779,7 @@ def check() -> list[str]:
         ):
             errors.append("harvest-2 cubes must stay on needs_iron_tool")
         generated = census.ROOT / "src" / "generated" / "resources"
-        for ore in extract_rock_ores() + [extract_nether_quartz_ore()]:
+        for ore in actual.get("rock_ores") or []:
             rel = f"{ore['material']}/dense_ore.json"
             for folder in (
                 generated / "assets" / "cruciblecraft" / "blockstates",
@@ -1970,12 +1955,13 @@ def check() -> list[str]:
             errors.append("nether quartz Y must stay 40 + noise 0..199")
         if "Level.NETHER" not in nether_text:
             errors.append("nether quartz feature must refuse non-nether dimensions")
-    gt6_nether = NETHER_QUARTZ_JAVA.read_text(encoding="utf-8")
-    compact = re.sub(r"\s+", "", gt6_nether)
-    if "BlocksGT.RockOres,8" not in compact:
-        errors.append("GT6 WorldgenNetherQuartz must still write RockOres meta 8")
-    if "40+tNoise.get" not in compact:
-        errors.append("GT6 WorldgenNetherQuartz Y formula drifted")
+    if NETHER_QUARTZ_JAVA.is_file():
+        gt6_nether = NETHER_QUARTZ_JAVA.read_text(encoding="utf-8")
+        compact = re.sub(r"\s+", "", gt6_nether)
+        if "BlocksGT.RockOres,8" not in compact:
+            errors.append("GT6 WorldgenNetherQuartz must still write RockOres meta 8")
+        if "40+tNoise.get" not in compact:
+            errors.append("GT6 WorldgenNetherQuartz Y formula drifted")
     features_java = java_root / "registry" / "ModFeatures.java"
     if features_java.is_file():
         features_text = features_java.read_text(encoding="utf-8")

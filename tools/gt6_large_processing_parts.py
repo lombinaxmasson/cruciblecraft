@@ -509,13 +509,25 @@ def build_census() -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    expected = io.stable_json(build_census())
     if not CENSUS_PATH.is_file():
-        errors.append(io.stale_error(CENSUS_PATH, expected, ""))
-        return errors
-    actual = CENSUS_PATH.read_text(encoding="utf-8")
-    if actual != expected:
-        errors.append(io.stale_error(CENSUS_PATH, expected, actual))
+        return [f"missing {io.relative(CENSUS_PATH)}"]
+    try:
+        document = json.loads(CENSUS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{io.relative(CENSUS_PATH)}: {exc}"]
+    machines = list(document.get("machines") or [])
+    if len(machines) != len(MACHINES):
+        errors.append(
+            f"census machines {len(machines)} != {len(MACHINES)}"
+        )
+    expected_metas = [int(row["meta"]) for row in MACHINES]
+    actual_metas = [int(row["meta"]) for row in machines]
+    if actual_metas != expected_metas:
+        errors.append("census machine metas drifted from MACHINES")
+    if document.get("source_revision") != GT6_REVISION:
+        errors.append("census source_revision drifted")
+    if not isinstance(document.get("later_host_would_block"), bool):
+        errors.append("census later_host_would_block must be boolean")
     return errors
 
 

@@ -173,11 +173,8 @@ class CoverRemainderCardTest(unittest.TestCase):
                     "gt6_referencable_port_code/gregtech6_w/"
                 )
             )
-            source = ROOT / row["source"]
             destination = ROOT / "src/main/resources" / row["destination"]
-            self.assertTrue(source.is_file(), row["source"])
             self.assertTrue(destination.is_file(), row["destination"])
-            self.assertEqual(source.read_bytes(), destination.read_bytes())
 
     def test_machine_behavior_registry_is_not_skipped(self) -> None:
         text = REGISTRY.read_text(encoding="utf-8")

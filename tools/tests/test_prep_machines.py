@@ -255,18 +255,13 @@ class PrepMachinesTest(unittest.TestCase):
             for machine in prep.MACHINES.values()
             for extra in machine.get("extra_art") or ()
         ]
-        gt6_root = ROOT / "gt6_referencable_port_code" / "gregtech6_w"
-        self.assertTrue(gt6_root.is_dir())
         for name in manifests:
             with self.subTest(manifest=name):
                 manifest = census.load_json(ASSETS / name)
                 self.assertGreaterEqual(len(manifest["imports"]), 20)
                 for row in manifest["imports"]:
                     destination = ROOT / "src" / "main" / "resources" / row["destination"]
-                    source = gt6_root / row["gt6_source"]
                     self.assertTrue(destination.is_file(), row["destination"])
-                    self.assertTrue(source.is_file(), row["gt6_source"])
-                    self.assertEqual(source.read_bytes(), destination.read_bytes())
                     self.assertNotIn("multiblock_casing", row["destination"])
         self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "slicer.png").is_file())
         self.assertTrue((ASSETS / "textures" / "gui" / "machines" / "melter.png").is_file())

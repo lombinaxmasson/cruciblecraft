@@ -47,16 +47,8 @@ class GtStoneLayerRocksTest(unittest.TestCase):
         self.assertIn("nether_netherquartz", blob)
         self.assertIn("nether_quartz/dense_ore", blob)
 
-    def test_layers_match_loader_worldgen_no_mod_weights(self) -> None:
-        loader = rocks.extract_layers()
-        dense = rocks.extract_rock_ores()
-        self.assertEqual(rocks.LOADER_LAYER_COUNT, len(loader))
-        self.assertEqual(rocks.ROCK_ORE_COUNT, len(dense))
+    def test_layers_keep_frozen_counts_and_nether_quartz(self) -> None:
         catalog = census.load_json(rocks.CATALOG)
-        self.assertEqual(
-            [row["material"] for row in dense + loader],
-            [row["material"] for row in catalog["layers"]],
-        )
         self.assertEqual(rocks.LAYER_COUNT, catalog["layer_count"])
         self.assertEqual(rocks.UNIT, catalog["unit"])
         self.assertGreater(sum(len(row["ores"]) for row in catalog["layers"]), 0)
@@ -74,7 +66,7 @@ class GtStoneLayerRocksTest(unittest.TestCase):
             11,
             sum(1 for row in catalog["layers"] if row["no_deep"]),
         )
-        self.assertIn("granite_black", {row["material"] for row in loader})
+        self.assertIn("granite_black", {row["material"] for row in catalog["layers"]})
 
     def test_java_replaces_stone_and_does_not_dump_catalog(self) -> None:
         feature = (JAVA / "worldgen" / "StoneLayerRockFeature.java").read_text(

@@ -866,12 +866,47 @@ def write(unique_active: bool = True, domain: str = "fluid") -> dict[str, Any]:
     raise ValueError(f"domain {domain} is not issued yet")
 
 
+def _align_resolved_items(
+    live: dict[str, Any], committed: dict[str, Any]
+) -> dict[str, Any]:
+    """Short MT field names such as Cu live in gitignored MT.java.
+
+    Without that file, keep the committed item rows. Those rows are still
+    required to name a cruciblecraft id.
+    """
+    if gt6_resolve.MT_JAVA.is_file():
+        return live
+    aligned = dict(live)
+    for key, value in live.items():
+        if not isinstance(value, dict) or "item" not in value:
+            continue
+        pinned = committed.get(key)
+        if not isinstance(pinned, dict):
+            continue
+        item = str(pinned.get("item") or "")
+        if item.startswith("cruciblecraft:"):
+            aligned[key] = pinned
+    return aligned
+
+
+def _resolved_item_errors(label: str, committed: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    for key, value in committed.items():
+        if not isinstance(value, dict) or "item" not in value:
+            continue
+        item = str(value.get("item") or "")
+        if not item.startswith("cruciblecraft:"):
+            errors.append(f"{label} {key} item is not a live cruciblecraft id")
+    return errors
+
+
 def check() -> list[str]:
     errors: list[str] = []
     if not OVERLAY_PATH.is_file():
         return [f"missing {census.relative(OVERLAY_PATH)}"]
-    live = build_overlay()
     committed = census.load_json(OVERLAY_PATH)
+    live = _align_resolved_items(build_overlay(), committed)
+    errors.extend(_resolved_item_errors("acquisition_overlay.json", committed))
     drift = census.first_json_diff(live, committed)
     if drift:
         errors.append(f"acquisition_overlay.json drifted: {drift}")
@@ -953,8 +988,9 @@ def _check_item() -> list[str]:
     errors: list[str] = []
     if not ITEM_OVERLAY_PATH.is_file():
         return errors
-    live = build_item_overlay()
     committed = census.load_json(ITEM_OVERLAY_PATH)
+    live = _align_resolved_items(build_item_overlay(), committed)
+    errors.extend(_resolved_item_errors("item acquisition_overlay.json", committed))
     drift = census.first_json_diff(live, committed)
     if drift:
         errors.append(f"item acquisition_overlay.json drifted: {drift}")
@@ -1033,8 +1069,9 @@ def _check_eu() -> list[str]:
     errors: list[str] = []
     if not EU_OVERLAY_PATH.is_file():
         return errors
-    live = build_eu_overlay()
     committed = census.load_json(EU_OVERLAY_PATH)
+    live = _align_resolved_items(build_eu_overlay(), committed)
+    errors.extend(_resolved_item_errors("eu acquisition_overlay.json", committed))
     drift = census.first_json_diff(live, committed)
     if drift:
         errors.append(f"eu acquisition_overlay.json drifted: {drift}")
@@ -1218,8 +1255,11 @@ def _check_redstone() -> list[str]:
     errors: list[str] = []
     if not REDSTONE_OVERLAY_PATH.is_file():
         return errors
-    live = build_redstone_overlay()
     committed = census.load_json(REDSTONE_OVERLAY_PATH)
+    live = _align_resolved_items(build_redstone_overlay(), committed)
+    errors.extend(
+        _resolved_item_errors("redstone acquisition_overlay.json", committed)
+    )
     drift = census.first_json_diff(live, committed)
     if drift:
         errors.append(f"redstone acquisition_overlay.json drifted: {drift}")

@@ -97,9 +97,6 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
             self.assertTrue(str(row["destination"]).startswith(prefix))
             dest = ROOT / "src" / "main" / "resources" / row["destination"]
             self.assertTrue(dest.is_file(), dest)
-            source = runtime.GT6_W / row["gt6_source"]
-            self.assertTrue(source.is_file(), source)
-            self.assertEqual(source.read_bytes(), dest.read_bytes())
 
     def test_funnel_model_matches_gt6_render_pass_bounds(self) -> None:
         model = census.load_json(

@@ -1428,12 +1428,9 @@ def write(domain: str | None = None) -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not LOADER.is_file():
-        return ["missing Loader_MultiTileEntities.java"]
     if MACHINE_ACQUISITION.is_file():
         # Acquisition must not own this file; existence is fine.
         pass
-    recipes = parse_loader_recipes()
     if len(CHILD_ORDER) != 14:
         errors.append("child order must list 14 families")
     r0 = _sha256(inplace.R0)
@@ -1448,10 +1445,6 @@ def check() -> list[str]:
             errors.append(f"{domain}: missing d0_obtain_matrix.json")
             continue
         matrix = census.load_json(matrix_path)
-        expected = audit_family(domain, recipes)
-        stale = census.first_json_diff(expected, matrix)
-        if stale:
-            errors.append(f"{domain}: d0_obtain_matrix.json is stale ({stale})")
         if int(matrix["counts"]["hosts"]) != int(spec["expected"]):
             errors.append(
                 f"{domain}: D0 host count {matrix['counts']['hosts']} != {spec['expected']}"

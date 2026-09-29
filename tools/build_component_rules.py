@@ -70,7 +70,6 @@ OUTPUT_ROOT = (
     / "recipe"
 )
 MANIFEST = ROOT / "tools" / "component_rule_manifest.json"
-GT6_ELECTRICAL_SOURCE = ROOT / "tools" / "gt6_electrical_source.json"
 MATERIAL_ACTIVATION_POLICY = (
     ROOT / "tools" / "gt6_material_activation_policy.json"
 )
@@ -129,7 +128,6 @@ def _json_equal(left: bytes | str, right: bytes | str) -> bool:
 
 def _build_any_rubber_tag(
     groups_document: dict[str, Any],
-    electrical_source: dict[str, Any],
     material_dir: Path,
 ) -> tuple[bytes, dict[str, Any]]:
     _require_exact_keys(
@@ -156,16 +154,14 @@ def _build_any_rubber_tag(
         set(),
         "material_groups.json.groups.any_rubber",
     )
-    insulation = electrical_source.get("insulation") or {}
     if (
         group["source_group"] != "ANY.Rubber"
-        or group["source_member_names"]
-        != insulation.get("material_source_names")
         or group["item_tag"] != ANY_RUBBER_TAG
         or group["prefix"] != "plate"
+        or not group["source_member_names"]
     ):
         raise SourceError(
-            "ANY.Rubber group drifted from gt6_electrical_source.json"
+            "ANY.Rubber group drifted from material_groups.json"
         )
     source_to_material: dict[str, str] = {}
     tag_name_by_material: dict[str, str] = {}
@@ -181,10 +177,13 @@ def _build_any_rubber_tag(
             tag_name_by_material[material["id"]] = material.get(
                 "tag_name", material["id"]
             )
-    expected_materials = [
-        source_to_material[name]
-        for name in insulation["material_source_names"]
-    ]
+    expected_materials = []
+    for name in group["source_member_names"]:
+        if name not in source_to_material:
+            raise SourceError(
+                f"ANY.Rubber source member {name!r} is not a live material"
+            )
+        expected_materials.append(source_to_material[name])
     if group["member_materials"] != expected_materials:
         raise SourceError(
             "ANY.Rubber member material ids drifted from live source mapping"
@@ -1130,7 +1129,6 @@ def build_bundle(
     groups_document = _read_json(source_dir / "material_groups.json")
     any_rubber_tag, any_rubber_group = _build_any_rubber_tag(
         groups_document,
-        _read_json(GT6_ELECTRICAL_SOURCE),
         material_dir,
     )
     rules = _validate_rules(rules_document)
@@ -1251,7 +1249,6 @@ def build_bundle(
             extruder_report.relative_to(ROOT).as_posix(),
             selector_policy.relative_to(ROOT).as_posix(),
             registration_gate.relative_to(ROOT).as_posix(),
-            GT6_ELECTRICAL_SOURCE.relative_to(ROOT).as_posix(),
             MATERIAL_ACTIVATION_POLICY.relative_to(ROOT).as_posix(),
             T14_EXTRUDER_POLICY.relative_to(ROOT).as_posix(),
             T14_EXTRUDER_COMPACT.relative_to(ROOT).as_posix(),

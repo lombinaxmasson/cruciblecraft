@@ -937,20 +937,20 @@ def check_art_manifest(
     rows = art.get("imports") or []
     if len(rows) < min_art_imports:
         errors.append(f"{art_manifest} must copy at least {min_art_imports} files")
-    if not GT6_ART.is_dir():
-        errors.append("gt6_referencable_port_code/gregtech6_w is missing")
+    source_present = GT6_ART.is_dir()
     for row in rows:
         destination = ROOT / "src" / "main" / "resources" / row["destination"]
-        source = GT6_ART / row["gt6_source"]
         dest_text = str(row.get("destination") or "")
         if not destination.is_file():
             errors.append(f"missing dest art {row['destination']}")
             continue
-        if not source.is_file():
-            errors.append(f"missing GT6 art {row['gt6_source']}")
-            continue
-        if source.read_bytes() != destination.read_bytes():
-            errors.append(f"art bytes drifted {row['destination']}")
+        if source_present:
+            source = GT6_ART / row["gt6_source"]
+            if not source.is_file():
+                errors.append(f"missing GT6 art {row['gt6_source']}")
+                continue
+            if source.read_bytes() != destination.read_bytes():
+                errors.append(f"art bytes drifted {row['destination']}")
         for needle in forbidden_art:
             if needle in dest_text:
                 errors.append(f"aliased art path {row['destination']}")
@@ -970,8 +970,8 @@ def check_source_pack(
 ) -> list[str]:
     errors: list[str] = []
     wave = wave_dir(slug)
+    dump_slice = wave / "source_pack" / "dump_slice.json"
     required = (
-        wave / "source_pack" / "dump_slice.json",
         wave / "source_pack" / "work_set.json",
         wave / "source_pack_manifest.json",
         wave / "recipe_import.json",
@@ -988,7 +988,17 @@ def check_source_pack(
 
     try:
         manifest = source_import.load_manifest(wave / "source_pack_manifest.json")
-        source_import.verify_files(manifest, require_present=True)
+        if dump_slice.is_file():
+            source_import.verify_files(manifest, require_present=True)
+        else:
+            work_entry = next(
+                entry
+                for entry in manifest.get("files") or []
+                if entry.get("role") == "work_set"
+            )
+            actual_hash = census.sha256_file(wave / "source_pack" / "work_set.json")
+            if actual_hash != str(work_entry["sha256"]):
+                errors.append("work_set hash drifted from source pack manifest")
     except Exception as error:
         errors.append(f"source pack: {error}")
 
@@ -997,10 +1007,11 @@ def check_source_pack(
     accounting = work.get("accounting") or {}
     selected = (work.get("families") or [{}])[0].get("relations") or []
     if selected:
-        try:
-            errors.extend(source_import.check_import(wave / "recipe_import.json"))
-        except Exception as error:
-            errors.append(f"import: {error}")
+        if dump_slice.is_file():
+            try:
+                errors.extend(source_import.check_import(wave / "recipe_import.json"))
+            except Exception as error:
+                errors.append(f"import: {error}")
     elif accounting.get("selected_rows") not in (0, None):
         errors.append("empty work-set must account selected_rows as 0")
     if accounting.get("source_rows") != source_rows:
@@ -1035,9 +1046,13 @@ def check_source_pack(
     if errors:
         return errors
     if not selected:
-        source = census.load_json(wave / "source.json")
-        if source.get("relation_count") != 0:
-            errors.append("empty selected set must keep source.json relation_count 0")
+        source_path = wave / "source.json"
+        if source_path.is_file():
+            source = census.load_json(source_path)
+            if source.get("relation_count") != 0:
+                errors.append("empty selected set must keep source.json relation_count 0")
+        return errors
+    if not dump_slice.is_file():
         return errors
     try:
         metrics = isolated_compile(wave, live_needle)

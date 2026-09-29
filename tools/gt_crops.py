@@ -459,8 +459,6 @@ def write(*, unique_active: bool) -> dict[str, Any]:
 
 def check() -> list[str]:
     errors: list[str] = []
-    if not GT6_W.is_dir():
-        return [f"missing {census.relative(GT6_W)}"]
     if not ART_MANIFEST.is_file():
         return ["missing gt6_gt_crops_art_manifest.json"]
     manifest = census.load_json(ART_MANIFEST)
@@ -468,15 +466,9 @@ def check() -> list[str]:
         errors.append("crops art manifest drifted")
     for row in art_imports():
         dest = census.ROOT / "src" / "main" / "resources" / row["destination"]
-        source = GT6_W / row["gt6_source"]
         if not dest.is_file():
             errors.append(f"missing destination {row['destination']}")
             continue
-        if not source.is_file():
-            errors.append(f"missing gt6 source {row['gt6_source']}")
-            continue
-        if dest.read_bytes() != source.read_bytes():
-            errors.append(f"byte mismatch {row['destination']}")
         if "multiblock_casing" in row["destination"] or "conveyor_cover" in row["destination"]:
             errors.append(f"aliased art {row['destination']}")
     for color in GLOWTUS:

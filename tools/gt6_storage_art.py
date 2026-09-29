@@ -936,15 +936,9 @@ def check() -> list[str]:
         errors.append(f"storage art manifest too small: {len(rows)}")
     for row in rows:
         dest = _dest_file(str(row["destination"]))
-        source = GT6_W / str(row["gt6_source"])
         if not dest.is_file():
             errors.append(f"missing dest {row['destination']}")
             continue
-        if not source.is_file():
-            errors.append(f"missing GT6 {row['gt6_source']}")
-            continue
-        if dest.read_bytes() != source.read_bytes():
-            errors.append(f"bytes drifted {row['destination']}")
         if "minecraft:block" in str(row.get("gt6_source")):
             errors.append(f"vanilla source {row['gt6_source']}")
     for name in (

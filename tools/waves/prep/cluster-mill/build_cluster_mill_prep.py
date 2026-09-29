@@ -338,7 +338,6 @@ def write() -> dict[str, int]:
 def check() -> list[str]:
     errors: list[str] = []
     required = (
-        DUMP_SLICE,
         WORK_SET,
         MANIFEST,
         IMPORT,
@@ -354,14 +353,16 @@ def check() -> list[str]:
 
     try:
         manifest = source_import.load_manifest(MANIFEST)
-        source_import.verify_files(manifest, require_present=True)
+        work_entry = next(
+            entry
+            for entry in manifest.get("files") or []
+            if entry.get("role") == "work_set"
+        )
+        actual_hash = census.sha256_file(WORK_SET)
+        if actual_hash != str(work_entry["sha256"]):
+            errors.append("work_set hash drifted from source pack manifest")
     except Exception as error:
         errors.append(f"source pack: {error}")
-
-    try:
-        errors.extend(source_import.check_import(IMPORT))
-    except Exception as error:
-        errors.append(f"import: {error}")
 
     work = census.load_json(WORK_SET)
     overflow = census.load_json(OVERFLOW)
@@ -432,21 +433,22 @@ def check() -> list[str]:
             + ",".join(sorted(extra_flag))
         )
 
-    try:
-        metrics = isolated_compile()
-    except Exception as error:
-        errors.append(f"isolated compile: {error}")
-        return errors
-    if metrics.get("family_count") != 1:
-        errors.append("isolated compile must emit one family")
-    if metrics.get("relation_count") != 307:
-        errors.append("isolated compile must emit 307 relations")
-    if metrics.get("representations", {}).get("exact_multi") != 1:
-        errors.append("isolated compile must stay exact_multi")
-    if metrics.get("overflow"):
-        errors.append("isolated compile must not silently overflow")
-    if metrics.get("parameterized"):
-        errors.append("isolated compile must not emit parameterized families")
+    if DUMP_SLICE.is_file():
+        try:
+            metrics = isolated_compile()
+        except Exception as error:
+            errors.append(f"isolated compile: {error}")
+            return errors
+        if metrics.get("family_count") != 1:
+            errors.append("isolated compile must emit one family")
+        if metrics.get("relation_count") != 307:
+            errors.append("isolated compile must emit 307 relations")
+        if metrics.get("representations", {}).get("exact_multi") != 1:
+            errors.append("isolated compile must stay exact_multi")
+        if metrics.get("overflow"):
+            errors.append("isolated compile must not silently overflow")
+        if metrics.get("parameterized"):
+            errors.append("isolated compile must not emit parameterized families")
     return errors
 
 

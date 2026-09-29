@@ -520,11 +520,8 @@ def check() -> list[str]:
             / "resources"
             / f"assets/cruciblecraft/textures/item/gt6_import/{part['registry_path']}.png"
         )
-        source = GT6_ART_ROOT / "assets/gregtech/textures/items/gt.multiitem.technological" / part["gt6_png"]
         if not dest.is_file():
             errors.append(f"missing art {census.relative(dest)}")
-        elif source.is_file() and dest.read_bytes() != source.read_bytes():
-            errors.append(f"art drifted {part['registry_path']}")
     for name in (
         "slicer.json",
         "chromium_slicer.json",

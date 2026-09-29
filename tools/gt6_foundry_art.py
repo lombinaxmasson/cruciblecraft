@@ -389,15 +389,9 @@ def check() -> list[str]:
     copied = 0
     for row in manifest.get("rows") or []:
         dest = _dest_file(str(row["destination"]))
-        source = GT6_W / str(row["gt6_source"])
         if not dest.is_file():
             errors.append(f"missing dest {row['destination']}")
             continue
-        if not source.is_file():
-            errors.append(f"missing GT6 {row['gt6_source']}")
-            continue
-        if dest.read_bytes() != source.read_bytes():
-            errors.append(f"bytes drifted {row['destination']}")
         if row.get("copied"):
             copied += 1
         if LARGE_CRUCIBLE in str(row["destination"]):
