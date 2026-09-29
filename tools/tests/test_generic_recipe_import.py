@@ -221,10 +221,10 @@ class GenericRecipeImportCurrentnessTest(unittest.TestCase):
     def test_spec_hash_is_bound_in_receipt(self) -> None:
         if not SMELTER.is_file():
             self.skipTest("fixtures not written yet")
-        from tools.recipe_bulk.source_pack import sha256_file
+        from tools.recipe_bulk.source_pack import sha256_text_file
 
         built = source_import.import_documents(SMELTER)
         receipt = built["documents"]["receipt"]
-        self.assertEqual(sha256_file(SMELTER), receipt["spec_sha256"])
+        self.assertEqual(sha256_text_file(SMELTER), receipt["spec_sha256"])
         self.assertEqual(gt6.adapter_sha256(), receipt["adapter_sha256"])
         self.assertNotEqual(receipt["spec_sha256"], "0" * 64)

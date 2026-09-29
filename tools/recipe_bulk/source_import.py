@@ -17,6 +17,7 @@ from tools.recipe_bulk.source_pack import (
     load_manifest,
     replay_tier,
     sha256_file,
+    sha256_text_file,
     verify_files,
 )
 
@@ -397,7 +398,7 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
         "full_replay": tier == "full_replay",
         "generated_by": "python tools/build_recipe_bulk.py import-source",
         "import_slug": spec["import_slug"],
-        "manifest_sha256": sha256_file(census.ROOT / str(spec["source_pack"])),
+        "manifest_sha256": sha256_text_file(census.ROOT / str(spec["source_pack"])),
         "proof_tier": tier,
         "schema_version": 1,
         "skip_is_not_pass": True,
@@ -405,7 +406,7 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
         "source_pack_id": manifest["source_pack_id"],
         "source_revision": manifest["source_revision"],
         "source_system": manifest["source_system"],
-        "spec_sha256": sha256_file(spec_path),
+        "spec_sha256": sha256_text_file(spec_path),
         "status": "SOURCE_IMPORT_RECEIPT",
     }
     if scope != "legacy_whole_file":
@@ -504,10 +505,10 @@ def currentness_binds(
     receipt = built["documents"]["receipt"]
     expected = {
         "adapter_sha256": gt6.adapter_sha256(),
-        "manifest_sha256": sha256_file(
+        "manifest_sha256": sha256_text_file(
             census.ROOT / str(built["spec"]["source_pack"])
         ),
-        "spec_sha256": sha256_file(spec_path),
+        "spec_sha256": sha256_text_file(spec_path),
         **{
             f"authority:{key}": value
             for key, value in receipt["authority_sha256"].items()

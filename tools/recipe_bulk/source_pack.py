@@ -102,6 +102,12 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_text_file(path: Path) -> str:
+    """Hash text after normalizing CRLF so Windows checkouts match the git blob."""
+    data = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
+
+
 def posix_relative(path: Path) -> str:
     return census.relative(path).replace("\\", "/")
 
