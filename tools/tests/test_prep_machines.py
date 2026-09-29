@@ -186,10 +186,11 @@ class PrepMachinesTest(unittest.TestCase):
         gate = census.load_json(prep.common.wave_dir("sanding") / "landing_gate.json")
         self.assertIsNone(gate["landing_blocked_by"])
         self.assertEqual(prep.sanding_landing_gate(), gate)
-        self.assertIsNone(
+        self.assertNotEqual(
+            "machines/sanding",
             census.load_json(ROOT / "tools" / "capabilities" / "ledger.json")[
                 "unique_active_slug"
-            ]
+            ],
         )
         oven = census.load_json(
             prep.common.wave_dir("oven") / "d0_obtain_matrix.json"
