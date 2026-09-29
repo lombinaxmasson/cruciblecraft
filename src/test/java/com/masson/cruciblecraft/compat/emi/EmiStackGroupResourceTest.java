@@ -34,13 +34,6 @@ class EmiStackGroupResourceTest {
         assertFalse(group.itemIds().isEmpty());
         assertTrue(group.itemIds().contains("cruciblecraft:iron/storage_plate"));
         assertFalse(group.itemIds().contains("cruciblecraft:storage_plate"));
-        Path file = ROOT.resolve(
-                "assets/cruciblecraft/stack_groups/form/storage_plate.json");
-        Files.createDirectories(file.getParent());
-        Files.writeString(
-                file,
-                GSON.toJson(group.toJson()) + "\n",
-                StandardCharsets.UTF_8);
         assertFileMatches(group.resourcePath(), group.toJson());
     }
 
