@@ -132,9 +132,13 @@ def _digest(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def _stable_file_bytes(path: Path) -> bytes:
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def whole_file_sha256(path: Path | None = None) -> str:
     target = path if path is not None else AUTHORITY
-    return _digest(target.read_bytes())
+    return _digest(_stable_file_bytes(target))
 
 
 def section_slice(source: dict[str, Any]) -> dict[str, Any]:
@@ -146,7 +150,7 @@ def section_slice(source: dict[str, Any]) -> dict[str, Any]:
         "extra_factual_forms": list(source.get("extra_factual_forms") or []),
         "gate_section": str(source.get("gate_section") or ""),
         "required_factual_prereqs": dict(source.get("required_factual_prereqs") or {}),
-        "required_forms_sha256": _digest(path.read_bytes()),
+        "required_forms_sha256": _digest(_stable_file_bytes(path)),
     }
 
 
