@@ -675,10 +675,10 @@
       "source_rows": 720841,
       "classes": {
         "source_exact": 558645,
-        "translated_exact": 6971,
+        "translated_exact": 6974,
         "translated_io_only": 0,
         "translated_item_io": 3064,
-        "translatable_missing": 39036,
+        "translatable_missing": 39033,
         "missing_material_form": 66810,
         "missing_material": 0,
         "missing_fluid": 7978,
@@ -687,9 +687,9 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 565616,
+        "proven": 565619,
         "partial_match": 3064,
-        "recipe_gap": 39036,
+        "recipe_gap": 39033,
         "identity_gap": 89907,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
@@ -703,7 +703,7 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 565616,
+        "proven_rows": 565619,
         "identity_blocked_rows": 89600,
         "undecided_rows": 9642,
         "recipe_progress": 0.8001,
@@ -711,9 +711,9 @@
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.6081,
-        "maps_complete": 14,
-        "maps_untouched": 16
+        "mean_recipe_progress": 0.6097,
+        "maps_complete": 15,
+        "maps_untouched": 15
       }
     },
     "cc_recipe_rows": 561126,
@@ -721,9 +721,8 @@
     "capability_count": 137,
     "capability_states": {
       "frozen:accepted": 2,
-      "frozen:active": 1,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 124,
+      "runtime_ready:accepted": 125,
       "runtime_ready:paused": 4
     },
     "blocker_count": 62,
@@ -1933,6 +1932,15 @@
       "survival_access": "not_applicable",
       "wave_slug": null,
       "path": "tools/capabilities/runtime/workbench-tool-runtime-recipes/capability.json"
+    },
+    {
+      "slug": "tooling/repo-slimming",
+      "title": "Repository slimming",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "not_applicable",
+      "wave_slug": null,
+      "path": "tools/capabilities/tooling/repo-slimming/capability.json"
     },
     {
       "slug": "tooling/verification-decoupling",
@@ -7657,17 +7665,18 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 12
+        "translated_exact": 1,
+        "translatable_missing": 11
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 12,
         "excluded_rows": 0,
         "target_rows": 12,
-        "proven_rows": 0,
+        "proven_rows": 1,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.0833,
         "identity_ready": 1.0
       }
     },
@@ -10016,17 +10025,17 @@
       },
       "raw_row_classes": {
         "source_exact": 62,
-        "translatable_missing": 2
+        "translated_exact": 2
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 64,
         "excluded_rows": 0,
         "target_rows": 64,
-        "proven_rows": 62,
+        "proven_rows": 64,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.9688,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -10914,10 +10923,10 @@
     "source_rows": 720841,
     "classes": {
       "source_exact": 558645,
-      "translated_exact": 6971,
+      "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 39036,
+      "translatable_missing": 39033,
       "missing_material_form": 66810,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -10926,9 +10935,9 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 565616,
+      "proven": 565619,
       "partial_match": 3064,
-      "recipe_gap": 39036,
+      "recipe_gap": 39033,
       "identity_gap": 89907,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
@@ -10942,7 +10951,7 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 565616,
+      "proven_rows": 565619,
       "identity_blocked_rows": 89600,
       "undecided_rows": 9642,
       "recipe_progress": 0.8001,
@@ -10950,9 +10959,9 @@
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.6081,
-      "maps_complete": 14,
-      "maps_untouched": 16
+      "mean_recipe_progress": 0.6097,
+      "maps_complete": 15,
+      "maps_untouched": 15
     }
   },
   "semantic_coverage": {
@@ -10990,16 +10999,16 @@
     "cc_projection": {
       "runtime_rows": 561126,
       "rule_rows": 19894,
-      "digest": "515a1aa84fc1be8959b24443ae4c78eabb4a814fe74a398ad630e297d9be272f"
+      "digest": "bacd9017d9b8e441154fb1908d1b7ca704aa0f26ff3587e3698753f07ee38131"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
       "source_exact": 558645,
       "display_only": 13576,
-      "translated_exact": 6971,
+      "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 39036,
+      "translatable_missing": 39033,
       "missing_material_form": 66810,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -11245,7 +11254,8 @@
         "missing_object": 3
       },
       "gt.recipe.lightning": {
-        "translatable_missing": 12
+        "translated_exact": 1,
+        "translatable_missing": 11
       },
       "gt.recipe.loom": {
         "source_exact": 1166,
@@ -11284,7 +11294,7 @@
       },
       "gt.recipe.nanofab": {
         "source_exact": 62,
-        "translatable_missing": 2
+        "translated_exact": 2
       },
       "gt.recipe.other": {
         "display_only": 71

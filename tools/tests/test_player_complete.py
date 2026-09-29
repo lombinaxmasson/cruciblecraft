@@ -5,6 +5,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -305,18 +306,23 @@ class PlayerCompleteTest(unittest.TestCase):
             )
             return 0, ""
 
-        with tempfile.TemporaryDirectory() as directory, mock.patch.object(
-            player_complete,
-            "LOCAL_RECEIPTS",
-            Path(directory),
-        ), mock.patch.object(
-            player_complete,
-            "run_logged",
-            side_effect=fake_run,
-        ):
-            errors = player_complete.run_fresh_capability(SLUG)
-            report = next(Path(directory).rglob("latest.json"))
-            saved = json.loads(report.read_text(encoding="utf-8"))
+        previous = os.environ.pop("CRUCIBLECRAFT_GRADLE_ISOLATED", None)
+        try:
+            with tempfile.TemporaryDirectory() as directory, mock.patch.object(
+                player_complete,
+                "LOCAL_RECEIPTS",
+                Path(directory),
+            ), mock.patch.object(
+                player_complete,
+                "run_logged",
+                side_effect=fake_run,
+            ):
+                errors = player_complete.run_fresh_capability(SLUG)
+                report = next(Path(directory).rglob("latest.json"))
+                saved = json.loads(report.read_text(encoding="utf-8"))
+        finally:
+            if previous is not None:
+                os.environ["CRUCIBLECRAFT_GRADLE_ISOLATED"] = previous
         self.assertEqual([], errors, errors)
         self.assertEqual(1, len(calls))
         self.assertEqual("PASS", saved["status"])

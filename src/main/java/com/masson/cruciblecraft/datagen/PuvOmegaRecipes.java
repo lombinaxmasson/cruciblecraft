@@ -657,9 +657,7 @@ final class PuvOmegaRecipes {
                         new GTRecipe(
                                 List.of(
                                         circuit(circuit),
-                                        net.neoforged.neoforge.common.crafting
-                                                .DataComponentIngredient.of(
-                                                        false, carbon.orElseThrow())),
+                                        stackInput(carbon.orElseThrow())),
                                 List.of(0, inputCount),
                                 List.of(graphene.orElseThrow()),
                                 List.of(),
@@ -700,10 +698,7 @@ final class PuvOmegaRecipes {
                 new GTRecipeEntry(
                         ModRecipeMaps.MAGNETIC_SEPARATOR.id(),
                         new GTRecipe(
-                                List.of(
-                                        net.neoforged.neoforge.common.crafting
-                                                .DataComponentIngredient.of(
-                                                        false, bedrock.orElseThrow())),
+                                List.of(stackInput(bedrock.orElseThrow())),
                                 List.of(1),
                                 outputs,
                                 List.of(),
@@ -744,9 +739,7 @@ final class PuvOmegaRecipes {
                         new GTRecipe(
                                 List.of(
                                         circuit(1),
-                                        net.neoforged.neoforge.common.crafting
-                                                .DataComponentIngredient.of(
-                                                        false, adamantine.orElseThrow())),
+                                        stackInput(adamantine.orElseThrow())),
                                 List.of(0, 7),
                                 List.of(adamantium.orElseThrow()),
                                 List.of(),
@@ -1024,9 +1017,7 @@ final class PuvOmegaRecipes {
                         ModRecipeMaps.MIXER.id(),
                         new GTRecipe(
                                 inputs.stream()
-                                        .map(input -> net.neoforged.neoforge.common.crafting
-                                                .DataComponentIngredient.of(
-                                                        false, input.stack()))
+                                        .map(input -> stackInput(input.stack()))
                                         .toList(),
                                 inputs.stream().map(input -> input.stack().getCount()).toList(),
                                 List.of(result.stack().copy()),
@@ -1689,6 +1680,18 @@ final class PuvOmegaRecipes {
         } catch (RuntimeException ignored) {
             return null;
         }
+    }
+
+    /**
+     * DataComponentIngredient.of(stack) copies every default component, which
+     * the recipe-map index rejects. Match the item, plus only prefix_material
+     * for a shared prefix Item.
+     */
+    private static Ingredient stackInput(ItemStack stack) {
+        String prefixMaterial = stack.get(ModComponents.PREFIX_MATERIAL.get());
+        return prefixMaterial == null
+                ? Ingredient.of(stack.getItem())
+                : MaterialLookup.prefixMaterialIngredient(stack.getItem(), prefixMaterial);
     }
 
     private static Ingredient keyedIngredient(

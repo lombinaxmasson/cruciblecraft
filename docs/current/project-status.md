@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`tooling/repo-slimming`（Repository slimming，`workflow=active`，`maturity=frozen`）；计划 [仓库瘦身详细计划](../history/card-plans/active/仓库瘦身详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -25,12 +25,13 @@
 - `presentation/gt6-item-tooltip` — [GT6 物品说明对齐详细计划](../history/card-plans/prep/GT6物品说明对齐详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
+- `tooling/gametest-red-cleanup` — [GameTest 红灯清理详细计划](../history/card-plans/prep/GameTest红灯清理详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 - `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## runtime_ready accepted（124）
+## runtime_ready accepted（125）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -153,6 +154,7 @@
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `runtime/compact-family-jar-bundles` — Compact Family Jar Bundles — [紧凑配方发行包详细计划](../history/card-plans/closed/紧凑配方发行包详细计划.md)
 - `runtime/workbench-tool-runtime-recipes` — Workbench Tool Runtime Recipes — [工作台工具运行时配方详细计划](../history/card-plans/closed/工作台工具运行时配方详细计划.md)
+- `tooling/repo-slimming` — Repository slimming — [仓库瘦身详细计划](../history/card-plans/closed/仓库瘦身详细计划.md)
 - `tooling/verification-decoupling` — Verification decoupling — [验证去耦与横切守卫详细计划](../history/card-plans/closed/验证去耦与横切守卫详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
 - `worldgen/gt-stone-layer-rocks` — GT Stone Layer Rocks — [GT6 石层石子](../history/card-plans/closed/GT6石层石子详细计划.md)
@@ -168,7 +170,7 @@
 - `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## frozen（9）
+## frozen（8）
 
 分母已冻。仍 `paused` 的 PUV/OMEGA 卡代码已在 `src/main`，机器和 PUV2–OMEGA 零件是 GT6 注册内容，停在这里是因为还没关卡。中性物质 bootstrap 和 `MT.Neutronium` 生存链才是 `CC_EXTENSION`。地牢是结构载体，房间内容仍 blocked。
 
@@ -179,7 +181,6 @@
 - `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
-- `tooling/repo-slimming` — Repository slimming（`workflow=active`） — [仓库瘦身详细计划](../history/card-plans/active/仓库瘦身详细计划.md)
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 
 ## 关闭计划
