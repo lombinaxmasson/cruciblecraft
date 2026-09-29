@@ -210,6 +210,7 @@ def run_semantic_builder(mode: str) -> None:
 
 
 def local_source_revision() -> str | None:
+    """HEAD of the gitignored GT6 tree, or None when that tree is absent."""
     source_root = ROOT / "gt6_code" / "gregtech6"
     try:
         completed = subprocess.run(
@@ -1458,13 +1459,16 @@ def map_rows(
 
 def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     scope = read_json(SCOPE_PATH)
-    actual_source_revision = local_source_revision()
+    observed_revision = local_source_revision()
     expected_source_revision = scope["source"]["revision"]
-    if actual_source_revision is not None and actual_source_revision != expected_source_revision:
+    if observed_revision is not None and observed_revision != expected_source_revision:
         raise ValueError(
             "local GT6 source revision differs from frozen scope: "
-            f"{actual_source_revision} != {expected_source_revision}"
+            f"{observed_revision} != {expected_source_revision}"
         )
+    # gt6_code/ is gitignored. A clean checkout cannot read that HEAD, so the
+    # report keeps the pinned scope revision instead of null.
+    actual_source_revision = observed_revision or expected_source_revision
     capabilities = load_capabilities()
     semantic_coverage = load_semantic_coverage()
     evidence_index = EvidenceIndex(capabilities)
