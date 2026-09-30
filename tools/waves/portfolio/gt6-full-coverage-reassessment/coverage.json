@@ -722,15 +722,14 @@
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 126,
-      "runtime_ready:paused": 4
+      "runtime_ready:accepted": 130
     },
     "blocker_count": 62,
     "blocker_states": {
-      "open": 27,
+      "open": 26,
       "out_of_scope": 6,
       "partial": 2,
-      "resolved": 22,
+      "resolved": 23,
       "superseded": 5
     },
     "registered_recipe_maps": 75,
@@ -1208,7 +1207,7 @@
       "slug": "energy/cooler",
       "title": "Electric and Flux Coolers",
       "maturity": "runtime_ready",
-      "workflow": "paused",
+      "workflow": "accepted",
       "survival_access": "unreviewed",
       "wave_slug": "runtime/cooler",
       "path": "tools/capabilities/energy/cooler/capability.json"
@@ -1217,7 +1216,7 @@
       "slug": "energy/flux-converters",
       "title": "Flux FE to GU Converters",
       "maturity": "runtime_ready",
-      "workflow": "paused",
+      "workflow": "accepted",
       "survival_access": "unreviewed",
       "wave_slug": "runtime/flux-converters",
       "path": "tools/capabilities/energy/flux-converters/capability.json"
@@ -1541,7 +1540,7 @@
       "slug": "machines/large-boiler",
       "title": "Large Boiler 17201-17205",
       "maturity": "runtime_ready",
-      "workflow": "paused",
+      "workflow": "accepted",
       "survival_access": "partial",
       "wave_slug": "machines/large-boiler",
       "path": "tools/capabilities/machines/large-boiler/capability.json"
@@ -1982,7 +1981,7 @@
       "slug": "worldgen/gt-small-ores",
       "title": "GT Small Ores",
       "maturity": "runtime_ready",
-      "workflow": "paused",
+      "workflow": "accepted",
       "survival_access": "partial",
       "wave_slug": "worldgen/gt-small-ores",
       "path": "tools/capabilities/worldgen/gt-small-ores/capability.json"
@@ -2348,8 +2347,8 @@
     },
     {
       "id": "energy/cooler",
-      "status": "open",
-      "planning_bucket": "audit_first",
+      "status": "resolved",
+      "planning_bucket": "not_work",
       "unit": "",
       "count": null,
       "root_cause_class": "missing_runtime",
@@ -15682,7 +15681,7 @@
             "slug": "energy/cooler",
             "title": "Electric and Flux Coolers",
             "maturity": "runtime_ready",
-            "workflow": "paused",
+            "workflow": "accepted",
             "survival_access": "unreviewed",
             "wave_slug": "runtime/cooler",
             "path": "tools/capabilities/energy/cooler/capability.json"
@@ -15700,7 +15699,7 @@
         ],
         "data_file_count": 1
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityCrystalChargerLarge|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -17950,7 +17949,7 @@
           "slug": "machines/large-boiler",
           "title": "Large Boiler 17201-17205",
           "maturity": "runtime_ready",
-          "workflow": "paused",
+          "workflow": "accepted",
           "survival_access": "partial",
           "wave_slug": "machines/large-boiler",
           "path": "tools/capabilities/machines/large-boiler/capability.json"
@@ -17962,7 +17961,7 @@
             "slug": "machines/large-boiler",
             "title": "Large Boiler 17201-17205",
             "maturity": "runtime_ready",
-            "workflow": "paused",
+            "workflow": "accepted",
             "survival_access": "partial",
             "wave_slug": "machines/large-boiler",
             "path": "tools/capabilities/machines/large-boiler/capability.json"
@@ -17990,7 +17989,7 @@
           "src/main/resources/data/cruciblecraft/multiblock_structures/large_boiler_tungstensteel.json"
         ]
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "large_dynamo",
