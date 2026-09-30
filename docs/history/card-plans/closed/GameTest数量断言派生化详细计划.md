@@ -1,19 +1,19 @@
 # GameTest 数量断言派生化详细计划
 
 > 计划 slug：`tooling/gametest-derived-counts`
-> 状态：active。本文件位于 `card-plans/active/`。
+> 状态：已关闭 `runtime_ready` / `workflow=accepted`（2026-09-30）。本文件位于 `card-plans/closed/`。
 > 性质：把 GameTest 里手抄的配方行数、目录大小、发布快照换成从真实来源派生，
 > 并把「数字变了必须列 id」做成工具。不改配方、不改生成器输出、不开形态。
 >
-> 开工条件：[GameTest 红灯清理](../closed/GameTest红灯清理详细计划.md) 已于 2026-09-30 关卡。
+> 开工条件：[GameTest 红灯清理](GameTest红灯清理详细计划.md) 已于 2026-09-30 关卡。
 > 红灯清理期间照旧用「列 id 再改数字」的办法，不提前套用本卡。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 ```text
-lane                  = active
+lane                  = closed
 capability_slug       = tooling/gametest-derived-counts
-unique_active_wave    = tooling/gametest-derived-counts
+unique_active_wave    = null
 prep_owned_paths      = 本文件；tools/scratch/**（盘点脚本，gitignored）
 landing_owned_paths   = src/test/java/com/masson/cruciblecraft/gametest/**（只动数量断言）；
                         src/main/resources/data/cruciblecraft/*_publication_baseline.json；

@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`tooling/gametest-derived-counts`（GameTest derived counts，`workflow=active`，`maturity=runtime_ready`）；计划 [GameTest 数量断言派生化详细计划](../history/card-plans/active/GameTest数量断言派生化详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
@@ -31,7 +31,7 @@
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 - `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## runtime_ready accepted（125）
+## runtime_ready accepted（126）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -154,6 +154,7 @@
 - `registry/tool-head-prefix-reclaim` — Sharpener overflow reclaim — [工具头前缀与打磨机余量回收详细计划](../history/card-plans/closed/工具头前缀与打磨机余量回收详细计划.md)
 - `runtime/compact-family-jar-bundles` — Compact Family Jar Bundles — [紧凑配方发行包详细计划](../history/card-plans/closed/紧凑配方发行包详细计划.md)
 - `runtime/workbench-tool-runtime-recipes` — Workbench Tool Runtime Recipes — [工作台工具运行时配方详细计划](../history/card-plans/closed/工作台工具运行时配方详细计划.md)
+- `tooling/gametest-derived-counts` — GameTest derived counts — [GameTest 数量断言派生化详细计划](../history/card-plans/closed/GameTest数量断言派生化详细计划.md)
 - `tooling/repo-slimming` — Repository slimming — [仓库瘦身详细计划](../history/card-plans/closed/仓库瘦身详细计划.md)
 - `tooling/verification-decoupling` — Verification decoupling — [验证去耦与横切守卫详细计划](../history/card-plans/closed/验证去耦与横切守卫详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
