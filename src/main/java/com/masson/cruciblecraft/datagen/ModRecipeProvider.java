@@ -758,54 +758,38 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private static void addDisplayCpuRecipes(RecipeOutput output) {
         Item circuit = ModItems.PROGRAMMED_CIRCUIT.get();
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC,
-                        ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
-                .pattern("TL ")
-                .pattern(" Q ")
-                .pattern(" C ")
-                .define('T', Items.REDSTONE_TORCH)
-                .define('L', Items.REDSTONE)
-                .define('Q', Items.IRON_TRAPDOOR)
-                .define('C', circuit)
-                .unlockedBy("has_programmed_circuit", has(circuit))
-                .save(output, id("logistics_display_cpu_logic_cover"));
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC,
-                        ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get())
-                .pattern(" LT")
-                .pattern(" Q ")
-                .pattern(" C ")
-                .define('T', Items.REDSTONE_TORCH)
-                .define('L', Items.REDSTONE)
-                .define('Q', Items.IRON_TRAPDOOR)
-                .define('C', circuit)
-                .unlockedBy("has_programmed_circuit", has(circuit))
-                .save(output, id("logistics_display_cpu_control_cover"));
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC,
-                        ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get())
-                .pattern(" L ")
-                .pattern(" Q ")
-                .pattern("TC ")
-                .define('T', Items.REDSTONE_TORCH)
-                .define('L', Items.REDSTONE)
-                .define('Q', Items.IRON_TRAPDOOR)
-                .define('C', circuit)
-                .unlockedBy("has_programmed_circuit", has(circuit))
-                .save(output, id("logistics_display_cpu_storage_cover"));
-        ShapedRecipeBuilder.shaped(
-                        RecipeCategory.MISC,
-                        ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get())
-                .pattern(" L ")
-                .pattern(" Q ")
-                .pattern(" CT")
-                .define('T', Items.REDSTONE_TORCH)
-                .define('L', Items.REDSTONE)
-                .define('Q', Items.IRON_TRAPDOOR)
-                .define('C', circuit)
-                .unlockedBy("has_programmed_circuit", has(circuit))
-                .save(output, id("logistics_display_cpu_conversion_cover"));
+        Map<String, Ingredient> keys = Map.of(
+                "T", Ingredient.of(Items.REDSTONE_TORCH),
+                "L", Ingredient.of(Items.REDSTONE),
+                "Q", Ingredient.of(Items.IRON_TRAPDOOR),
+                "C", Ingredient.of(circuit));
+        // Vanilla shaped recipes mirror, so the logic/control pair and the
+        // storage/conversion pair collapse into the same grid. GT6 CR.DEF
+        // does not mirror; shaped_catalyst defaults mirrored to false.
+        displayCoverRecipe(
+                output,
+                "logistics_display_cpu_logic_cover",
+                List.of("TL ", " Q ", " C "),
+                ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get(),
+                keys);
+        displayCoverRecipe(
+                output,
+                "logistics_display_cpu_control_cover",
+                List.of(" LT", " Q ", " C "),
+                ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER.get(),
+                keys);
+        displayCoverRecipe(
+                output,
+                "logistics_display_cpu_storage_cover",
+                List.of(" L ", " Q ", "TC "),
+                ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get(),
+                keys);
+        displayCoverRecipe(
+                output,
+                "logistics_display_cpu_conversion_cover",
+                List.of(" L ", " Q ", " CT"),
+                ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER.get(),
+                keys);
         ShapelessRecipeBuilder.shapeless(
                         RecipeCategory.MISC,
                         ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
@@ -838,6 +822,22 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "has_display_cpu_storage",
                         has(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER.get()))
                 .save(output, id("logistics_display_cpu_conversion_cycle_cover"));
+    }
+
+    private static void displayCoverRecipe(
+            RecipeOutput output,
+            String path,
+            List<String> pattern,
+            Item result,
+            Map<String, Ingredient> keys) {
+        output.accept(
+                id(path),
+                new ShapedCatalystRecipe(
+                        pattern,
+                        keys,
+                        Map.of(),
+                        new ItemStack(result)),
+                null);
     }
 
     private static void addStorageRecipes(RecipeOutput output) {

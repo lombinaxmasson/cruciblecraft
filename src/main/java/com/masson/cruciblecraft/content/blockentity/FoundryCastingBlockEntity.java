@@ -529,10 +529,10 @@ public final class FoundryCastingBlockEntity extends BlockEntity
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (amount <= 0 || !canHopperExtract()) {
+            if (amount <= 0) {
                 return ItemStack.EMPTY;
             }
-            ItemStack stack = contentsStack();
+            ItemStack stack = getStackInSlot(slot);
             if (stack.isEmpty()) {
                 return ItemStack.EMPTY;
             }

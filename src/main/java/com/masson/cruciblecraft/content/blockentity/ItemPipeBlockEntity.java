@@ -423,11 +423,13 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             return;
         }
         for (Direction side : Direction.values()) {
-            if (!AbstractPipeBlock.isConnected(liveState(), side)) {
-                continue;
-            }
             Optional<PipeCover> cover = covers.get(side);
             if (cover.isEmpty()) {
+                continue;
+            }
+            if (!AbstractPipeBlock.isConnected(liveState(), side)
+                    && !PipeCoverIntercept.blocksConnect(
+                            level, worldPosition, side)) {
                 continue;
             }
             boolean logistics = ItemNetworkKinds.isLogistics(

@@ -63,7 +63,9 @@ public final class HazmatArmorItem extends ArmorItem {
     public static HazmatArmorItem fromIdentity(
             SemanticObjectCatalog.Identity identity, Properties properties) {
         String path = identity.registryPath();
-        Kind kind = path.contains("hazmat_radiation") ? Kind.RADIATION : Kind.HEAT;
+        Kind kind = path.startsWith("heat/") || path.contains("hazmat_heat")
+                ? Kind.HEAT
+                : Kind.RADIATION;
         Type type = typeOf(path);
         Holder<ArmorMaterial> material = kind == Kind.RADIATION
                 ? ModArmorMaterials.RADIATION_HAZMAT
@@ -78,21 +80,23 @@ public final class HazmatArmorItem extends ArmorItem {
     }
 
     public static boolean isHazmatPath(String registryPath) {
-        return registryPath.contains("gt_armor_hazmat_radiation")
+        return registryPath.startsWith("radiation/hazard_suit_")
+                || registryPath.startsWith("heat/protection_suit_")
+                || registryPath.contains("gt_armor_hazmat_radiation")
                 || registryPath.contains("gt_armor_hazmat_heat");
     }
 
     private static Type typeOf(String path) {
-        if (path.contains("_head_")) {
+        if (path.endsWith("_helmet") || path.contains("_head_")) {
             return Type.HELMET;
         }
-        if (path.contains("_chest_")) {
+        if (path.endsWith("_shirt") || path.contains("_chest_")) {
             return Type.CHESTPLATE;
         }
-        if (path.contains("_legs_")) {
+        if (path.endsWith("_pants") || path.contains("_legs_")) {
             return Type.LEGGINGS;
         }
-        if (path.contains("_boots_")) {
+        if (path.endsWith("_boots")) {
             return Type.BOOTS;
         }
         throw new IllegalArgumentException("Unknown hazmat piece " + path);

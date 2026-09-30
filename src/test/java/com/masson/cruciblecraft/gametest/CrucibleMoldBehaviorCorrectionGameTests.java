@@ -199,7 +199,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
         helper.setBlock(
                 hopperPos,
                 hopperBlock("lead_hopper").defaultBlockState()
-                        .setValue(HopperBlock.FACING, Direction.DOWN));
+                        .setValue(HopperBlock.FACING, Direction.UP));
         helper.setBlock(moldPos, ModBlocks.CERAMIC_MOLD.get());
         CeramicMoldBlockEntity mold = moldAt(helper, moldPos);
         mold.fill(new CrucibleBlockEntity.CastTransfer(

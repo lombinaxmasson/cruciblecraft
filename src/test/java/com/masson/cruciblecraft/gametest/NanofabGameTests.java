@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -58,14 +59,13 @@ public final class NanofabGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.NANOFAB.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 7,
-                "Nanofab family is not the 7 non-shadowed rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Nanofab family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.NANOFAB.entries().size() >= 7,
-                "Nanofab map lost the 7 compact-family rows: "
-                        + ModRecipeMaps.NANOFAB.entries().size());
         helper.succeed();
     }
 

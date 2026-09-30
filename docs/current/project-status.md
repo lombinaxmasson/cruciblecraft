@@ -7,7 +7,7 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`tooling/gametest-derived-counts`（GameTest derived counts，`workflow=active`，`maturity=runtime_ready`）；计划 [GameTest 数量断言派生化详细计划](../history/card-plans/active/GameTest数量断言派生化详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -23,9 +23,9 @@
 - `portfolio/gt6-bulk-port-verification` — [GT6 批量移植基础设施收口](../history/card-plans/prep/GT6批量移植基础设施收口详细计划.md)
 - `portfolio/gt6-machine-multiblock` — [GT6 机器与多方块总计划](../history/card-plans/prep/GT6机器与多方块总计划.md)
 - `presentation/gt6-item-tooltip` — [GT6 物品说明对齐详细计划](../history/card-plans/prep/GT6物品说明对齐详细计划.md)
+- `presentation/jade-player-surface` — [Jade 玩家表面整顿详细计划](../history/card-plans/prep/Jade玩家表面整顿详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
-- `tooling/gametest-red-cleanup` — [GameTest 红灯清理详细计划](../history/card-plans/prep/GameTest红灯清理详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)

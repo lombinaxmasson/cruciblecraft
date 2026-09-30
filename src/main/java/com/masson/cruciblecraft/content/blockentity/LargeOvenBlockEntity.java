@@ -13,7 +13,6 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
-import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
@@ -55,13 +54,7 @@ public final class LargeOvenBlockEntity
             BlockPos pos,
             BlockState state,
             LargeOvenBlockEntity oven) {
-        long phaseKey = CheckpointDecisions.phaseKey(
-                pos.getX(), pos.getY(), pos.getZ());
-        if (!oven.structureValid
-                || CheckpointDecisions.onPositionPhase(
-                        level.getGameTime(), phaseKey, 20)) {
-            oven.recheckStructure(level, pos, state);
-        }
+        oven.recheckStructure(level, pos, state);
         if (oven.structureValid && !oven.pluginQuarantined) {
             oven.tickProcessingServer();
         } else {

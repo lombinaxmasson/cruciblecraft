@@ -2239,20 +2239,49 @@ public final class ModBlocks {
     }
 
     public static DeferredBlock<Block> layerStone(String registryPath) {
-        DeferredBlock<Block> block = LAYER_STONE_BLOCKS.get(
-                ResourceLocation.fromNamespaceAndPath(
-                        CrucibleCraft.MODID, registryPath));
-        if (block == null) {
-            throw new IllegalArgumentException(
-                    "No stone-layer cube " + registryPath);
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, registryPath);
+        DeferredBlock<Block> block = LAYER_STONE_BLOCKS.get(id);
+        if (block != null) {
+            return block;
         }
-        return block;
+        if (StoneLayerStones.isRegisteredCube(registryPath)) {
+            DeferredBlock<Block> reused = GT_STONE_BLOCKS.get(id);
+            if (reused != null) {
+                return reused;
+            }
+        }
+        throw new IllegalArgumentException(
+                "No stone-layer cube " + registryPath);
     }
 
-    public static boolean hasLayerStone(String registryPath) {
+    public static boolean isDedicatedLayerStone(String registryPath) {
         return LAYER_STONE_BLOCKS.containsKey(
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, registryPath));
+    }
+
+    public static boolean hasLayerStone(String registryPath) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, registryPath);
+        if (LAYER_STONE_BLOCKS.containsKey(id)) {
+            return true;
+        }
+        if (!StoneLayerStones.isRegisteredCube(registryPath)
+                || !GT_STONE_BLOCKS.containsKey(id)) {
+            return false;
+        }
+        int slash = registryPath.indexOf('/');
+        if (slash <= 0) {
+            return false;
+        }
+        // A shared GT block counts as a layer cube when that material's
+        // stone is its own layer block (granite_black/cobble). Marble's
+        // stone cube is the GT catalog block, so marble stays there.
+        ResourceLocation stoneId = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID,
+                registryPath.substring(0, slash) + "/stone");
+        return LAYER_STONE_BLOCKS.containsKey(stoneId);
     }
 
     public static Map<ResourceLocation, DeferredBlock<Block>>

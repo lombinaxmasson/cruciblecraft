@@ -66,12 +66,11 @@ public final class NuclearFissionHotFluidsGameTests {
                             "Hot fluid aliases cold materialFluid " + entry.id()));
         }
         PlayerCompleteSmoke.writeIfConfigured("gameTestServer", CAPABILITY);
+        com.google.gson.JsonObject snapshot =
+                PlayerCompleteSmoke.snapshot("gameTestServer", CAPABILITY);
         helper.assertTrue(
-                PlayerCompleteSmoke.snapshot("gameTestServer", CAPABILITY)
-                        .get("status")
-                        .getAsString()
-                        .equals("PASS"),
-                "Player-complete registry snapshot failed");
+                snapshot.get("status").getAsString().equals("PASS"),
+                "Player-complete registry snapshot failed: " + snapshot);
         helper.succeed();
     }
 

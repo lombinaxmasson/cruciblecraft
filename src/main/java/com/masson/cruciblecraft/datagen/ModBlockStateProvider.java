@@ -232,7 +232,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void registerLayerStones() {
         for (StoneLayerStones.Cube cube : StoneLayerStones.registeredCubes()) {
-            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+            if (!ModBlocks.isDedicatedLayerStone(cube.registryPath())) {
                 continue;
             }
             var block = ModBlocks.layerStone(cube.registryPath()).get();

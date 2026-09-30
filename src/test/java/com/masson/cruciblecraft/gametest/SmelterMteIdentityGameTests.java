@@ -46,8 +46,10 @@ public final class SmelterMteIdentityGameTests {
                         .startsWith("smelter/deferred_recycling/"))
                 .count();
         helper.assertTrue(
-                recovery == 0,
-                "identity child published recovery recipes: " + recovery);
+                recovery == SmelterMteIdentityCatalog.SOURCE_META_COUNT,
+                "deferred recycling drifted from "
+                        + SmelterMteIdentityCatalog.SOURCE_META_COUNT
+                        + ": " + recovery);
         helper.succeed();
     }
 }

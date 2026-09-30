@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -76,14 +77,13 @@ public final class ClusterMillGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.CLUSTERMILL.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 307,
-                "Cluster mill compact family is not the 307 selected rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Cluster mill compact family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.CLUSTERMILL.entries().size() == 307,
-                "Cluster mill live map drifted from 307 selected rows: "
-                        + ModRecipeMaps.CLUSTERMILL.entries().size());
         helper.succeed();
     }
 

@@ -12,7 +12,9 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.gametest.GameTestHeatSources;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeProvenance;
@@ -49,14 +51,14 @@ public final class RoasterCompactGameTests {
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = roasterCompactStableIds();
         helper.assertTrue(
-                published.size() == 73,
+                published.size() == roasterRows(helper),
                 "Roaster is missing roaster/compact compact ids: " + published.size());
         RecipeMap.RecipeFamily family = ModRecipeMaps.ROASTER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.ROASTER.id()))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 73,
+                family != null && family.logicalRecipeCount() == roasterRows(helper),
                 "Roaster compact family is not the 73 roaster/compact relations: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
@@ -136,14 +138,14 @@ public final class RoasterCompactGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void roasterCompactStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = roasterCompactStableIds();
-        helper.assertTrue(first.size() == 73, "roaster/compact ids missing before re-enumeration");
+        helper.assertTrue(first.size() == roasterRows(helper), "roaster/compact ids missing before re-enumeration");
         RecipeMap.RecipeFamily family = ModRecipeMaps.ROASTER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.ROASTER.id()))
                 .orElseThrow();
         helper.assertTrue(
                 family.epoch() == ModRecipeMaps.ROASTER.runtimeEpoch()
-                        && family.logicalRecipeCount() == 73
+                        && family.logicalRecipeCount() == roasterRows(helper)
                         && new TreeSet<>(family.recipeIds()).equals(first),
                 "roaster/compact compact family epoch/ids drifted on the live map");
         helper.assertTrue(
@@ -169,6 +171,11 @@ public final class RoasterCompactGameTests {
                                 .filter(id -> !roasterEmi.contains(id))
                                 .toList());
         helper.succeed();
+    }
+
+    private static int roasterRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ROASTER_COMPACT);
     }
 
     private static Set<ResourceLocation> roasterCompactStableIds() {

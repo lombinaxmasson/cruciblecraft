@@ -701,8 +701,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             if (energy == null) {
                 return Optional.empty();
             }
-            long actual = Math.min(maximum, energy.stored());
-            return actual >= minimum
+            long drawable = Math.min(maximum, remainingWork);
+            long floor = Math.min(minimum, remainingWork);
+            long actual = Math.min(drawable, energy.stored());
+            return actual >= floor
                     ? Optional.of(new PowerPlan(
                             actual,
                             actual,

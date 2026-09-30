@@ -3,7 +3,7 @@
 > 计划 slug：`tooling/gametest-red-cleanup`
 > capability_slug         = tooling/gametest-red-cleanup
 > unique_active_wave      = null
-> 状态：prep（不占落地锁）
+> 状态：已关（2026-09-30）。release 七组 GameTest 1070 个全部通过。不占落地锁，没有 capability.json。
 > 性质：`python tools/verify.py release` 的 GameTest 段在仓库瘦身卡收尾时
 > 暴露 52 个失败。本计划把它们分桶、提速、限定轮次清掉。
 >
@@ -212,7 +212,66 @@ Gt6PrefixRegularBulkGameTests.java       steel/anvil 补命名空间
 
 ### 轮次结果
 
-（每轮填：运行命令、通过/失败名单、下一步）
+R0（2026-09-29）：D1 已关瘦身卡并提交 `4ef89e69f`（未推送）。D2 已把
+`iron.json` 写回 HEAD，储物测试改用 silver；chunk 没有任何材料开放，测试只校验单位。
+
+R1：过滤开服卡在 Gradle 发行包下载（约 20%，超过 15 分钟），已停掉，没有结果。
+
+R2（2026-09-30）：过滤开服跑完，87 个里 34 个失败。组件比对和 `thenIdle(2)` 没有让模具、涡轮变绿。
+
+R2 之后的修正：
+
+```text
+岩层目录     hasLayerStone 只在该材料的 stone 本身是岩层方块时，
+             才把共用的 GT 方块算进岩层。黑花岗岩圆石仍算，大理石仍留在 GT 目录
+模具漏斗     铅漏斗朝下会把抽到的物品喷进空气。测试改为朝上，抽取留在槽里
+蒸汽涡轮     200 mB 一次灌入青铜涡轮会过载并把储能清零。测试改为 100 mB，
+             与已通过的细流体管测试同一窗口
+玩家表面     energy/flux-converters 没写进 player_complete_surfaces.json，
+             快照因空名单失败。已补上 30 个通量方块 id
+
+R3：上述四项连同玩家表面相关测试共 15 个，全部通过。
+```
+
+矿石掉落、作物 scatter、电路 164、防化服、储物 silver、前缀样例已在 R2 通过。
+
+R4（2026-09-30）关闭。过滤运行把点名红灯清完后，七组一起开服（default、machines、energy、logistics、multiblock、worldgen、content），`run-game-test-filtered/logs/latest.log` 10:09 记下 `All 1070 required tests passed`。关服卡在区块卸载，进程已停；不以 Gradle 退出码为准。measurement 组不在这 1070 里。`python tools/verify.py release` 的其余 profile 这次没有重跑。
+
+B 桶结论（先列差集再改数字）：
+
+```text
+化学     168。相对旧断言多 4 条 canner 激光气体配方。全局快照改成当时的实发数。
+织布机   族 476；整张图 1166 = 476 + chemical_misc 690。
+熔炉     3547。少的 54 条是已有 block 熔炼的 storage_ingot 别名，不恢复。
+层压机   族 486（源 498 减去 12 条 blocked）。地图 492 = 486
+         + 6 条 redstone/laminator/{red_alloy,lumium,signalum}/cable_from_{foil,plate}。
+回收     1817，等于 SmelterMteIdentityCatalog.SOURCE_META_COUNT。
+发布基线 行数差集记进 prefix_regular_publication_baseline。
+         EMI 名单补 burn_mixer、catalytic_cracker、crystallisation_crucible、steam_cracker。
+燃气轮机 source id 仍是 17231–17234。Map.copyOf 打乱了顺序，profiles() 改回文件顺序。
+```
+
+C 桶结论：
+
+```text
+矿链     findMatch 在有 ore_chain/ 命中时丢掉 gt6/<hash>。
+         离心粉碎矿优先普通形态；只有已注册且普通形态不是矿链时才改用 tiny ×64。
+浴锅桌   不锈钢锅 + 砖台阶。木制浴锅仍因胶水缺失 blocked，不发木桌配方。
+监视器   配方本来就在。原版有序合成接受镜像，逻辑盖和控制盖抢同一个格子。
+         四张盖板改成不镜像的 shaped_catalyst。
+```
+
+D 桶结论：
+
+```text
+物流     覆盖板挡住连接时仍 tick；流体 fill 在本面或邻面拦截时放行。
+发酵罐   保线路电路配置 0；甲烷可以在控制器或端口。
+烤箱     缓冲供电最后一拍按剩余功抽，避免做完就把 LIT 打灭。
+         结构每拍重检，镍铬换成碳化硅后不再保持成型。
+浸泡     无 AI 的猪不移动，entityInside 不会被调用。液体 tick 扫描方块内的生物。
+锡线     电解机能量面在下方。测试把线放在机器下面，从下口送 1A。
+模具、涡轮、玩家表面、作物、岩层已在 R2/R3 通过。
+```
 
 ### known-red
 
@@ -223,8 +282,8 @@ Gt6PrefixRegularBulkGameTests.java       steel/anvil 补命名空间
 ## 7. 验收
 
 - [x] D1、D2 已拍板
-- [ ] A 桶全部通过
-- [ ] B 桶每项有 id diff 与处理结论
-- [ ] C 桶每项有 GT6 对照结论（补齐或 blocked）
-- [ ] D 桶每组有根因记录并通过
-- [ ] `python tools/verify.py release` 通过一次，或剩余项全部在 known-red 且用户同意
+- [x] A 桶全部通过
+- [x] B 桶每项有 id diff 与处理结论（§6）
+- [x] C 桶每项有 GT6 对照结论（补齐或 blocked，§6）
+- [x] D 桶每组有根因记录并通过（§6）
+- [x] release 七组 GameTest 1070 个全部通过（2026-09-30，`run-game-test-filtered/logs/latest.log`）。known-red 为空。measurement 与 `verify.py release` 的其余 profile 不在这次关卡证据里。

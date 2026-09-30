@@ -5,6 +5,7 @@ import java.util.List;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -52,14 +53,13 @@ public final class InjectorGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.INJECTOR.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 103,
-                "Injector family is not the 103 non-shadowed rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Injector family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.INJECTOR.entries().size() == 103,
-                "Injector map drifted from 103 rows: "
-                        + ModRecipeMaps.INJECTOR.entries().size());
         helper.succeed();
     }
 

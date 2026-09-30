@@ -130,7 +130,12 @@ public final class CropFoodSplitGameTests {
         long scatter = BuiltInRegistries.FEATURE.stream()
                 .map(BuiltInRegistries.FEATURE::getKey)
                 .filter(id -> id != null && CrucibleCraft.MODID.equals(id.getNamespace()))
-                .filter(id -> id.getPath().contains("scatter"))
+                .filter(id -> {
+                    String path = id.getPath();
+                    return path.contains("item_scatter")
+                            || path.contains("gt_stone_scatter")
+                            || path.contains("block_object_scatter");
+                })
                 .count();
         helper.assertTrue(scatter == 0, "crop obtain must not use ItemEntity scatter");
         helper.succeed();

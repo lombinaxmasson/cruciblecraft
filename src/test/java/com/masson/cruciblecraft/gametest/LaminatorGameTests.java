@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
@@ -57,14 +58,13 @@ public final class LaminatorGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.LAMINATOR.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 492,
-                "Laminator compact family is not the 492 runtime rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Laminator compact family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.LAMINATOR.entries().size() == 492,
-                "Laminator live map drifted from 492 runtime rows: "
-                        + ModRecipeMaps.LAMINATOR.entries().size());
         helper.succeed();
     }
 

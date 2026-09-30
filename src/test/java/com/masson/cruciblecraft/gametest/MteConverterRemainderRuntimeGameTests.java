@@ -68,9 +68,9 @@ public final class MteConverterRemainderRuntimeGameTests {
                         MteInPlaceBlock.FACING, Direction.EAST));
         helper.assertTrue(
                 source.fillInternal(
-                        new FluidStack(ModFluids.STEAM_SOURCE.get(), 200),
+                        new FluidStack(ModFluids.STEAM_SOURCE.get(), 100),
                         IFluidHandler.FluidAction.EXECUTE)
-                        == 200,
+                        == 100,
                 "source pipe rejected steam");
         helper.assertTrue(
                 ((CatalogNamedBlockItem) MteInPlaceGameTestSupport.item(
@@ -78,7 +78,8 @@ public final class MteConverterRemainderRuntimeGameTests {
                         != ModBlocks.BRONZE_STEAM_ENGINE.get(),
                 "bronze steam turbine aliased the converter steam engine");
         helper.startSequence()
-                .thenExecuteAfter(2, () -> {
+                .thenIdle(2)
+                .thenExecute(() -> {
                     MteInPlaceBlockEntity be = helper.getBlockEntity(turbinePos);
                     helper.assertTrue(
                             be.stored(EnergyType.KINETIC_ROTATION) > 0L,

@@ -17,7 +17,7 @@ public final class LargeGasTurbineCatalog {
     private static final Catalog CATALOG = loadBundled();
 
     public static List<Profile> profiles() {
-        return CATALOG.byId.values().stream().toList();
+        return CATALOG.ordered;
     }
 
     public static Optional<Profile> find(ResourceLocation id) {
@@ -106,7 +106,9 @@ public final class LargeGasTurbineCatalog {
 
     public record Ingredient(String item, String prefix, String material) {}
 
-    private record Catalog(Map<ResourceLocation, Profile> byId) {}
+    private record Catalog(
+            Map<ResourceLocation, Profile> byId,
+            List<Profile> ordered) {}
 
     private static Catalog loadBundled() {
         Document document = CatalogJson.readBundled(
@@ -129,7 +131,7 @@ public final class LargeGasTurbineCatalog {
             throw new IllegalStateException(
                     "Large gas turbine count drifted: " + byId.size());
         }
-        return new Catalog(Map.copyOf(byId));
+        return new Catalog(Map.copyOf(byId), List.copyOf(byId.values()));
     }
 
     private static final class Document {

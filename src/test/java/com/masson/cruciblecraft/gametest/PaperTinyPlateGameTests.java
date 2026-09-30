@@ -2,13 +2,10 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.registry.ModItems;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -27,16 +24,13 @@ public final class PaperTinyPlateGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void paperTinyPlateItemIsRegistered(GameTestHelper helper) {
+        var tinyPlate = MaterialPrefixCatalog.require("tiny_plate");
         helper.assertTrue(
-                MaterialCatalog.registeredForms("paper").contains(
-                        MaterialPrefixCatalog.require("tiny_plate")),
+                MaterialCatalog.registeredForms("paper").contains(tinyPlate),
                 "paper:tiny_plate is not in the registration gate");
-        Item item = BuiltInRegistries.ITEM.get(
-                ResourceLocation.fromNamespaceAndPath(
-                        "cruciblecraft", "paper/tiny_plate"));
         helper.assertTrue(
-                item != null && item != Items.AIR,
-                "cruciblecraft:paper/tiny_plate is missing");
+                ModItems.hasMaterialItem("paper", tinyPlate),
+                "paper tiny_plate has no live item");
         helper.succeed();
     }
 }

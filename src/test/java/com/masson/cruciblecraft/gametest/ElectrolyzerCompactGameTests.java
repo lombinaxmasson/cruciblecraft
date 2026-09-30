@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -47,7 +48,7 @@ public final class ElectrolyzerCompactGameTests {
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = electrolyzerCompactStableIds();
         helper.assertTrue(
-                published.size() == 22,
+                published.size() == electrolyzerRows(helper),
                 "Electrolyzer is missing electrolyzer/compact compact ids: " + published.size());
         RecipeMap.RecipeFamily singletonFamily = ModRecipeMaps.ELECTROLYZER
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -61,13 +62,17 @@ public final class ElectrolyzerCompactGameTests {
                 .orElse(null);
         helper.assertTrue(
                 singletonFamily != null
-                        && singletonFamily.logicalRecipeCount() == 11,
+                        && singletonFamily.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, CompactPublicationGroups.ELECTROLYZER_SINGLETON),
                 "Electrolyzer singleton compact family is not the 11 locked relations: "
                         + (singletonFamily == null
                                 ? "missing"
                                 : singletonFamily.logicalRecipeCount()));
         helper.assertTrue(
-                multiFamily != null && multiFamily.logicalRecipeCount() == 11,
+                multiFamily != null && multiFamily.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, CompactPublicationGroups.ELECTROLYZER_MULTI),
                 "Electrolyzer multi compact family is not the 11 locked relations: "
                         + (multiFamily == null
                                 ? "missing"
@@ -221,7 +226,7 @@ public final class ElectrolyzerCompactGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void electrolyzerCompactStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = electrolyzerCompactStableIds();
-        helper.assertTrue(first.size() == 22, "electrolyzer/compact locked ids missing before re-enumeration");
+        helper.assertTrue(first.size() == electrolyzerRows(helper), "electrolyzer/compact locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily singletonFamily = ModRecipeMaps.ELECTROLYZER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.ELECTROLYZER.id(),
@@ -234,9 +239,13 @@ public final class ElectrolyzerCompactGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 singletonFamily.epoch() == ModRecipeMaps.ELECTROLYZER.runtimeEpoch()
-                        && singletonFamily.logicalRecipeCount() == 11
+                        && singletonFamily.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, CompactPublicationGroups.ELECTROLYZER_SINGLETON)
                         && multiFamily.epoch() == ModRecipeMaps.ELECTROLYZER.runtimeEpoch()
-                        && multiFamily.logicalRecipeCount() == 11,
+                        && multiFamily.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, CompactPublicationGroups.ELECTROLYZER_MULTI),
                 "electrolyzer/compact compact family epochs/counts drifted on the live map");
         Set<ResourceLocation> union = new TreeSet<>(singletonFamily.recipeIds());
         union.addAll(multiFamily.recipeIds());
@@ -289,6 +298,13 @@ public final class ElectrolyzerCompactGameTests {
         fillEnergy(helper, aluminium);
         fillEnergy(helper, stainless);
         helper.succeed();
+    }
+
+    private static int electrolyzerRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper,
+                CompactPublicationGroups.ELECTROLYZER_SINGLETON,
+                CompactPublicationGroups.ELECTROLYZER_MULTI);
     }
 
     private static Set<ResourceLocation> electrolyzerCompactStableIds() {

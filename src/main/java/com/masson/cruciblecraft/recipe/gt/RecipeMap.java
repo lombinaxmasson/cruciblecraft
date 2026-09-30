@@ -234,19 +234,28 @@ public final class RecipeMap {
         Objects.requireNonNull(query, "query");
         Index snapshot = index;
         TreeSet<Integer> candidates = candidates(snapshot, query);
-        List<Match> maximal = new ArrayList<>();
+        List<Match> matched = new ArrayList<>();
         for (int recipeIndex : candidates) {
             Entry entry = snapshot.entries().get(recipeIndex);
             if (entry.recipe().matches(query)) {
-                Match candidate = new Match(entry.id(), entry.recipe());
-                boolean dominated = maximal.stream().anyMatch(existing ->
-                        isStrictRequirementSuperset(
-                                existing.recipe(), candidate.recipe()));
-                if (!dominated) {
-                    maximal.removeIf(existing -> isStrictRequirementSuperset(
-                            candidate.recipe(), existing.recipe()));
-                    maximal.add(candidate);
-                }
+                matched.add(new Match(entry.id(), entry.recipe()));
+            }
+        }
+        boolean oreChainPresent = matched.stream().anyMatch(candidate ->
+                candidate.id().getPath().startsWith("ore_chain/"));
+        List<Match> maximal = new ArrayList<>();
+        for (Match candidate : matched) {
+            if (oreChainPresent
+                    && CompactWaveRecipeIds.isDumpImportedRecipe(candidate.id())) {
+                continue;
+            }
+            boolean dominated = maximal.stream().anyMatch(existing ->
+                    isStrictRequirementSuperset(
+                            existing.recipe(), candidate.recipe()));
+            if (!dominated) {
+                maximal.removeIf(existing -> isStrictRequirementSuperset(
+                        candidate.recipe(), existing.recipe()));
+                maximal.add(candidate);
             }
         }
         if (!maximal.isEmpty()) {

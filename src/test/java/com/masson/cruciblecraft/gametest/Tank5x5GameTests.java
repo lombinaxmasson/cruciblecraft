@@ -58,7 +58,7 @@ public final class Tank5x5GameTests {
                         == PredicateKind.CONTROLLER)
                 .count();
         helper.assertTrue(
-                structure.structure().size() == 125
+                structure.structure().size() == 5 * 5 * 5
                         && ports == 97
                         && air == 27
                         && controllers == 1,

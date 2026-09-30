@@ -366,7 +366,9 @@ public final class FluidPipeBlockEntity extends BlockEntity
                         false,
                         this::fillInternal);
             }
-            if (!AbstractPipeBlock.isConnected(liveState(), side)) {
+            if (!AbstractPipeBlock.isConnected(liveState(), side)
+                    && !PipeCoverIntercept.blocksConnect(
+                            level, worldPosition, side)) {
                 continue;
             }
             covers.tick(side, new FluidCoverContext(level, side));
@@ -1099,11 +1101,24 @@ public final class FluidPipeBlockEntity extends BlockEntity
                     && validateFluid(stack) == Failure.NONE;
         }
 
+        private boolean coverTransferFaceOpen() {
+            if (AbstractPipeBlock.isConnected(liveState(), side)) {
+                return true;
+            }
+            if (level == null) {
+                return false;
+            }
+            return PipeCoverIntercept.blocksConnect(level, worldPosition, side)
+                    || PipeCoverIntercept.blocksConnect(
+                            level,
+                            worldPosition.relative(side),
+                            side.getOpposite());
+        }
+
         @Override
         public int fill(FluidStack resource, FluidAction action) {
             if (resource.isEmpty()
-                    || !AbstractPipeBlock.isConnected(
-                            liveState(), side)
+                    || !coverTransferFaceOpen()
                     || !covers.allowsIncoming(
                             side,
                             CoverDefinition.Medium.FLUID,

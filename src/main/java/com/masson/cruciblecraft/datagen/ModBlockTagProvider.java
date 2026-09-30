@@ -179,7 +179,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         var iron = tag(BlockTags.NEEDS_IRON_TOOL);
         var diamond = tag(BlockTags.NEEDS_DIAMOND_TOOL);
         for (var cube : com.masson.cruciblecraft.worldgen.StoneLayerStones.registeredCubes()) {
-            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+            if (!ModBlocks.isDedicatedLayerStone(cube.registryPath())) {
                 continue;
             }
             var holder = ModBlocks.layerStone(cube.registryPath());

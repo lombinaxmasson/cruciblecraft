@@ -3,9 +3,9 @@
   "blocker_id": "obtain/mte-inplace-runtime",
   "capability_slug": "content/gt6-mte-misc-tool-acquisition",
   "counts": {
-    "explicitly_blocked": 7,
+    "explicitly_blocked": 6,
     "hosts": 39,
-    "source_exact": 32
+    "source_exact": 33
   },
   "domain": "misc_tool",
   "expected": 39,
@@ -1385,30 +1385,25 @@
       "gt6_class": "MultiTileEntityBathingPotTable / Misc Tool Blocks",
       "kind": "MISC_TOOL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/misc_tool/bathing_pot_table.json",
+        "present": true
       },
       "meta": 32707,
       "operands": {
         "M": {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": null,
+          "cc": "cruciblecraft:misc_tool/bathing_pot",
           "gt": "aRegistry.getItem()",
-          "kind": null,
-          "reason": "unmapped",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "unmapped",
-          "status": "explicitly_blocked"
+          "kind": "previous_registry_item",
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": null,
+          "cc": "minecraft:brick_slab",
           "gt": "ST.make(Blocks.stone_slab,1,4)",
-          "kind": null,
-          "reason": "unmapped",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "unmapped",
-          "status": "explicitly_blocked"
+          "kind": "vanilla_block",
+          "resolve_status": "ok",
+          "status": "source_exact"
         }
       },
       "pattern": [
@@ -1416,11 +1411,11 @@
         "S  "
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:misc_tool/bathing_pot_table",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "misc_tool/bathing_pot_table",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {

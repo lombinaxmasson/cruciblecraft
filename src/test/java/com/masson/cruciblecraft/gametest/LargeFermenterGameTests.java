@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.content.blockentity.LargeFermenterAutoOutput;
 import com.masson.cruciblecraft.content.blockentity.LargeFermenterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeFermenterPartVisuals;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.PortStoreRegistry;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.Offset;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -110,6 +112,7 @@ public final class LargeFermenterGameTests {
         for (int i = 0; i < recipe.itemInputs().size(); i++) {
             ItemStack sample = recipe.itemInputs().get(i).getItems()[0].copy();
             sample.setCount(Math.max(1, recipe.itemInputCounts().get(i)));
+            sample.set(ModComponents.CIRCUIT_CONFIG.get(), 0);
             be.inventory().setStackInSlot(
                     be.spec().items().inputs().get(i), sample);
         }
@@ -129,10 +132,17 @@ public final class LargeFermenterGameTests {
                     be);
         }
         FluidStack methane = recipe.fluidOutputs().getFirst();
+        boolean methaneInController = be.tanks().stream().anyMatch(tank ->
+                tank.getFluid().is(methane.getFluid())
+                        && tank.getFluidAmount() >= methane.getAmount());
+        boolean methaneInPort = PortStoreRegistry.stores(be).stream()
+                .anyMatch(carrier -> carrier.portStore().tanks().stream()
+                        .anyMatch(tank ->
+                                tank.getFluid().is(methane.getFluid())
+                                        && tank.getFluidAmount()
+                                                >= methane.getAmount()));
         helper.assertTrue(
-                be.tanks().stream().anyMatch(tank ->
-                        tank.getFluid().is(methane.getFluid())
-                                && tank.getFluidAmount() >= methane.getAmount()),
+                methaneInController || methaneInPort,
                 "Biomass did not yield methane");
         helper.assertTrue(
                 be.getBlockState().getValue(LargeFermenterBlock.LIT),

@@ -98,6 +98,10 @@ public final class StoneLayerStones {
         return allRegistered();
     }
 
+    public static boolean isRegisteredCube(String registryPath) {
+        return BY_PATH.containsKey(registryPath);
+    }
+
     public static boolean isDenseOre(String material) {
         return DENSE_BY_MATERIAL.containsKey(material);
     }

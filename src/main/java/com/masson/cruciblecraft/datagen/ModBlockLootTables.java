@@ -160,7 +160,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         }
         for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
                 com.masson.cruciblecraft.worldgen.StoneLayerStones.cubes()) {
-            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+            if (!ModBlocks.isDedicatedLayerStone(cube.registryPath())) {
                 continue;
             }
             Block block = ModBlocks.layerStone(cube.registryPath()).get();
@@ -178,14 +178,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         }
         for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
                 com.masson.cruciblecraft.worldgen.StoneLayerStones.villageBricks()) {
-            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+            if (!ModBlocks.isDedicatedLayerStone(cube.registryPath())) {
                 continue;
             }
             dropSelf(ModBlocks.layerStone(cube.registryPath()).get());
         }
         for (com.masson.cruciblecraft.worldgen.StoneLayerStones.Cube cube :
                 com.masson.cruciblecraft.worldgen.StoneLayerStones.rockOres()) {
-            if (!ModBlocks.hasLayerStone(cube.registryPath())) {
+            if (!ModBlocks.isDedicatedLayerStone(cube.registryPath())) {
                 continue;
             }
             Block block = ModBlocks.layerStone(cube.registryPath()).get();

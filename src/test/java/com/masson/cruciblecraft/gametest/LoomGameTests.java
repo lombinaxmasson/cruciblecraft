@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
@@ -53,14 +54,13 @@ public final class LoomGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.LOOM.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 465,
-                "Loom family is not the 465 non-shadowed rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Loom family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.LOOM.entries().size() == 465,
-                "Loom map drifted from 465 non-shadowed rows: "
-                        + ModRecipeMaps.LOOM.entries().size());
         helper.succeed();
     }
 

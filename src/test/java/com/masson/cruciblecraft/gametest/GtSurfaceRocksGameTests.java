@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -185,10 +187,8 @@ public final class GtSurfaceRocksGameTests {
         helper.assertTrue(
                 ItemStack.isSameItemSameComponents(
                         GtSurfaceRockBlock.loot(pebble(SurfaceRockContents.METEORIC_RAW)),
-                        new ItemStack(ModItems.materialItem(
-                                "meteoric_iron",
-                                com.masson.cruciblecraft.api.material.MaterialPrefixes.RAW_ORE)
-                                .get())),
+                        MaterialLookup.stack(
+                                "meteoric_iron", MaterialPrefixes.RAW_ORE)),
                 "meteoric raw pebble must drop meteoric_iron/raw_ore");
         List<ItemStack> drops = net.minecraft.world.level.block.Block.getDrops(
                 pebble(SurfaceRockContents.FLINT),

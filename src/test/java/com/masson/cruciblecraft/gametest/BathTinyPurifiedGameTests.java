@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeShardRouter;
@@ -48,10 +49,6 @@ public final class BathTinyPurifiedGameTests {
             "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final int BATH_MTE_LOCKED_RELATIONS = 1517;
-    private static final int BATH_REMAINDER_LOCKED_RELATIONS = 13708;
-    private static final int BATH_IDENTITY_LOCKED_RELATIONS = 34081;
-    private static final int LOCKED_RELATIONS = 95;
     private static final int FLUID_SUPPORT_RECIPES = 0;
     private static final ResourceLocation BATH_MTE_GROUP =
             CompactPublicationGroups.BATH_MTE;
@@ -70,14 +67,35 @@ public final class BathTinyPurifiedGameTests {
 
     private BathTinyPurifiedGameTests() {}
 
+    private static int tinyRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, EXACT_MULTI_GROUP);
+    }
+
+    private static int bathMteRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, BATH_MTE_GROUP);
+    }
+
+    private static int remainderRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper, BATH_REMAINDER_EXACT_GROUP, BATH_REMAINDER_EXACT_MULTI_GROUP);
+    }
+
+    private static int identityRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper,
+                BATH_IDENTITY_EXACT_GROUP,
+                BATH_IDENTITY_EXACT_MULTI_GROUP,
+                BATH_IDENTITY_TOOL_HEAD_GROUP);
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void lockedCounts(GameTestHelper helper) {
         helper.assertTrue(
-                tinyPurifiedStableIds().size() == LOCKED_RELATIONS,
+                tinyPurifiedStableIds().size() == tinyRows(helper),
                 "tiny-purified Bath compact ids drifted from 95: " + tinyPurifiedStableIds().size());
         RecipeMap.RecipeFamily multiFamily = bathFamily(EXACT_MULTI_GROUP);
         helper.assertTrue(
-                multiFamily != null && multiFamily.logicalRecipeCount() == LOCKED_RELATIONS,
+                multiFamily != null && multiFamily.logicalRecipeCount() == tinyRows(helper),
                 "tiny-purified exact_multi compact family is not the 95 locked relations: "
                         + (multiFamily == null ? "missing" : multiFamily.logicalRecipeCount()));
         helper.succeed();
@@ -92,11 +110,11 @@ public final class BathTinyPurifiedGameTests {
     public static void bathMteGroupUnchanged(GameTestHelper helper) {
         Set<ResourceLocation> bathMte = prefixIds("bath/mte/");
         helper.assertTrue(
-                bathMte.size() == BATH_MTE_LOCKED_RELATIONS,
+                bathMte.size() == bathMteRows(helper),
                 "Bath MTE compact ids drifted after tiny-purified: " + bathMte.size());
         RecipeMap.RecipeFamily family = bathFamily(BATH_MTE_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == BATH_MTE_LOCKED_RELATIONS,
+                family != null && family.logicalRecipeCount() == bathMteRows(helper),
                 "Bath MTE compact family is not the 1517 locked relations: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.succeed();
@@ -106,14 +124,14 @@ public final class BathTinyPurifiedGameTests {
     public static void bathRemainderGroupsUnchanged(GameTestHelper helper) {
         Set<ResourceLocation> bathRemainder = prefixIds("bath/remainder/");
         helper.assertTrue(
-                bathRemainder.size() == BATH_REMAINDER_LOCKED_RELATIONS,
+                bathRemainder.size() == remainderRows(helper),
                 "Bath remainder compact ids drifted after tiny-purified: " + bathRemainder.size());
         RecipeMap.RecipeFamily exact = bathFamily(BATH_REMAINDER_EXACT_GROUP);
         RecipeMap.RecipeFamily multi = bathFamily(BATH_REMAINDER_EXACT_MULTI_GROUP);
         helper.assertTrue(
                 exact != null && multi != null
                         && exact.logicalRecipeCount() + multi.logicalRecipeCount()
-                                == BATH_REMAINDER_LOCKED_RELATIONS,
+                                == remainderRows(helper),
                 "Bath remainder compact families drifted after tiny-purified");
         helper.succeed();
     }
@@ -122,7 +140,7 @@ public final class BathTinyPurifiedGameTests {
     public static void bathIdentityGroupsUnchanged(GameTestHelper helper) {
         Set<ResourceLocation> bathIdentity = prefixIds("bath/identity/");
         helper.assertTrue(
-                bathIdentity.size() == BATH_IDENTITY_LOCKED_RELATIONS,
+                bathIdentity.size() == identityRows(helper),
                 "Bath identity compact ids drifted after tiny-purified: " + bathIdentity.size());
         RecipeMap.RecipeFamily exact = bathFamily(BATH_IDENTITY_EXACT_GROUP);
         RecipeMap.RecipeFamily multi = bathFamily(BATH_IDENTITY_EXACT_MULTI_GROUP);
@@ -132,7 +150,7 @@ public final class BathTinyPurifiedGameTests {
                         && exact.logicalRecipeCount()
                                 + multi.logicalRecipeCount()
                                 + tool.logicalRecipeCount()
-                                == BATH_IDENTITY_LOCKED_RELATIONS,
+                                == identityRows(helper),
                 "Bath identity compact families drifted after tiny-purified");
         helper.succeed();
     }
@@ -210,13 +228,13 @@ public final class BathTinyPurifiedGameTests {
     public static void reloadRootsStable(GameTestHelper helper) {
         Set<ResourceLocation> first = tinyPurifiedStableIds();
         helper.assertTrue(
-                first.size() == LOCKED_RELATIONS,
+                first.size() == tinyRows(helper),
                 "tiny-purified locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily multiFamily = bathFamily(EXACT_MULTI_GROUP);
         helper.assertTrue(
                 multiFamily != null
                         && multiFamily.epoch() == ModRecipeMaps.BATH.runtimeEpoch()
-                        && multiFamily.logicalRecipeCount() == LOCKED_RELATIONS,
+                        && multiFamily.logicalRecipeCount() == tinyRows(helper),
                 "tiny-purified compact family epochs/counts drifted on the live map");
         helper.assertTrue(
                 new TreeSet<>(multiFamily.recipeIds()).equals(first),

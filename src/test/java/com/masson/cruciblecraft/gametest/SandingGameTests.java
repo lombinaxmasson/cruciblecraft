@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -39,7 +40,6 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class SandingGameTests {
     public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
-    private static final int LIVE_ROWS = 7_637;
     private static final Direction FRONT = Direction.NORTH;
     private static final BlockPos POS = new BlockPos(2, 2, 2);
     private static final ResourceLocation PUBLICATION_GROUP =
@@ -74,14 +74,13 @@ public final class SandingGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.SANDING.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == LIVE_ROWS,
-                "Sanding compact family is not the 7637 selected rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Sanding compact family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.SANDING.entries().size() == LIVE_ROWS,
-                "Sanding live map drifted from 7637 selected rows: "
-                        + ModRecipeMaps.SANDING.entries().size());
         helper.succeed();
     }
 

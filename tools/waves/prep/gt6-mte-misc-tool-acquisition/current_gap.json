@@ -45,37 +45,6 @@
     },
     {
       "blocker_id": "obtain/mte-inplace-runtime",
-      "meta": 32707,
-      "missing": [
-        {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": null,
-          "gt": "aRegistry.getItem()",
-          "kind": null,
-          "reason": "unmapped",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "unmapped",
-          "slot": "M",
-          "status": "explicitly_blocked"
-        },
-        {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": null,
-          "gt": "ST.make(Blocks.stone_slab,1,4)",
-          "kind": null,
-          "reason": "unmapped",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "unmapped",
-          "slot": "S",
-          "status": "explicitly_blocked"
-        }
-      ],
-      "reason": "operand_blocked",
-      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
-      "stable_id": "misc_tool/bathing_pot_table"
-    },
-    {
-      "blocker_id": "obtain/mte-inplace-runtime",
       "meta": 32720,
       "missing": [
         {
@@ -167,5 +136,5 @@
     }
   ],
   "schema": "gt6-mte-inplace-acquisition-gap-v1",
-  "source_exact": 32
+  "source_exact": 33
 }

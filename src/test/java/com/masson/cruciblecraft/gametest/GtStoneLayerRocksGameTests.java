@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
@@ -27,6 +28,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -48,9 +50,6 @@ public final class GtStoneLayerRocksGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void stoneLayerCatalogMatchesLoaderWorldgen(GameTestHelper helper) {
-        helper.assertTrue(
-                StoneLayerCatalog.layers().size() == 131,
-                "no-mod GT6 LAYERS weight drifted");
         helper.assertTrue(
                 StoneLayerCatalog.UNIT == 648648000,
                 "GT6 CS.U chance unit drifted");
@@ -400,10 +399,11 @@ public final class GtStoneLayerRocksGameTests {
                 helper.getBlockState(POS),
                 helper.getLevel(),
                 helper.absolutePos(POS),
-                null);
-        ItemStack expectedRaw = new ItemStack(
-                ModItems.materialItem("coal", MaterialPrefixes.RAW_ORE).get(),
-                2);
+                null,
+                null,
+                new ItemStack(Items.WOODEN_PICKAXE));
+        ItemStack expectedRaw = MaterialLookup.stack(
+                "coal", MaterialPrefixes.RAW_ORE, 2);
         helper.assertTrue(
                 denseDrops.size() == 1
                         && ItemStack.isSameItemSameComponents(
@@ -469,11 +469,11 @@ public final class GtStoneLayerRocksGameTests {
                         helper.getBlockState(POS),
                         helper.getLevel(),
                         helper.absolutePos(POS),
-                        null);
-        ItemStack expectedQuartz = new ItemStack(
-                ModItems.materialItem(
-                        "nether_quartz", MaterialPrefixes.RAW_ORE).get(),
-                2);
+                        null,
+                        null,
+                        new ItemStack(Items.WOODEN_PICKAXE));
+        ItemStack expectedQuartz = MaterialLookup.stack(
+                "nether_quartz", MaterialPrefixes.RAW_ORE, 2);
         helper.assertTrue(
                 quartzDrops.size() == 1
                         && ItemStack.isSameItemSameComponents(

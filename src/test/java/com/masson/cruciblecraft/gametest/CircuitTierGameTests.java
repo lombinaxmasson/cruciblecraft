@@ -94,8 +94,11 @@ public final class CircuitTierGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void remainingCircuitTiersAreRegistered(GameTestHelper helper) {
         helper.assertTrue(
-                TechnologicalPartCatalog.parts().size() == 160,
-                "Technological parts catalog drifted from 160 identities");
+                TechnologicalPartCatalog.parts().size()
+                        == TechnologicalPartCatalog.PART_COUNT,
+                "Technological parts catalog drifted from "
+                        + TechnologicalPartCatalog.PART_COUNT
+                        + " identities");
         for (String path : List.of(
                 "compact_electric_conveyor_lv",
                 "compact_electric_conveyor_ev",

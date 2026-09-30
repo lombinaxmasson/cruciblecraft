@@ -188,7 +188,7 @@ public final class EuWireCableRuntimeGameTests {
                         && !cable.bareWire(),
                 "per-spec loss/insulation drifted");
         BlockPos wirePos = new BlockPos(4, 2, 5);
-        BlockPos machinePos = wirePos.east();
+        BlockPos machinePos = wirePos.above();
         helper.setBlock(wirePos.below(), Blocks.STONE);
         helper.setBlock(
                 machinePos,
@@ -199,14 +199,14 @@ public final class EuWireCableRuntimeGameTests {
                                 Direction.EAST));
         helper.setBlock(
                 wirePos,
-                conductorState(wire, Direction.WEST, Direction.EAST));
+                conductorState(wire, Direction.UP, Direction.DOWN));
         CableBlockEntity entity = helper.getBlockEntity(wirePos);
         helper.assertTrue(
                 entity.insert(
                         EnergyType.ELECTRIC,
                         32L,
                         1L,
-                        Direction.WEST,
+                        Direction.DOWN,
                         true) == 1L,
                 "rated tin wireGt01 rejected 1A");
         helper.assertTrue(
@@ -218,7 +218,7 @@ public final class EuWireCableRuntimeGameTests {
                             EnergyType.ELECTRIC,
                             32L,
                             2L,
-                            Direction.WEST,
+                            Direction.DOWN,
                             false) == 2L,
                     "overloaded tin wireGt01 did not accept offered amperage");
         }

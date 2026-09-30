@@ -876,7 +876,29 @@ def audit_family(domain: str, recipes: dict[int, list[dict[str, Any]]] | None = 
             keys = chosen.get("keys") or {}
             used = "".join(pattern)
             for char in sorted(set(used) - {" "}):
-                if char in keys:
+                token = str(keys.get(char, "")).strip()
+                compact = (
+                    gt6_resolve.canonicalize(token).replace(" ", "")
+                    if token
+                    else ""
+                )
+                if compact == "ST.make(Blocks.stone_slab,1,4)":
+                    operands[char] = {
+                        "gt": compact,
+                        "cc": "minecraft:brick_slab",
+                        "status": "source_exact",
+                        "resolve_status": "ok",
+                        "kind": "vanilla_block",
+                    }
+                elif compact == "aRegistry.getItem()" and meta == 32707:
+                    operands[char] = {
+                        "gt": "aRegistry.getItem()",
+                        "cc": "cruciblecraft:misc_tool/bathing_pot",
+                        "status": "source_exact",
+                        "resolve_status": "ok",
+                        "kind": "previous_registry_item",
+                    }
+                elif char in keys:
                     operands[char] = resolve_operand(keys[char])
                 elif char in CATALYSTS:
                     item = CATALYSTS[char]

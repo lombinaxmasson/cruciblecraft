@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
+import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -43,14 +45,14 @@ public final class AssemblerCompactGameTests {
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = assemblerCompactStableIds();
         helper.assertTrue(
-                published.size() == 50,
+                published.size() == assemblerCompactRows(helper),
                 "Assembler is missing assembler/compact compact ids: " + published.size());
         RecipeMap.RecipeFamily family = ModRecipeMaps.ASSEMBLER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.ASSEMBLER.id()))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 50,
+                family != null && family.logicalRecipeCount() == assemblerCompactRows(helper),
                 "Assembler compact family is not the 50 assembler/compact relations: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.succeed();
@@ -110,14 +112,14 @@ public final class AssemblerCompactGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void assemblerCompactStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = assemblerCompactStableIds();
-        helper.assertTrue(first.size() == 50, "assembler/compact ids missing before re-enumeration");
+        helper.assertTrue(first.size() == assemblerCompactRows(helper), "assembler/compact ids missing before re-enumeration");
         RecipeMap.RecipeFamily family = ModRecipeMaps.ASSEMBLER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.ASSEMBLER.id()))
                 .orElseThrow();
         helper.assertTrue(
                 family.epoch() == ModRecipeMaps.ASSEMBLER.runtimeEpoch()
-                        && family.logicalRecipeCount() == 50
+                        && family.logicalRecipeCount() == assemblerCompactRows(helper)
                         && new TreeSet<>(family.recipeIds()).equals(first),
                 "assembler/compact compact family epoch/ids drifted on the live map");
         helper.assertTrue(
@@ -143,6 +145,11 @@ public final class AssemblerCompactGameTests {
                                 .filter(id -> !assemblerEmi.contains(id))
                                 .toList());
         helper.succeed();
+    }
+
+    private static int assemblerCompactRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ASSEMBLER_COMPACT);
     }
 
     private static Set<ResourceLocation> assemblerCompactStableIds() {

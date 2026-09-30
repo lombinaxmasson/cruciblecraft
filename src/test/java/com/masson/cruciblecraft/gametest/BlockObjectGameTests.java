@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.gametest.GameTestHeatSources;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
@@ -44,17 +45,30 @@ public final class BlockObjectGameTests {
     public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final int LOCKED_RELATIONS = 379;
-    private static final int SMELTER_RELATIONS = 271;
-    private static final int DRYING_RELATIONS = 108;
-
     private BlockObjectGameTests() {}
+
+    private static int blockRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper,
+                CompactPublicationGroups.SMELTER_BLOCK,
+                CompactPublicationGroups.DRYING_BLOCK);
+    }
+
+    private static int smelterRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.SMELTER_BLOCK);
+    }
+
+    private static int dryingRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.DRYING_BLOCK);
+    }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = blockObjectStableIds();
         helper.assertTrue(
-                published.size() == LOCKED_RELATIONS,
+                published.size() == blockRows(helper),
                 "block-object compact ids missing: " + published.size());
         RecipeMap.RecipeFamily smelterFamily = ModRecipeMaps.SMELTER
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -63,7 +77,7 @@ public final class BlockObjectGameTests {
                 .orElse(null);
         helper.assertTrue(
                 smelterFamily != null
-                        && smelterFamily.logicalRecipeCount() == SMELTER_RELATIONS,
+                        && smelterFamily.logicalRecipeCount() == smelterRows(helper),
                 "Smelter block compact family is not the 271 locked relations: "
                         + (smelterFamily == null
                                 ? "missing"
@@ -75,7 +89,7 @@ public final class BlockObjectGameTests {
                 .orElse(null);
         helper.assertTrue(
                 dryingFamily != null
-                        && dryingFamily.logicalRecipeCount() == DRYING_RELATIONS,
+                        && dryingFamily.logicalRecipeCount() == dryingRows(helper),
                 "Drying block compact family is not the 108 locked relations: "
                         + (dryingFamily == null
                                 ? "missing"
@@ -178,7 +192,7 @@ public final class BlockObjectGameTests {
     public static void blockObjectStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = blockObjectStableIds();
         helper.assertTrue(
-                first.size() == LOCKED_RELATIONS,
+                first.size() == blockRows(helper),
                 "block-object locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily smelterFamily = ModRecipeMaps.SMELTER
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -187,7 +201,7 @@ public final class BlockObjectGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 smelterFamily.epoch() == ModRecipeMaps.SMELTER.runtimeEpoch()
-                        && smelterFamily.logicalRecipeCount() == SMELTER_RELATIONS,
+                        && smelterFamily.logicalRecipeCount() == smelterRows(helper),
                 "block-object smelter compact family epoch/count drifted on the live map");
         RecipeMap.RecipeFamily dryingFamily = ModRecipeMaps.DRYING
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -196,7 +210,7 @@ public final class BlockObjectGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 dryingFamily.epoch() == ModRecipeMaps.DRYING.runtimeEpoch()
-                        && dryingFamily.logicalRecipeCount() == DRYING_RELATIONS,
+                        && dryingFamily.logicalRecipeCount() == dryingRows(helper),
                 "block-object drying compact family epoch/count drifted on the live map");
         helper.assertTrue(
                 blockObjectStableIds().equals(first),

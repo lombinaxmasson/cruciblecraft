@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -55,13 +56,16 @@ public final class PressureWasherGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.PRESSUREWASHER.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 312,
-                "Pressure Washer family is not the 312 selected rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Pressure Washer family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         int woodRows = WoodDebark.extraPressureWasherWoodRows();
         helper.assertTrue(
-                ModRecipeMaps.PRESSUREWASHER.entries().size() == 312 + woodRows,
+                ModRecipeMaps.PRESSUREWASHER.entries().size() == expected + woodRows,
                 "Pressure Washer live map drifted from compact plus wood rows: "
                         + ModRecipeMaps.PRESSUREWASHER.entries().size());
         helper.succeed();

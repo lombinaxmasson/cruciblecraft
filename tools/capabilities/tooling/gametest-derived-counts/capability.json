@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "slug": "tooling/gametest-derived-counts",
+  "title": "GameTest derived counts",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/GameTest数量断言派生化详细计划.md",
+    "src/test/java/com/masson/cruciblecraft/gametest/**",
+    "src/test/java/com/masson/cruciblecraft/scale/PublicationReloadBudgetGameTests.java",
+    "src/main/resources/data/cruciblecraft/*_publication_baseline.json",
+    "tools/waves/tooling/gametest-derived-counts/**",
+    "tools/tests/test_policy_delta.py",
+    "tools/python_test_policy.json",
+    "tools/verification_profiles.json",
+    "tools/waves/portfolio/gt6-full-coverage-reassessment/coverage.json",
+    "docs/current/gt6-full-coverage.md",
+    "tools/waves/machines/hammer-squeezer-laser/build_squeezer_dump.py"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "verification"
+  ],
+  "wave_slug": null,
+  "note": "GameTests read live publication-policy relation_count instead of copied recipe totals. Global publication snapshot numbers and the delta baseline chain are retired. policy_delta.py lists added and removed stable ids when compact recipe output changes."
+}

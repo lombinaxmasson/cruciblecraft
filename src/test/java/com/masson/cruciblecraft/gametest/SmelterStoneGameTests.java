@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.gametest.GameTestHeatSources;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
@@ -48,8 +49,10 @@ public final class SmelterStoneGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = smelterStoneStableIds();
+        int expected = PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.SMELTER_STONE);
         helper.assertTrue(
-                published.size() == 407,
+                published.size() == expected,
                 "Smelter is missing smelter/stone compact ids: " + published.size());
         RecipeMap.RecipeFamily family = ModRecipeMaps.SMELTER
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -57,8 +60,8 @@ public final class SmelterStoneGameTests {
                         CompactPublicationGroups.SMELTER_STONE))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 407,
-                "Smelter stone compact family is not the 407 locked relations: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Smelter stone compact family logical rows != policy relation_count: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.succeed();
     }
@@ -152,7 +155,11 @@ public final class SmelterStoneGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void smelterStoneStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = smelterStoneStableIds();
-        helper.assertTrue(first.size() == 407, "smelter/stone locked ids missing before re-enumeration");
+        int expected = PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.SMELTER_STONE);
+        helper.assertTrue(
+                first.size() == expected,
+                "smelter/stone locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily family = ModRecipeMaps.SMELTER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.SMELTER.id(),
@@ -160,7 +167,7 @@ public final class SmelterStoneGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 family.epoch() == ModRecipeMaps.SMELTER.runtimeEpoch()
-                        && family.logicalRecipeCount() == 407,
+                        && family.logicalRecipeCount() == expected,
                 "smelter/stone compact family epoch/count drifted on the live map");
         helper.assertTrue(
                 new TreeSet<>(family.recipeIds()).equals(first),

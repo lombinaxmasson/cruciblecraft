@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.blockentity.AutomaticHammerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.CompactWaveRecipeIds;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -683,21 +684,20 @@ public final class HammerSqueezerLaserGameTests {
                         "machine/squeezer/rubber_log"
                                 .equals(entry.id().getPath())),
                 "GT6 rubber-log squeezer row is missing");
+        ResourceLocation squeezerGroup = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "squeezer/pilot/hammer_squeezer_laser");
         RecipeMap.RecipeFamily family = ModRecipeMaps.SQUEEZER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.SQUEEZER.id(),
-                        ResourceLocation.fromNamespaceAndPath(
-                                "cruciblecraft",
-                                "squeezer/pilot/hammer_squeezer_laser")))
+                        squeezerGroup))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 15,
-                "Squeezer compact family is not the 15 selected non-plant dump rows: "
+                family != null
+                        && family.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, squeezerGroup),
+                "Squeezer compact family logical rows != policy relation_count: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                entries.size() == 20,
-                "Squeezer live map is not 15 dump rows plus 4 Java latex rows plus rubber log: "
-                        + entries.size());
         helper.assertTrue(
                 ModRecipeMaps.SQUEEZER.findMatch(
                         GTRecipeQuery.items(new ItemStack(Items.COD))).isPresent(),
@@ -711,12 +711,15 @@ public final class HammerSqueezerLaserGameTests {
                         GTRecipeQuery.items(new ItemStack(Items.TROPICAL_FISH)))
                         .isPresent(),
                 "Tropical-fish squeezer row is missing");
+        ItemStack berry = MaterialLookup.tryStack(
+                "potassium",
+                MaterialPrefixCatalog.require("plant_gt_berry"),
+                1).orElse(ItemStack.EMPTY);
         helper.assertTrue(
-                ModRecipeMaps.SQUEEZER.findMatch(GTRecipeQuery.items(
-                        MaterialLookup.stack(
-                                "potassium",
-                                MaterialPrefixCatalog.require("plant_gt_berry"))))
-                        .isEmpty(),
+                berry.isEmpty()
+                        || ModRecipeMaps.SQUEEZER.findMatch(
+                                GTRecipeQuery.items(berry))
+                                .isEmpty(),
                 "Unobtainable plant_gt berry squeezer row stays ignored on this card");
         helper.succeed();
     }

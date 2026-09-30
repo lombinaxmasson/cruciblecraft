@@ -82,10 +82,6 @@ LIVE_GENERATED = (
 )
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "squeezer.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/hammer_squeezer_laser"
-LATER_WAVE = (
-    ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
-    / "later_wave_publication_baseline.json"
-)
 JAVA_LATEX = frozenset(
     {
         "cruciblecraft:tree/rubber_resin",
@@ -573,58 +569,6 @@ def live_compile() -> dict[str, Any]:
     return built["report"]
 
 
-def update_later_wave(selected_rows: int) -> None:
-    document = census.load_json(LATER_WAVE)
-    ledger = document.setdefault("delta_ledger_policy", {})
-    deltas = list(ledger.get("registered_deltas") or [])
-    existing = next(
-        (row for row in deltas if row.get("phase") == "squeezer_dump"),
-        None,
-    )
-    previous = int((existing or {}).get("logical") or 0)
-    other = [row for row in deltas if row.get("phase") != "squeezer_dump"]
-    other.append(
-        {
-            "eager": selected_rows,
-            "evidence": (
-                "machines/hammer-squeezer-laser: dump gt.recipe.squeezer "
-                "selected exact non-plant rows; plant_gt_* ignored until "
-                "crop-breeding obtain"
-            ),
-            "lazy": 0,
-            "logical": selected_rows,
-            "phase": "squeezer_dump",
-        }
-    )
-    ledger["registered_deltas"] = other
-    eager = int(ledger.get("base_eager") or 0) + sum(
-        int(row.get("eager") or 0) for row in other
-    )
-    ledger["current_eager"] = eager
-    ledger["current_logical"] = eager + int(ledger.get("current_lazy") or 0)
-    delta = document.setdefault("later_wave_publication_delta", {})
-    header = int(delta.get("logical_rows_added") or 0) - previous + selected_rows
-    delta["logical_rows_added"] = header
-    delta["eager_rows_added"] = header
-    delta["gt_recipe_rows_added"] = header
-    evidence = str(delta.get("evidence") or "")
-    target = (
-        "squeezer dump selected exact non-plant rows; plant_gt_* ignored "
-        "until crop-breeding obtain"
-    )
-    for previous in (
-        "squeezer dump selected exact rows, plant_gt_* long-tail overflow",
-        "squeezer dump selected exact non-plant rows; plant_gt_* ignored "
-        "never-import",
-    ):
-        if previous in evidence:
-            evidence = evidence.replace(previous, target)
-    if target not in evidence:
-        evidence = evidence.rstrip() + "; " + target
-    delta["evidence"] = evidence
-    _write(LATER_WAVE, document)
-
-
 def write() -> dict[str, Any]:
     counts = write_source_pack()
     if counts["selected_rows"] != SELECTED_ROWS:
@@ -640,7 +584,6 @@ def write() -> dict[str, Any]:
     isolated = common.isolated_compile(WAVE, LIVE_NEEDLE)
     live = live_compile()
     write_publication_policy()
-    update_later_wave(SELECTED_ROWS)
     return {
         "isolated": isolated,
         "live": live,
@@ -775,15 +718,6 @@ def check() -> list[str]:
         errors.append("topology ignored_rows drifted")
     if readiness.get("unique_active_wave") != expected_wave:
         errors.append("readiness unique_active_wave drifted from capability workflow")
-
-    later = census.load_json(LATER_WAVE)
-    phases = {
-        row.get("phase"): row
-        for row in (later.get("delta_ledger_policy") or {}).get("registered_deltas") or []
-    }
-    dump_delta = phases.get("squeezer_dump") or {}
-    if int(dump_delta.get("logical") or 0) != SELECTED_ROWS:
-        errors.append("later_wave squeezer_dump delta drifted")
 
     if errors:
         return errors

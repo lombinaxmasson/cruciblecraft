@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -34,7 +35,6 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class Gt6ExtruderBulkGameTests {
     public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
-    private static final int LIVE_ROWS = 299_143;
     private static final long MAX_SAMPLE_EUT = 32L;
     private static final ResourceLocation PUBLICATION_GROUP =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "extruder/bulk");
@@ -46,7 +46,9 @@ public final class Gt6ExtruderBulkGameTests {
         RecipeMap.RecipeFamily family = family();
         helper.assertTrue(
                 family != null
-                        && family.logicalRecipeCount() == LIVE_ROWS
+                        && family.logicalRecipeCount()
+                                == PublicationPolicyCounts.relationCount(
+                                        helper, PUBLICATION_GROUP)
                         && family.eagerRecipeCount() == 0
                         && family.cacheCeiling() == 16,
                 "Extruder bulk family is not the on-demand translated rows: "

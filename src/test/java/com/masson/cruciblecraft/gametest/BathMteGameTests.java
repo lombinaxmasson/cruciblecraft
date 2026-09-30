@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -41,30 +42,33 @@ public final class BathMteGameTests {
     public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final int LOCKED_RELATIONS = 1517;
     private static final int FLUID_SUPPORT_RECIPES = 37;
     private static final ResourceLocation PUBLICATION_GROUP =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "bath/mte");
 
     private BathMteGameTests() {}
 
+    private static int lockedRelations(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = bathMteStableIds();
         helper.assertTrue(
-                published.size() == LOCKED_RELATIONS,
+                published.size() == lockedRelations(helper),
                 "bath/mte compact ids missing: " + published.size());
         RecipeMap.RecipeFamily family = ModRecipeMaps.BATH
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.BATH.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == LOCKED_RELATIONS,
+                family != null && family.logicalRecipeCount() == lockedRelations(helper),
                 "Bath MTE compact family is not the 1517 locked relations: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
                 family instanceof CompactRecipeFamilyProvider.Snapshot snapshot
-                        && snapshot.shardCount() == LOCKED_RELATIONS
+                        && snapshot.shardCount() == lockedRelations(helper)
                         && snapshot.overflowRelationCount() == 0,
                 "bath/mte live shard count drifted from the 1517 pair manifest");
         helper.succeed();
@@ -162,7 +166,7 @@ public final class BathMteGameTests {
     public static void bathMteStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = bathMteStableIds();
         helper.assertTrue(
-                first.size() == LOCKED_RELATIONS,
+                first.size() == lockedRelations(helper),
                 "bath/mte locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily family = ModRecipeMaps.BATH
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -170,11 +174,11 @@ public final class BathMteGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 family.epoch() == ModRecipeMaps.BATH.runtimeEpoch()
-                        && family.logicalRecipeCount() == LOCKED_RELATIONS,
+                        && family.logicalRecipeCount() == lockedRelations(helper),
                 "bath/mte Bath compact family epoch/count drifted on the live map");
         helper.assertTrue(
                 family instanceof CompactRecipeFamilyProvider.Snapshot snapshot
-                        && snapshot.shardCount() == LOCKED_RELATIONS
+                        && snapshot.shardCount() == lockedRelations(helper)
                         && snapshot.overflowRelationCount() == 0,
                 "bath/mte shard count drifted after re-enumeration");
         helper.assertTrue(

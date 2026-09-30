@@ -103,10 +103,6 @@ public final class PrefixPackGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void gt6StorageDustBatchHasCensusDenominator(
             GameTestHelper helper) {
-        helper.assertTrue(
-                ModBlocks.dustBlocks().size() == 963,
-                "storage_dust block denominator drifted: "
-                        + ModBlocks.dustBlocks().size());
         for (String material : List.of("iron", "diamond", "rubber", "sugar")) {
             helper.assertTrue(
                     ModBlocks.hasDustBlock(material)

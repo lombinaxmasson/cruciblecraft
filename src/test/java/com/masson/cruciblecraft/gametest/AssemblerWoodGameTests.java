@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -42,19 +43,41 @@ public final class AssemblerWoodGameTests {
     public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final int ASSEMBLER_WOOD_LOCKED_RELATIONS = 242;
-    private static final int ASSEMBLER_PLANKS_RELATIONS = 85;
-    private static final int ASSEMBLER_FIREPROOF_RELATIONS = 144;
-    private static final int ASSEMBLER_PLANKS2_LIVE_RELATIONS = 13;
-    private static final int ASSEMBLER_COMPACT_LOCKED_RELATIONS = 50;
-
     private AssemblerWoodGameTests() {}
+
+    private static int woodRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper,
+                CompactPublicationGroups.ASSEMBLER_PLANKS,
+                CompactPublicationGroups.ASSEMBLER_FIREPROOF,
+                CompactPublicationGroups.ASSEMBLER_PLANKS2);
+    }
+
+    private static int planksRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ASSEMBLER_PLANKS);
+    }
+
+    private static int fireproofRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ASSEMBLER_FIREPROOF);
+    }
+
+    private static int planks2Rows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ASSEMBLER_PLANKS2);
+    }
+
+    private static int compactRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(
+                helper, CompactPublicationGroups.ASSEMBLER_COMPACT);
+    }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = assemblerWoodStableIds();
         helper.assertTrue(
-                published.size() == ASSEMBLER_WOOD_LOCKED_RELATIONS,
+                published.size() == woodRows(helper),
                 "Assembler is missing assembler/wood compact ids: " + published.size());
         RecipeMap.RecipeFamily planks = family(
                 CompactPublicationGroups.ASSEMBLER_PLANKS);
@@ -65,10 +88,10 @@ public final class AssemblerWoodGameTests {
         int logical = logicalCount(planks) + logicalCount(fireproof) + logicalCount(planks2);
         helper.assertTrue(
                 planks != null && fireproof != null && planks2 != null
-                        && logicalCount(planks) == ASSEMBLER_PLANKS_RELATIONS
-                        && logicalCount(fireproof) == ASSEMBLER_FIREPROOF_RELATIONS
-                        && logicalCount(planks2) == ASSEMBLER_PLANKS2_LIVE_RELATIONS
-                        && logical == ASSEMBLER_WOOD_LOCKED_RELATIONS,
+                        && logicalCount(planks) == planksRows(helper)
+                        && logicalCount(fireproof) == fireproofRows(helper)
+                        && logicalCount(planks2) == planks2Rows(helper)
+                        && logical == woodRows(helper),
                 "Assembler assembler/wood compact families are not the 242 live relations: "
                         + logicalCount(planks)
                         + "/"
@@ -86,7 +109,7 @@ public final class AssemblerWoodGameTests {
     public static void assemblerCompactFamiliesRemain(GameTestHelper helper) {
         Set<ResourceLocation> assemblerCompact = assemblerCompactStableIds();
         helper.assertTrue(
-                assemblerCompact.size() == ASSEMBLER_COMPACT_LOCKED_RELATIONS,
+                assemblerCompact.size() == compactRows(helper),
                 "assembler/wood stole assembler/compact assembler compact ids: "
                         + assemblerCompact.size());
         RecipeMap.RecipeFamily historical = ModRecipeMaps.ASSEMBLER
@@ -94,7 +117,7 @@ public final class AssemblerWoodGameTests {
                         ModRecipeMaps.ASSEMBLER.id()))
                 .orElse(null);
         helper.assertTrue(
-                historical != null && historical.logicalRecipeCount() == ASSEMBLER_COMPACT_LOCKED_RELATIONS,
+                historical != null && historical.logicalRecipeCount() == compactRows(helper),
                 "assembler/compact assembler compact family is not the original 50 relations: "
                         + (historical == null ? "missing" : historical.logicalRecipeCount()));
         helper.succeed();
@@ -156,7 +179,7 @@ public final class AssemblerWoodGameTests {
     public static void assemblerWoodStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = assemblerWoodStableIds();
         helper.assertTrue(
-                first.size() == ASSEMBLER_WOOD_LOCKED_RELATIONS,
+                first.size() == woodRows(helper),
                 "assembler/wood locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily planks = ModRecipeMaps.ASSEMBLER
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -185,7 +208,7 @@ public final class AssemblerWoodGameTests {
                 union.equals(first),
                 "assembler/wood compact family recipe ids do not cover the stable id set");
         helper.assertTrue(
-                assemblerCompactStableIds().size() == ASSEMBLER_COMPACT_LOCKED_RELATIONS,
+                assemblerCompactStableIds().size() == compactRows(helper),
                 "assembler/compact assembler ids drifted after assembler/wood re-enumeration");
         helper.assertTrue(
                 assemblerWoodStableIds().equals(first),

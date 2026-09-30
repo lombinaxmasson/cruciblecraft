@@ -594,10 +594,11 @@ public final class ModProcessingMachines {
     /**
      * GameTest / {@code runGameTestServer --no-daemon} host envelope.
      * Production still warns at {@link #RECIPE_RELOAD_BUDGET_MS}. Cold-JVM
-     * verification recorded 10718 ms and 12732 ms while a warm daemon
-     * reload was 3132 ms; publication counts were unchanged.
+     * verification recorded 14556 ms, 16112 ms, and 16516 ms after the
+     * thirty compact families landed since {@code abdb2bb61}; a warm daemon
+     * reload of the older publication set was 3132 ms.
      */
-    public static final long VERIFICATION_RECIPE_RELOAD_BUDGET_MS = 15_000L;
+    public static final long VERIFICATION_RECIPE_RELOAD_BUDGET_MS = 20_000L;
     public static final long RECIPE_INDEX_BUILD_BUDGET_MS = 1_000L;
     public static final long CLIENT_RECIPE_RELOAD_BUDGET_MS = 10_000L;
     public static final long CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS = 3_000L;

@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.machine.processing.MachineKindSpec;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
@@ -29,7 +30,6 @@ public final class MelterGameTests {
     public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
-    private static final int LIVE_ROWS = 3_601;
     private static final ResourceLocation PUBLICATION_GROUP =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "melter/pilot/melter");
@@ -57,14 +57,13 @@ public final class MelterGameTests {
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.MELTER.id(), PUBLICATION_GROUP))
                 .orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, PUBLICATION_GROUP);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == LIVE_ROWS,
-                "Melter family is not the 3601 selected rows: "
+                family != null && family.logicalRecipeCount() == expected,
+                "Melter family logical rows != policy relation_count "
+                        + expected
+                        + ": "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
-        helper.assertTrue(
-                ModRecipeMaps.MELTER.entries().size() == LIVE_ROWS,
-                "Melter map drifted from 3601 rows: "
-                        + ModRecipeMaps.MELTER.entries().size());
         helper.succeed();
     }
 

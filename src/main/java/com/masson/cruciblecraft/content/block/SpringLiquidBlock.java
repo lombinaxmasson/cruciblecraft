@@ -11,6 +11,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -363,7 +365,31 @@ public final class SpringLiquidBlock extends LiquidBlock {
     @Override
     protected void tick(
             BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        touchLivingEntities(level, pos);
         flowTick(level, pos, random);
+        if (level.getBlockState(pos).is(this)
+                && !level.getBlockTicks().hasScheduledTick(pos, this)) {
+            level.scheduleTick(pos, this, tickRate);
+        }
+    }
+
+    /**
+     * NeoForge only calls {@code entityInside} from {@code Entity.move}, and a
+     * zero delta returns before that. A no-AI mob standing in the spring never
+     * moves, so bathing and breathing are applied from the viscosity tick.
+     */
+    private void touchLivingEntities(ServerLevel level, BlockPos pos) {
+        BlockState state = level.getBlockState(pos);
+        if (!state.is(this)) {
+            return;
+        }
+        for (LivingEntity entity : level.getEntitiesOfClass(
+                LivingEntity.class, new AABB(pos))) {
+            if (web) {
+                entity.makeStuckInBlock(state, WEB_STUCK);
+            }
+            contact.apply(this, level, entity);
+        }
     }
 
     private int tryToFlowVerticallyInto(Level level, BlockPos pos, int amount) {

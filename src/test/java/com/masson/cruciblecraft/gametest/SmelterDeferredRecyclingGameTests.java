@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader;
@@ -28,7 +29,6 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class SmelterDeferredRecyclingGameTests {
     public static final String NAMESPACE =
             "cruciblecraft_machines";
-    public static final int FAMILY_COUNT = 1817;
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "smelter/deferred_recycling/";
     private static final int SMELTER_OUTPUT_TANK =
@@ -47,23 +47,27 @@ public final class SmelterDeferredRecyclingGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void smelterDeferredFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = publishedIds(ModRecipeMaps.SMELTER);
+        int expected = PublicationPolicyCounts.relationCountWithPrefix(
+                helper, RECIPE_PREFIX);
         helper.assertTrue(
-                published.size() == FAMILY_COUNT,
+                published.size() == expected,
                 "Smelter deferred-recycling published "
                         + published.size()
-                        + " != "
-                        + FAMILY_COUNT);
+                        + " != policy relation_count "
+                        + expected);
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
     public static void smelterDeferredGroupsPublished(GameTestHelper helper) {
         Set<String> materials = materials(ModRecipeMaps.SMELTER);
+        int expectedGroups = PublicationPolicyCounts.groupCount(helper, RECIPE_PREFIX);
         helper.assertTrue(
-                materials.size() == 81,
+                materials.size() == expectedGroups,
                 "Smelter deferred-recycling material groups "
                         + materials.size()
-                        + " != 81");
+                        + " != policy groups "
+                        + expectedGroups);
         for (String material : materials) {
             ResourceLocation group = ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "smelter/deferred_recycling/" + material);
@@ -112,7 +116,10 @@ public final class SmelterDeferredRecyclingGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void smelterDeferredStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = publishedIds(ModRecipeMaps.SMELTER);
-        helper.assertTrue(first.size() == FAMILY_COUNT, "ids missing");
+        helper.assertTrue(
+                first.size() == PublicationPolicyCounts.relationCountWithPrefix(
+                        helper, RECIPE_PREFIX),
+                "ids missing");
         helper.assertTrue(
                 publishedIds(ModRecipeMaps.SMELTER).equals(first),
                 "stable ids drifted");

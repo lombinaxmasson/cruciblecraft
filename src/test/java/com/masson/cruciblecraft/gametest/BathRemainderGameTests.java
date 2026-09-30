@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -48,10 +49,6 @@ public final class BathRemainderGameTests {
     public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
-    private static final int BATH_MTE_LOCKED_RELATIONS = 1517;
-    private static final int LOCKED_RELATIONS = 13708;
-    private static final int EXACT_RELATIONS = 189;
-    private static final int EXACT_MULTI_RELATIONS = 13519;
     private static final int FLUID_SUPPORT_RECIPES = 10;
     private static final ResourceLocation BATH_MTE_GROUP =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "bath/mte");
@@ -62,31 +59,48 @@ public final class BathRemainderGameTests {
 
     private BathRemainderGameTests() {}
 
+    private static int remainderRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper, EXACT_GROUP, EXACT_MULTI_GROUP);
+    }
+
+    private static int exactRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, EXACT_GROUP);
+    }
+
+    private static int exactMultiRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, EXACT_MULTI_GROUP);
+    }
+
+    private static int bathMteRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCount(helper, BATH_MTE_GROUP);
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void lockedCounts(GameTestHelper helper) {
+        int variants = BathRemainderBlockObjectCatalog.variants().size();
         helper.assertTrue(
-                BathRemainderBlockObjectCatalog.VARIANT_COUNT == 283
-                        && BathRemainderBlockObjectCatalog.variants().size() == 283,
-                "bath/remainder block-object catalog drifted from 283");
+                variants == BathRemainderBlockObjectCatalog.VARIANT_COUNT,
+                "bath/remainder block-object catalog drifted from its variant list");
         helper.assertTrue(
                 BathRemainderFluidCatalog.FLUID_COUNT == 3
                         && BathRemainderFluidCatalog.fluids().size() == 3,
                 "bath/remainder Bath fluid overlay drifted from 3");
         helper.assertTrue(
-                ModItems.bathRemainderBlockObjectItemsById().size() == 283,
+                ModItems.bathRemainderBlockObjectItemsById().size() == variants,
                 "bath/remainder block-object items drifted: "
                         + ModItems.bathRemainderBlockObjectItemsById().size());
         helper.assertTrue(
-                bathRemainderStableIds().size() == LOCKED_RELATIONS,
+                bathRemainderStableIds().size() == remainderRows(helper),
                 "bath/remainder Bath compact ids drifted from 13708: " + bathRemainderStableIds().size());
         RecipeMap.RecipeFamily exactFamily = bathFamily(EXACT_GROUP);
         RecipeMap.RecipeFamily multiFamily = bathFamily(EXACT_MULTI_GROUP);
         helper.assertTrue(
-                exactFamily != null && exactFamily.logicalRecipeCount() == EXACT_RELATIONS,
+                exactFamily != null && exactFamily.logicalRecipeCount() == exactRows(helper),
                 "bath/remainder exact compact family is not the 189 locked relations: "
                         + (exactFamily == null ? "missing" : exactFamily.logicalRecipeCount()));
         helper.assertTrue(
-                multiFamily != null && multiFamily.logicalRecipeCount() == EXACT_MULTI_RELATIONS,
+                multiFamily != null && multiFamily.logicalRecipeCount() == exactMultiRows(helper),
                 "bath/remainder exact_multi compact family is not the 13519 locked relations: "
                         + (multiFamily == null ? "missing" : multiFamily.logicalRecipeCount()));
         helper.succeed();
@@ -110,14 +124,14 @@ public final class BathRemainderGameTests {
                 .filter(id -> id.getPath().startsWith("bath/mte/"))
                 .forEach(bathMte::add);
         helper.assertTrue(
-                bathMte.size() == BATH_MTE_LOCKED_RELATIONS,
+                bathMte.size() == bathMteRows(helper),
                 "bath/mte Bath MTE compact ids drifted after bath/remainder: " + bathMte.size());
         RecipeMap.RecipeFamily family = ModRecipeMaps.BATH
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.BATH.id(), BATH_MTE_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == BATH_MTE_LOCKED_RELATIONS,
+                family != null && family.logicalRecipeCount() == bathMteRows(helper),
                 "bath/mte Bath MTE compact family is not the 1517 locked relations: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.succeed();
@@ -176,7 +190,8 @@ public final class BathRemainderGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void b1SupportReachable(GameTestHelper helper) {
         helper.assertTrue(
-                ModItems.bathRemainderBlockObjectItemsById().size() == 283,
+                ModItems.bathRemainderBlockObjectItemsById().size()
+                        == BathRemainderBlockObjectCatalog.variants().size(),
                 "bath/remainder B1 identities are not registered");
         long gtSupport = ModRecipeMaps.ALL.stream()
                 .flatMap(map -> map.entries().stream())
@@ -202,7 +217,7 @@ public final class BathRemainderGameTests {
     public static void reloadRootsStable(GameTestHelper helper) {
         Set<ResourceLocation> first = bathRemainderStableIds();
         helper.assertTrue(
-                first.size() == LOCKED_RELATIONS,
+                first.size() == remainderRows(helper),
                 "bath/remainder locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily exactFamily = bathFamily(EXACT_GROUP);
         RecipeMap.RecipeFamily multiFamily = bathFamily(EXACT_MULTI_GROUP);
@@ -211,8 +226,8 @@ public final class BathRemainderGameTests {
                         && multiFamily != null
                         && exactFamily.epoch() == ModRecipeMaps.BATH.runtimeEpoch()
                         && multiFamily.epoch() == ModRecipeMaps.BATH.runtimeEpoch()
-                        && exactFamily.logicalRecipeCount() == EXACT_RELATIONS
-                        && multiFamily.logicalRecipeCount() == EXACT_MULTI_RELATIONS,
+                        && exactFamily.logicalRecipeCount() == exactRows(helper)
+                        && multiFamily.logicalRecipeCount() == exactMultiRows(helper),
                 "bath/remainder compact family epochs/counts drifted on the live map");
         Set<ResourceLocation> union = new TreeSet<>(exactFamily.recipeIds());
         union.addAll(multiFamily.recipeIds());

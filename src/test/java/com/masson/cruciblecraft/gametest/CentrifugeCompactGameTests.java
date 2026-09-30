@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyDefinition;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -51,7 +52,7 @@ public final class CentrifugeCompactGameTests {
     public static void compactFamiliesPublished(GameTestHelper helper) {
         Set<ResourceLocation> published = centrifugeCompactStableIds();
         helper.assertTrue(
-                published.size() == 32,
+                published.size() == centrifugeRows(helper),
                 "Centrifuge is missing centrifuge/compact compact ids: " + published.size());
         RecipeMap.RecipeFamily singletonFamily = ModRecipeMaps.CENTRIFUGE
                 .family(CompactRecipeFamilyProvider.familyId(
@@ -65,13 +66,15 @@ public final class CentrifugeCompactGameTests {
                 .orElse(null);
         helper.assertTrue(
                 singletonFamily != null
-                        && singletonFamily.logicalRecipeCount() == 19,
+                        && singletonFamily.logicalRecipeCount() == PublicationPolicyCounts.relationCount(
+                                helper, CompactPublicationGroups.CENTRIFUGE_SINGLETON),
                 "Centrifuge singleton compact family is not the 19 locked relations: "
                         + (singletonFamily == null
                                 ? "missing"
                                 : singletonFamily.logicalRecipeCount()));
         helper.assertTrue(
-                multiFamily != null && multiFamily.logicalRecipeCount() == 13,
+                multiFamily != null && multiFamily.logicalRecipeCount() == PublicationPolicyCounts.relationCount(
+                                helper, CompactPublicationGroups.CENTRIFUGE_MULTI),
                 "Centrifuge multi compact family is not the 13 locked relations: "
                         + (multiFamily == null
                                 ? "missing"
@@ -225,7 +228,7 @@ public final class CentrifugeCompactGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void centrifugeCompactStableIdsSurviveReload(GameTestHelper helper) {
         Set<ResourceLocation> first = centrifugeCompactStableIds();
-        helper.assertTrue(first.size() == 32, "centrifuge/compact locked ids missing before re-enumeration");
+        helper.assertTrue(first.size() == centrifugeRows(helper), "centrifuge/compact locked ids missing before re-enumeration");
         RecipeMap.RecipeFamily singletonFamily = ModRecipeMaps.CENTRIFUGE
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.CENTRIFUGE.id(),
@@ -238,9 +241,11 @@ public final class CentrifugeCompactGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 singletonFamily.epoch() == ModRecipeMaps.CENTRIFUGE.runtimeEpoch()
-                        && singletonFamily.logicalRecipeCount() == 19
+                        && singletonFamily.logicalRecipeCount() == PublicationPolicyCounts.relationCount(
+                                helper, CompactPublicationGroups.CENTRIFUGE_SINGLETON)
                         && multiFamily.epoch() == ModRecipeMaps.CENTRIFUGE.runtimeEpoch()
-                        && multiFamily.logicalRecipeCount() == 13,
+                        && multiFamily.logicalRecipeCount() == PublicationPolicyCounts.relationCount(
+                                helper, CompactPublicationGroups.CENTRIFUGE_MULTI),
                 "centrifuge/compact compact family epochs/counts drifted on the live map");
         Set<ResourceLocation> union = new TreeSet<>(singletonFamily.recipeIds());
         union.addAll(multiFamily.recipeIds());
@@ -303,6 +308,13 @@ public final class CentrifugeCompactGameTests {
                 ModProcessingMachines.CENTRIFUGE);
         fillKu(helper, tungstensteel);
         helper.succeed();
+    }
+
+    private static int centrifugeRows(GameTestHelper helper) {
+        return PublicationPolicyCounts.relationCountSum(
+                helper,
+                CompactPublicationGroups.CENTRIFUGE_SINGLETON,
+                CompactPublicationGroups.CENTRIFUGE_MULTI);
     }
 
     private static Set<ResourceLocation> centrifugeCompactStableIds() {

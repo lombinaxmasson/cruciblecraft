@@ -4281,6 +4281,32 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/active/GameTest数量断言派生化详细计划.md",
+        "src/test/java/com/masson/cruciblecraft/gametest/**",
+        "src/test/java/com/masson/cruciblecraft/scale/PublicationReloadBudgetGameTests.java",
+        "src/main/resources/data/cruciblecraft/*_publication_baseline.json",
+        "tools/waves/tooling/gametest-derived-counts/**",
+        "tools/tests/test_policy_delta.py",
+        "tools/python_test_policy.json",
+        "tools/verification_profiles.json",
+        "tools/waves/portfolio/gt6-full-coverage-reassessment/coverage.json",
+        "docs/current/gt6-full-coverage.md",
+        "tools/waves/machines/hammer-squeezer-laser/build_squeezer_dump.py"
+      ],
+      "path": "tools/capabilities/tooling/gametest-derived-counts/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification"
+      ],
+      "slug": "tooling/gametest-derived-counts",
+      "survival_access": "not_applicable",
+      "title": "GameTest derived counts",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/active/仓库瘦身详细计划.md",
         "tools/capabilities/tooling/repo-slimming/**",
         "tools/repo_slimming/**",
@@ -4620,7 +4646,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 137,
+  "capability_count": 138,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6108,6 +6134,9 @@
       "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes"
     ],
+    "tooling/gametest-derived-counts": [
+      "tooling/gametest-derived-counts"
+    ],
     "tooling/repo-slimming": [
       "tooling/repo-slimming"
     ],
@@ -6287,11 +6316,12 @@
       "portfolio/test-authoring-workflow",
       "runtime/compact-family-jar-bundles",
       "runtime/workbench-tool-runtime-recipes",
+      "tooling/gametest-derived-counts",
       "tooling/repo-slimming",
       "tooling/verification-decoupling"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "tooling/gametest-derived-counts"
 }

@@ -73,7 +73,7 @@ public final class DisplayCpuGameTests {
         helper.assertTrue(
                 assembled.is(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER.get())
                         && assembled.getCount() == 1,
-                "Display CPU logic recipe missing");
+                "Display CPU logic recipe missing: " + assembled);
         helper.succeed();
     }
 
