@@ -32,10 +32,9 @@ OPENING_COMPACT_EAGER = 14
 OPENING_CONCRETE_EAGER = 16966
 OPENING_EAGER = 16980
 OPENING_LAZY = 50652
-# Covers live lazy plus the next three recipe cards (415,901 rows).
-# The full missing-recipe backlog (~458,000) would pass this; raise it
-# on a later card. Not a budget for all 720,841 GT6 source rows.
-LAZY_LOGICAL_HARD_CEILING = 500_000
+# recipe/gt6-recipe-capacity-expansion measured 616572 lazy rows.
+# Another card is required above that load.
+LAZY_LOGICAL_HARD_CEILING = 616_572
 OPENING_CACHE = 876
 OPENING_AUTHORED = 6269
 OPENING_SYNC = 5021175

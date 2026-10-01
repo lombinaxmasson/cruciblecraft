@@ -4,7 +4,10 @@ import com.masson.cruciblecraft.content.menu.ProcessingMachineMenu;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.network.CompactFamilyRequestPayload;
+import com.masson.cruciblecraft.recipe.gt.CompactFamilyOnDemand;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -19,6 +22,15 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
     protected ProcessingMachineScreen(M menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         inventoryLabelY = -10_000;
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.hasSingleplayerServer()) {
+            return;
+        }
+        var targetMap = menu.machineSpec().requireRecipeMap().id();
+        if (CompactFamilyOnDemand.beginRequest(targetMap)) {
+            net.neoforged.neoforge.network.PacketDistributor.sendToServer(
+                    new CompactFamilyRequestPayload(targetMap));
+        }
     }
 
     protected abstract ResourceLocation texture();

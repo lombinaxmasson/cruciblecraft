@@ -1,17 +1,17 @@
 # GT6 配方扩容详细计划
 
 > 计划 slug：`recipe/gt6-recipe-capacity-expansion`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：关闭。lazy 硬顶 616,572。同步硬顶仍是 64 MiB。本文件关闭后位于 `card-plans/closed/`。
 > 正式名称：GT6 配方扩容
 > 性质：给后面的配方卡腾地方。在约 60 万逻辑行上做同一次冷启动实测，并在不过同步硬顶的前提下抬高 lazy 上限。本卡不导入 GT6 配方。
 > 上一张容量门：[GT6 批量配方容量门](../closed/GT6批量配方容量门详细计划.md)（`recipe/gt6-bulk-capacity`，lazy 硬顶 500,000，只包当时后三张配方卡）。
-> 改 load 硬顶：按 [能力交付流程 §8](../../../current/capability-delivery-workflow.md) 不走 prep 实施分支。签发不等于开工。
+> 改 load 硬顶：按 [能力交付流程 §8](../../../current/capability-delivery-workflow.md) 不走 prep 实施分支。2026-09-30 从 prep 晋升，直接占 unique-active。
 
 ```text
-lane                         = prep
+lane                         = active
 capability_slug              = recipe/gt6-recipe-capacity-expansion
-unique_active_wave           = null
-prep_owned_paths             = 本文件
+unique_active_wave           = recipe/gt6-recipe-capacity-expansion
+prep_owned_paths             = 无。本卡已晋升，不走 prep 实施分支
 landing_owned_paths          = ModProcessingMachines.java（lazy 逻辑行硬顶；不抬同步字节硬顶）；
                                tools/recipe_bulk/ordinary_wave.py；
                                tools/recipe_load_load_budget_policy.json；
@@ -102,7 +102,7 @@ python tools/verify.py integration --profile capability-runtime
 
 ## 6. 关闭清单
 
-- [ ] 当前 live 发布的冷启动基线（惰性行、重载、真实同步字节、查找 p95）
-- [ ] 约 60 万逻辑行的同一次冷启动：重载 ≤ 15 秒，同步 ≤ 64 MiB，查找 p95 在现行预算内
-- [ ] 新 lazy 硬顶写入 Java、`ordinary_wave.py`、负载策略与工作流 §6，且不低于这次实测负载
-- [ ] 同步硬顶仍是 64 MiB
+- [x] 当前 live 发布的冷启动基线（惰性行、重载、真实同步字节、查找 p95）
+- [x] 约 60 万逻辑行的同一次冷启动：重载 ≤ 15 秒，同步 ≤ 64 MiB，查找 p95 在现行预算内。GameTest 616,572 行：重载 11,169 ms，登录包 21,888,480 字节，查找 p95 29,878 ns。专用服同负载重载 10,838 ms，登录包 21,888,403 字节。专用客户端登录包 21,888,550 字节，按需取回 16,174 个家族、558,388 逻辑行
+- [x] 新 lazy 硬顶写入 Java、`ordinary_wave.py`、负载策略与工作流 §6，且不低于这次实测负载。写出 616,572
+- [x] 同步硬顶仍是 64 MiB

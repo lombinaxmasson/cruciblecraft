@@ -67,7 +67,7 @@ class BulkCapacitySyntheticLoadHarness {
         List<Map<String, Object>> rows = new ArrayList<>();
         for (Shape shape : Shape.values()) {
             for (int tier : TIERS) {
-                rows.add(measure(shape, tier));
+                rows.add(measure(shape, tier, registries));
             }
         }
         Map<String, Object> document = new LinkedHashMap<>();
@@ -92,7 +92,36 @@ class BulkCapacitySyntheticLoadHarness {
         }
     }
 
-    private static Map<String, Object> measure(Shape shape, int logicalRows) {
+    /** Real stream-codec bytes for synthetic extruder matrix rows. Not registered. */
+    public static long encodeExtruderRows(RegistryAccess access, int logicalRows) {
+        if (logicalRows <= 0) {
+            return 0L;
+        }
+        int ceiling = CompactRecipeWireLimits.DECODE_RELATIONS_CEILING;
+        int holders = (logicalRows + ceiling - 1) / ceiling;
+        CompactGTRecipeFamilySerializer serializer = new CompactGTRecipeFamilySerializer();
+        long encodedBytes = 0L;
+        for (int holder = 0; holder < holders; holder++) {
+            int start = holder * ceiling;
+            int count = Math.min(ceiling, logicalRows - start);
+            CompactGTRecipeFamilyEntry entry = new CompactGTRecipeFamilyEntry(
+                    Shape.EXTRUDER.definition(holder, start, count));
+            RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(
+                    Unpooled.buffer(), access, ConnectionType.NEOFORGE);
+            try {
+                serializer.streamCodec().encode(buffer, entry);
+                encodedBytes += buffer.readableBytes();
+            } finally {
+                buffer.release();
+            }
+        }
+        return encodedBytes;
+    }
+
+    private static Map<String, Object> measure(
+            Shape shape,
+            int logicalRows,
+            RegistryAccess access) {
         int ceiling = CompactRecipeWireLimits.DECODE_RELATIONS_CEILING;
         int holders = (logicalRows + ceiling - 1) / ceiling;
         CompactGTRecipeFamilySerializer serializer = new CompactGTRecipeFamilySerializer();
@@ -107,7 +136,7 @@ class BulkCapacitySyntheticLoadHarness {
             CompactGTRecipeFamilyDefinition definition = shape.definition(holder, start, count);
             CompactGTRecipeFamilyEntry entry = new CompactGTRecipeFamilyEntry(definition);
             RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(
-                    Unpooled.buffer(), registries, ConnectionType.NEOFORGE);
+                    Unpooled.buffer(), access, ConnectionType.NEOFORGE);
             long started = System.nanoTime();
             serializer.streamCodec().encode(buffer, entry);
             encodeNanos += System.nanoTime() - started;

@@ -144,13 +144,26 @@ public final class RecipeMap {
      */
     static boolean wouldBeUnindexed(GTRecipe recipe) {
         Objects.requireNonNull(recipe, "recipe");
+        return wouldBeUnindexed(
+                recipe.itemInputs(),
+                recipe.itemInputActions(),
+                recipe.fluidInputsView());
+    }
+
+    static boolean wouldBeUnindexed(
+            List<Ingredient> itemInputs,
+            List<ItemInputAction> itemInputActions,
+            List<net.neoforged.neoforge.fluids.FluidStack> fluidInputs) {
+        Objects.requireNonNull(itemInputs, "itemInputs");
+        Objects.requireNonNull(itemInputActions, "itemInputActions");
+        Objects.requireNonNull(fluidInputs, "fluidInputs");
         boolean indexed = false;
         boolean requiresFallbackScan = false;
         boolean hasFallbackItems = false;
         boolean hasFallbackComponents = false;
-        for (int inputIndex = 0; inputIndex < recipe.itemInputs().size(); inputIndex++) {
-            Ingredient ingredient = recipe.itemInputs().get(inputIndex);
-            boolean primary = recipe.itemInputActions().get(inputIndex).kind()
+        for (int inputIndex = 0; inputIndex < itemInputs.size(); inputIndex++) {
+            Ingredient ingredient = itemInputs.get(inputIndex);
+            boolean primary = itemInputActions.get(inputIndex).kind()
                     == ItemInputAction.Kind.CONSUME;
             if (ingredient.isSimple()) {
                 for (ItemStack stack : ingredient.getItems()) {
@@ -176,7 +189,7 @@ public final class RecipeMap {
                 requiresFallbackScan = true;
             }
         }
-        for (FluidStack stack : recipe.fluidInputsView()) {
+        for (FluidStack stack : fluidInputs) {
             if (!stack.isEmpty()) {
                 indexed = true;
             }

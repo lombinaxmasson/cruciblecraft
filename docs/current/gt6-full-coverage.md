@@ -23,7 +23,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 6619 demand pairs | openable 220，gated_unresolved 1207，ungated 规模 3173（规模，非待办） |
-| Capability | 138 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 130；survival_access `blocked` 3，`not_applicable` 14，`partial` 29，`unreviewed` 31，`unset` 61 |
+| Capability | 139 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 131；survival_access `blocked` 3，`not_applicable` 15，`partial` 29，`unreviewed` 31，`unset` 61 |
 | Blocker | 62 | `open` 26，`out_of_scope` 6，`partial` 2，`resolved` 23，`superseded` 5 |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
@@ -571,7 +571,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3173
 
-## 12. Capability（138）
+## 12. Capability（139）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -693,6 +693,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-extruder-remainder` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-prefix-regular-bulk` | runtime_ready | accepted | unreviewed |
+| `recipe/gt6-recipe-capacity-expansion` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-steamcracking-bulk` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
 | `registry/gt6-form-open-followup` | runtime_ready | accepted | unreviewed |

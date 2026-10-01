@@ -22,14 +22,13 @@
 - `portfolio/gt6-machine-multiblock` — [GT6 机器与多方块总计划](../history/card-plans/prep/GT6机器与多方块总计划.md)
 - `presentation/gt6-item-tooltip` — [GT6 物品说明对齐详细计划](../history/card-plans/prep/GT6物品说明对齐详细计划.md)
 - `presentation/jade-player-surface` — [Jade 玩家表面整顿详细计划](../history/card-plans/prep/Jade玩家表面整顿详细计划.md)
-- `recipe/gt6-recipe-capacity-expansion` — [GT6 配方扩容详细计划](../history/card-plans/prep/GT6配方扩容详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 
-## runtime_ready accepted（130）
+## runtime_ready accepted（131）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -145,6 +144,7 @@
 - `recipe/gt6-extruder-bulk` — GT6 Extruder Recipe Bulk — [GT6 挤压机配方批量详细计划](../history/card-plans/closed/GT6挤压机配方批量详细计划.md)
 - `recipe/gt6-extruder-remainder` — GT6 Extruder Recipe Remainder — [GT6 挤压机配方补发详细计划](../history/card-plans/closed/GT6挤压机配方补发详细计划.md)
 - `recipe/gt6-prefix-regular-bulk` — GT6 Prefix Regular Recipe Bulk — [GT6 前缀规则类配方批量详细计划](../history/card-plans/closed/GT6前缀规则类配方批量详细计划.md)
+- `recipe/gt6-recipe-capacity-expansion` — GT6 Recipe Capacity Expansion — [GT6 配方扩容详细计划](../history/card-plans/closed/GT6配方扩容详细计划.md)
 - `recipe/gt6-steamcracking-bulk` — GT6 Steam Cracking Recipe Bulk — [GT6 蒸汽裂化配方批量详细计划](../history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/gt6-form-open-followup` — GT6 Material Form Open Follow-up — [GT6 材料形态开门后续详细计划](../history/card-plans/closed/GT6材料形态开门后续详细计划.md)
