@@ -15,16 +15,16 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39033（5.4%）；缺身份 89907（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 1，`bounded_subset` 40，`runtime_accepted` 33，`full_replay` 11 |
-| 多方块控制器 | 30 canonical kinds | `runtime_paused` 2，`runtime_accepted` 28 |
+| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`bounded_subset` 40，`runtime_accepted` 34，`full_replay` 11 |
+| 多方块控制器 | 30 canonical kinds | `runtime_paused` 1，`runtime_accepted` 29 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 6619 demand pairs | openable 220，gated_unresolved 1207，ungated 规模 3173（规模，非待办） |
-| Capability | 138 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 126，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 14，`partial` 29，`unreviewed` 31，`unset` 61 |
-| Blocker | 62 | `open` 27，`out_of_scope` 6，`partial` 2，`resolved` 22，`superseded` 5 |
+| Capability | 139 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 131；survival_access `blocked` 3，`not_applicable` 15，`partial` 29，`unreviewed` 31，`unset` 61 |
+| Blocker | 62 | `open` 26，`out_of_scope` 6，`partial` 2，`resolved` 23，`superseded` 5 |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
@@ -289,7 +289,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachineElectric` | RM.Bumblelyzer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:bumblelyzer | `runtime_only` |
 | `MultiTileEntityBasicMachineElectric` | RM.Plantalyzer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:plantalyzer | `runtime_only` |
 | `MultiTileEntityBasicMachineElectric` | RM.Printer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:printer | `runtime_only` |
-| `MultiTileEntityCoolerElectric` | — | EU→CU | in_scope | 5 | 5 | energy/cooler（runtime_ready/paused） | `runtime_paused` |
 | `MultiTileEntityBasicMachine` | RM.Autoclave | TU→NONE | in_scope | 1 | 1 | cruciblecraft:autoclave | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Bath | TU→NONE | in_scope | 1 | 1 | cruciblecraft:bath | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Centrifuge | RU→NONE | in_scope | 4 | 4 | cruciblecraft:centrifuge | `bounded_subset` |
@@ -334,6 +333,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBatteryBox` | — | NONE→EU | in_scope | 1 | 1 | content/gt6-mte-converter-remainder-runtime（runtime_ready/accepted）, energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBatteryBoxLarge` | — | NONE→EU | in_scope | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBoilerTank` | — | HU→STEAM | in_scope | 26 | 26 | energy/converter-catalog（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityCoolerElectric` | — | EU→CU | in_scope | 5 | 5 | energy/cooler（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityCrystalCharger` | — | NONE→LU | deferred_with_reason | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityCrystalChargerLarge` | — | NONE→LU | deferred_with_reason | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityDynamoElectric` | — | RU→EU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted） | `runtime_accepted` |
@@ -382,7 +382,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | GT6 控制器 | 分母 | CC 证据 | 交付深度 |
 | --- | --- | --- | --- |
 | `fermenter` | deferred_with_reason | machines/large-fermenter（frozen/paused，survival=partial） | `runtime_paused` |
-| `large_boiler` | in_scope | machines/large-boiler（runtime_ready/paused，survival=partial） | `runtime_paused` |
 | `autoclave` | deferred_with_reason | machines/large-autoclave（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `bath` | deferred_with_reason | machines/large-bathing-vat（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `bedrock_drill` | out_of_scope | machines/bedrock-drill（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -396,6 +395,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `electrolyzer` | deferred_with_reason | machines/large-electrolyzer（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `fusion_reactor` | out_of_scope | energy/fusion-quantum（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `implosion_compressor` | deferred_with_reason | machines/implosion-compressor（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `large_boiler` | in_scope | machines/large-boiler（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_dynamo` | deferred_with_reason | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_heat_exchanger` | deferred_with_reason | energy/large-heat-exchanger（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `large_turbine_gas` | deferred_with_reason | energy/large-gas-turbine（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -571,7 +571,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3173
 
-## 12. Capability（138）
+## 12. Capability（139）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -623,8 +623,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `content/technological-parts-foundation` | runtime_ready | accepted | — |
 | `energy/batteries` | runtime_ready | accepted | unreviewed |
 | `energy/converter-catalog` | runtime_ready | accepted | unreviewed |
-| `energy/cooler` | runtime_ready | paused | unreviewed |
-| `energy/flux-converters` | runtime_ready | paused | unreviewed |
+| `energy/cooler` | runtime_ready | accepted | unreviewed |
+| `energy/flux-converters` | runtime_ready | accepted | unreviewed |
 | `energy/fusion-quantum` | runtime_ready | accepted | unreviewed |
 | `energy/gt6-laser-magnet-zpm-converters` | runtime_ready | accepted | partial |
 | `energy/gt6-remainder-devices` | runtime_ready | accepted | partial |
@@ -660,7 +660,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `machines/laminator` | runtime_ready | accepted | — |
 | `machines/large-autoclave` | runtime_ready | accepted | partial |
 | `machines/large-bathing-vat` | runtime_ready | accepted | partial |
-| `machines/large-boiler` | runtime_ready | paused | partial |
+| `machines/large-boiler` | runtime_ready | accepted | partial |
 | `machines/large-centrifuge` | runtime_ready | accepted | partial |
 | `machines/large-coagulator` | runtime_ready | accepted | blocked |
 | `machines/large-crucible` | runtime_ready | accepted | partial |
@@ -693,6 +693,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-extruder-remainder` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-prefix-regular-bulk` | runtime_ready | accepted | unreviewed |
+| `recipe/gt6-recipe-capacity-expansion` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-steamcracking-bulk` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
 | `registry/gt6-form-open-followup` | runtime_ready | accepted | unreviewed |
@@ -709,17 +710,16 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `tooling/verification-decoupling` | runtime_ready | accepted | not_applicable |
 | `worldgen/gt-crops` | runtime_ready | accepted | — |
 | `worldgen/gt-dungeon` | frozen | paused | — |
-| `worldgen/gt-small-ores` | runtime_ready | paused | partial |
+| `worldgen/gt-small-ores` | runtime_ready | accepted | partial |
 | `worldgen/gt-stone-layer-rocks` | runtime_ready | accepted | partial |
 | `worldgen/gt-surface-rocks` | runtime_ready | accepted | partial |
 | `worldgen/gt-trees` | runtime_ready | accepted | — |
 
-## 13. 未关闭 blocker（29）
+## 13. 未关闭 blocker（28）
 
 | blocker | 状态 | 排期桶 | 规模 | 根因 | 标题 |
 | --- | --- | --- | --- | --- | --- |
 | `architecture/building-block-identity` | open | audit_first | n/a | unclaimed_domain | 建筑方块 identity/behavior 无 owner |
-| `energy/cooler` | open | audit_first | n/a | missing_runtime | 电力/通量冷却器 |
 | `energy/reactor-backpack-radioactivity` | open | audit_first | n/a | missing_form | 无 CC 材料放射性等级表 |
 | `energy/reactor-world-explode` | open | audit_first | 1 behaviors | missing_runtime | 反应堆世界爆炸仍是注释掉的 TODO |
 | `identity/eu-blocked-gauges` | partial | audit_first | n/a | unmapped_identity | EU 导线缺线规（部分已落地） |

@@ -310,8 +310,14 @@ public final class EnergyFluxConvertersGameTests {
                 helper.getLevel()
                         .getRecipeManager()
                         .byKey(id("flux_magnet_lead"))
-                        .isEmpty(),
-                "Flux magnet recipe must stay blocked until electromagnets exist");
+                        .isPresent(),
+                "Missing lead flux magnet recipe");
+        helper.assertTrue(
+                helper.getLevel()
+                        .getRecipeManager()
+                        .byKey(id("flux_laser_lead"))
+                        .isPresent(),
+                "Missing lead flux laser recipe");
         var rod = MaterialLookup.stack("lead", MaterialPrefixes.LONG_ROD);
         var gear = MaterialLookup.stack("lead", MaterialPrefixes.GEAR);
         var heater = new ItemStack(
@@ -351,6 +357,49 @@ public final class EnergyFluxConvertersGameTests {
                                 .get(id("flux_engine_lead"))
                                 .get()),
                 "Lead flux engine wrap recipe missing");
+        var electromagnet = new ItemStack(
+                ModItems.converterItemsById()
+                        .get(id("steel_galvanized_electromagnet"))
+                        .get());
+        ItemStack magnetAssembled = craft(helper, 3, 3, List.of(
+                rod.copy(),
+                rod.copy(),
+                rod.copy(),
+                rod.copy(),
+                electromagnet,
+                rod.copy(),
+                rod.copy(),
+                rod.copy(),
+                rod.copy()));
+        helper.assertTrue(
+                magnetAssembled.is(
+                        ModItems.fluxItemsById()
+                                .get(id("flux_magnet_lead"))
+                                .get())
+                        && magnetAssembled.getCount() == 1,
+                "Lead flux magnet wrap recipe missing");
+        var plate = MaterialLookup.stack("lead", MaterialPrefixes.PLATE);
+        var laser = new ItemStack(
+                ModItems.converterItemsById()
+                        .get(id("steel_galvanized_laser_electric"))
+                        .get());
+        ItemStack laserAssembled = craft(helper, 3, 3, List.of(
+                plate,
+                plate.copy(),
+                plate.copy(),
+                plate.copy(),
+                laser,
+                plate.copy(),
+                plate.copy(),
+                plate.copy(),
+                plate.copy()));
+        helper.assertTrue(
+                laserAssembled.is(
+                        ModItems.fluxItemsById()
+                                .get(id("flux_laser_lead"))
+                                .get())
+                        && laserAssembled.getCount() == 1,
+                "Lead flux laser wrap recipe missing");
         helper.succeed();
     }
 

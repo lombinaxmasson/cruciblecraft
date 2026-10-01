@@ -3,10 +3,11 @@
   "slug": "worldgen/gt-small-ores",
   "title": "GT Small Ores",
   "maturity": "runtime_ready",
-  "workflow": "paused",
+  "workflow": "accepted",
   "survival_access": "partial",
   "owned_paths": [
-    "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
+    "docs/history/card-plans/active/GT6小矿世界生成详细计划.md",
+    "docs/history/card-plans/closed/GT6小矿世界生成详细计划.md",
     "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
     "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
@@ -22,18 +23,18 @@
     "tools/waves/worldgen/gt-small-ores/**",
     "tools/gt_small_ores.py",
     "tools/build_gt_small_ores.py",
-        "tools/tests/test_gt_small_ores.py",
-        "docs/current/player-guide.md",
-        "src/main/resources/assets/cruciblecraft/gt6_gt_small_ores_art_manifest.json",
-        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/ore_small.png",
-        "src/main/resources/assets/cruciblecraft/models/block/material_small_ore.json",
-        "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/**",
-        "src/main/resources/assets/cruciblecraft/blockstates/gt_small_ore.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_stone.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_deepslate.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_netherrack.json",
-        "src/main/resources/assets/cruciblecraft/models/block/gt_small_bedrock_ore.json"
-      ],
+    "tools/tests/test_gt_small_ores.py",
+    "docs/current/player-guide.md",
+    "src/main/resources/assets/cruciblecraft/gt6_gt_small_ores_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/ore_small.png",
+    "src/main/resources/assets/cruciblecraft/models/block/material_small_ore.json",
+    "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/**",
+    "src/main/resources/assets/cruciblecraft/blockstates/gt_small_ore.json",
+    "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_stone.json",
+    "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_deepslate.json",
+    "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_netherrack.json",
+    "src/main/resources/assets/cruciblecraft/models/block/gt_small_bedrock_ore.json"
+  ],
   "depends_on": [
     "worldgen/gt-stone-layer-rocks"
   ],
@@ -60,5 +61,5 @@
       "reason": "GT6 WorldgenOresSmall independent scatter on GEN_GT / GEN_NETHER plus WorldgenColtan. Not T20 LargeVeinFeature ellipsoids, not catalog ItemEntity scatter."
     }
   ],
-  "note": "Independent small-ore scatter after stone layers. Yielded unique-active to energy/cooler. Remaining overworld catalog large veins removed for GENERATE_STONE. Close at runtime_ready. Do not scatter catalog ItemEntity."
+  "note": "Independent small-ore scatter after stone layers. Remaining overworld catalog large veins removed for GENERATE_STONE. 2026-09-30 reopened after energy/cooler closed; the six declared GameTests passed on cruciblecraft_worldgen. Do not scatter catalog ItemEntity."
 }

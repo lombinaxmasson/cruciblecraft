@@ -1674,7 +1674,8 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/prep/冷却器详细计划.md",
+        "docs/history/card-plans/active/冷却器详细计划.md",
+        "docs/history/card-plans/closed/冷却器详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
         "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
         "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
@@ -1695,13 +1696,15 @@
       "slug": "energy/cooler",
       "survival_access": "unreviewed",
       "title": "Electric and Flux Coolers",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/prep/通量转换器详细计划.md",
+        "docs/history/card-plans/active/通量转换器详细计划.md",
+        "docs/history/card-plans/closed/通量转换器详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/flux/**",
         "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
         "src/test/java/com/masson/cruciblecraft/energy/flux/**",
@@ -1727,7 +1730,7 @@
       "slug": "energy/flux-converters",
       "survival_access": "unreviewed",
       "title": "Flux FE to GU Converters",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -2946,7 +2949,7 @@
       "slug": "machines/large-boiler",
       "survival_access": "partial",
       "title": "Large Boiler 17201-17205",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -3982,6 +3985,55 @@
     },
     {
       "depends_on": [
+        "recipe/gt6-bulk-capacity"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6配方扩容详细计划.md",
+        "docs/current/recipe-wave-workflow.md",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeLoginSync.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactFamilyOnDemand.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactAuthoredMatrix.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeMap.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeReloadCoordinator.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapClientEvents.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+        "src/main/java/com/masson/cruciblecraft/network/CompactFamilyRequestPayload.java",
+        "src/main/java/com/masson/cruciblecraft/network/CompactFamilySlicePayload.java",
+        "src/main/java/com/masson/cruciblecraft/mixin/ClientRecipePacketTimingMixin.java",
+        "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
+        "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+        "src/main/java/com/masson/cruciblecraft/client/CapacityClientReceipt.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMeasurementSources.java",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_recipe_capacity_expansion/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityExpansionGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityLiveWireGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/RecipeCapacityWireProbe.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/BulkCapacitySyntheticLoadHarness.java",
+        "tools/recipe_bulk/ordinary_wave.py",
+        "tools/recipe_load_load_budget_policy.json",
+        "tools/waves/recipe/gt6-recipe-capacity-expansion/**",
+        "tools/capabilities/recipe/gt6-recipe-capacity-expansion/**"
+      ],
+      "path": "tools/capabilities/recipe/gt6-recipe-capacity-expansion/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes",
+        "capability-runtime"
+      ],
+      "slug": "recipe/gt6-recipe-capacity-expansion",
+      "survival_access": "not_applicable",
+      "title": "GT6 Recipe Capacity Expansion",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "recipe/gt6-chemical-misc-bulk",
         "machines/gt6-basic-machine-batch"
       ],
@@ -4446,7 +4498,8 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/active/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/closed/GT6小矿世界生成详细计划.md",
         "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
@@ -4482,7 +4535,7 @@
       "slug": "worldgen/gt-small-ores",
       "survival_access": "partial",
       "title": "GT Small Ores",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -4646,7 +4699,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 138,
+  "capability_count": 139,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6015,6 +6068,7 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-chemical-misc-bulk": [
@@ -6035,6 +6089,9 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-steamcracking-bulk"
+    ],
+    "recipe/gt6-recipe-capacity-expansion": [
+      "recipe/gt6-recipe-capacity-expansion"
     ],
     "recipe/gt6-steamcracking-bulk": [
       "recipe/gt6-steamcracking-bulk"
@@ -6280,6 +6337,7 @@
       "presentation/multiblock-emi-projection",
       "presentation/multiblock-schema-preview",
       "recipe/gt6-bulk-capacity",
+      "recipe/gt6-recipe-capacity-expansion",
       "registry/catalog-modern-ids",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
@@ -6308,6 +6366,7 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk",
       "runtime/compact-family-jar-bundles"
     ],

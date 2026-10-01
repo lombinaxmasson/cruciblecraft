@@ -23,6 +23,15 @@ neoForge {
                 gameDirectory = project.file('run-wire-codec-client')
                 programArgument '--quickPlayMultiplayer'
                 programArgument '127.0.0.1:25566'
+            } else if (providers.gradleProperty('capacityMeasurement').orNull == 'client') {
+                gameDirectory = project.file('run-capacity-client')
+                jvmArgument '-Xmx4G'
+                programArgument '--quickPlayMultiplayer'
+                programArgument '127.0.0.1:25567'
+                systemProperty 'cruciblecraft.capacityClientReceipt',
+                        file('tools/waves/recipe/gt6-recipe-capacity-expansion/dedicated_client_login.json')
+                                .absolutePath
+                systemProperty 'cruciblecraft.capacityClientExit', 'true'
             } else if (providers.gradleProperty('clientSmoke').isPresent()) {
                 systemProperty 'cruciblecraft.clientSmoke',
                         providers.gradleProperty('clientSmoke').get()
@@ -50,6 +59,9 @@ neoForge {
                 gameDirectory = project.file('run-optional-compat-optional')
             } else if (providers.gradleProperty('wireCodecSmoke').orNull == 'dedicated') {
                 gameDirectory = project.file('run-wire-codec-server')
+            } else if (providers.gradleProperty('capacityMeasurement').orNull == 'server') {
+                gameDirectory = project.file('run-capacity-server')
+                jvmArgument '-Xmx4G'
             }
         }
 
@@ -133,6 +145,13 @@ neoForge {
                         providers.gradleProperty('materialStressScenario').get()
                 systemProperty 'cruciblecraft.materialStressCount',
                         providers.gradleProperty('materialStressCount').getOrElse('20000')
+            }
+            def capacityMode = providers.gradleProperty('capacityMeasurement').orNull
+            if ((providers.gradleProperty('waveRecipes').orNull
+                    == 'recipe/gt6-recipe-capacity-expansion'
+                    || capacityMode == 'server')
+                    && capacityMode != 'client') {
+                systemProperty 'cruciblecraft.capacityMeasurementRows', '600000'
             }
             if (providers.gradleProperty('scale').isPresent()) {
                 systemProperty 'cruciblecraft.scale',

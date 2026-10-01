@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-recipe-capacity-expansion",
+  "title": "GT6 Recipe Capacity Expansion",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6配方扩容详细计划.md",
+    "docs/current/recipe-wave-workflow.md",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeLoginSync.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactFamilyOnDemand.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactAuthoredMatrix.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeMap.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeReloadCoordinator.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapClientEvents.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+    "src/main/java/com/masson/cruciblecraft/network/CompactFamilyRequestPayload.java",
+    "src/main/java/com/masson/cruciblecraft/network/CompactFamilySlicePayload.java",
+    "src/main/java/com/masson/cruciblecraft/mixin/ClientRecipePacketTimingMixin.java",
+    "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
+    "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+    "src/main/java/com/masson/cruciblecraft/client/CapacityClientReceipt.java",
+    "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMeasurementSources.java",
+    "src/main/resources/data/cruciblecraft_wave_recipe_gt6_recipe_capacity_expansion/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityExpansionGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityLiveWireGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/recipe/gt/RecipeCapacityWireProbe.java",
+    "src/test/java/com/masson/cruciblecraft/recipe/gt/BulkCapacitySyntheticLoadHarness.java",
+    "tools/recipe_bulk/ordinary_wave.py",
+    "tools/recipe_load_load_budget_policy.json",
+    "tools/waves/recipe/gt6-recipe-capacity-expansion/**",
+    "tools/capabilities/recipe/gt6-recipe-capacity-expansion/**"
+  ],
+  "depends_on": [
+    "recipe/gt6-bulk-capacity"
+  ],
+  "profiles": [
+    "recipes",
+    "capability-runtime"
+  ],
+  "wave_slug": "recipe/gt6-recipe-capacity-expansion",
+  "required_test_ids": [
+    "syncBudgetStaysAt64MiB"
+  ],
+  "note": "Raises the global lazy logical ceiling to 616572 after one cold start at that load. Login sync stays at or below 64 MiB because compact families are fetched after join. Does not import GT6 recipes. The extra rows are a temporary test fixture, not player recipes."
+}

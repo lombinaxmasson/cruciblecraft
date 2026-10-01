@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.energy.flux;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,8 +45,14 @@ class FluxCatalogTest {
         assertEquals(22528, enderiumDynamo.nbtOutput());
         assertTrue(enderiumDynamo.dynamo());
         assertTrue(enderiumDynamo.fluxOutput());
-        assertFalse(leadMagnet.recipeLive());
-        assertFalse(leadLaser.recipeLive());
+        assertTrue(leadMagnet.recipeLive());
+        assertTrue(leadLaser.recipeLive());
+        assertEquals(
+                "cruciblecraft:steel_galvanized_electromagnet",
+                leadMagnet.hostId().toString());
+        assertEquals(
+                "cruciblecraft:steel_galvanized_laser_electric",
+                leadLaser.hostId().toString());
         assertEquals(
                 Set.of(
                         11001, 11002, 11003, 11004, 11005,
@@ -60,7 +65,7 @@ class FluxCatalogTest {
                         .map(FluxProfile::sourceId)
                         .collect(Collectors.toSet()));
         assertEquals(
-                20,
+                30,
                 profiles.values().stream()
                         .filter(FluxProfile::recipeLive)
                         .count());

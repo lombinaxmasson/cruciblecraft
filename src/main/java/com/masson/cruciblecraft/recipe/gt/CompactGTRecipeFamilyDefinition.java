@@ -284,6 +284,21 @@ public record CompactGTRecipeFamilyDefinition(
      * {@link GTRecipe}; callers materialize on eager publish, lookup, or
      * enumeration.
      */
+    static final ThreadLocal<Boolean> INTERN_MATRIX_ROW =
+            ThreadLocal.withInitial(() -> Boolean.FALSE);
+
+    /**
+     * Matrix expansion shares dictionary lists that were already copied and
+     * shape-checked. Callers must not mutate those lists or the stacks in them.
+     */
+    static void beginInternedMatrixRows() {
+        INTERN_MATRIX_ROW.set(Boolean.TRUE);
+    }
+
+    static void endInternedMatrixRows() {
+        INTERN_MATRIX_ROW.set(Boolean.FALSE);
+    }
+
     public record Relation(
             ResourceLocation stableId,
             List<Ingredient> itemInputs,
@@ -340,44 +355,58 @@ public record CompactGTRecipeFamilyDefinition(
         public Relation {
             Objects.requireNonNull(stableId, "stableId");
             Objects.requireNonNull(provenance, "provenance");
-            itemInputs = List.copyOf(Objects.requireNonNull(itemInputs, "itemInputs"));
-            itemInputCounts = List.copyOf(
-                    Objects.requireNonNull(itemInputCounts, "itemInputCounts"));
-            itemInputActions = List.copyOf(
-                    Objects.requireNonNull(itemInputActions, "itemInputActions"));
-            itemOutputs = Objects.requireNonNull(itemOutputs, "itemOutputs").stream()
-                    .map(ItemStack::copy)
-                    .toList();
-            fluidInputs = Objects.requireNonNull(fluidInputs, "fluidInputs").stream()
-                    .map(FluidStack::copy)
-                    .toList();
-            fluidOutputs = Objects.requireNonNull(fluidOutputs, "fluidOutputs").stream()
-                    .map(FluidStack::copy)
-                    .toList();
-            outputChances = List.copyOf(
-                    Objects.requireNonNull(outputChances, "outputChances"));
+            boolean interned = Boolean.TRUE.equals(INTERN_MATRIX_ROW.get());
+            if (interned) {
+                itemInputs = Objects.requireNonNull(itemInputs, "itemInputs");
+                itemInputCounts = Objects.requireNonNull(
+                        itemInputCounts, "itemInputCounts");
+                itemInputActions = Objects.requireNonNull(
+                        itemInputActions, "itemInputActions");
+                itemOutputs = Objects.requireNonNull(itemOutputs, "itemOutputs");
+                fluidInputs = Objects.requireNonNull(fluidInputs, "fluidInputs");
+                fluidOutputs = Objects.requireNonNull(fluidOutputs, "fluidOutputs");
+                outputChances = Objects.requireNonNull(outputChances, "outputChances");
+            } else {
+                itemInputs = List.copyOf(
+                        Objects.requireNonNull(itemInputs, "itemInputs"));
+                itemInputCounts = List.copyOf(
+                        Objects.requireNonNull(itemInputCounts, "itemInputCounts"));
+                itemInputActions = List.copyOf(
+                        Objects.requireNonNull(itemInputActions, "itemInputActions"));
+                itemOutputs = Objects.requireNonNull(itemOutputs, "itemOutputs").stream()
+                        .map(ItemStack::copy)
+                        .toList();
+                fluidInputs = Objects.requireNonNull(fluidInputs, "fluidInputs").stream()
+                        .map(FluidStack::copy)
+                        .toList();
+                fluidOutputs = Objects.requireNonNull(fluidOutputs, "fluidOutputs").stream()
+                        .map(FluidStack::copy)
+                        .toList();
+                outputChances = List.copyOf(
+                        Objects.requireNonNull(outputChances, "outputChances"));
+                try {
+                    new GTRecipe(
+                            itemInputs,
+                            itemInputCounts,
+                            itemInputActions,
+                            itemOutputs,
+                            fluidInputs,
+                            fluidOutputs,
+                            outputChances,
+                            duration,
+                            eut,
+                            specialValue,
+                            canBeBuffered,
+                            Optional.of(provenance));
+                } catch (IllegalArgumentException exception) {
+                    throw new IllegalArgumentException(
+                            stableId + ": " + exception.getMessage(), exception);
+                }
+            }
             if (shadowOrder < 0) {
                 throw new IllegalArgumentException(
                         "Compact relation shadow_order must not be negative: "
                                 + stableId);
-            }
-            try {
-                new GTRecipe(
-                        itemInputs,
-                        itemInputCounts,
-                        itemInputActions,
-                        itemOutputs,
-                        fluidInputs,
-                        fluidOutputs,
-                        outputChances,
-                        duration,
-                        eut,
-                        specialValue,
-                        canBeBuffered,
-                        Optional.of(provenance));
-            } catch (IllegalArgumentException exception) {
-                throw new IllegalArgumentException(
-                        stableId + ": " + exception.getMessage(), exception);
             }
         }
 

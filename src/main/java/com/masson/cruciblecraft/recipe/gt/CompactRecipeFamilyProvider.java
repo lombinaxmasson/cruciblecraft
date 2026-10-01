@@ -650,6 +650,10 @@ public final class CompactRecipeFamilyProvider {
             return relations.size();
         }
 
+        public CompactGTRecipeFamilyDefinition.Relation logicalRelation(int index) {
+            return relations.get(index).relation();
+        }
+
         @Override
         public int eagerRecipeCount() {
             return eagerEntries.size();

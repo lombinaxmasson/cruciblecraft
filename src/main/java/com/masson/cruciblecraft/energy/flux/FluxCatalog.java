@@ -94,7 +94,7 @@ public final class FluxCatalog {
                 || magnets != 5
                 || lasers != 5
                 || dynamos != 5
-                || liveRecipes != 20
+                || liveRecipes != 30
                 || leadHeater == null
                 || leadHeater.sourceId() != 11001
                 || leadHeater.nbtInput() != 128
@@ -105,7 +105,9 @@ public final class FluxCatalog {
                 || enderiumDynamo.nbtInput() != 8192
                 || enderiumDynamo.nbtOutput() != 22528
                 || leadMagnet == null
-                || leadMagnet.recipeLive()
+                || !leadMagnet.recipeLive()
+                || !leadMagnet.hostId().toString().equals(
+                        "cruciblecraft:steel_galvanized_electromagnet")
                 || !sourceIds.contains(11021)
                 || !sourceIds.contains(11101)) {
             throw new IllegalStateException(

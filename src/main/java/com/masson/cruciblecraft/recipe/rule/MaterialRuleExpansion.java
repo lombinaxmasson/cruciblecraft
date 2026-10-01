@@ -866,19 +866,55 @@ public final class MaterialRuleExpansion {
         return Map.copyOf(result);
     }
 
+    private static final class ReloadScratch {
+        private Collection<?> materials;
+        private Map<String, MaterialDefinition> byId;
+        private Set<String> tags;
+    }
+
+    private static final ThreadLocal<ReloadScratch> RELOAD_SCRATCH =
+            ThreadLocal.withInitial(ReloadScratch::new);
+
+    public static void clearReloadScratch() {
+        ReloadScratch scratch = RELOAD_SCRATCH.get();
+        scratch.materials = null;
+        scratch.byId = null;
+        scratch.tags = null;
+    }
+
+    private static ReloadScratch scratchFor(Collection<?> materials) {
+        ReloadScratch scratch = RELOAD_SCRATCH.get();
+        if (scratch.materials != materials) {
+            scratch.materials = materials;
+            scratch.byId = null;
+            scratch.tags = null;
+        }
+        return scratch;
+    }
+
     private static Map<String, MaterialDefinition> index(
             java.util.Collection<MaterialDefinition> materials) {
+        ReloadScratch scratch = scratchFor(materials);
+        if (scratch.byId != null) {
+            return scratch.byId;
+        }
         LinkedHashMap<String, MaterialDefinition> result = new LinkedHashMap<>();
         materials.forEach(material -> result.put(material.id(), material));
-        return Map.copyOf(result);
+        scratch.byId = Map.copyOf(result);
+        return scratch.byId;
     }
 
     private static Set<String> knownMaterialTags(
             Collection<MaterialDefinition> materials) {
-        return materials.stream()
+        ReloadScratch scratch = scratchFor(materials);
+        if (scratch.tags != null) {
+            return scratch.tags;
+        }
+        scratch.tags = materials.stream()
                 .flatMap(material -> material.gt6Metadata().stream())
                 .flatMap(metadata -> metadata.materialTags().stream())
                 .collect(java.util.stream.Collectors.toUnmodifiableSet());
+        return scratch.tags;
     }
 
     private static IllegalArgumentException unresolvedRequiredResource(

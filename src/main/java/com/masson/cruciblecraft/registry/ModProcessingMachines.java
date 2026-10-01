@@ -574,20 +574,19 @@ public final class ModProcessingMachines {
     /** Compact-load hybrid soft envelope for recipes retained eagerly in map indexes. */
     public static final int ALL_EAGER_PUBLICATION_SOFT_BUDGET = 18_000;
     /**
-     * Global on-demand logical rows. The 2026-09-25 capacity gate encoded
-     * 500,000 synthetic matrix rows (extruder, cutter, and mixer shapes) in
-     * under a second and about 20 MiB, as 123 holders. Rows stay on demand.
+     * Global on-demand logical rows. recipe/gt6-recipe-capacity-expansion
+     * passed 616,572 lazy rows on one cold start: reload 11,169 ms, filtered
+     * login packet 21,888,480 bytes, lookup p95 29,878 ns. The dedicated
+     * server on that load reloaded in 10,838 ms and encoded 21,888,403
+     * login bytes. Sync stays at {@link #RECIPE_SYNC_BUDGET_BYTES}. The
+     * extra rows were a temporary test-source fixture, not player recipes.
      * One holder is still at most
      * {@link com.masson.cruciblecraft.recipe.gt.CompactRecipeWireLimits#DECODE_RELATIONS_CEILING}
      * rows, and one shard is still at most
      * {@link com.masson.cruciblecraft.recipe.gt.CompactRecipeShardRouter#HARD_SHARD_CEILING}
-     * relations.
-     * This ceiling covers the live lazy rows plus the next three recipe
-     * cards (415,901 translatable rows). The full missing-recipe backlog
-     * is about 458,000 rows and would pass 500,000; raise it on a later
-     * card before that import. It is not a budget for all 720,841 source rows.
+     * relations. Another card is required above this measured load.
      */
-    public static final int ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 500_000;
+    public static final int ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 616_572;
     /** Aggregate per-epoch cache ceiling for currently selected lazy families. */
     public static final int ALL_LAZY_RECIPE_CACHE_HARD_CEILING = 4_096;
     public static final long RECIPE_RELOAD_BUDGET_MS = 10_000L;

@@ -3,9 +3,11 @@
   "slug": "energy/flux-converters",
   "title": "Flux FE to GU Converters",
   "maturity": "runtime_ready",
-  "workflow": "paused",
+  "workflow": "accepted",
   "owned_paths": [
     "docs/history/card-plans/prep/通量转换器详细计划.md",
+    "docs/history/card-plans/active/通量转换器详细计划.md",
+    "docs/history/card-plans/closed/通量转换器详细计划.md",
     "src/main/java/com/masson/cruciblecraft/energy/flux/**",
     "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
     "src/test/java/com/masson/cruciblecraft/energy/flux/**",
@@ -81,6 +83,6 @@
       "reason": "GT6 Flux_T[1..5] wrappers 11001-11005 / 11011-11015 / 11021-11025 / 11031-11035 / 11101-11105 / 11111-11115. RF/FE in to HU/KU/RU/MU/LU, or RU in to RF/FE out. Flux RF has no CC EnergyType; FE is the platform translation."
     }
   ],
-  "note": "Thirty GT6 flux converters. Paused so machines/distillation-tower can occupy unique-active. Magnet and laser recipes stay explicitly_blocked until electromagnets and electric CO2 lasers are live. survival_access is unreviewed.",
+  "note": "Thirty GT6 flux converters. Magnet and laser wrap recipes use the live electromagnet and laser_electric hosts (GT6 10031-10035 and 10101-10105). RF has no CC EnergyType; FE is the platform translation. survival_access is unreviewed.",
   "survival_access": "unreviewed"
 }
