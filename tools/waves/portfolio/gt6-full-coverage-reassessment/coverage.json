@@ -669,16 +669,16 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 558643,
+    "traced_source_rows": 580302,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 558645,
-        "translated_exact": 6974,
+        "source_exact": 580304,
+        "translated_exact": 7071,
         "translated_io_only": 0,
-        "translated_item_io": 3064,
-        "translatable_missing": 39033,
+        "translated_item_io": 127,
+        "translatable_missing": 20214,
         "missing_material_form": 66810,
         "missing_material": 0,
         "missing_fluid": 7978,
@@ -687,9 +687,9 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 565619,
-        "partial_match": 3064,
-        "recipe_gap": 39033,
+        "proven": 587375,
+        "partial_match": 127,
+        "recipe_gap": 20214,
         "identity_gap": 89907,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
@@ -703,26 +703,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 565619,
+        "proven_rows": 587375,
         "identity_blocked_rows": 89600,
         "undecided_rows": 9642,
-        "recipe_progress": 0.8001,
+        "recipe_progress": 0.8308,
         "identity_ready": 0.8596
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.6097,
-        "maps_complete": 15,
-        "maps_untouched": 15
+        "mean_recipe_progress": 0.6524,
+        "maps_complete": 18,
+        "maps_untouched": 14
       }
     },
-    "cc_recipe_rows": 561126,
+    "cc_recipe_rows": 582785,
     "cc_material_rule_files": 98,
-    "capability_count": 139,
+    "capability_count": 140,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 131
+      "runtime_ready:accepted": 132
     },
     "blocker_count": 62,
     "blocker_states": {
@@ -765,7 +765,7 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "c6ca52bf97b1103668884ccaa4e2c92c6839b67f895d7748e120da67bb62bcd3",
+    "attribution_digest": "66b472747e2f8c89ead2e59cee2ef7f851f8aeca970169c36aa251cea83a60d8",
     "attribution_overrides": 7878,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
@@ -1823,6 +1823,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "recipe/gt6-extruder-bulk",
       "path": "tools/capabilities/recipe/gt6-extruder-remainder/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-identity-ready-bulk",
+      "title": "GT6 Identity-Ready Recipe Bulk",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "recipe/gt6-identity-ready-bulk",
+      "path": "tools/capabilities/recipe/gt6-identity-ready-bulk/capability.json"
     },
     {
       "slug": "recipe/gt6-prefix-regular-bulk",
@@ -6641,9 +6650,11 @@
           "path": "tools/capabilities/machines/coke-oven/capability.json"
         }
       ],
-      "traced_source_rows": 0,
+      "traced_source_rows": 81,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "coke_oven": 81
+      },
       "owned_cc_maps": [
         "coke_oven"
       ],
@@ -6671,9 +6682,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
+        "source_exact": 81,
         "translated_exact": 38,
         "translated_item_io": 1,
-        "translatable_missing": 81,
         "missing_material_form": 4
       },
       "raw_row_excluded": {},
@@ -6681,10 +6692,10 @@
         "source_rows": 124,
         "excluded_rows": 0,
         "target_rows": 124,
-        "proven_rows": 38,
+        "proven_rows": 119,
         "identity_blocked_rows": 4,
         "undecided_rows": 0,
-        "recipe_progress": 0.3065,
+        "recipe_progress": 0.9597,
         "identity_ready": 0.9677
       }
     },
@@ -6776,10 +6787,10 @@
           "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
         }
       ],
-      "traced_source_rows": 49407,
+      "traced_source_rows": 54826,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "bath": 49407
+        "bath": 54826
       },
       "owned_cc_maps": [
         "bath"
@@ -6818,11 +6829,11 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 49407,
+        "source_exact": 54826,
         "display_only": 2,
-        "translated_exact": 9,
-        "translated_item_io": 2981,
-        "translatable_missing": 2505,
+        "translated_exact": 37,
+        "translated_item_io": 8,
+        "translatable_missing": 31,
         "missing_material_form": 3568,
         "missing_fluid": 1382,
         "missing_object": 1
@@ -6835,10 +6846,10 @@
         "source_rows": 59855,
         "excluded_rows": 64,
         "target_rows": 59791,
-        "proven_rows": 49416,
+        "proven_rows": 54863,
         "identity_blocked_rows": 4889,
         "undecided_rows": 0,
-        "recipe_progress": 0.8265,
+        "recipe_progress": 0.9176,
         "identity_ready": 0.9182
       }
     },
@@ -6864,10 +6875,10 @@
           "path": "tools/capabilities/machines/large-sluice/capability.json"
         }
       ],
-      "traced_source_rows": 0,
+      "traced_source_rows": 4840,
       "reference_traced_rows": 3183,
       "cc_host_maps": {
-        "sluice": 355
+        "sluice": 5195
       },
       "owned_cc_maps": [
         "sluice"
@@ -6897,23 +6908,23 @@
         ],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 4840
+        "source_exact": 4840
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 4840,
         "excluded_rows": 0,
         "target_rows": 4840,
-        "proven_rows": 0,
+        "proven_rows": 4840,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -7100,10 +7111,10 @@
           "path": "tools/capabilities/machines/implosion-compressor/capability.json"
         }
       ],
-      "traced_source_rows": 776,
+      "traced_source_rows": 1072,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "implosion_compressor": 776
+        "implosion_compressor": 1072
       },
       "owned_cc_maps": [
         "implosion_compressor"
@@ -7123,24 +7134,23 @@
         ],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 776,
-        "translatable_missing": 296
+        "source_exact": 1072
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 1072,
         "excluded_rows": 0,
         "target_rows": 1072,
-        "proven_rows": 776,
+        "proven_rows": 1072,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.7239,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -7227,10 +7237,10 @@
           "path": "tools/capabilities/machines/injector/capability.json"
         }
       ],
-      "traced_source_rows": 103,
+      "traced_source_rows": 572,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "injector": 103
+        "injector": 572
       },
       "owned_cc_maps": [
         "injector"
@@ -7278,9 +7288,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 103,
-        "translated_item_io": 14,
-        "translatable_missing": 500,
+        "source_exact": 572,
+        "translated_item_io": 6,
+        "translatable_missing": 39,
         "missing_fluid": 21
       },
       "raw_row_excluded": {},
@@ -7288,10 +7298,10 @@
         "source_rows": 638,
         "excluded_rows": 0,
         "target_rows": 638,
-        "proven_rows": 103,
+        "proven_rows": 572,
         "identity_blocked_rows": 21,
         "undecided_rows": 0,
-        "recipe_progress": 0.1614,
+        "recipe_progress": 0.8966,
         "identity_ready": 0.9671
       }
     },
@@ -7481,10 +7491,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 366,
+      "traced_source_rows": 392,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "autoclave": 366
+        "autoclave": 392
       },
       "owned_cc_maps": [
         "autoclave"
@@ -7502,24 +7512,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 366,
-        "translatable_missing": 26
+        "source_exact": 392
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 392,
         "excluded_rows": 0,
         "target_rows": 392,
-        "proven_rows": 366,
+        "proven_rows": 392,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.9337,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -9464,10 +9473,10 @@
           "path": "tools/capabilities/machines/melter/capability.json"
         }
       ],
-      "traced_source_rows": 3547,
+      "traced_source_rows": 4363,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "melter": 3547
+        "melter": 4363
       },
       "owned_cc_maps": [
         "melter"
@@ -9510,10 +9519,10 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 3547,
-        "translated_exact": 63,
-        "translated_item_io": 1,
-        "translatable_missing": 825,
+        "source_exact": 4363,
+        "translated_exact": 69,
+        "translated_item_io": 3,
+        "translatable_missing": 1,
         "missing_material_form": 2294,
         "missing_object": 26
       },
@@ -9524,10 +9533,10 @@
         "source_rows": 6756,
         "excluded_rows": 1,
         "target_rows": 6755,
-        "proven_rows": 3610,
+        "proven_rows": 4432,
         "identity_blocked_rows": 2319,
         "undecided_rows": 0,
-        "recipe_progress": 0.5344,
+        "recipe_progress": 0.6561,
         "identity_ready": 0.6567
       }
     },
@@ -9674,10 +9683,10 @@
           "path": "tools/capabilities/machines/large-shredder/capability.json"
         }
       ],
-      "traced_source_rows": 29180,
+      "traced_source_rows": 35233,
       "reference_traced_rows": 14803,
       "cc_host_maps": {
-        "shredder": 29537
+        "shredder": 35590
       },
       "owned_cc_maps": [
         "shredder"
@@ -9711,9 +9720,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 29180,
-        "translated_exact": 363,
-        "translatable_missing": 6061,
+        "source_exact": 35233,
+        "translated_exact": 370,
+        "translatable_missing": 1,
         "missing_material_form": 5359,
         "missing_object": 283
       },
@@ -9724,10 +9733,10 @@
         "source_rows": 41246,
         "excluded_rows": 1,
         "target_rows": 41245,
-        "proven_rows": 29543,
+        "proven_rows": 35603,
         "identity_blocked_rows": 5641,
         "undecided_rows": 0,
-        "recipe_progress": 0.7163,
+        "recipe_progress": 0.8632,
         "identity_ready": 0.8632
       }
     },
@@ -9803,10 +9812,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 299143,
+      "traced_source_rows": 302762,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "extruder": 299143
+        "extruder": 302762
       },
       "owned_cc_maps": [
         "extruder"
@@ -9832,9 +9841,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 299145,
-        "translated_exact": 5798,
-        "translatable_missing": 4170,
+        "source_exact": 302764,
+        "translated_exact": 5854,
+        "translatable_missing": 495,
         "missing_material_form": 11096,
         "missing_object": 5386
       },
@@ -9845,10 +9854,10 @@
         "source_rows": 325595,
         "excluded_rows": 76,
         "target_rows": 325519,
-        "proven_rows": 304943,
+        "proven_rows": 308618,
         "identity_blocked_rows": 16406,
         "undecided_rows": 0,
-        "recipe_progress": 0.9368,
+        "recipe_progress": 0.9481,
         "identity_ready": 0.9496
       }
     },
@@ -10405,9 +10414,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.canner.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 40,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "canner": 40
+      },
       "owned_cc_maps": [
         "canner"
       ],
@@ -10433,8 +10444,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
+        "source_exact": 40,
         "translated_exact": 7,
-        "translatable_missing": 82,
+        "translated_item_io": 42,
         "missing_material_form": 2343,
         "missing_fluid": 72,
         "missing_object": 1105
@@ -10444,10 +10456,10 @@
         "source_rows": 3609,
         "excluded_rows": 0,
         "target_rows": 3609,
-        "proven_rows": 7,
+        "proven_rows": 47,
         "identity_blocked_rows": 3520,
         "undecided_rows": 0,
-        "recipe_progress": 0.0019,
+        "recipe_progress": 0.013,
         "identity_ready": 0.0247
       }
     },
@@ -10939,11 +10951,11 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 558645,
-      "translated_exact": 6974,
+      "source_exact": 580304,
+      "translated_exact": 7071,
       "translated_io_only": 0,
-      "translated_item_io": 3064,
-      "translatable_missing": 39033,
+      "translated_item_io": 127,
+      "translatable_missing": 20214,
       "missing_material_form": 66810,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -10952,9 +10964,9 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 565619,
-      "partial_match": 3064,
-      "recipe_gap": 39033,
+      "proven": 587375,
+      "partial_match": 127,
+      "recipe_gap": 20214,
       "identity_gap": 89907,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
@@ -10968,17 +10980,17 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 565619,
+      "proven_rows": 587375,
       "identity_blocked_rows": 89600,
       "undecided_rows": 9642,
-      "recipe_progress": 0.8001,
+      "recipe_progress": 0.8308,
       "identity_ready": 0.8596
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.6097,
-      "maps_complete": 15,
-      "maps_untouched": 15
+      "mean_recipe_progress": 0.6524,
+      "maps_complete": 18,
+      "maps_untouched": 14
     }
   },
   "semantic_coverage": {
@@ -11014,18 +11026,18 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 561126,
+      "runtime_rows": 582785,
       "rule_rows": 19894,
-      "digest": "bacd9017d9b8e441154fb1908d1b7ca704aa0f26ff3587e3698753f07ee38131"
+      "digest": "8d2df7c87eddea963427bc951619dd7d05f4d6b98e91552d79f1e4c768481918"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 558645,
+      "source_exact": 580304,
       "display_only": 13576,
-      "translated_exact": 6974,
+      "translated_exact": 7071,
       "translated_io_only": 0,
-      "translated_item_io": 3064,
-      "translatable_missing": 39033,
+      "translated_item_io": 127,
+      "translatable_missing": 20214,
       "missing_material_form": 66810,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -11059,15 +11071,14 @@
         "missing_object": 1239
       },
       "gt.recipe.autoclave": {
-        "source_exact": 366,
-        "translatable_missing": 26
+        "source_exact": 392
       },
       "gt.recipe.bath": {
-        "source_exact": 49407,
+        "source_exact": 54826,
         "display_only": 2,
-        "translated_exact": 9,
-        "translated_item_io": 2981,
-        "translatable_missing": 2505,
+        "translated_exact": 37,
+        "translated_item_io": 8,
+        "translatable_missing": 31,
         "missing_material_form": 3568,
         "missing_fluid": 1382,
         "missing_object": 1
@@ -11093,8 +11104,9 @@
         "display_only": 289
       },
       "gt.recipe.canner": {
+        "source_exact": 40,
         "translated_exact": 7,
-        "translatable_missing": 82,
+        "translated_item_io": 42,
         "missing_material_form": 2343,
         "missing_fluid": 72,
         "missing_object": 1105
@@ -11125,9 +11137,9 @@
         "missing_fluid": 3
       },
       "gt.recipe.cokeoven": {
+        "source_exact": 81,
         "translated_exact": 38,
         "translated_item_io": 1,
-        "translatable_missing": 81,
         "missing_material_form": 4
       },
       "gt.recipe.compressor": {
@@ -11182,9 +11194,9 @@
         "source_exact": 290
       },
       "gt.recipe.extruder": {
-        "source_exact": 299145,
-        "translated_exact": 5798,
-        "translatable_missing": 4170,
+        "source_exact": 302764,
+        "translated_exact": 5854,
+        "translatable_missing": 495,
         "missing_material_form": 11096,
         "missing_object": 5386
       },
@@ -11243,13 +11255,12 @@
         "missing_object": 159
       },
       "gt.recipe.implosioncompressor": {
-        "source_exact": 776,
-        "translatable_missing": 296
+        "source_exact": 1072
       },
       "gt.recipe.injector": {
-        "source_exact": 103,
-        "translated_item_io": 14,
-        "translatable_missing": 500,
+        "source_exact": 572,
+        "translated_item_io": 6,
+        "translatable_missing": 39,
         "missing_fluid": 21
       },
       "gt.recipe.juicer": {
@@ -11290,10 +11301,10 @@
         "missing_fluid": 891
       },
       "gt.recipe.melter": {
-        "source_exact": 3547,
-        "translated_exact": 63,
-        "translated_item_io": 1,
-        "translatable_missing": 825,
+        "source_exact": 4363,
+        "translated_exact": 69,
+        "translated_item_io": 3,
+        "translatable_missing": 1,
         "missing_material_form": 2294,
         "missing_object": 26
       },
@@ -11365,9 +11376,9 @@
         "source_exact": 7637
       },
       "gt.recipe.shredder": {
-        "source_exact": 29180,
-        "translated_exact": 363,
-        "translatable_missing": 6061,
+        "source_exact": 35233,
+        "translated_exact": 370,
+        "translatable_missing": 1,
         "missing_material_form": 5359,
         "missing_object": 283
       },
@@ -11379,7 +11390,7 @@
         "source_exact": 33
       },
       "gt.recipe.sluice": {
-        "translatable_missing": 4840
+        "source_exact": 4840
       },
       "gt.recipe.smelter": {
         "source_exact": 18209,
@@ -13634,8 +13645,8 @@
       }
     ],
     "calibration": {
-      "pairs": 550560,
-      "equal": 549989,
+      "pairs": 572219,
+      "equal": 571648,
       "differs": 557,
       "untranslatable": 14,
       "agreement": 0.999,
@@ -13646,7 +13657,7 @@
         },
         "gt.recipe.bath": {
           "differs": 29,
-          "equal": 49372
+          "equal": 54791
         },
         "gt.recipe.distillery": {
           "differs": 5,
@@ -13675,7 +13686,7 @@
         },
         "gt.recipe.melter": {
           "differs": 1,
-          "equal": 3546
+          "equal": 4362
         },
         "gt.recipe.pressurewasher": {
           "differs": 4,
@@ -14428,9 +14439,9 @@
       "cc_hosts": [
         "cruciblecraft:autoclave"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Bath|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -15378,9 +15389,9 @@
       "cc_hosts": [
         "cruciblecraft:sluice"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Smelter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",

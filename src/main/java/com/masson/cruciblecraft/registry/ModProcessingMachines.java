@@ -809,10 +809,18 @@ public final class ModProcessingMachines {
             int gt6OutItems,
             int gt6InFluids,
             int gt6OutFluids) {
+        boolean sluice = "sluice".equals(path);
+        // GT6 sluice panel is 9 item outputs. The kinetic host used to stop at 4,
+        // so ore rows with byproducts could not leave the machine.
+        int usedItemOutputs = sluice ? 9 : 4;
+        List<Integer> outputSlots = java.util.stream.IntStream
+                .rangeClosed(1, usedItemOutputs)
+                .boxed()
+                .toList();
         ProcessingMachineSpec.TankLayout tanks = waterInput
                 ? new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
-                        "sluice".equals(path)
+                        sluice
                                 ? List.of(new ProcessingMachineSpec.TankSpec(
                                         1, UNBOUNDED_FLUID_OUTPUT))
                                 : List.of())
@@ -821,7 +829,8 @@ public final class ModProcessingMachines {
                 id(path),
                 id(path),
                 map,
-                new ProcessingMachineSpec.SlotLayout(5, List.of(0), List.of(1, 2, 3, 4)),
+                new ProcessingMachineSpec.SlotLayout(
+                        1 + usedItemOutputs, List.of(0), outputSlots),
                 tanks,
                 new ProcessingMachineSpec.EnergySpec(
                         energyType,
@@ -829,7 +838,7 @@ public final class ModProcessingMachines {
                         energyMode == ProcessingMachineSpec.EnergyMode.BUFFERED ? 4_096L : 0L,
                         1_024L),
                 Gt6SidedIo.policy(path),
-                recipe -> "sluice".equals(path)
+                recipe -> sluice
                         ? validateSluice(recipe)
                         : validateConfigured(recipe, waterInput),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
@@ -839,9 +848,9 @@ public final class ModProcessingMachines {
                         gt6InFluids,
                         gt6OutFluids,
                         1,
-                        4,
+                        usedItemOutputs,
                         waterInput ? 1 : 0,
-                        "sluice".equals(path) ? 1 : 0,
+                        sluice ? 1 : 0,
                         PROCESSING_STATUSES));
     }
 

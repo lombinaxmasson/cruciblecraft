@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/sluice/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "59ffdf024a2cb08161af661399b1727604383aaf7b13b4e9e6b227cc00aa96c5"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/sluice/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "19ee714403217b01a52c551da7f09d7b4bf694593ea2f00fc24a705ed5f093f9"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "sluice/identity-ready",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

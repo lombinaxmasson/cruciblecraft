@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/autoclave/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "13dc6039e20c2a903a71195dc503918e3a0b9ef803bba8b00df501f4efdc5b38"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/autoclave/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "a126534c6df110422754c9653d14621a94f28a7cf886b18f688f04298b01f6fe"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "autoclave/identity-ready",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}
