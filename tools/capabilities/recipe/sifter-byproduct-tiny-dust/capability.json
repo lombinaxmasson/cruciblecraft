@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/sifter-byproduct-tiny-dust",
+  "title": "Sifter Byproduct Tiny Dust",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/筛子副产微尘详细计划.md",
+    "docs/history/card-plans/closed/筛子副产微尘详细计划.md",
+    "tools/capabilities/recipe/sifter-byproduct-tiny-dust/**",
+    "tools/waves/recipe/sifter-byproduct-tiny-dust/**",
+    "tools/material_form_authority.json",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "tools/waves/prep/material-form-demand-census/census.json",
+    "tools/waves/recipe/gt6-prefix-regular-bulk/sifter/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/sifter/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/sifter_prefix_regular.json",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6PrefixRegularBulkGameTests.java"
+  ],
+  "depends_on": [
+    "registry/census-form-open",
+    "recipe/gt6-prefix-regular-bulk"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/sifter-byproduct-tiny-dust",
+  "required_test_ids": [
+    "sifterByproductTinyDustMatches"
+  ],
+  "note": "Gates the 125 census-openable tiny_dust pairs left after washed crushed ore, then publishes the 500 gt.recipe.sifter rows those pairs unlock. tiny_dust stays on the public-16 list. Metadata-only chem tubes and empty arrows stay on the container prep. No recipe stand-ins and no ItemEntity worldgen obtain."
+}

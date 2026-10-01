@@ -4108,6 +4108,35 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "registry/census-form-open",
+        "recipe/gt6-prefix-regular-bulk"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/筛子副产微尘详细计划.md",
+        "docs/history/card-plans/closed/筛子副产微尘详细计划.md",
+        "tools/capabilities/recipe/sifter-byproduct-tiny-dust/**",
+        "tools/waves/recipe/sifter-byproduct-tiny-dust/**",
+        "tools/material_form_authority.json",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+        "tools/waves/prep/material-form-demand-census/census.json",
+        "tools/waves/recipe/gt6-prefix-regular-bulk/sifter/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/sifter/prefix_regular/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/sifter_prefix_regular.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6PrefixRegularBulkGameTests.java"
+      ],
+      "path": "tools/capabilities/recipe/sifter-byproduct-tiny-dust/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/sifter-byproduct-tiny-dust",
+      "survival_access": "unreviewed",
+      "title": "Sifter Byproduct Tiny Dust",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
@@ -4769,7 +4798,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 141,
+  "capability_count": 142,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6167,7 +6196,8 @@
       "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-recipe-capacity-expansion",
-      "recipe/gt6-steamcracking-bulk"
+      "recipe/gt6-steamcracking-bulk",
+      "recipe/sifter-byproduct-tiny-dust"
     ],
     "recipe/gt6-chemical-misc-bulk": [
       "recipe/gt6-chemical-misc-bulk",
@@ -6180,7 +6210,8 @@
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
-      "recipe/gt6-steamcracking-bulk"
+      "recipe/gt6-steamcracking-bulk",
+      "recipe/sifter-byproduct-tiny-dust"
     ],
     "recipe/gt6-extruder-remainder": [
       "recipe/gt6-extruder-remainder"
@@ -6192,13 +6223,17 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
-      "recipe/gt6-steamcracking-bulk"
+      "recipe/gt6-steamcracking-bulk",
+      "recipe/sifter-byproduct-tiny-dust"
     ],
     "recipe/gt6-recipe-capacity-expansion": [
       "recipe/gt6-recipe-capacity-expansion"
     ],
     "recipe/gt6-steamcracking-bulk": [
       "recipe/gt6-steamcracking-bulk"
+    ],
+    "recipe/sifter-byproduct-tiny-dust": [
+      "recipe/sifter-byproduct-tiny-dust"
     ],
     "registry/catalog-modern-ids": [
       "content/gt6-connector-alias-repair",
@@ -6266,18 +6301,22 @@
       "registry/catalog-modern-ids"
     ],
     "registry/census-form-open": [
+      "recipe/sifter-byproduct-tiny-dust",
       "registry/census-form-open"
     ],
     "registry/gt6-form-open-followup": [
+      "recipe/sifter-byproduct-tiny-dust",
       "registry/census-form-open",
       "registry/gt6-form-open-followup"
     ],
     "registry/gt6-long-tail-forms": [
+      "recipe/sifter-byproduct-tiny-dust",
       "registry/census-form-open",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms"
     ],
     "registry/gt6-storage-dust-blocks": [
+      "recipe/sifter-byproduct-tiny-dust",
       "registry/census-form-open",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
@@ -6481,6 +6520,7 @@
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk",
+      "recipe/sifter-byproduct-tiny-dust",
       "runtime/compact-family-jar-bundles"
     ],
     "verification": [

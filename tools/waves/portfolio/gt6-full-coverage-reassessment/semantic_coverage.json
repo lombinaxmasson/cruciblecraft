@@ -27,23 +27,23 @@
     "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "b59205ed97097a9b7f0807fb9ee83839799019464d5546ab00f64dfa4dd76d5b",
     "tools/gt6_oredict_cross_reference.json": "7b4dd75801b9c04437c176e39e4fbd6c9579dbd30af38e0fc2d8aebe322aa60b",
     "tools/machine_fluid_mapping.json": "7944a28c4d88bac253f8a99912eef30cdb63f1cc5697dd3a9dc2673467e2ea3c",
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "a57fc3d45f64d38be6f38eabf66472f220f9fd5f30c4ccae3d48931452107c3e",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "ef37d6355711a2656aa890f2da7cde87acc019a895365d418a32b79c7038380a",
     "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
   },
   "cc_projection": {
-    "runtime_rows": 582785,
+    "runtime_rows": 583285,
     "rule_rows": 19894,
-    "digest": "8d2df7c87eddea963427bc951619dd7d05f4d6b98e91552d79f1e4c768481918"
+    "digest": "606f021e9d1fdb57a03c44dc67bf2d3974c82dd8d367830f58fdeed7ae443cfd"
   },
   "summary": {
     "legacy_exclusion_pending": 9642,
-    "source_exact": 580304,
+    "source_exact": 580804,
     "display_only": 13576,
     "translated_exact": 7071,
     "translated_io_only": 0,
     "translated_item_io": 127,
     "translatable_missing": 20214,
-    "missing_material_form": 66810,
+    "missing_material_form": 66310,
     "missing_material": 0,
     "missing_fluid": 7978,
     "missing_object": 15119
@@ -388,8 +388,7 @@
       "missing_object": 283
     },
     "gt.recipe.sifter": {
-      "source_exact": 2377,
-      "missing_material_form": 500
+      "source_exact": 2877
     },
     "gt.recipe.slicer": {
       "source_exact": 33
@@ -510,7 +509,7 @@
   },
   "blocker_kinds": {
     "fluid": 7832,
-    "form": 66810,
+    "form": 66310,
     "object": 14958
   },
   "blockers": [
@@ -912,18 +911,6 @@
       "materials": 562,
       "top_maps": {
         "gt.recipe.unboxinator": 562
-      }
-    },
-    {
-      "kind": "form",
-      "key": "form:dustTiny",
-      "label": "dustTiny",
-      "class": "missing_material_form",
-      "other_mod": false,
-      "rows": 500,
-      "materials": 125,
-      "top_maps": {
-        "gt.recipe.sifter": 500
       }
     },
     {
@@ -2647,11 +2634,24 @@
         "gt.recipe.bath": 62,
         "gt.recipe.mixer": 11
       }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multitileentity@32614",
+      "label": "gregtech:gt.multitileentity",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 72,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 71,
+        "gt.recipe.shredder": 1
+      }
     }
   ],
   "calibration": {
-    "pairs": 572219,
-    "equal": 571648,
+    "pairs": 572719,
+    "equal": 572148,
     "differs": 557,
     "untranslatable": 14,
     "agreement": 0.999,
@@ -2805,5 +2805,5 @@
       }
     ]
   },
-  "form_demand_pairs_sha256": "265e61c72e4e0893b4ddad3bb74c2720e402f4949e79b230dd710317257d3154"
+  "form_demand_pairs_sha256": "2bb0f17e4bd6731a8245f5c80c978da14672c851635af4b98d4d0759ef95db33"
 }

@@ -10,25 +10,45 @@
         }
       ],
       "hashes": [
-        "3bb0639541c11928dee798540422e2d9b69b0c852e167d8734d4f2fefbc4eef2",
-        "384a9e8111fc014057f8f95f816f5483f7a909fae84dc6bf5c37cd479884da33"
+        "a1a3bc98eb217cbcf4152382c4bf80b0da660c409435b26175d357880307404f",
+        "6cc18716572ccc96e57a47fd68d52bf7852281ddb0edcebff8ece0b4b1ff190a",
+        "a455483c74ca071f4342340bb24206a45395b74e1ffa386d6dbe157069bf0039",
+        "d4e2a16ff496cd971064d1684142b7f5cb7018c65bde0c83dd378e61fd9deb9e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bone"
+              "cruciblecraft:prefix_material": "void_quartz"
             },
-            "items": "cruciblecraft:tiny_washed_crushed_ore",
+            "items": "cruciblecraft:washed_crushed_ore",
             "type": "neoforge:components"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dolomite"
+              "cruciblecraft:prefix_material": "nether_quartz"
             },
-            "items": "cruciblecraft:tiny_washed_crushed_ore",
+            "items": "cruciblecraft:washed_crushed_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fluix"
+            },
+            "items": "cruciblecraft:washed_crushed_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "milky_quartz"
+            },
+            "items": "cruciblecraft:washed_crushed_ore",
             "type": "neoforge:components"
           }
         ]
@@ -36,108 +56,170 @@
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bone"
-            },
             "count": 1,
-            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
+            "id": "cruciblecraft:void_quartz/gem"
           },
           {
             "count": 1,
-            "id": "minecraft:skeleton_skull"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
-          },
-          {
-            "count": 1,
-            "id": "minecraft:bone_meal"
-          },
-          {
-            "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:void_quartz/tiny_dust"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dolomite"
-            },
             "count": 1,
-            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
+            "id": "minecraft:quartz"
           },
           {
             "count": 1,
-            "id": "minecraft:skeleton_skull"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:nether_quartz/tiny_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/gem"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:fluix/tiny_dust"
           },
           {
             "count": 1,
-            "id": "minecraft:bone_meal"
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:fluix/tiny_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/gem"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:milky_quartz/tiny_dust"
           }
         ]
       ]
@@ -147,7 +229,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2be0a66d9b3005dc",
+        "cruciblecraft:gt6/11b69385ec96478d",
         0,
         0
       ],
@@ -155,14 +237,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8c15a0a1782a64c1",
+        "cruciblecraft:gt6/55ba7fe95c5a7218",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/4fb5136c9337f99d",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/61fbfb88ba087a79",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 16,
+      "duration": 144,
       "eut": 16,
       "item_input_actions": [
         {
@@ -173,18 +271,16 @@
         1
       ],
       "output_chances": [
-        10000,
-        40,
-        400,
-        400,
-        400,
-        400,
-        400,
-        400,
-        400,
-        400,
-        400,
-        400
+        7200,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000,
+        5000
       ],
       "selected_source_recipe": "gt.recipe.sifter#bulk_0006",
       "source_kind": "SOURCE_DERIVED",

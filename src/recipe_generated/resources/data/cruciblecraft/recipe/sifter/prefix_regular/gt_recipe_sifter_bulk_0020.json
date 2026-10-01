@@ -1,13 +1,131 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.sifter#bulk_0020",
-  "publication_group": "cruciblecraft:sifter/prefix-regular",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d3cd2c9ed5a2c1063b86f2c42ad36279f5209d53f862eba46d47112da3a34514",
+        "0d01ffdac1170ebdae47834a1af76bddbeaa6a961bc909aada69b478fedab350"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:soul_sand"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soulsand/dust"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:netherrack/dust"
+          },
+          {
+            "count": 9,
+            "id": "cruciblecraft:netherrack/rock"
+          },
+          {
+            "count": 9,
+            "id": "cruciblecraft:clay_red/dust"
+          },
+          {
+            "count": 9,
+            "id": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
+          },
+          {
+            "count": 9,
+            "id": "cruciblecraft:niter/small_dust"
+          },
+          {
+            "count": 9,
+            "id": "cruciblecraft:nether_quartz/small_dust"
+          },
+          {
+            "count": 9,
+            "id": "minecraft:quartz"
+          },
+          {
+            "count": 9,
+            "id": "minecraft:bone"
+          },
+          {
+            "count": 9,
+            "id": "minecraft:nether_wart"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherrack/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherrack/rock"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:clay_red/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:niter/small_dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:nether_quartz/small_dust"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:quartz"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:nether_wart"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/0647c143e9a42143",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/2e899753fff9ead1",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 144,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -16,47 +134,23 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:dirt"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:coarse_dirt"
-        },
-        {
-          "count": 1,
-          "id": "minecraft:wheat_seeds"
-        },
-        {
-          "count": 1,
-          "id": "minecraft:melon_seeds"
-        },
-        {
-          "count": 1,
-          "id": "minecraft:pumpkin_seeds"
-        }
-      ],
       "output_chances": [
-        8000,
+        1000,
         500,
+        50,
+        50,
+        25,
         250,
-        250
+        500,
+        50,
+        25
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "ff120700cd881947b9857b97898444426b055415c3936a532585cc17c3fc1872"
-        ],
-        "selected_source_recipe": "gt.recipe.sifter#bulk_0020",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/98d1c71e3c5cbd0a"
+      "selected_source_recipe": "gt.recipe.sifter#bulk_0020",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:sifter/prefix-regular",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:sifter",
   "type": "cruciblecraft:compact_gt_recipe_family"

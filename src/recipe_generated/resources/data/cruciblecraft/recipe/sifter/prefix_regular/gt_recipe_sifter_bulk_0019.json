@@ -10,88 +10,94 @@
         }
       ],
       "hashes": [
-        "d3cd2c9ed5a2c1063b86f2c42ad36279f5209d53f862eba46d47112da3a34514",
-        "0d01ffdac1170ebdae47834a1af76bddbeaa6a961bc909aada69b478fedab350"
+        "a87ef5bb9b58dcebbb892fdf8303228827ffefa90f0e03ddf7e7d664f9f434f6",
+        "3ff61dcd3c92e68dc9f259282081d8c3e574dca7478a8f66275c1b98e2871506"
       ],
       "item_inputs": [
         [
           {
-            "item": "minecraft:soul_sand"
+            "components": {
+              "cruciblecraft:prefix_material": "dolomite"
+            },
+            "items": "cruciblecraft:washed_crushed_ore",
+            "type": "neoforge:components"
           }
         ],
         [
           {
-            "item": "cruciblecraft:soulsand/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "bone"
+            },
+            "items": "cruciblecraft:washed_crushed_ore",
+            "type": "neoforge:components"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dolomite"
+            },
             "count": 9,
-            "id": "cruciblecraft:netherrack/dust"
+            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
           },
           {
-            "count": 9,
-            "id": "cruciblecraft:netherrack/rock"
+            "count": 1,
+            "id": "minecraft:skeleton_skull"
           },
           {
-            "count": 9,
-            "id": "cruciblecraft:clay_red/dust"
-          },
-          {
-            "count": 9,
-            "id": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
-          },
-          {
-            "count": 9,
-            "id": "cruciblecraft:niter/small_dust"
-          },
-          {
-            "count": 9,
-            "id": "cruciblecraft:nether_quartz/small_dust"
-          },
-          {
-            "count": 9,
-            "id": "minecraft:quartz"
-          },
-          {
-            "count": 9,
+            "count": 1,
             "id": "minecraft:bone"
           },
           {
-            "count": 9,
-            "id": "minecraft:nether_wart"
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:netherrack/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "bone"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
           },
           {
             "count": 1,
-            "id": "cruciblecraft:netherrack/rock"
-          },
-          {
-            "count": 1,
-            "id": "cruciblecraft:clay_red/dust"
-          },
-          {
-            "count": 1,
-            "id": "cruciblecraft:red/clay_perfectly_balanced_with_no_exploits"
-          },
-          {
-            "count": 1,
-            "id": "cruciblecraft:niter/small_dust"
-          },
-          {
-            "count": 1,
-            "id": "cruciblecraft:nether_quartz/small_dust"
-          },
-          {
-            "count": 1,
-            "id": "minecraft:quartz"
+            "id": "minecraft:skeleton_skull"
           },
           {
             "count": 1,
@@ -99,7 +105,39 @@
           },
           {
             "count": 1,
-            "id": "minecraft:nether_wart"
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:bone_meal"
           }
         ]
       ]
@@ -109,7 +147,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/04bbe362db94c5dd",
+        "cruciblecraft:gt6/83825714c166020d",
         0,
         0
       ],
@@ -117,7 +155,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/6ac5ec3848390363",
+        "cruciblecraft:gt6/e418f74c29ef0bf7",
         1,
         1
       ]
@@ -135,15 +173,18 @@
         1
       ],
       "output_chances": [
-        1000,
-        500,
-        50,
-        50,
-        25,
-        250,
-        500,
-        50,
-        25
+        10000,
+        360,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600,
+        3600
       ],
       "selected_source_recipe": "gt.recipe.sifter#bulk_0019",
       "source_kind": "SOURCE_DERIVED",

@@ -669,17 +669,17 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 580302,
+    "traced_source_rows": 580802,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 580304,
+        "source_exact": 580804,
         "translated_exact": 7071,
         "translated_io_only": 0,
         "translated_item_io": 127,
         "translatable_missing": 20214,
-        "missing_material_form": 66810,
+        "missing_material_form": 66310,
         "missing_material": 0,
         "missing_fluid": 7978,
         "missing_object": 15119,
@@ -687,10 +687,10 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 587375,
+        "proven": 587875,
         "partial_match": 127,
         "recipe_gap": 20214,
-        "identity_gap": 89907,
+        "identity_gap": 89407,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
@@ -703,26 +703,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 587375,
-        "identity_blocked_rows": 89600,
+        "proven_rows": 587875,
+        "identity_blocked_rows": 89100,
         "undecided_rows": 9642,
-        "recipe_progress": 0.8308,
-        "identity_ready": 0.8596
+        "recipe_progress": 0.8316,
+        "identity_ready": 0.8603
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.6524,
-        "maps_complete": 18,
+        "mean_recipe_progress": 0.6547,
+        "maps_complete": 19,
         "maps_untouched": 14
       }
     },
-    "cc_recipe_rows": 582785,
+    "cc_recipe_rows": 583285,
     "cc_material_rule_files": 98,
-    "capability_count": 141,
+    "capability_count": 142,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 133
+      "runtime_ready:accepted": 134
     },
     "blocker_count": 62,
     "blocker_states": {
@@ -765,7 +765,7 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "66b472747e2f8c89ead2e59cee2ef7f851f8aeca970169c36aa251cea83a60d8",
+    "attribution_digest": "b621e4cc4b03e81f7395a03f406ec9ef923f6114ce8f0b078934bcf7b24e5499",
     "attribution_overrides": 7878,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
@@ -1859,6 +1859,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "steam-cracker/steamcracking",
       "path": "tools/capabilities/recipe/gt6-steamcracking-bulk/capability.json"
+    },
+    {
+      "slug": "recipe/sifter-byproduct-tiny-dust",
+      "title": "Sifter Byproduct Tiny Dust",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "recipe/sifter-byproduct-tiny-dust",
+      "path": "tools/capabilities/recipe/sifter-byproduct-tiny-dust/capability.json"
     },
     {
       "slug": "registry/catalog-modern-ids",
@@ -5248,16 +5257,16 @@
   "form_demand_census": {
     "path": "tools/waves/prep/material-form-demand-census/census.json",
     "counts": {
-      "already_gated_live": 2,
+      "already_gated_live": 127,
       "deferred_by_decision": 5190,
       "demand_pairs": 6619,
       "dump_demand_pairs": 6551,
       "dump_demand_rows": 28623,
       "gated_unresolved": 1207,
       "not_form": 72,
-      "openable": 220,
+      "openable": 95,
       "skipped": 0,
-      "ungated_generated_flag_pairs": 3173
+      "ungated_generated_flag_pairs": 3048
     },
     "capability_slug": "registry/material-form-demand-census"
   },
@@ -7005,10 +7014,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sifter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 2377,
+      "traced_source_rows": 2877,
       "reference_traced_rows": 1720,
       "cc_host_maps": {
-        "sifter": 2728
+        "sifter": 3228
       },
       "owned_cc_maps": [
         "sifter"
@@ -7028,25 +7037,24 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 2377,
-        "missing_material_form": 500
+        "source_exact": 2877
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 2877,
         "excluded_rows": 0,
         "target_rows": 2877,
-        "proven_rows": 2377,
-        "identity_blocked_rows": 500,
+        "proven_rows": 2877,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.8262,
-        "identity_ready": 0.8262
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -10960,12 +10968,12 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 580304,
+      "source_exact": 580804,
       "translated_exact": 7071,
       "translated_io_only": 0,
       "translated_item_io": 127,
       "translatable_missing": 20214,
-      "missing_material_form": 66810,
+      "missing_material_form": 66310,
       "missing_material": 0,
       "missing_fluid": 7978,
       "missing_object": 15119,
@@ -10973,10 +10981,10 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 587375,
+      "proven": 587875,
       "partial_match": 127,
       "recipe_gap": 20214,
-      "identity_gap": 89907,
+      "identity_gap": 89407,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
@@ -10989,16 +10997,16 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 587375,
-      "identity_blocked_rows": 89600,
+      "proven_rows": 587875,
+      "identity_blocked_rows": 89100,
       "undecided_rows": 9642,
-      "recipe_progress": 0.8308,
-      "identity_ready": 0.8596
+      "recipe_progress": 0.8316,
+      "identity_ready": 0.8603
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.6524,
-      "maps_complete": 18,
+      "mean_recipe_progress": 0.6547,
+      "maps_complete": 19,
       "maps_untouched": 14
     }
   },
@@ -11031,23 +11039,23 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "b59205ed97097a9b7f0807fb9ee83839799019464d5546ab00f64dfa4dd76d5b",
       "tools/gt6_oredict_cross_reference.json": "7b4dd75801b9c04437c176e39e4fbd6c9579dbd30af38e0fc2d8aebe322aa60b",
       "tools/machine_fluid_mapping.json": "7944a28c4d88bac253f8a99912eef30cdb63f1cc5697dd3a9dc2673467e2ea3c",
-      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "a57fc3d45f64d38be6f38eabf66472f220f9fd5f30c4ccae3d48931452107c3e",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "ef37d6355711a2656aa890f2da7cde87acc019a895365d418a32b79c7038380a",
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 582785,
+      "runtime_rows": 583285,
       "rule_rows": 19894,
-      "digest": "8d2df7c87eddea963427bc951619dd7d05f4d6b98e91552d79f1e4c768481918"
+      "digest": "606f021e9d1fdb57a03c44dc67bf2d3974c82dd8d367830f58fdeed7ae443cfd"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 580304,
+      "source_exact": 580804,
       "display_only": 13576,
       "translated_exact": 7071,
       "translated_io_only": 0,
       "translated_item_io": 127,
       "translatable_missing": 20214,
-      "missing_material_form": 66810,
+      "missing_material_form": 66310,
       "missing_material": 0,
       "missing_fluid": 7978,
       "missing_object": 15119
@@ -11392,8 +11400,7 @@
         "missing_object": 283
       },
       "gt.recipe.sifter": {
-        "source_exact": 2377,
-        "missing_material_form": 500
+        "source_exact": 2877
       },
       "gt.recipe.slicer": {
         "source_exact": 33
@@ -11514,7 +11521,7 @@
     },
     "blocker_kinds": {
       "fluid": 7832,
-      "form": 66810,
+      "form": 66310,
       "object": 14958
     },
     "blockers": [
@@ -11916,18 +11923,6 @@
         "materials": 562,
         "top_maps": {
           "gt.recipe.unboxinator": 562
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:dustTiny",
-        "label": "dustTiny",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 500,
-        "materials": 125,
-        "top_maps": {
-          "gt.recipe.sifter": 500
         }
       },
       {
@@ -13651,11 +13646,24 @@
           "gt.recipe.bath": 62,
           "gt.recipe.mixer": 11
         }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32614",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 72,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 71,
+          "gt.recipe.shredder": 1
+        }
       }
     ],
     "calibration": {
-      "pairs": 572219,
-      "equal": 571648,
+      "pairs": 572719,
+      "equal": 572148,
       "differs": 557,
       "untranslatable": 14,
       "agreement": 0.999,
@@ -13809,7 +13817,7 @@
         }
       ]
     },
-    "form_demand_pairs_sha256": "265e61c72e4e0893b4ddad3bb74c2720e402f4949e79b230dd710317257d3154"
+    "form_demand_pairs_sha256": "2bb0f17e4bd6731a8245f5c80c978da14672c851635af4b98d4d0759ef95db33"
   },
   "unowned_cc_maps": [
     {
@@ -14379,9 +14387,9 @@
       "cc_hosts": [
         "cruciblecraft:sifter"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachineElectric|recipe:RM.Slicer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -15374,9 +15382,9 @@
       "cc_hosts": [
         "cruciblecraft:sifter"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Sluice|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
