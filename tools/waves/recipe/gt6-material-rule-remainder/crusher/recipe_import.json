@@ -1,0 +1,47 @@
+{
+  "family_membership_source": {
+    "kind": "work_set",
+    "path": "tools/waves/recipe/gt6-material-rule-remainder/crusher/source_pack/work_set.json"
+  },
+  "host": "cruciblecraft:crusher",
+  "import_slug": "crusher/rule-remainder",
+  "operand_authorities": [
+    {
+      "id": "identity_ledger_v3",
+      "kind": "data"
+    },
+    {
+      "id": "material_form_authority",
+      "kind": "data"
+    },
+    {
+      "adapter": "gt6",
+      "kind": "source_dialect"
+    }
+  ],
+  "output_paths": {
+    "lock_candidate": "tools/waves/recipe/gt6-material-rule-remainder/crusher/lock_candidate.json",
+    "receipt": "tools/waves/recipe/gt6-material-rule-remainder/crusher/source_receipt.json",
+    "review": "tools/waves/recipe/gt6-material-rule-remainder/crusher/source_review.json",
+    "source": "tools/waves/recipe/gt6-material-rule-remainder/crusher/source.json"
+  },
+  "representation_policy": {
+    "allowed": [
+      "exact",
+      "exact_multi"
+    ]
+  },
+  "schema_version": 1,
+  "selection_rule": {
+    "kind": "work_set_members"
+  },
+  "source_maps": [
+    "gt.recipe.crusher"
+  ],
+  "source_pack": "tools/waves/recipe/gt6-material-rule-remainder/crusher/source_pack_manifest.json",
+  "stable_id_policy": {
+    "algorithm": "source_system_revision_family_relation",
+    "include_card_number": false
+  },
+  "target_map": "cruciblecraft:crusher"
+}

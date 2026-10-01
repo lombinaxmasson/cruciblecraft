@@ -3984,6 +3984,51 @@
     },
     {
       "depends_on": [
+        "recipe/gt6-identity-ready-bulk",
+        "recipe/gt6-prefix-regular-bulk",
+        "recipe/gt6-chemical-misc-bulk",
+        "recipe/gt6-extruder-bulk",
+        "machines/hammer-squeezer-laser",
+        "machines/injector",
+        "machines/bath"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6补材料规则模板详细计划.md",
+        "docs/history/card-plans/closed/GT6补材料规则模板详细计划.md",
+        "tools/waves/recipe/gt6-material-rule-remainder/**",
+        "tools/capabilities/recipe/gt6-material-rule-remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/press/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/squeezer/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/injector/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/smelter/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/crusher/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/fermenter/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/massfab/rule_remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_rule_remainder.json",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "tools/recipe_bulk/ordinary_source.py",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_material_rule_remainder/structure/empty.nbt",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_material_rule_remainder/gametest/structure/empty.nbt",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6MaterialRuleRemainderGameTests.java",
+        "src/test/resources/gt6_material_rule_remainder_samples.json",
+        "tools/gametest_grids.json",
+        "tools/recipe_bulk/slugs.py"
+      ],
+      "path": "tools/capabilities/recipe/gt6-material-rule-remainder/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/gt6-material-rule-remainder",
+      "survival_access": "unreviewed",
+      "title": "GT6 Material Rule Template Remainder",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "recipe/gt6-bulk-capacity",
         "recipe/gt6-extruder-bulk"
       ],
@@ -4798,7 +4843,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 142,
+  "capability_count": 143,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4967,13 +5012,15 @@
       "machines/coke-oven",
       "machines/gt6-coil-hosts",
       "machines/large-oven",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "content/gt6-mte-misc-tool-runtime": [
       "content/gt6-mte-misc-tool-runtime",
       "machines/bath",
       "machines/large-bathing-vat",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "content/gt6-mte-multiblock-runtime": [
       "content/gt6-mte-multiblock-runtime",
@@ -4995,7 +5042,8 @@
       "machines/large-shredder",
       "machines/large-sluice",
       "machines/large-squeezer",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "content/gt6-mte-processing-host-fold": [
       "content/gt6-mte-processing-host-fold",
@@ -5062,6 +5110,7 @@
       "machines/large-sluice",
       "machines/puv-omega-matrix",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5122,6 +5171,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5184,6 +5234,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5260,6 +5311,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5331,6 +5383,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5391,6 +5444,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5469,6 +5523,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5544,6 +5599,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5610,6 +5666,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5676,6 +5733,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5741,6 +5799,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5808,6 +5867,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5872,6 +5932,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5879,7 +5940,8 @@
     "machines/bath": [
       "machines/bath",
       "machines/large-bathing-vat",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/bedrock-drill": [
       "machines/bedrock-drill"
@@ -5887,11 +5949,13 @@
     "machines/cluster-mill": [
       "machines/cluster-mill",
       "machines/hammer-squeezer-laser",
-      "machines/large-squeezer"
+      "machines/large-squeezer",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/coke-oven": [
       "machines/coke-oven",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/distillation-tower": [
       "machines/distillation-tower"
@@ -5899,6 +5963,7 @@
     "machines/gt6-basic-machine-batch": [
       "machines/gt6-basic-machine-batch",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-steamcracking-bulk"
     ],
     "machines/gt6-coil-hosts": [
@@ -5910,11 +5975,13 @@
     ],
     "machines/hammer-squeezer-laser": [
       "machines/hammer-squeezer-laser",
-      "machines/large-squeezer"
+      "machines/large-squeezer",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/implosion-compressor": [
       "machines/implosion-compressor",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/injector": [
       "content/gt6-electric-tools",
@@ -5938,6 +6005,7 @@
       "machines/large-sluice",
       "machines/puv-omega-matrix",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5957,7 +6025,8 @@
     ],
     "machines/large-autoclave": [
       "machines/large-autoclave",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/large-bathing-vat": [
       "machines/large-bathing-vat"
@@ -6002,7 +6071,8 @@
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/large-shredder": [
       "machines/large-shredder"
@@ -6045,6 +6115,7 @@
       "machines/loom",
       "machines/puv-omega-matrix",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -6061,7 +6132,8 @@
       "content/gt6-item-pipe-acquisition",
       "content/gt6-restrictive-item-pipe-runtime",
       "machines/melter",
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
     ],
     "machines/nanofab": [
       "content/electric-wire-cable-mte-fold",
@@ -6131,6 +6203,7 @@
       "machines/sanding",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -6161,6 +6234,7 @@
       "machines/puv-omega-matrix",
       "machines/slicer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -6194,6 +6268,7 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk",
@@ -6202,6 +6277,7 @@
     "recipe/gt6-chemical-misc-bulk": [
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-extruder-bulk": [
@@ -6209,6 +6285,7 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-steamcracking-bulk",
       "recipe/sifter-byproduct-tiny-dust"
@@ -6217,11 +6294,16 @@
       "recipe/gt6-extruder-remainder"
     ],
     "recipe/gt6-identity-ready-bulk": [
-      "recipe/gt6-identity-ready-bulk"
+      "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder"
+    ],
+    "recipe/gt6-material-rule-remainder": [
+      "recipe/gt6-material-rule-remainder"
     ],
     "recipe/gt6-prefix-regular-bulk": [
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-steamcracking-bulk",
       "recipe/sifter-byproduct-tiny-dust"
@@ -6298,6 +6380,7 @@
       "machines/large-sluice",
       "machines/large-squeezer",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "registry/catalog-modern-ids"
     ],
     "registry/census-form-open": [
@@ -6517,6 +6600,7 @@
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-identity-ready-bulk",
+      "recipe/gt6-material-rule-remainder",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk",

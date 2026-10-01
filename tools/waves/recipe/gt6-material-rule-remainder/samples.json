@@ -1,0 +1,189 @@
+{
+  "maps": [
+    {
+      "block": "cruciblecraft:extruder",
+      "machine": "extruder",
+      "publication_group": "cruciblecraft:extruder/rule_remainder",
+      "published_rows": 473,
+      "samples": [
+        {
+          "duration": 29,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "plastic"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:plastic/tiny_fluid_pipe"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:part/low_heat_extruder_shape_tiny_plate_extruder_shape_for_making_tiny_plates"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:extruder"
+    },
+    {
+      "block": "cruciblecraft:squeezer",
+      "machine": "squeezer",
+      "publication_group": "cruciblecraft:squeezer/rule_remainder",
+      "published_rows": 15,
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:food/desert_nova_used_for_magical_purposes"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:squeezer"
+    },
+    {
+      "block": "cruciblecraft:injector",
+      "machine": "injector",
+      "publication_group": "cruciblecraft:injector/rule_remainder",
+      "published_rows": 45,
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": false,
+          "fluids": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:cfoam_red"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:air"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:cfoam_fresh/red"
+            }
+          ],
+          "items": [],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:injector"
+    },
+    {
+      "block": "cruciblecraft:bath",
+      "machine": "bath",
+      "publication_group": "cruciblecraft:bath/rule_remainder",
+      "published_rows": 38,
+      "samples": [
+        {
+          "duration": 2048,
+          "eut": 0,
+          "execute": false,
+          "fluids": [
+            {
+              "amount": 6000,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 3,
+              "id": "cruciblecraft:silicon_dioxide/dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:silicon/dust"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:bath"
+    },
+    {
+      "block": null,
+      "machine": "fermenter",
+      "publication_group": "cruciblecraft:fermenter/rule_remainder",
+      "published_rows": 11,
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": false,
+          "fluids": [
+            {
+              "amount": 135,
+              "id": "cruciblecraft:royaljelly"
+            }
+          ],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "minecraft:dandelion"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:fermenter"
+    },
+    {
+      "block": null,
+      "machine": "massfab",
+      "publication_group": "cruciblecraft:massfab/rule_remainder",
+      "published_rows": 14,
+      "samples": [
+        {
+          "duration": 144,
+          "eut": 16,
+          "execute": false,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "circuit": 0,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:dust_div72",
+              "material": "ancient_debris"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:massfab"
+    }
+  ],
+  "schema_version": 1
+}

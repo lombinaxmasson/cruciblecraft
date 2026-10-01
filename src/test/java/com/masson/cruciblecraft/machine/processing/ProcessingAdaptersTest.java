@@ -597,7 +597,10 @@ class ProcessingAdaptersTest {
             assertEquals(expectedEnergy, spec.energy().type());
             assertEquals(ProcessingMachineSpec.EnergyMode.BUFFERED, spec.energy().mode());
             assertEquals(4_096L, spec.energy().capacity());
-            assertEquals(256L, spec.energy().maxPacket());
+            long expectedPacket = spec == ModProcessingMachines.EXTRUDER
+                    ? ModProcessingMachines.EXTRUDER_MAX_PACKET
+                    : 256L;
+            assertEquals(expectedPacket, spec.energy().maxPacket());
             assertEquals(spec.items().slotCount(), spec.ui().machineSlots().size());
             int expectedOutputs = 1;
             if (spec == ModProcessingMachines.EXTRUDER) {

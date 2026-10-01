@@ -22,6 +22,26 @@ public final class SemanticFluidCatalog {
     private static final String SOURCE_REVISION =
             "3703e40308c8c030763fd6297dea8b210d2a77b1";
     private static final Gson GSON = new Gson();
+
+    /** Minecraft dye colors. GT6 tints both plain and owned C-Foam with {@code DYES}. */
+    private static final Map<String, Integer> CFOAM_COLORS = Map.ofEntries(
+            Map.entry("cruciblecraft:cfoam_black", 0xFF1D1D21),
+            Map.entry("cruciblecraft:cfoam_red", 0xFFB02E26),
+            Map.entry("cruciblecraft:cfoam_green", 0xFF5E7C16),
+            Map.entry("cruciblecraft:cfoam_brown", 0xFF835432),
+            Map.entry("cruciblecraft:cfoam_blue", 0xFF3C44AA),
+            Map.entry("cruciblecraft:cfoam_purple", 0xFF8932B8),
+            Map.entry("cruciblecraft:cfoam_cyan", 0xFF169C9C),
+            Map.entry("cruciblecraft:cfoam_lightgray", 0xFF9D9D97),
+            Map.entry("cruciblecraft:cfoam_gray", 0xFF474F52),
+            Map.entry("cruciblecraft:cfoam_pink", 0xFFF38BAA),
+            Map.entry("cruciblecraft:cfoam_lime", 0xFF80C71F),
+            Map.entry("cruciblecraft:cfoam_yellow", 0xFFFED83D),
+            Map.entry("cruciblecraft:cfoam_lightblue", 0xFF3AB3DA),
+            Map.entry("cruciblecraft:cfoam_magenta", 0xFFC74EBD),
+            Map.entry("cruciblecraft:cfoam_orange", 0xFFF9801D),
+            Map.entry("cruciblecraft:cfoam_white", 0xFFF9FFFE));
+
     private static final Catalog CATALOG = loadBundled();
 
     public static final int FLUID_COUNT = CATALOG.fluids().size();
@@ -77,7 +97,13 @@ public final class SemanticFluidCatalog {
         }
     }
 
+    /** Minecraft dye colors. GT6 tints both plain and owned C-Foam with {@code DYES}. */
     private static int colorFor(String runtimeId) {
+        String owned = runtimeId.replace(":cfoam_owned_", ":cfoam_");
+        Integer dyed = CFOAM_COLORS.get(owned);
+        if (dyed != null) {
+            return dyed;
+        }
         int hash = Objects.requireNonNull(runtimeId).hashCode();
         return 0xFF000000 | (hash & 0x00FFFFFF);
     }

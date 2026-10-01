@@ -669,16 +669,16 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 580802,
+    "traced_source_rows": 581398,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 580804,
-        "translated_exact": 7071,
+        "source_exact": 581400,
+        "translated_exact": 7047,
         "translated_io_only": 0,
-        "translated_item_io": 127,
-        "translatable_missing": 20214,
+        "translated_item_io": 143,
+        "translatable_missing": 19626,
         "missing_material_form": 66310,
         "missing_material": 0,
         "missing_fluid": 7978,
@@ -687,9 +687,9 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 587875,
-        "partial_match": 127,
-        "recipe_gap": 20214,
+        "proven": 588447,
+        "partial_match": 143,
+        "recipe_gap": 19626,
         "identity_gap": 89407,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
@@ -703,26 +703,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 587875,
+        "proven_rows": 588447,
         "identity_blocked_rows": 89100,
         "undecided_rows": 9642,
-        "recipe_progress": 0.8316,
+        "recipe_progress": 0.8324,
         "identity_ready": 0.8603
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.6547,
+        "mean_recipe_progress": 0.656,
         "maps_complete": 19,
-        "maps_untouched": 14
+        "maps_untouched": 13
       }
     },
-    "cc_recipe_rows": 583285,
+    "cc_recipe_rows": 583881,
     "cc_material_rule_files": 98,
-    "capability_count": 142,
+    "capability_count": 143,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 134
+      "runtime_ready:accepted": 135
     },
     "blocker_count": 62,
     "blocker_states": {
@@ -765,7 +765,7 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "b621e4cc4b03e81f7395a03f406ec9ef923f6114ce8f0b078934bcf7b24e5499",
+    "attribution_digest": "4110f059efdd5e713023d8d18265e2512d7c7a636e8bb563d9390887694d2b34",
     "attribution_overrides": 7878,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
@@ -1832,6 +1832,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "recipe/gt6-identity-ready-bulk",
       "path": "tools/capabilities/recipe/gt6-identity-ready-bulk/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-material-rule-remainder",
+      "title": "GT6 Material Rule Template Remainder",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "recipe/gt6-material-rule-remainder",
+      "path": "tools/capabilities/recipe/gt6-material-rule-remainder/capability.json"
     },
     {
       "slug": "recipe/gt6-prefix-regular-bulk",
@@ -6176,10 +6185,10 @@
           "path": "tools/capabilities/machines/large-fermenter/capability.json"
         }
       ],
-      "traced_source_rows": 941,
+      "traced_source_rows": 952,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "fermenter": 941
+        "fermenter": 952
       },
       "owned_cc_maps": [
         "fermenter"
@@ -6211,9 +6220,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 941,
+        "source_exact": 952,
         "translated_exact": 2,
-        "translatable_missing": 22,
+        "translatable_missing": 11,
         "missing_fluid": 3988,
         "missing_object": 1482
       },
@@ -6224,10 +6233,10 @@
         "source_rows": 6435,
         "excluded_rows": 75,
         "target_rows": 6360,
-        "proven_rows": 943,
+        "proven_rows": 954,
         "identity_blocked_rows": 5395,
         "undecided_rows": 0,
-        "recipe_progress": 0.1483,
+        "recipe_progress": 0.15,
         "identity_ready": 0.1517
       }
     },
@@ -6519,7 +6528,7 @@
       },
       "raw_row_classes": {
         "source_exact": 63568,
-        "translated_exact": 30,
+        "translated_item_io": 30,
         "missing_fluid": 624,
         "missing_object": 23
       },
@@ -6530,10 +6539,10 @@
         "source_rows": 64245,
         "excluded_rows": 7,
         "target_rows": 64238,
-        "proven_rows": 63598,
+        "proven_rows": 63568,
         "identity_blocked_rows": 640,
         "undecided_rows": 0,
-        "recipe_progress": 0.99,
+        "recipe_progress": 0.9896,
         "identity_ready": 0.99
       }
     },
@@ -6805,10 +6814,10 @@
           "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
         }
       ],
-      "traced_source_rows": 54826,
+      "traced_source_rows": 54864,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "bath": 54826
+        "bath": 54864
       },
       "owned_cc_maps": [
         "bath"
@@ -6847,11 +6856,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 54826,
+        "source_exact": 54864,
         "display_only": 2,
-        "translated_exact": 37,
-        "translated_item_io": 8,
-        "translatable_missing": 31,
+        "translated_exact": 38,
         "missing_material_form": 3568,
         "missing_fluid": 1382,
         "missing_object": 1
@@ -6864,10 +6871,10 @@
         "source_rows": 59855,
         "excluded_rows": 64,
         "target_rows": 59791,
-        "proven_rows": 54863,
+        "proven_rows": 54902,
         "identity_blocked_rows": 4889,
         "undecided_rows": 0,
-        "recipe_progress": 0.9176,
+        "recipe_progress": 0.9182,
         "identity_ready": 0.9182
       }
     },
@@ -7254,10 +7261,10 @@
           "path": "tools/capabilities/machines/injector/capability.json"
         }
       ],
-      "traced_source_rows": 572,
+      "traced_source_rows": 617,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "injector": 572
+        "injector": 617
       },
       "owned_cc_maps": [
         "injector"
@@ -7305,9 +7312,7 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 572,
-        "translated_item_io": 6,
-        "translatable_missing": 39,
+        "source_exact": 617,
         "missing_fluid": 21
       },
       "raw_row_excluded": {},
@@ -7315,10 +7320,10 @@
         "source_rows": 638,
         "excluded_rows": 0,
         "target_rows": 638,
-        "proven_rows": 572,
+        "proven_rows": 617,
         "identity_blocked_rows": 21,
         "undecided_rows": 0,
-        "recipe_progress": 0.8966,
+        "recipe_progress": 0.9671,
         "identity_ready": 0.9671
       }
     },
@@ -8000,10 +8005,10 @@
           "path": "tools/capabilities/machines/large-squeezer/capability.json"
         }
       ],
-      "traced_source_rows": 15,
+      "traced_source_rows": 30,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "squeezer": 15
+        "squeezer": 30
       },
       "owned_cc_maps": [
         "squeezer"
@@ -8047,9 +8052,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 15,
+        "source_exact": 30,
         "translated_exact": 1,
-        "translatable_missing": 40,
+        "translatable_missing": 25,
         "missing_material_form": 5190,
         "missing_fluid": 8,
         "missing_object": 68
@@ -8059,10 +8064,10 @@
         "source_rows": 5322,
         "excluded_rows": 0,
         "target_rows": 5322,
-        "proven_rows": 16,
+        "proven_rows": 31,
         "identity_blocked_rows": 5266,
         "undecided_rows": 0,
-        "recipe_progress": 0.003,
+        "recipe_progress": 0.0058,
         "identity_ready": 0.0105
       }
     },
@@ -9829,10 +9834,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 302762,
+      "traced_source_rows": 303235,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "extruder": 302762
+        "extruder": 303235
       },
       "owned_cc_maps": [
         "extruder"
@@ -9858,9 +9863,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 302764,
-        "translated_exact": 5854,
-        "translatable_missing": 495,
+        "source_exact": 303237,
+        "translated_exact": 5859,
+        "translatable_missing": 17,
         "missing_material_form": 11096,
         "missing_object": 5386
       },
@@ -9871,10 +9876,10 @@
         "source_rows": 325595,
         "excluded_rows": 76,
         "target_rows": 325519,
-        "proven_rows": 308618,
+        "proven_rows": 309096,
         "identity_blocked_rows": 16406,
         "undecided_rows": 0,
-        "recipe_progress": 0.9481,
+        "recipe_progress": 0.9495,
         "identity_ready": 0.9496
       }
     },
@@ -10262,9 +10267,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.massfab.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 14,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "massfab": 14
+      },
       "owned_cc_maps": [
         "massfab"
       ],
@@ -10289,7 +10296,7 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 14,
+        "source_exact": 14,
         "missing_material_form": 15,
         "missing_fluid": 891
       },
@@ -10298,10 +10305,10 @@
         "source_rows": 920,
         "excluded_rows": 0,
         "target_rows": 920,
-        "proven_rows": 0,
+        "proven_rows": 14,
         "identity_blocked_rows": 906,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.0152,
         "identity_ready": 0.0152
       }
     },
@@ -10968,11 +10975,11 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 580804,
-      "translated_exact": 7071,
+      "source_exact": 581400,
+      "translated_exact": 7047,
       "translated_io_only": 0,
-      "translated_item_io": 127,
-      "translatable_missing": 20214,
+      "translated_item_io": 143,
+      "translatable_missing": 19626,
       "missing_material_form": 66310,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -10981,9 +10988,9 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 587875,
-      "partial_match": 127,
-      "recipe_gap": 20214,
+      "proven": 588447,
+      "partial_match": 143,
+      "recipe_gap": 19626,
       "identity_gap": 89407,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
@@ -10997,17 +11004,17 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 587875,
+      "proven_rows": 588447,
       "identity_blocked_rows": 89100,
       "undecided_rows": 9642,
-      "recipe_progress": 0.8316,
+      "recipe_progress": 0.8324,
       "identity_ready": 0.8603
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.6547,
+      "mean_recipe_progress": 0.656,
       "maps_complete": 19,
-      "maps_untouched": 14
+      "maps_untouched": 13
     }
   },
   "semantic_coverage": {
@@ -11031,7 +11038,7 @@
     ],
     "translator": {
       "tools/recipe_bulk/dialects/gt6.py": "27eea11a67b274c7cec084c8d7ba0bec13f9c0b98a1b54039f5f4f4474a4fb26",
-      "tools/recipe_bulk/ordinary_source.py": "0cc440ff30d2f2bbcef6233f2ca16a30ecb641976714db65fe2dfda45292aab1",
+      "tools/recipe_bulk/ordinary_source.py": "be49f3a21129fff45ae63e8a359c8b61e034d9ea3a5e4a20fa21a9d3408c2cb1",
       "tools/recipe_bulk/emit.py": "796650e3cb28a0964fe8b277a89563241150c33a5173d1fc4e69cf4060b651f8",
       "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
       "tools/gt6_resolve.py": "bc4c4e8173c806380a4ec7f86f6e6260a9f7079177afda7a2e52df17a317c54d",
@@ -11043,18 +11050,18 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 583285,
+      "runtime_rows": 583881,
       "rule_rows": 19894,
-      "digest": "606f021e9d1fdb57a03c44dc67bf2d3974c82dd8d367830f58fdeed7ae443cfd"
+      "digest": "2eeb6b9cbee6727aa518d3cab808fb64439e5c4fad3aed6d87b12bf55a0ea9d1"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 580804,
+      "source_exact": 581400,
       "display_only": 13576,
-      "translated_exact": 7071,
+      "translated_exact": 7047,
       "translated_io_only": 0,
-      "translated_item_io": 127,
-      "translatable_missing": 20214,
+      "translated_item_io": 143,
+      "translatable_missing": 19626,
       "missing_material_form": 66310,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -11091,11 +11098,9 @@
         "source_exact": 392
       },
       "gt.recipe.bath": {
-        "source_exact": 54826,
+        "source_exact": 54864,
         "display_only": 2,
-        "translated_exact": 37,
-        "translated_item_io": 8,
-        "translatable_missing": 31,
+        "translated_exact": 38,
         "missing_material_form": 3568,
         "missing_fluid": 1382,
         "missing_object": 1
@@ -11211,16 +11216,16 @@
         "source_exact": 290
       },
       "gt.recipe.extruder": {
-        "source_exact": 302764,
-        "translated_exact": 5854,
-        "translatable_missing": 495,
+        "source_exact": 303237,
+        "translated_exact": 5859,
+        "translatable_missing": 17,
         "missing_material_form": 11096,
         "missing_object": 5386
       },
       "gt.recipe.fermenter": {
-        "source_exact": 941,
+        "source_exact": 952,
         "translated_exact": 2,
-        "translatable_missing": 22,
+        "translatable_missing": 11,
         "missing_fluid": 3988,
         "missing_object": 1482
       },
@@ -11275,9 +11280,7 @@
         "source_exact": 1072
       },
       "gt.recipe.injector": {
-        "source_exact": 572,
-        "translated_item_io": 6,
-        "translatable_missing": 39,
+        "source_exact": 617,
         "missing_fluid": 21
       },
       "gt.recipe.juicer": {
@@ -11313,7 +11316,7 @@
         "translatable_missing": 1
       },
       "gt.recipe.massfab": {
-        "translatable_missing": 14,
+        "source_exact": 14,
         "missing_material_form": 15,
         "missing_fluid": 891
       },
@@ -11327,7 +11330,7 @@
       },
       "gt.recipe.mixer": {
         "source_exact": 63568,
-        "translated_exact": 30,
+        "translated_item_io": 30,
         "missing_fluid": 624,
         "missing_object": 23
       },
@@ -11418,9 +11421,9 @@
         "missing_object": 21
       },
       "gt.recipe.squeezer": {
-        "source_exact": 15,
+        "source_exact": 30,
         "translated_exact": 1,
-        "translatable_missing": 40,
+        "translatable_missing": 25,
         "missing_material_form": 5190,
         "missing_fluid": 8,
         "missing_object": 68
@@ -13662,19 +13665,19 @@
       }
     ],
     "calibration": {
-      "pairs": 572719,
-      "equal": 572148,
-      "differs": 557,
+      "pairs": 573315,
+      "equal": 572185,
+      "differs": 1116,
       "untranslatable": 14,
-      "agreement": 0.999,
+      "agreement": 0.998,
       "by_map": {
         "gt.recipe.assembler": {
           "differs": 288,
           "equal": 54
         },
         "gt.recipe.bath": {
-          "differs": 29,
-          "equal": 54791
+          "differs": 588,
+          "equal": 54270
         },
         "gt.recipe.distillery": {
           "differs": 5,
@@ -13752,68 +13755,68 @@
         },
         {
           "map": "gt.recipe.bath",
-          "index": 1394,
-          "sha256": "cd1aa7c484bf8f9051e551ee6fdaddc095e260debece9fd499b053256fa20472"
+          "index": 141,
+          "sha256": "501b87f894b26fd9f4a245b16441d7529887b6e0bb7038c853d0b509c01011e4"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 1541,
-          "sha256": "b113735d7ee854114a15ec79c50d58fd2164214bf6a4d533cfeecc2df4795e98"
+          "index": 192,
+          "sha256": "c7513b9ef0647837acdd948b8ce830bc98853e023b6df109baff4e2bb5b8c163"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 2574,
-          "sha256": "c4302e1101d102e3eb7c58876a5cba63d78b6b0d24ebe0151869d96d89cca66a"
+          "index": 279,
+          "sha256": "18508b4e58a3a19ec50ec64086b42db0488c97635d8b85b6a5c3e875e9030cf0"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 6480,
-          "sha256": "0584832c8489b68d177ba5fc9ff6d2b5218b3a431106bae6ea27abe2bdfdd188"
+          "index": 317,
+          "sha256": "5ac9548d1b97974437ada99bbb25253d98a58a87d879b6782faff3c58fb87642"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 9933,
-          "sha256": "f527733a23ca0c249b0c8229e39a502880920392f7a8fc3f6a4c54b99f739bd8"
+          "index": 381,
+          "sha256": "977ad2827cb75c855a26a1dce66cace7f18c67e0e17c0906e29ff8fd43de02a1"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 12569,
-          "sha256": "ca5611c9a732d34ec9b784634bfc848ae4b0e5808ee699d50ef40c6f9b1b8f44"
+          "index": 521,
+          "sha256": "0404100f09cbb304d50677e407ff355334b473c1389cdff87bcfe0a687af208a"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 15620,
-          "sha256": "f50f42b27898a27f4abeb663ce0cea2c2cafcb7eeab2a68ff653825ad4854b92"
+          "index": 622,
+          "sha256": "f7252eb4aa9bbdd707734da6e6ab920fd5dca97da6dac418f36b0de41bdb94b4"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 16165,
-          "sha256": "4c6b53afc1965c30ed8eab523e2ffcdf0e956a0b8a15b3be2f255957fd512b4d"
+          "index": 646,
+          "sha256": "88b073beb57f1a72ba6ab4153b96988fc382d56fa07f9bcd23fc6e0b8b44fca8"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 16722,
-          "sha256": "19e179884ef6b27612dae9d11005cba86562c194ef8bc9f36cf0eb5258ba2499"
+          "index": 715,
+          "sha256": "09a5de6592aac963d433da684b5afc2f781e54171e54749370e13607e39dae5c"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 18642,
-          "sha256": "66486a8219071acd7de2af1f02eaadbfed7712b66aed34aac997a2259e6fd7c3"
+          "index": 736,
+          "sha256": "3f471641864e80e399814b07f2e48d5ed76de523eca54e1bf0e68208897fdcd9"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 20835,
-          "sha256": "39c8329834623ef86372ac5f17cd00bfd7590133153f0f544f730e7f8098c60d"
+          "index": 762,
+          "sha256": "56aa48fd35f24ebdb11a59cea3620c50aa3d6101c94fa9a86e92ec83653d53e9"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 25747,
-          "sha256": "e88cd290a60b810b76969f36d1a977a00c7c92fa942d9d3da1664b146506605a"
+          "index": 775,
+          "sha256": "74d8258ed739f27c9a585e1b6358ad93e8f4f2edcef41ed8b2e5edc506b5c67f"
         },
         {
           "map": "gt.recipe.bath",
-          "index": 28749,
-          "sha256": "489c02e219301cf265320722c2badec7063032c02655b2b20598149b020650ae"
+          "index": 1267,
+          "sha256": "1761294eafb94ec85a5cf04d5b203f36038945d6ac9f7e59e2497cf69acb5956"
         }
       ]
     },
