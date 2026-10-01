@@ -24,7 +24,7 @@ public final class Gt6BulkCapacityGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void bulkCapacityCeilings(GameTestHelper helper) {
         helper.assertTrue(
-                ModProcessingMachines.ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING == 500_000,
+                ModProcessingMachines.ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING == 616_572,
                 "lazy logical ceiling");
         helper.assertTrue(
                 CompactRecipeWireLimits.DECODE_RELATIONS_CEILING == 4_096,

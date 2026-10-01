@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-identity-ready-bulk",
+  "title": "GT6 Identity-Ready Recipe Bulk",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6身份就绪配方批量详细计划.md",
+    "docs/history/card-plans/closed/GT6身份就绪配方批量详细计划.md",
+    "tools/waves/recipe/gt6-identity-ready-bulk/**",
+    "tools/capabilities/recipe/gt6-identity-ready-bulk/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/sluice/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/shredder/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/injector/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/implosion_compressor/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/canner/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/coke_oven/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/autoclave/identity_ready/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_identity_ready.json",
+    "src/main/resources/data/cruciblecraft_wave_recipe_gt6_identity_ready_bulk/structure/empty.nbt",
+    "src/main/resources/data/cruciblecraft_wave_recipe_gt6_identity_ready_bulk/gametest/structure/empty.nbt",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6IdentityReadyBulkGameTests.java",
+    "src/test/resources/gt6_identity_ready_samples.json",
+    "tools/gametest_grids.json",
+    "tools/recipe_bulk/slugs.py"
+  ],
+  "depends_on": [
+    "recipe/gt6-chemical-misc-bulk",
+    "recipe/gt6-extruder-bulk",
+    "machines/gt6-basic-machine-batch",
+    "machines/bath",
+    "machines/melter",
+    "machines/injector",
+    "machines/implosion-compressor",
+    "machines/coke-oven",
+    "machines/large-autoclave"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-identity-ready-bulk",
+  "required_test_ids": [
+    "identityReadyGroupsStayOnDemand",
+    "identityReadySamplesRun"
+  ],
+  "note": "Publishes host-accepted translated rows that were still missing on sluice, shredder, extruder, bath, melter, injector, implosion compressor, canner, coke oven and autoclave. Each map gets one new on-demand group. Host rejections and missing objects stay blocked. Does not stand in ingredients. Playtest is unsigned."
+}

@@ -35,8 +35,9 @@ public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
     // Includes the 28 MTE fluid-attachment cooking recipes, the static
     // tool-pattern resources emitted outside the runtime workbench plan,
-    // and the bathing pot table crafting recipe.
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 5_434;
+    // the bathing pot table crafting recipe, and the 10 live flux laser
+    // and magnet recipes.
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 5_444;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =

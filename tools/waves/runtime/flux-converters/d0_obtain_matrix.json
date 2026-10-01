@@ -292,13 +292,13 @@
     {
       "source_id": 11031,
       "cc_id": "cruciblecraft:flux_magnet_lead",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10031)",
           "cc": "cruciblecraft:steel_galvanized_electromagnet",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "S": {
           "gt6": "OP.stickLong(MT.DATA.Flux_T[1])",
@@ -311,13 +311,13 @@
     {
       "source_id": 11032,
       "cc_id": "cruciblecraft:flux_magnet_invar",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10032)",
           "cc": "cruciblecraft:aluminium_electromagnet",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "S": {
           "gt6": "OP.stickLong(MT.DATA.Flux_T[2])",
@@ -330,13 +330,13 @@
     {
       "source_id": 11033,
       "cc_id": "cruciblecraft:flux_magnet_electrum",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10033)",
           "cc": "cruciblecraft:stainless_steel_electromagnet",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "S": {
           "gt6": "OP.stickLong(MT.DATA.Flux_T[3])",
@@ -349,13 +349,13 @@
     {
       "source_id": 11034,
       "cc_id": "cruciblecraft:flux_magnet_enderium_base",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10034)",
           "cc": "cruciblecraft:chromium_electromagnet",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "S": {
           "gt6": "OP.stickLong(MT.DATA.Flux_T[4])",
@@ -368,13 +368,13 @@
     {
       "source_id": 11035,
       "cc_id": "cruciblecraft:flux_magnet_enderium",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10035)",
           "cc": "cruciblecraft:titanium_electromagnet",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "S": {
           "gt6": "OP.stickLong(MT.DATA.Flux_T[5])",
@@ -387,13 +387,13 @@
     {
       "source_id": 11101,
       "cc_id": "cruciblecraft:flux_laser_lead",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10101)",
-          "cc": "cruciblecraft:steel_galvanized_electric_co2_laser",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+          "cc": "cruciblecraft:steel_galvanized_laser_electric",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "P": {
           "gt6": "OP.plate(MT.DATA.Flux_T[1])",
@@ -406,13 +406,13 @@
     {
       "source_id": 11102,
       "cc_id": "cruciblecraft:flux_laser_invar",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10102)",
-          "cc": "cruciblecraft:aluminium_electric_co2_laser",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+          "cc": "cruciblecraft:aluminium_laser_electric",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "P": {
           "gt6": "OP.plate(MT.DATA.Flux_T[2])",
@@ -425,13 +425,13 @@
     {
       "source_id": 11103,
       "cc_id": "cruciblecraft:flux_laser_electrum",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10103)",
-          "cc": "cruciblecraft:stainless_steel_electric_co2_laser",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+          "cc": "cruciblecraft:stainless_steel_laser_electric",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "P": {
           "gt6": "OP.plate(MT.DATA.Flux_T[3])",
@@ -444,13 +444,13 @@
     {
       "source_id": 11104,
       "cc_id": "cruciblecraft:flux_laser_enderium_base",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10104)",
-          "cc": "cruciblecraft:chromium_electric_co2_laser",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+          "cc": "cruciblecraft:chromium_laser_electric",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "P": {
           "gt6": "OP.plate(MT.DATA.Flux_T[4])",
@@ -463,13 +463,13 @@
     {
       "source_id": 11105,
       "cc_id": "cruciblecraft:flux_laser_enderium",
-      "status": "explicitly_blocked",
+      "status": "exact",
       "slots": {
         "M": {
           "gt6": "aRegistry.getItem(10105)",
-          "cc": "cruciblecraft:titanium_electric_co2_laser",
-          "status": "explicitly_blocked",
-          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+          "cc": "cruciblecraft:titanium_laser_electric",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
         },
         "P": {
           "gt6": "OP.plate(MT.DATA.Flux_T[5])",

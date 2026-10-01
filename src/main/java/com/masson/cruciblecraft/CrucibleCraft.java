@@ -58,6 +58,10 @@ public class CrucibleCraft {
         modEventBus.addListener(MaterialConfigurationHandshake::registerPayloads);
         modEventBus.addListener(MaterialConfigurationHandshake::registerTask);
         modEventBus.addListener(CoverConfigurationPayload::register);
+        modEventBus.addListener(
+                com.masson.cruciblecraft.network.CompactFamilyRequestPayload::register);
+        modEventBus.addListener(
+                com.masson.cruciblecraft.network.CompactFamilySlicePayload::register);
 
         ModFluids.FLUID_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);

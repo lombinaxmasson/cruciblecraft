@@ -1067,9 +1067,11 @@
     },
     {
       "affected_capabilities": [
+        "energy/cooler",
         "energy/heat-exchangers"
       ],
       "authority": [
+        "tools/capabilities/energy/cooler/capability.json",
         "tools/capabilities/energy/heat-exchangers/capability.json"
       ],
       "blocks_maturity": "player_complete",
@@ -1084,12 +1086,12 @@
       "id": "energy/cooler",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Independent runtime, recipes and player path.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Ten electric and flux coolers landed on energy/cooler: loader rows 10161-10165 and 11161-11165, source-exact shaped recipes, and the energy-grid GameTests. survival_access stays unreviewed.",
+      "planning_bucket": "not_work",
+      "resolved_by": "energy/cooler",
       "root_cause": "cooler_later_card",
       "root_cause_class": "missing_runtime",
-      "status": "open",
+      "status": "resolved",
       "title": "电力/通量冷却器",
       "unit": ""
     },
@@ -1972,7 +1974,6 @@
       "obtain/redstone-wiregt01"
     ],
     "missing_runtime": [
-      "energy/cooler",
       "energy/reactor-world-explode",
       "tools/world-behaviors",
       "worldgen/bees",
@@ -2007,11 +2008,6 @@
       {
         "count": null,
         "id": "architecture/building-block-identity",
-        "unit": ""
-      },
-      {
-        "count": null,
-        "id": "energy/cooler",
         "unit": ""
       },
       {
@@ -2158,7 +2154,7 @@
     ]
   },
   "planning_counts": {
-    "audit_first": 10,
+    "audit_first": 9,
     "not_work": 3,
     "scale_not_todo": 5,
     "schedulable": 11
@@ -2166,10 +2162,10 @@
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 27,
+    "open": 26,
     "out_of_scope": 6,
     "partial": 2,
-    "resolved": 22,
+    "resolved": 23,
     "superseded": 5,
     "total": 62
   }

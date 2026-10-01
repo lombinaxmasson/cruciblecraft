@@ -10,8 +10,8 @@
 
 ## 统计
 
-- 条目 62：open 27，partial 2，resolved 22，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 11，有名字，分母未冻成工作量 10，不是活 3
+- 条目 62：open 26，partial 2，resolved 23，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 11，有名字，分母未冻成工作量 9，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -40,10 +40,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/printer-dye-fluids`：22 rows
 - `recipe/roll-former-rail-gt`：2 rows
 
-### C. 有名字，分母未冻成工作量（10）
+### C. 有名字，分母未冻成工作量（9）
 
 - `architecture/building-block-identity`：n/a
-- `energy/cooler`：n/a
 - `energy/reactor-backpack-radioactivity`：n/a
 - `energy/reactor-world-explode`：1 behaviors
 - `identity/eu-blocked-gauges`：n/a
@@ -153,8 +152,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `peripheral/sensors-computercraft`
 - `missing_obtain`（1）
   - `obtain/redstone-wiregt01`
-- `missing_runtime`（5）
-  - `energy/cooler`
+- `missing_runtime`（4）
   - `energy/reactor-world-explode`
   - `tools/world-behaviors`
   - `worldgen/bees`
@@ -212,22 +210,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/waves/portfolio/source-capability-map-r0/leftover_later.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：later:assembler_combinatorial + later:electrolyzer_combinatorial. started = false.
-
-### `energy/cooler`
-
-- 标题：电力/通量冷却器
-- 状态：`open`
-- 根因：`missing_runtime` / `cooler_later_card`
-- 数量：n/a
-- 排期：`audit_first`
-- 挡住：`player_complete`
-- 发现卡：`energy/heat-exchangers`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`energy/heat-exchangers`
-- 权威：`tools/capabilities/energy/heat-exchangers/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Independent runtime, recipes and player path.
 
 ### `energy/reactor-backpack-radioactivity`
 
@@ -676,6 +658,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/logistics/cover-remainder/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Bare MultiTileEntityWireRedstone extends the insulated class, so torch/repeater attach to all six CC redstone connectors.
+
+### `energy/cooler`
+
+- 标题：电力/通量冷却器
+- 状态：`resolved`
+- 根因：`missing_runtime` / `cooler_later_card`
+- 数量：n/a
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`energy/heat-exchangers`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：energy/cooler
+- 影响：`energy/cooler`, `energy/heat-exchangers`
+- 权威：`tools/capabilities/energy/cooler/capability.json`, `tools/capabilities/energy/heat-exchangers/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Ten electric and flux coolers landed on energy/cooler: loader rows 10161-10165 and 11161-11165, source-exact shaped recipes, and the energy-grid GameTests. survival_access stays unreviewed.
 
 ### `energy/large-heat-exchanger-17197`
 

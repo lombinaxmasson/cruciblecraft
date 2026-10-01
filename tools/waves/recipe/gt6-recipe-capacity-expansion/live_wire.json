@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "kind": "live_update_recipes_packet",
+  "target_logical_rows": 600000,
+  "sync_budget_bytes": 67108864,
+  "lazy_logical_recipes": 616572,
+  "eager_published_recipes": 88561,
+  "reload_ms": 11169,
+  "stub_sync_bytes": 74604108,
+  "recipe_holders": 52502,
+  "live_packet_bytes": 21888480,
+  "synthetic_extruder_rows": 0,
+  "synthetic_extruder_bytes": 0,
+  "projected_packet_plus_synthetic_bytes": 21888480,
+  "linear_600k_bytes": 21300169,
+  "lookup_p95_nanos": 29878,
+  "lookup_p95_candidates": 1,
+  "lookup_p95_within_verification_budget": true,
+  "live_packet_within_budget": true,
+  "projection_within_budget": true,
+  "linear_600k_within_budget": true,
+  "by_serializer": [
+    {
+      "serializer": "cruciblecraft:compact_gt_recipe_family",
+      "holders": 16174,
+      "body_bytes": 61730067
+    },
+    {
+      "serializer": "cruciblecraft:shaped_catalyst",
+      "holders": 29074,
+      "body_bytes": 17815120
+    },
+    {
+      "serializer": "cruciblecraft:gt_recipe",
+      "holders": 2738,
+      "body_bytes": 1548346
+    },
+    {
+      "serializer": "minecraft:crafting_shaped",
+      "holders": 1307,
+      "body_bytes": 184821
+    },
+    {
+      "serializer": "minecraft:crafting_shapeless",
+      "holders": 2262,
+      "body_bytes": 80768
+    },
+    {
+      "serializer": "cruciblecraft:compact_publication_policy",
+      "holders": 172,
+      "body_bytes": 55981
+    },
+    {
+      "serializer": "cruciblecraft:material_rule",
+      "holders": 98,
+      "body_bytes": 52087
+    },
+    {
+      "serializer": "minecraft:smelting",
+      "holders": 227,
+      "body_bytes": 15216
+    },
+    {
+      "serializer": "minecraft:blasting",
+      "holders": 96,
+      "body_bytes": 10650
+    },
+    {
+      "serializer": "cruciblecraft:compact_dedup_rule",
+      "holders": 12,
+      "body_bytes": 5420
+    },
+    {
+      "serializer": "minecraft:smithing_trim",
+      "holders": 18,
+      "body_bytes": 3294
+    },
+    {
+      "serializer": "minecraft:stonecutting",
+      "holders": 250,
+      "body_bytes": 2773
+    },
+    {
+      "serializer": "cruciblecraft:prefix_pack",
+      "holders": 15,
+      "body_bytes": 1470
+    },
+    {
+      "serializer": "cruciblecraft:tool_head_assembly",
+      "holders": 18,
+      "body_bytes": 1359
+    },
+    {
+      "serializer": "minecraft:smithing_transform",
+      "holders": 9,
+      "body_bytes": 207
+    },
+    {
+      "serializer": "minecraft:campfire_cooking",
+      "holders": 9,
+      "body_bytes": 171
+    },
+    {
+      "serializer": "minecraft:smoking",
+      "holders": 9,
+      "body_bytes": 162
+    },
+    {
+      "serializer": "minecraft:crafting_special_mapextending",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_bookcloning",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_shielddecoration",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_shulkerboxcoloring",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_firework_star_fade",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_repairitem",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_tippedarrow",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_suspiciousstew",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_mapcloning",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_armordye",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_firework_rocket",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_firework_star",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_special_bannerduplicate",
+      "holders": 1,
+      "body_bytes": 1
+    },
+    {
+      "serializer": "minecraft:crafting_decorated_pot",
+      "holders": 1,
+      "body_bytes": 1
+    }
+  ],
+  "note": "live_packet_bytes is the login ClientboundUpdateRecipesPacket after compact family holders are omitted. Those bodies are on-demand and are not part of the login sync budget. stub_sync_bytes still includes the family stub and is not the sync proof. projected_packet_plus_synthetic_bytes is the login packet; synthetic_extruder_bytes is an on-demand size, not added to login. The dedicated client receipt is dedicated_client_login.json."
+}

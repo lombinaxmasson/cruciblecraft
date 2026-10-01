@@ -121,6 +121,8 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 2026-09-27 大型锅炉：第 1 张 `machines/large-boiler` 曾占 unique-active，现为 `runtime_ready` / `paused`。详细计划在 [大型锅炉详细计划](../closed/大型锅炉详细计划.md)。GameTest 还没当关闭门跑过，所以不是 accepted。
 
+2026-09-30 大型锅炉：重新占锁，声明的 14 条 GameTest 全部通过，已 `accepted`。`survival_access` 仍是 `partial`。
+
 2026-09-27 多方块储罐：第 2 张 `machines/gt6-multiblock-tanks` 已 `accepted`，并收进第 7 张。GT6 只有 3×3×3 和 5×5×5 两套固定空心方块，没有连续边长。声明的 17 条 GameTest 已通过。详细计划在 [GT6 多方块储罐详细计划](../closed/GT6多方块储罐详细计划.md)。
 
 大型锅炉的逐档缺口清单在大型机器快照 §5.8.1。那一节的旧容量数字（8,000 mB 水）是历史快照，以当前 `LargeBoilerTier` 为准，再和 GT6 逐项对。

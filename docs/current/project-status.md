@@ -15,8 +15,6 @@
 
 - `content/gt6-crop-food-split` — [GT6 作物与 Foods 可选拆分详细计划](../history/card-plans/prep/GT6作物与Foods可选拆分详细计划.md)
 - `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
-- `energy/cooler` — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
-- `energy/flux-converters` — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
 - `machines/large-bath` — [大型洗矿机详细计划](../history/card-plans/prep/大型洗矿机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `portfolio/gt6-bulk-port` — [GT6 批量移植总计划](../history/card-plans/prep/GT6批量移植总计划.md)
@@ -29,9 +27,8 @@
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
-- `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
-## runtime_ready accepted（126）
+## runtime_ready accepted（132）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -81,6 +78,8 @@
 - `content/technological-parts-foundation` — Technological Parts Foundation — [技术中间件基础详细计划](../history/card-plans/closed/技术中间件基础详细计划.md)
 - `energy/batteries` — Energy Batteries
 - `energy/converter-catalog` — Energy Converter Catalog
+- `energy/cooler` — Electric and Flux Coolers — [冷却器详细计划](../history/card-plans/closed/冷却器详细计划.md)
+- `energy/flux-converters` — Flux FE to GU Converters — [通量转换器详细计划](../history/card-plans/closed/通量转换器详细计划.md)
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU — [聚变详细计划](../history/card-plans/closed/聚变详细计划.md)
 - `energy/gt6-laser-magnet-zpm-converters` — GT6 laser, magnet, and ZPM converters — [GT6 激光、磁铁与 ZPM 转换器详细计划](../history/card-plans/closed/GT6激光磁铁ZPM转换器详细计划.md)
 - `energy/gt6-remainder-devices` — GT6 remainder energy devices — [GT6 余量能源设备详细计划](../history/card-plans/closed/GT6余量能源设备详细计划.md)
@@ -114,6 +113,7 @@
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
 - `machines/large-autoclave` — Large Autoclave 17112 — [大型高压釜详细计划](../history/card-plans/closed/大型高压釜详细计划.md)
 - `machines/large-bathing-vat` — Large Bathing Vat 17104
+- `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `machines/large-centrifuge` — Large Centrifuge 17100
 - `machines/large-coagulator` — Large Coagulator Array 17105
 - `machines/large-crucible` — Large Crucible 17101
@@ -143,7 +143,9 @@
 - `recipe/gt6-chemical-misc-bulk` — GT6 Chemical and Misc Recipe Bulk — [GT6 化学杂项配方批量详细计划](../history/card-plans/closed/GT6化学杂项配方批量详细计划.md)
 - `recipe/gt6-extruder-bulk` — GT6 Extruder Recipe Bulk — [GT6 挤压机配方批量详细计划](../history/card-plans/closed/GT6挤压机配方批量详细计划.md)
 - `recipe/gt6-extruder-remainder` — GT6 Extruder Recipe Remainder — [GT6 挤压机配方补发详细计划](../history/card-plans/closed/GT6挤压机配方补发详细计划.md)
+- `recipe/gt6-identity-ready-bulk` — GT6 Identity-Ready Recipe Bulk — [GT6 身份就绪配方批量详细计划](../history/card-plans/closed/GT6身份就绪配方批量详细计划.md)
 - `recipe/gt6-prefix-regular-bulk` — GT6 Prefix Regular Recipe Bulk — [GT6 前缀规则类配方批量详细计划](../history/card-plans/closed/GT6前缀规则类配方批量详细计划.md)
+- `recipe/gt6-recipe-capacity-expansion` — GT6 Recipe Capacity Expansion — [GT6 配方扩容详细计划](../history/card-plans/closed/GT6配方扩容详细计划.md)
 - `recipe/gt6-steamcracking-bulk` — GT6 Steam Cracking Recipe Bulk — [GT6 蒸汽裂化配方批量详细计划](../history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/gt6-form-open-followup` — GT6 Material Form Open Follow-up — [GT6 材料形态开门后续详细计划](../history/card-plans/closed/GT6材料形态开门后续详细计划.md)
@@ -158,18 +160,16 @@
 - `tooling/repo-slimming` — Repository slimming — [仓库瘦身详细计划](../history/card-plans/closed/仓库瘦身详细计划.md)
 - `tooling/verification-decoupling` — Verification decoupling — [验证去耦与横切守卫详细计划](../history/card-plans/closed/验证去耦与横切守卫详细计划.md)
 - `worldgen/gt-crops` — GT Crops — [GT 作物世界生成](../history/card-plans/closed/GT作物世界生成详细计划.md)
+- `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/closed/GT6小矿世界生成详细计划.md)
 - `worldgen/gt-stone-layer-rocks` — GT Stone Layer Rocks — [GT6 石层石子](../history/card-plans/closed/GT6石层石子详细计划.md)
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## runtime_ready paused（4）
+## runtime_ready paused（0）
 
 已有运行时代码或机制证据，但 workflow 仍暂停，不能视为 accepted。
 
-- `energy/cooler` — Electric and Flux Coolers — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
-- `energy/flux-converters` — Flux FE to GU Converters — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
-- `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
-- `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
+无。
 
 ## frozen（8）
 

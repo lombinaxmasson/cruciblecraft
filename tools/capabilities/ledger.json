@@ -1674,7 +1674,8 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/prep/冷却器详细计划.md",
+        "docs/history/card-plans/active/冷却器详细计划.md",
+        "docs/history/card-plans/closed/冷却器详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
         "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
         "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
@@ -1695,13 +1696,15 @@
       "slug": "energy/cooler",
       "survival_access": "unreviewed",
       "title": "Electric and Flux Coolers",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
         "docs/history/card-plans/prep/通量转换器详细计划.md",
+        "docs/history/card-plans/active/通量转换器详细计划.md",
+        "docs/history/card-plans/closed/通量转换器详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/flux/**",
         "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
         "src/test/java/com/masson/cruciblecraft/energy/flux/**",
@@ -1727,7 +1730,7 @@
       "slug": "energy/flux-converters",
       "survival_access": "unreviewed",
       "title": "Flux FE to GU Converters",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -2946,7 +2949,7 @@
       "slug": "machines/large-boiler",
       "survival_access": "partial",
       "title": "Large Boiler 17201-17205",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -3935,6 +3938,52 @@
     },
     {
       "depends_on": [
+        "recipe/gt6-chemical-misc-bulk",
+        "recipe/gt6-extruder-bulk",
+        "machines/gt6-basic-machine-batch",
+        "machines/bath",
+        "machines/melter",
+        "machines/injector",
+        "machines/implosion-compressor",
+        "machines/coke-oven",
+        "machines/large-autoclave"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6身份就绪配方批量详细计划.md",
+        "docs/history/card-plans/closed/GT6身份就绪配方批量详细计划.md",
+        "tools/waves/recipe/gt6-identity-ready-bulk/**",
+        "tools/capabilities/recipe/gt6-identity-ready-bulk/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/sluice/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/shredder/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/melter/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/injector/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/implosion_compressor/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/canner/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/coke_oven/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/autoclave/identity_ready/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_identity_ready.json",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_identity_ready_bulk/structure/empty.nbt",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_identity_ready_bulk/gametest/structure/empty.nbt",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6IdentityReadyBulkGameTests.java",
+        "src/test/resources/gt6_identity_ready_samples.json",
+        "tools/gametest_grids.json",
+        "tools/recipe_bulk/slugs.py"
+      ],
+      "path": "tools/capabilities/recipe/gt6-identity-ready-bulk/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/gt6-identity-ready-bulk",
+      "survival_access": "unreviewed",
+      "title": "GT6 Identity-Ready Recipe Bulk",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "recipe/gt6-bulk-capacity",
         "recipe/gt6-extruder-bulk"
       ],
@@ -3978,6 +4027,55 @@
       "slug": "recipe/gt6-prefix-regular-bulk",
       "survival_access": "unreviewed",
       "title": "GT6 Prefix Regular Recipe Bulk",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "recipe/gt6-bulk-capacity"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6配方扩容详细计划.md",
+        "docs/current/recipe-wave-workflow.md",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeLoginSync.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactFamilyOnDemand.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactAuthoredMatrix.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeMap.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/PrefixMaterialItemCodecs.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeReloadCoordinator.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapClientEvents.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+        "src/main/java/com/masson/cruciblecraft/network/CompactFamilyRequestPayload.java",
+        "src/main/java/com/masson/cruciblecraft/network/CompactFamilySlicePayload.java",
+        "src/main/java/com/masson/cruciblecraft/mixin/ClientRecipePacketTimingMixin.java",
+        "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
+        "src/main/java/com/masson/cruciblecraft/CrucibleCraft.java",
+        "src/main/java/com/masson/cruciblecraft/client/CapacityClientReceipt.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMeasurementSources.java",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_recipe_capacity_expansion/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityExpansionGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/RecipeCapacityLiveWireGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/RecipeCapacityWireProbe.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/BulkCapacitySyntheticLoadHarness.java",
+        "tools/recipe_bulk/ordinary_wave.py",
+        "tools/recipe_load_load_budget_policy.json",
+        "tools/waves/recipe/gt6-recipe-capacity-expansion/**",
+        "tools/capabilities/recipe/gt6-recipe-capacity-expansion/**"
+      ],
+      "path": "tools/capabilities/recipe/gt6-recipe-capacity-expansion/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes",
+        "capability-runtime"
+      ],
+      "slug": "recipe/gt6-recipe-capacity-expansion",
+      "survival_access": "not_applicable",
+      "title": "GT6 Recipe Capacity Expansion",
       "workflow": "accepted"
     },
     {
@@ -4446,7 +4544,8 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/active/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/closed/GT6小矿世界生成详细计划.md",
         "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
         "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
@@ -4482,7 +4581,7 @@
       "slug": "worldgen/gt-small-ores",
       "survival_access": "partial",
       "title": "GT Small Ores",
-      "workflow": "paused"
+      "workflow": "accepted"
     },
     {
       "depends_on": [],
@@ -4646,7 +4745,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 138,
+  "capability_count": 140,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4814,12 +4913,14 @@
       "content/gt6-mte-inplace-acquisition",
       "machines/coke-oven",
       "machines/gt6-coil-hosts",
-      "machines/large-oven"
+      "machines/large-oven",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "content/gt6-mte-misc-tool-runtime": [
       "content/gt6-mte-misc-tool-runtime",
       "machines/bath",
-      "machines/large-bathing-vat"
+      "machines/large-bathing-vat",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "content/gt6-mte-multiblock-runtime": [
       "content/gt6-mte-multiblock-runtime",
@@ -4840,7 +4941,8 @@
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
-      "machines/large-squeezer"
+      "machines/large-squeezer",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "content/gt6-mte-processing-host-fold": [
       "content/gt6-mte-processing-host-fold",
@@ -4906,6 +5008,7 @@
       "machines/large-shredder",
       "machines/large-sluice",
       "machines/puv-omega-matrix",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -4965,6 +5068,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5026,6 +5130,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5101,6 +5206,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5171,6 +5277,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5230,6 +5337,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5307,6 +5415,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5381,6 +5490,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5446,6 +5556,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5511,6 +5622,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5575,6 +5687,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5641,6 +5754,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5704,13 +5818,15 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
     "machines/bath": [
       "machines/bath",
-      "machines/large-bathing-vat"
+      "machines/large-bathing-vat",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/bedrock-drill": [
       "machines/bedrock-drill"
@@ -5721,13 +5837,15 @@
       "machines/large-squeezer"
     ],
     "machines/coke-oven": [
-      "machines/coke-oven"
+      "machines/coke-oven",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/distillation-tower": [
       "machines/distillation-tower"
     ],
     "machines/gt6-basic-machine-batch": [
       "machines/gt6-basic-machine-batch",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-steamcracking-bulk"
     ],
     "machines/gt6-coil-hosts": [
@@ -5742,7 +5860,8 @@
       "machines/large-squeezer"
     ],
     "machines/implosion-compressor": [
-      "machines/implosion-compressor"
+      "machines/implosion-compressor",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/injector": [
       "content/gt6-electric-tools",
@@ -5765,6 +5884,7 @@
       "machines/large-shredder",
       "machines/large-sluice",
       "machines/puv-omega-matrix",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5783,7 +5903,8 @@
       "machines/laminator"
     ],
     "machines/large-autoclave": [
-      "machines/large-autoclave"
+      "machines/large-autoclave",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/large-bathing-vat": [
       "machines/large-bathing-vat"
@@ -5827,7 +5948,8 @@
       "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
-      "machines/large-sluice"
+      "machines/large-sluice",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/large-shredder": [
       "machines/large-shredder"
@@ -5869,6 +5991,7 @@
       "machines/large-sluice",
       "machines/loom",
       "machines/puv-omega-matrix",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5884,7 +6007,8 @@
       "content/gt6-fluid-pipe-acquisition",
       "content/gt6-item-pipe-acquisition",
       "content/gt6-restrictive-item-pipe-runtime",
-      "machines/melter"
+      "machines/melter",
+      "recipe/gt6-identity-ready-bulk"
     ],
     "machines/nanofab": [
       "content/electric-wire-cable-mte-fold",
@@ -5953,6 +6077,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -5982,6 +6107,7 @@
       "machines/large-sluice",
       "machines/puv-omega-matrix",
       "machines/slicer",
+      "recipe/gt6-identity-ready-bulk",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
@@ -6014,27 +6140,38 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-chemical-misc-bulk": [
       "recipe/gt6-chemical-misc-bulk",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-extruder-bulk": [
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-extruder-remainder": [
       "recipe/gt6-extruder-remainder"
     ],
+    "recipe/gt6-identity-ready-bulk": [
+      "recipe/gt6-identity-ready-bulk"
+    ],
     "recipe/gt6-prefix-regular-bulk": [
       "recipe/gt6-chemical-misc-bulk",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
       "recipe/gt6-steamcracking-bulk"
+    ],
+    "recipe/gt6-recipe-capacity-expansion": [
+      "recipe/gt6-recipe-capacity-expansion"
     ],
     "recipe/gt6-steamcracking-bulk": [
       "recipe/gt6-steamcracking-bulk"
@@ -6101,6 +6238,7 @@
       "machines/large-shredder",
       "machines/large-sluice",
       "machines/large-squeezer",
+      "recipe/gt6-identity-ready-bulk",
       "registry/catalog-modern-ids"
     ],
     "registry/gt6-form-open-followup": [
@@ -6280,6 +6418,7 @@
       "presentation/multiblock-emi-projection",
       "presentation/multiblock-schema-preview",
       "recipe/gt6-bulk-capacity",
+      "recipe/gt6-recipe-capacity-expansion",
       "registry/catalog-modern-ids",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
@@ -6307,7 +6446,9 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
+      "recipe/gt6-identity-ready-bulk",
       "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-recipe-capacity-expansion",
       "recipe/gt6-steamcracking-bulk",
       "runtime/compact-family-jar-bundles"
     ],

@@ -1,0 +1,180 @@
+{
+  "family_id": "gt.recipe.canner#identity_ready_0001",
+  "publication_group": "cruciblecraft:canner/identity_ready",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:potion"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:glass_bottle"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "c8a2a405be582e49bc56c9b6214920b634aa65010cb6c59e8b482af47d7e8907"
+        ],
+        "selected_source_recipe": "gt.recipe.canner#identity_ready_0001",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5c47580887356ddd"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "minecraft:lava"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:lava_bucket"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:bucket"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "c0f77398ced9bbc285178b688f91c6e1d7bc857f6d504a0a9cbc286bc6c378a6"
+        ],
+        "selected_source_recipe": "gt.recipe.canner#identity_ready_0001",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/30a6847d4d53d093"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "minecraft:water"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:water_bucket"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:bucket"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "31ce7ccc2ba0da46e71229c80454a0977caa68a7b2e5b8c94b7858eb918498a6"
+        ],
+        "selected_source_recipe": "gt.recipe.canner#identity_ready_0001",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 2,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4bcdf1c4b19a0888"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:mushroomsoup"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:mushroom_stew"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:bowl"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "be87282339eb51a90af433874bd23d017fe816953e99f866df688c2a6378bf46"
+        ],
+        "selected_source_recipe": "gt.recipe.canner#identity_ready_0001",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 3,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a68be1c966b620fa"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:canner",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

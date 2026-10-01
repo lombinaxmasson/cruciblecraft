@@ -81,6 +81,18 @@ public final class GTRecipeReloadCoordinator {
         }
     }
 
+    /**
+     * Lets a later publication of the same recipe manager through
+     * {@link #decide}. Used when a dedicated client merges on-demand families.
+     */
+    public static void advanceGeneration(Object manager) {
+        Objects.requireNonNull(manager, "manager");
+        synchronized (LOCK) {
+            lastSeenManager = manager;
+            generationForManager = nextGeneration++;
+        }
+    }
+
     public static void markPublished(RequestIdentity request) {
         Objects.requireNonNull(request, "request");
         synchronized (LOCK) {

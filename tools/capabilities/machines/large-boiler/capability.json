@@ -3,7 +3,7 @@
   "slug": "machines/large-boiler",
   "title": "Large Boiler 17201-17205",
   "maturity": "runtime_ready",
-  "workflow": "paused",
+  "workflow": "accepted",
   "survival_access": "partial",
   "owned_paths": [
     "docs/history/card-plans/active/大型锅炉详细计划.md",
@@ -60,5 +60,5 @@
       "reason": "GT6 MultiTileEntityLargeBoiler 17201, 17205, 17202, 17203, 17204. Not single-block steam boiler tanks 1200-1262. Not steam turbines 17211-17214. Legacy cruciblecraft:large_boiler only migrates old saves onto the stainless controller."
     }
   ],
-  "note": "Five MTE barometer controllers share LargeBoilerBlockEntity. 3x3 heat transmitters under a 3x3x3 shell, one air cell. Water 128000 mB. Steam and HU capacity are mOutput * 10000. 80 HU + 1 mB water -> 160 mB steam at full efficiency, scaled by UT.Code.units. Barometer is UT.Code.scale(amount, capacity, 31, false). Pressure above 4 rechecks structure on that tick. No new EnergyType. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready. 2026-09-27 yielded unique-active to the multiblock tank card. GameTests are not the close gate yet, so this stays paused rather than accepted."
+  "note": "Five MTE barometer controllers share LargeBoilerBlockEntity. 3x3 heat transmitters under a 3x3x3 shell, one air cell. Water 128000 mB. Steam and HU capacity are mOutput * 10000. 80 HU + 1 mB water -> 160 mB steam at full efficiency, scaled by UT.Code.units. Barometer is UT.Code.scale(amount, capacity, 31, false). Pressure above 4 rechecks structure on that tick. No new EnergyType. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready. 2026-09-27 yielded unique-active to the multiblock tank card. 2026-09-30 reopened only to run the 14 declared GameTests as the close gate; all passed, closed accepted."
 }

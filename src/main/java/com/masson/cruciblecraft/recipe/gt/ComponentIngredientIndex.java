@@ -124,7 +124,11 @@ public final class ComponentIngredientIndex {
     }
 
     public static List<String> unsupportedIngredientTypes(GTRecipe recipe) {
-        return recipe.itemInputs().stream()
+        return unsupportedIngredientTypes(recipe.itemInputs());
+    }
+
+    public static List<String> unsupportedIngredientTypes(List<Ingredient> itemInputs) {
+        return itemInputs.stream()
                 .filter(ingredient -> !ingredient.isSimple())
                 .filter(ingredient -> !extract(ingredient).supported())
                 .map(ingredient -> ingredient.getCustomIngredient() == null

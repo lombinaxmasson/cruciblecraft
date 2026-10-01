@@ -212,12 +212,12 @@ def build_policy() -> dict[str, Any]:
             aggregation="sum",
         ),
         "lazy_logical_rows": _axis(
-            hard=500_000,
+            hard=616_572,
             soft=16000,
             unit="rows",
             workload="opening_19_group_plus_future_waves",
             source=(
-                "recipe/gt6-bulk-capacity measured 500000 synthetic matrix rows. "
+                "recipe/gt6-recipe-capacity-expansion measured 616572 lazy logical rows. "
                 "Per-holder row ceiling stays 4096 and the shard ceiling stays 128."
             ),
             aggregation="sum",
