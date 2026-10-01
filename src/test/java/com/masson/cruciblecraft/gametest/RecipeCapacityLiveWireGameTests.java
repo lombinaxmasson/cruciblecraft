@@ -16,8 +16,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(RecipeCapacityLiveWireGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RecipeCapacityLiveWireGameTests {
-    public static final String NAMESPACE =
-            "cruciblecraft_wave_recipe_gt6_recipe_capacity_expansion";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private RecipeCapacityLiveWireGameTests() {}
