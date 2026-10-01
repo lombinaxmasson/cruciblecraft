@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class CompactGTRecipeFamilySyncSizeTest {
     /** Committed compact RecipeHolders under recipe_generated, excluding off-tree bath waves. */
-    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 14986;
+    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 14996;
     private static final int EXPECTED_LARGE_JSON_ENTRIES = 42;
     private static final int EXPECTED_SANDING_FRAGMENTS = 9;
     private static final int EXPECTED_SANDING_RELATIONS = 7_637;

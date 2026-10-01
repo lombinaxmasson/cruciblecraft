@@ -189,6 +189,8 @@ ORDINARY_VANILLA_RENAMES: dict[str, str] = {
     "minecraft:melon_block": "minecraft:melon",
     "minecraft:netherbrick": "minecraft:nether_brick",
     "minecraft:web": "minecraft:cobweb",
+    # 1.7 yellow_flower has no subtypes. The fermenter dump labels it Dandelion.
+    "minecraft:yellow_flower": "minecraft:dandelion",
 }
 LEGACY_VANILLA_META_RENAMES: dict[tuple[str, int], str] = {
     ("minecraft:log", 0): "minecraft:oak_log",
@@ -480,12 +482,16 @@ def proven_item_runtime(
         return None
     key = (item_id, meta)
     if mte_runtime and key in mte_runtime:
-        return mte_runtime[key]
-    if block_runtime and key in block_runtime:
-        return block_runtime[key]
-    if stone_runtime and key in stone_runtime:
-        return stone_runtime[key]
-    return load_ledger_item_runtime().get(key)
+        found = mte_runtime[key]
+    elif block_runtime and key in block_runtime:
+        found = block_runtime[key]
+    elif stone_runtime and key in stone_runtime:
+        found = stone_runtime[key]
+    else:
+        found = load_ledger_item_runtime().get(key)
+    if found and "cfoam" in item_id:
+        return gt6_cfoam_block_runtime(meta, found)
+    return found
 
 
 def load_ledger_fluid_overlay() -> dict[str, str]:
@@ -1402,13 +1408,123 @@ NATIVE_ITEM_EQUIVALENTS = {
 }
 
 
+# GT6 BlockColored meta follows DYE_NAMES. The block catalog stored the
+# 1.21 dye ordinal instead, so published paths need this correction.
+_GT6_CFOAM_BLOCK_DYES = (
+    "black",
+    "red",
+    "green",
+    "brown",
+    "blue",
+    "purple",
+    "cyan",
+    "light_gray",
+    "gray",
+    "pink",
+    "lime",
+    "yellow",
+    "light_blue",
+    "magenta",
+    "orange",
+    "white",
+)
+_CATALOG_CFOAM_DYES = (
+    "white",
+    "orange",
+    "magenta",
+    "light_blue",
+    "yellow",
+    "lime",
+    "pink",
+    "gray",
+    "light_gray",
+    "cyan",
+    "purple",
+    "blue",
+    "brown",
+    "green",
+    "red",
+    "black",
+)
+_CFOAM_ITEM_PREFIXES = (
+    "cruciblecraft:cfoam_fresh/",
+    "cruciblecraft:cfoam/",
+    "cruciblecraft:panel/cfoam_",
+)
+_CFOAM_COLOR_TOKENS = tuple(
+    sorted(set(_GT6_CFOAM_BLOCK_DYES), key=len, reverse=True)
+)
+
+
+def _replace_cfoam_color(runtime: str, color: str) -> str:
+    for prefix in _CFOAM_ITEM_PREFIXES:
+        if not runtime.startswith(prefix):
+            continue
+        rest = runtime[len(prefix) :]
+        for token in _CFOAM_COLOR_TOKENS:
+            if rest == token or rest.startswith(token + "/"):
+                return prefix + color + rest[len(token) :]
+    return runtime
+
+
+def gt6_cfoam_block_runtime(meta: int, runtime: str) -> str:
+    """Point a catalog C-Foam path at the GT6 dye for this meta."""
+    return _replace_cfoam_color(runtime, _GT6_CFOAM_BLOCK_DYES[int(meta) % 16])
+
+
+def undo_catalog_cfoam_dye(runtime: str) -> str:
+    """Map a published catalog color back to the GT6 dye of the same meta."""
+    table = dict(zip(_CATALOG_CFOAM_DYES, _GT6_CFOAM_BLOCK_DYES, strict=True))
+    for prefix in _CFOAM_ITEM_PREFIXES:
+        if not runtime.startswith(prefix):
+            continue
+        rest = runtime[len(prefix) :]
+        for token in _CFOAM_COLOR_TOKENS:
+            if rest == token or rest.startswith(token + "/"):
+                return prefix + table[token] + rest[len(token) :]
+    return runtime
+
+
+# GT6 dye postfix → registry path. ``cfoam.owned.<color>`` uses the same color.
+_CFOAM_COLOR_PATH = {
+    "black": "cfoam_black",
+    "red": "cfoam_red",
+    "green": "cfoam_green",
+    "brown": "cfoam_brown",
+    "blue": "cfoam_blue",
+    "purple": "cfoam_purple",
+    "cyan": "cfoam_cyan",
+    "lightgray": "cfoam_lightgray",
+    "gray": "cfoam_gray",
+    "pink": "cfoam_pink",
+    "lime": "cfoam_lime",
+    "yellow": "cfoam_yellow",
+    "lightblue": "cfoam_lightblue",
+    "magenta": "cfoam_magenta",
+    "orange": "cfoam_orange",
+    "white": "cfoam_white",
+}
+
+
+def cfoam_runtime_id(fluid_id: str) -> str | None:
+    """GT6 dyed C-Foam. Uncolored ``ic2constructionfoam`` stays construction foam."""
+    key = fluid_id.split(":", 1)[-1]
+    owned = key.startswith("cfoam.owned.")
+    if not owned and not key.startswith("cfoam."):
+        return None
+    path = _CFOAM_COLOR_PATH.get(key.rsplit(".", 1)[-1])
+    if path is None:
+        return None
+    if owned:
+        path = "cfoam_owned_" + path.removeprefix("cfoam_")
+    return "cruciblecraft:" + path
+
+
 def native_fluid_equivalent(fluid_id: str) -> str | None:
     key = fluid_id.split(":", 1)[-1]
     if key in NATIVE_FLUID_EQUIVALENTS:
         return NATIVE_FLUID_EQUIVALENTS[key]
-    if key.startswith("cfoam."):
-        return "cruciblecraft:construction_foam"
-    return None
+    return cfoam_runtime_id(fluid_id)
 
 
 def mixer_cross_mod_reason(relations: list[dict[str, Any]]) -> str | None:

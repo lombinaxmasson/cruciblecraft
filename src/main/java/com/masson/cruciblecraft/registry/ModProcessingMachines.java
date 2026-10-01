@@ -63,9 +63,17 @@ public final class ModProcessingMachines {
                     true,
                     EnergyType.KINETIC_ROTATION,
                     1, 9, 1, 1);
+    /**
+     * GT6 Bath sets no {@code NBT_TANK_CAPACITY}. The basic machine sizes each
+     * input fluid to {@code max(1000, largest recipe of that fluid * parallel * 2)}.
+     * Parallel is 1. The largest {@code gt.recipe.bath} input is steam at
+     * 1_440_000 mB, so the shared input tank is 2_880_000.
+     */
+    public static final int BATH_GT6_RECIPE_FLUID_INPUT = 1_440_000;
+    public static final int BATH_FLUID_INPUT = BATH_GT6_RECIPE_FLUID_INPUT * 2;
     public static final ProcessingMachineSpec BATH =
             reusedChemicalSpec("bath", () -> ModRecipeMaps.BATH,
-                    6, 6, 1, 3, 4_000, 8_000,
+                    6, 6, 1, 3, BATH_FLUID_INPUT, 8_000,
                     6, 6, 1, 3,
                     EnergyType.TIME,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
@@ -117,6 +125,11 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec MELTER = melterSpec();
     public static final List<ProcessingMachineSpec> PRIMARY_MACHINES = List.of(
             SLUICE, BATH, CENTRIFUGE, SHREDDER, SIFTER, SMELTER, MELTER, MORTAR);
+    /**
+     * Largest {@code gt.recipe.extruder} row is 512 HU/t. That is the T3
+     * extruder's {@code NBT_INPUT}; the shared component packet of 256 drops it.
+     */
+    public static final long EXTRUDER_MAX_PACKET = 512L;
     public static final ProcessingMachineSpec EXTRUDER =
             componentSpec(
                     "extruder",
@@ -125,7 +138,8 @@ public final class ModProcessingMachines {
                     false,
                     true,
                     EnergyType.HEAT,
-                    2, 2, 0, 0);
+                    2, 2, 0, 0,
+                    EXTRUDER_MAX_PACKET);
     public static final ProcessingMachineSpec CUTTER =
             componentSpec(
                     "cutter",
@@ -173,6 +187,12 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec LOOM = loomSpec();
     public static final ProcessingMachineSpec ELECTRICLOOM =
             electricLoomSpec();
+    /**
+     * GT6 Injector sets no tank capacity. Parallel is 1, so each input fluid
+     * is sized to twice its largest recipe. The largest input is 20_736 mB.
+     */
+    public static final int INJECTOR_GT6_RECIPE_FLUID_INPUT = 20_736;
+    public static final int INJECTOR_FLUID_INPUT = INJECTOR_GT6_RECIPE_FLUID_INPUT * 2;
     public static final ProcessingMachineSpec INJECTOR = injectorSpec();
     public static final ProcessingMachineSpec NANOFAB = nanofabSpec();
     public static final ProcessingMachineSpec ROLLBENDER =
@@ -402,7 +422,7 @@ public final class ModProcessingMachines {
                     "massfab",
                     id("massfab"),
                     () -> ModRecipeMaps.MASSFAB,
-                    1, 1, 1, 1, 32_000, 32_000, 1, 1, 1, 1,
+                    2, 1, 1, 1, 32_000, 32_000, 2, 1, 1, 1,
                     EnergyType.QUANTUM, 8_192L);
     public static final ProcessingMachineSpec REPLICATOR =
             chemicalSpec(
@@ -702,16 +722,21 @@ public final class ModProcessingMachines {
     }
 
     private static Optional<String> validateLargeSqueezer(GTRecipe recipe) {
+        // GT6 squeezer rows may be fluid-only. The small host already accepts
+        // that; the large host used to require an item output and dropped them.
         if (recipe.itemInputs().size() != 1
-                || recipe.itemOutputs().isEmpty()
                 || recipe.itemOutputs().size() > 2
+                || (recipe.itemOutputs().isEmpty() && recipe.fluidOutputs().isEmpty())
                 || !recipe.fluidInputs().isEmpty()
                 || recipe.fluidOutputs().size() > 1
                 || recipe.eut() <= 0L
                 || recipe.eut() > 4_096L
                 || recipe.outputChances().size() != recipe.itemOutputs().size()
                 || recipe.outputChances().stream().anyMatch(
-                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)
+                || recipe.fluidOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("squeezer_recipe_shape");
         }
         return Optional.empty();
@@ -961,7 +986,62 @@ public final class ModProcessingMachines {
             int gt6OutItems,
             int gt6InFluids,
             int gt6OutFluids,
+            long energyMax) {
+        return componentSpec(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                extruderTool,
+                energyType,
+                gt6InItems,
+                gt6OutItems,
+                gt6InFluids,
+                gt6OutFluids,
+                extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1,
+                energyMax);
+    }
+
+    private static ProcessingMachineSpec componentSpec(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            boolean extruderTool,
+            EnergyType energyType,
+            int gt6InItems,
+            int gt6OutItems,
+            int gt6InFluids,
+            int gt6OutFluids,
             int itemOutputs) {
+        return componentSpec(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                extruderTool,
+                energyType,
+                gt6InItems,
+                gt6OutItems,
+                gt6InFluids,
+                gt6OutFluids,
+                itemOutputs,
+                256L);
+    }
+
+    private static ProcessingMachineSpec componentSpec(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            boolean extruderTool,
+            EnergyType energyType,
+            int gt6InItems,
+            int gt6OutItems,
+            int gt6InFluids,
+            int gt6OutFluids,
+            int itemOutputs,
+            long energyMax) {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
         boolean assemblerCatalysts = "assembler".equals(path);
@@ -1017,7 +1097,7 @@ public final class ModProcessingMachines {
                         energyType,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
-                        256L),
+                        energyMax),
                 Gt6SidedIo.policy(path),
                 recipe -> validateComponentRecipe(
                         recipe,
@@ -1027,7 +1107,8 @@ public final class ModProcessingMachines {
                         extruderTool,
                         assemblerCatalysts,
                         pressPreserve,
-                        fluidCapacity),
+                        fluidCapacity,
+                        energyMax),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -1051,7 +1132,8 @@ public final class ModProcessingMachines {
             boolean extruderTool,
             boolean assemblerCatalysts,
             boolean pressPreserve,
-            int fluidCapacity) {
+            int fluidCapacity,
+            long energyMax) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > itemOutputs
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
@@ -1095,8 +1177,9 @@ public final class ModProcessingMachines {
                 .anyMatch(action -> action.kind() == ItemInputAction.Kind.WEAR)) {
             return Optional.of("wear_tool_shape");
         }
-        // The 4,096-unit buffer is storage; the real per-recipe maxPacket policy is 256.
-        if (recipe.eut() <= 0L || recipe.eut() > 256L) {
+        // The 4,096-unit buffer is storage. Component machines accept 256 per tick;
+        // the extruder follows the largest dump row, 512.
+        if (recipe.eut() <= 0L || recipe.eut() > energyMax) {
             return Optional.of("component_recipe_energy");
         }
         if (recipe.itemInputCounts().stream().anyMatch(count ->
@@ -1323,7 +1406,8 @@ public final class ModProcessingMachines {
                 || "canner".equals(path)
                 || "press".equals(path)
                 || "freezer".equals(path)
-                || "replicator".equals(path);
+                || "replicator".equals(path)
+                || "massfab".equals(path);
     }
 
     private static ProcessingMachineSpec chemicalSpec(
@@ -1597,7 +1681,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("rollformer"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, 1, false, false, false, false, 4_000),
+                        recipe, 1, 1, false, false, false, false, 4_000, 256L),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,
@@ -1631,7 +1715,7 @@ public final class ModProcessingMachines {
                 id("large_matter_fabricator"),
                 id("massfab"),
                 () -> ModRecipeMaps.MASSFAB,
-                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 32_000)),
                         List.of(new ProcessingMachineSpec.TankSpec(
@@ -1643,14 +1727,14 @@ public final class ModProcessingMachines {
                         2_097_152L),
                 Gt6SidedIo.policy("large_matter_fabricator"),
                 recipe -> validateChemicalRecipe(
-                        recipe, 1, 1, 1, 1, 32_000, UNBOUNDED_FLUID_OUTPUT,
+                        recipe, 2, 1, 1, 1, 32_000, UNBOUNDED_FLUID_OUTPUT,
                         chemicalAllowsPreserveCatalyst("massfab"),
                         EnergyType.QUANTUM,
                         2_097_152L),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
-                        1, 1, 1, 1,
-                        1, 1, 1, 1,
+                        2, 1, 1, 1,
+                        2, 1, 1, 1,
                         PROCESSING_STATUSES));
     }
 
@@ -1866,7 +1950,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("clustermill"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, 1, false, false, false, false, 4_000),
+                        recipe, 1, 1, false, false, false, false, 4_000, 256L),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,
@@ -2079,8 +2163,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(
-                                new ProcessingMachineSpec.TankSpec(0, 4_000),
-                                new ProcessingMachineSpec.TankSpec(1, 4_000)),
+                                new ProcessingMachineSpec.TankSpec(0, INJECTOR_FLUID_INPUT),
+                                new ProcessingMachineSpec.TankSpec(1, INJECTOR_FLUID_INPUT)),
                         List.of(new ProcessingMachineSpec.TankSpec(
                                 2, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
@@ -2109,7 +2193,7 @@ public final class ModProcessingMachines {
             return Optional.of("injector_recipe_shape");
         }
         if (recipe.fluidInputs().stream()
-                        .anyMatch(stack -> stack.getAmount() > 4_000)
+                        .anyMatch(stack -> stack.getAmount() > INJECTOR_FLUID_INPUT)
                 || recipe.fluidOutputs().stream()
                         .anyMatch(stack -> stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("injector_recipe_amount");

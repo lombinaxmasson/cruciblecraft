@@ -234,7 +234,8 @@ class ChemicalProcessingMachineSpecTest {
     void reusedSourceMapsExposeT5OutputCapacityWithoutChangingEnergyType() {
         assertLayout(
                 ModProcessingMachines.BATH,
-                6, 6, 1, 3, 4_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+                6, 6, 1, 3, ModProcessingMachines.BATH_FLUID_INPUT,
+                ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertLayout(
                 ModProcessingMachines.CENTRIFUGE,
                 1, 6, 1, 6,

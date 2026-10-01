@@ -5,15 +5,15 @@
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "map_count": 21,
   "source_rows": 172327,
-  "traced_source_rows": 154079,
+  "traced_source_rows": 154128,
   "recipe_evidence_grades": {
     "source_rows": 172327,
     "classes": {
-      "source_exact": 154079,
-      "translated_exact": 396,
+      "source_exact": 154128,
+      "translated_exact": 367,
       "translated_io_only": 0,
-      "translated_item_io": 56,
-      "translatable_missing": 115,
+      "translated_item_io": 78,
+      "translatable_missing": 73,
       "missing_material_form": 9359,
       "missing_material": 0,
       "missing_fluid": 6767,
@@ -22,9 +22,9 @@
       "legacy_exclusion_pending": 0
     },
     "groups": {
-      "proven": 154475,
-      "partial_match": 56,
-      "recipe_gap": 115,
+      "proven": 154495,
+      "partial_match": 78,
+      "recipe_gap": 73,
       "identity_gap": 17679,
       "display_only": 2,
       "legacy_exclusion_pending": 0
@@ -38,15 +38,15 @@
       "source_rows": 172327,
       "excluded_rows": 149,
       "target_rows": 172178,
-      "proven_rows": 154475,
+      "proven_rows": 154495,
       "identity_blocked_rows": 17532,
       "undecided_rows": 0,
-      "recipe_progress": 0.8972,
+      "recipe_progress": 0.8973,
       "identity_ready": 0.8982
     },
     "machine_progress": {
       "maps": 21,
-      "mean_recipe_progress": 0.7617,
+      "mean_recipe_progress": 0.7618,
       "maps_complete": 6,
       "maps_untouched": 1
     }
@@ -332,10 +332,10 @@
           "path": "tools/capabilities/machines/large-fermenter/capability.json"
         }
       ],
-      "traced_source_rows": 941,
+      "traced_source_rows": 952,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "fermenter": 941
+        "fermenter": 952
       },
       "owned_cc_maps": [
         "fermenter"
@@ -367,9 +367,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 941,
+        "source_exact": 952,
         "translated_exact": 2,
-        "translatable_missing": 22,
+        "translatable_missing": 11,
         "missing_fluid": 3988,
         "missing_object": 1482
       },
@@ -380,10 +380,10 @@
         "source_rows": 6435,
         "excluded_rows": 75,
         "target_rows": 6360,
-        "proven_rows": 943,
+        "proven_rows": 954,
         "identity_blocked_rows": 5395,
         "undecided_rows": 0,
-        "recipe_progress": 0.1483,
+        "recipe_progress": 0.15,
         "identity_ready": 0.1517
       }
     },
@@ -675,7 +675,7 @@
       },
       "raw_row_classes": {
         "source_exact": 63568,
-        "translated_exact": 30,
+        "translated_item_io": 30,
         "missing_fluid": 624,
         "missing_object": 23
       },
@@ -686,10 +686,10 @@
         "source_rows": 64245,
         "excluded_rows": 7,
         "target_rows": 64238,
-        "proven_rows": 63598,
+        "proven_rows": 63568,
         "identity_blocked_rows": 640,
         "undecided_rows": 0,
-        "recipe_progress": 0.99,
+        "recipe_progress": 0.9896,
         "identity_ready": 0.99
       }
     },
@@ -961,10 +961,10 @@
           "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
         }
       ],
-      "traced_source_rows": 54826,
+      "traced_source_rows": 54864,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "bath": 54826
+        "bath": 54864
       },
       "owned_cc_maps": [
         "bath"
@@ -1003,11 +1003,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 54826,
+        "source_exact": 54864,
         "display_only": 2,
-        "translated_exact": 37,
-        "translated_item_io": 8,
-        "translatable_missing": 31,
+        "translated_exact": 38,
         "missing_material_form": 3568,
         "missing_fluid": 1382,
         "missing_object": 1
@@ -1020,10 +1018,10 @@
         "source_rows": 59855,
         "excluded_rows": 64,
         "target_rows": 59791,
-        "proven_rows": 54863,
+        "proven_rows": 54902,
         "identity_blocked_rows": 4889,
         "undecided_rows": 0,
-        "recipe_progress": 0.9176,
+        "recipe_progress": 0.9182,
         "identity_ready": 0.9182
       }
     },

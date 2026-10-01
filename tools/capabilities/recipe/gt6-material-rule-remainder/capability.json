@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-material-rule-remainder",
+  "title": "GT6 Material Rule Template Remainder",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6补材料规则模板详细计划.md",
+    "docs/history/card-plans/closed/GT6补材料规则模板详细计划.md",
+    "tools/waves/recipe/gt6-material-rule-remainder/**",
+    "tools/capabilities/recipe/gt6-material-rule-remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/press/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/squeezer/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/injector/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/smelter/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/crusher/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/fermenter/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/massfab/rule_remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_rule_remainder.json",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "tools/recipe_bulk/ordinary_source.py",
+    "src/main/resources/data/cruciblecraft_wave_recipe_gt6_material_rule_remainder/structure/empty.nbt",
+    "src/main/resources/data/cruciblecraft_wave_recipe_gt6_material_rule_remainder/gametest/structure/empty.nbt",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6MaterialRuleRemainderGameTests.java",
+    "src/test/resources/gt6_material_rule_remainder_samples.json",
+    "tools/gametest_grids.json",
+    "tools/recipe_bulk/slugs.py"
+  ],
+  "depends_on": [
+    "recipe/gt6-identity-ready-bulk",
+    "recipe/gt6-prefix-regular-bulk",
+    "recipe/gt6-chemical-misc-bulk",
+    "recipe/gt6-extruder-bulk",
+    "machines/hammer-squeezer-laser",
+    "machines/injector",
+    "machines/bath"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-material-rule-remainder",
+  "required_test_ids": [
+    "ruleRemainderGroupsStayOnDemand",
+    "ruleRemainderSamplesRun"
+  ],
+  "note": "Publishes host-accepted translated rows still missing on extruder, press, squeezer, injector, smelter, bath, crusher, fermenter and massfab. Each map gets one new on-demand group. These rows are not a cartesian material rule. Host rejections stay blocked. Does not stand in ingredients. Playtest is unsigned."
+}
