@@ -10,57 +10,35 @@
         }
       ],
       "hashes": [
-        "33798f33e24ce9c4c91dc0bfe6ecbc154eb7fdef2e884d545835c4c0a4aa26e2",
-        "466be757819d980fb27e94e8f8d03f46cf84e1c20bd16b9b3d7e6150dd0da5d2",
-        "850a623cd481f899387cf81a139c571001f680f3f95af6121de88ed7113f2f27",
-        "2717b18ac45585bdb9a66adc6f11c03c68b706816550b65baeff328a0deb8543"
+        "39bfe33cf8cfabe585df0aa2d13eafe1678b23f9c4051cb95fbfed68d57e483c",
+        "56f0aaed19f1dc439e0d27d989a8f4b10e8064ade8fdf1c94bcc1bf1de9ec927",
+        "7da919b800eb649ec313f3c08cbebf1b85fcc1ba8bb354e34ebb94ab738b6b52"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:ore_material": "silicon",
-              "minecraft:block_state": {
-                "host": "red_sand"
-              }
+              "cruciblecraft:prefix_material": "tin"
             },
-            "items": "cruciblecraft:gt_hosted_ore",
+            "items": "cruciblecraft:washed_crushed_ore",
             "type": "neoforge:components"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:ore_material": "silicon",
-              "minecraft:block_state": {
-                "host": "mud"
-              }
+              "cruciblecraft:prefix_material": "cassiterite"
             },
-            "items": "cruciblecraft:gt_hosted_ore",
+            "items": "cruciblecraft:washed_crushed_ore",
             "type": "neoforge:components"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:ore_material": "silicon",
-              "minecraft:block_state": {
-                "host": "sand"
-              }
+              "cruciblecraft:prefix_material": "asbestos"
             },
-            "items": "cruciblecraft:gt_hosted_ore",
-            "type": "neoforge:components"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:ore_material": "silicon",
-              "minecraft:block_state": {
-                "host": "gravel"
-              }
-            },
-            "items": "cruciblecraft:gt_hosted_ore",
+            "items": "cruciblecraft:washed_crushed_ore",
             "type": "neoforge:components"
           }
         ]
@@ -68,16 +46,137 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tin"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
             "count": 1,
-            "id": "cruciblecraft:silicon/tiny_dust"
+            "id": "cruciblecraft:gem_exquisite"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:gem_flawless"
           },
           {
             "count": 1,
-            "id": "cruciblecraft:silicon/tiny_dust"
+            "id": "cruciblecraft:zircon/gem"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 2,
+            "id": "cruciblecraft:gem_flawed"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 4,
+            "id": "cruciblecraft:gem_chipped"
           },
           {
             "count": 1,
-            "id": "cruciblecraft:silicon/tiny_dust"
+            "id": "cruciblecraft:zircon/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cassiterite"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:gem_exquisite"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:gem_flawless"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:zircon/gem"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 2,
+            "id": "cruciblecraft:gem_flawed"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zircon"
+            },
+            "count": 4,
+            "id": "cruciblecraft:gem_chipped"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:zircon/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "asbestos"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "jade"
+            },
+            "count": 1,
+            "id": "cruciblecraft:gem_exquisite"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "jade"
+            },
+            "count": 1,
+            "id": "cruciblecraft:gem_flawless"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:jade/gem"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "jade"
+            },
+            "count": 2,
+            "id": "cruciblecraft:gem_flawed"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "jade"
+            },
+            "count": 4,
+            "id": "cruciblecraft:gem_chipped"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:jade/dust"
           }
         ]
       ]
@@ -87,38 +186,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/efb689a058f94994",
+        "cruciblecraft:gt6/673dbb986c1e97ac",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/690998b5f855cb3c",
+        "cruciblecraft:gt6/728095f6ef86973f",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/4a3bfa4acfcdd719",
+        "cruciblecraft:gt6/47dc7acdad76a44d",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/435d3c7cb8c3bac6",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 256,
+      "duration": 144,
       "eut": 16,
       "item_input_actions": [
         {
@@ -130,8 +221,12 @@
       ],
       "output_chances": [
         10000,
-        10000,
-        1500
+        90,
+        360,
+        1350,
+        1800,
+        3600,
+        4500
       ],
       "selected_source_recipe": "gt.recipe.sifter#bulk_0008",
       "source_kind": "SOURCE_DERIVED",

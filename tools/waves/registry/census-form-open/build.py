@@ -189,18 +189,26 @@ def check_landed(document: dict[str, Any]) -> None:
         for material, forms in container_pairs().items()
         for form in forms
     }
-    # Sifter rows emit crushedPurified plus tiny byproduct dust. Once
-    # washed_crushed_ore is gated, semantic coverage reports those rows as
-    # tiny_dust on the same materials. That remainder stays out of this gate.
+    # Sifter rows emit crushedPurified plus tiny byproduct dust. This card
+    # left tiny_dust openable. The sifter byproduct card gates that remainder;
+    # afterwards openable is only the metadata-only container prep.
     byproduct = {(material, "tiny_dust") for material in required}
-    expected_open = containers | byproduct
+    if byproduct <= still_open:
+        expected_open = containers | byproduct
+    elif byproduct.isdisjoint(still_open):
+        expected_open = containers
+    else:
+        raise SystemExit(
+            "tiny_dust byproduct is only partly still openable: "
+            f"{sorted(byproduct & still_open)[:8]}"
+        )
     if still_open != expected_open:
         missing = sorted(expected_open - still_open)[:8]
         extra = sorted(still_open - expected_open)[:8]
         raise SystemExit(
             "census openable after this card must be the metadata-only "
-            "container prep plus tiny_dust on the landed materials; "
-            f"missing {missing} extra {extra}"
+            "container prep, plus tiny_dust on the landed materials until "
+            f"the sifter byproduct card gates them; missing {missing} extra {extra}"
         )
 
 

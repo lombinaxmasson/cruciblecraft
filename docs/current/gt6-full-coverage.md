@@ -12,37 +12,37 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | 轴 | 分母 | 当前状态分布 |
 | --- | --- | --- |
-| 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 46，`full_replay` 16，`empty_source` 14，`legacy_exclusion_pending` 2 |
-| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 83.1%**（587375）；身份就绪 86.0%；按机器平均 65.2%（73 台，完成 18，未开始 14） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 587375（81.5%）；部分一致 127（<0.1%）；缺配方 20214（2.8%）；缺身份 89907（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`bounded_subset` 38，`runtime_accepted` 34，`full_replay` 13 |
+| 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 45，`full_replay` 17，`empty_source` 14，`legacy_exclusion_pending` 2 |
+| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 83.2%**（587875）；身份就绪 86.0%；按机器平均 65.5%（73 台，完成 19，未开始 14） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 587875（81.6%）；部分一致 127（<0.1%）；缺配方 20214（2.8%）；缺身份 89407（12.4%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`bounded_subset` 36，`runtime_accepted` 34，`full_replay` 15 |
 | 多方块控制器 | 30 canonical kinds | `runtime_paused` 1，`runtime_accepted` 29 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
-| 材料形态需求 | 6619 demand pairs | openable 220，gated_unresolved 1207，ungated 规模 3173（规模，非待办） |
-| Capability | 141 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 133；survival_access `blocked` 3，`not_applicable` 15，`partial` 29，`unreviewed` 33，`unset` 61 |
+| 材料形态需求 | 6619 demand pairs | openable 95，gated_unresolved 1207，ungated 规模 3048（规模，非待办） |
+| Capability | 142 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 134；survival_access `blocked` 3，`not_applicable` 15，`partial` 29，`unreviewed` 34，`unset` 61 |
 | Blocker | 62 | `open` 26，`out_of_scope` 6，`partial` 2，`resolved` 23，`superseded` 5 |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
-- **已证明** 587375（81.5%）：`source_exact` 580304，`translated_exact` 7071
+- **已证明** 587875（81.6%）：`source_exact` 580804，`translated_exact` 7071
 - **部分一致** 127（<0.1%）：`translated_io_only` 0，`translated_item_io` 127
 - **缺配方** 20214（2.8%）：`translatable_missing` 20214
-- **缺身份** 89907（12.5%）：`missing_material_form` 66810，`missing_material` 0，`missing_fluid` 7978，`missing_object` 15119
+- **缺身份** 89407（12.4%）：`missing_material_form` 66310，`missing_material` 0，`missing_fluid` 7978，`missing_object` 15119
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
 
-翻译链校准：在 572219 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 571648（99.9%），不一致 557，不可翻译 14。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
+翻译链校准：在 572719 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 572148（99.9%），不一致 557，不可翻译 14。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
 
 按交付深度的源行数：
 
 - `denominator_only`：29476 源行，已追溯 0
 - `runtime_only`：29648 源行，已追溯 0
-- `bounded_subset`：634097 源行，已追溯 562324
-- `full_replay`：17978 源行，已追溯 17978
+- `bounded_subset`：631220 源行，已追溯 559947
+- `full_replay`：20855 源行，已追溯 20855
 - `empty_source`：0 源行，已追溯 0
 - `legacy_exclusion_pending`：9642 源行，已追溯 0
 
@@ -56,7 +56,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - **CC 未追溯行**：落在本图对应 CC 图上、但没有行级 GT6 evidence 的配方行（datagen 手写、`gt6_java_source`、bootstrap、design policy 等），只证明有内容，不算源行。
 - **材料规则**：`material_rule` 文件数 → `component_rule_manifest.json` 记录的离线展开数；没有展开数的规则由运行时按材料展开。
 
-扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 582785，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 7878，未能在 dump 中找到 0，多图歧义 0）。
+扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 583285，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 7878，未能在 dump 中找到 0，多图歧义 0）。
 
 | GT6 map | 源行 | 历史源分母分类 | 当前交付深度 | 逐行已证明 | reference 追溯 | CC 承载图（CC 行） | CC 未追溯行 | 材料规则 | overflow | capability | blocker |
 | --- | ---: | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | --- | --- |
@@ -118,7 +118,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.rollformer` | 28 | deferred_with_reason | `bounded_subset` | 26（92.9%） | 0 | rollformer 26 | 0 | — | 0 | — | recipe/roll-former-rail-gt |
 | `gt.recipe.rollingmill` | 2438 | in_scope | `bounded_subset` | 2436（99.9%） | 0 | rollingmill 2436 | 0 | 1 条 → 336 | 0 | — | — |
 | `gt.recipe.shredder` | 41246 | in_scope | `bounded_subset` | 35233（85.4%） | 14803 | shredder 35590 | 0 | — | 11881 | machines/large-shredder | — |
-| `gt.recipe.sifter` | 2877 | in_scope | `bounded_subset` | 2377（82.6%） | 1720 | sifter 2728 | 6 | — | 0 | — | — |
 | `gt.recipe.smelter` | 21969 | in_scope | `bounded_subset` | 18209（82.9%） | 2003 | smelter 18330 | 91 | 1 条 | 0 | — | — |
 | `gt.recipe.squeezer` | 5322 | deferred_with_reason | `bounded_subset` | 15（0.3%） | 0 | squeezer 15 | 5 | — | 0 | machines/large-squeezer | identity/processing-ungated-families, recipe/squeezer-dump-5322, worldgen/crops-glowtus-bush |
 | `gt.recipe.steamcracking` | 7746 | deferred_with_reason | `bounded_subset` | 7714（99.6%） | 0 | steam_cracker 7714 | 0 | — | 0 | recipe/gt6-steamcracking-bulk | — |
@@ -136,6 +135,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.pressurewasher` | 312 | deferred_with_reason | `full_replay` | 312（100.0%） | 0 | pressurewasher 312 | 24 | — | 0 | — | — |
 | `gt.recipe.rollbender` | 940 | in_scope | `full_replay` | 940（100.0%） | 0 | rollbender 940 | 0 | 3 条 → 1076 | 0 | — | — |
 | `gt.recipe.sharpener` | 7637 | deferred_with_reason | `full_replay` | 7637（100.0%） | 0 | sanding 7637 | 0 | — | 0 | machines/sanding | identity/sanding-grindstone-32703 |
+| `gt.recipe.sifter` | 2877 | in_scope | `full_replay` | 2877（100.0%） | 1720 | sifter 3228 | 6 | — | 0 | — | — |
 | `gt.recipe.slicer` | 33 | deferred_with_reason | `full_replay` | 33（100.0%） | 0 | slicer 33 | 0 | — | 0 | machines/slicer | material-form/paper-tiny-plate |
 | `gt.recipe.sluice` | 4840 | in_scope | `full_replay` | 4840（100.0%） | 3183 | sluice 5195 | 2 | — | 0 | machines/large-sluice | — |
 | `gt.recipe.wiremill` | 455 | in_scope | `full_replay` | 455（100.0%） | 0 | wiremill 455 | 0 | 10 条 → 356 | 0 | — | — |
@@ -206,7 +206,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.sluice` | 4840 | 4840 | 100.0% | 100.0% | 4840 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.welder` | 4762 | 4762 | 100.0% | 100.0% | 4760 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
 | `gt.recipe.canner` | 3609 | 3609 | 1.3% | 2.5% | 40 | 7 | 0 | 42 | 0 | 2343 | 0 | 72 | 1105 | 0 | 0 |
-| `gt.recipe.sifter` | 2877 | 2877 | 82.6% | 82.6% | 2377 | 0 | 0 | 0 | 0 | 500 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.sifter` | 2877 | 2877 | 100.0% | 100.0% | 2877 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.lathe` | 2528 | 2528 | 99.9% | 99.9% | 2525 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0 |
 | `gt.recipe.rollingmill` | 2438 | 2438 | 99.9% | 99.9% | 2436 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
 | `gt.recipe.laserengraver` | 1787 | 1787 | 31.8% | 32.3% | 569 | 0 | 0 | 0 | 8 | 0 | 0 | 0 | 1210 | 0 | 0 |
@@ -316,7 +316,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachine` | RM.RollFormer | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollformer | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.RollingMill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollingmill | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Shredder | RU→NONE | in_scope | 4 | 4 | cruciblecraft:shredder | `bounded_subset` |
-| `MultiTileEntityBasicMachine` | RM.Sifting | KU→NONE | in_scope | 4 | 4 | cruciblecraft:sifter | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Smelter | HU→NONE | in_scope | 4 | 4 | cruciblecraft:smelter | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Squeezer | KU→NONE | in_scope | 4 | 4 | cruciblecraft:squeezer | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.SteamCracking | HU→NONE | in_scope | 4 | 4 | cruciblecraft:steam_cracker | `bounded_subset` |
@@ -326,7 +325,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachineElectric` | RM.Lightning | EU→NONE | in_scope | 5 | 5 | cruciblecraft:lightning | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Loom | EU→NONE | in_scope | 5 | 5 | cruciblecraft:electricloom, cruciblecraft:loom | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Mixer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:electric_mixer, cruciblecraft:mixer | `bounded_subset` |
-| `MultiTileEntityBasicMachineElectric` | RM.Sifting | EU→NONE | in_scope | 5 | 5 | cruciblecraft:sifter | `bounded_subset` |
 | `MultiTileEntityAxle` | — | RU→RU | in_scope | 52 | 52 | content/gt6-mte-drive-runtime（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBatteryBox` | — | NONE→EU | in_scope | 1 | 1 | content/gt6-mte-converter-remainder-runtime（runtime_ready/accepted）, energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBatteryBoxLarge` | — | NONE→EU | in_scope | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
@@ -370,9 +368,11 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachine` | RM.PressureWasher | RU→NONE | in_scope | 4 | 4 | cruciblecraft:pressurewasher | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.RollBender | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollbender | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.Sharpening | RU→NONE | in_scope | 4 | 4 | cruciblecraft:sanding | `full_replay` |
+| `MultiTileEntityBasicMachine` | RM.Sifting | KU→NONE | in_scope | 4 | 4 | cruciblecraft:sifter | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.Sluice | RU→NONE | in_scope | 4 | 4 | cruciblecraft:sluice | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.Wiremill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:wiremill | `full_replay` |
 | `MultiTileEntityBasicMachineElectric` | RM.Electrolyzer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:electrolyzer | `full_replay` |
+| `MultiTileEntityBasicMachineElectric` | RM.Sifting | EU→NONE | in_scope | 5 | 5 | cruciblecraft:sifter | `full_replay` |
 | `MultiTileEntityBasicMachineElectric` | RM.Slicer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:slicer | `full_replay` |
 
 ## 5. 多方块控制器（30）
@@ -560,18 +560,18 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 ## 11. 材料形态需求普查
 
 - 来源：`tools/waves/prep/material-form-demand-census/census.json`
-- `already_gated_live`：2
+- `already_gated_live`：127
 - `deferred_by_decision`：5190
 - `demand_pairs`：6619
 - `dump_demand_pairs`：6551
 - `dump_demand_rows`：28623
 - `gated_unresolved`：1207
 - `not_form`：72
-- `openable`：220
+- `openable`：95
 - `skipped`：0
-- `ungated_generated_flag_pairs`：3173
+- `ungated_generated_flag_pairs`：3048
 
-## 12. Capability（141）
+## 12. Capability（142）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -696,6 +696,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/gt6-prefix-regular-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-recipe-capacity-expansion` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-steamcracking-bulk` | runtime_ready | accepted | unreviewed |
+| `recipe/sifter-byproduct-tiny-dust` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
 | `registry/census-form-open` | runtime_ready | accepted | unreviewed |
 | `registry/gt6-form-open-followup` | runtime_ready | accepted | unreviewed |
@@ -830,7 +831,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料形态 | `crate.64.gem` | 635 | 209 | boxinator 426, unboxinator 209 |  |
 | 材料形态 | `crate.64.plateGem` | 621 | 207 | boxinator 414, unboxinator 207 |  |
 | 材料形态 | `crate.plate` | 562 | 562 | unboxinator 562 |  |
-| 材料形态 | `dustTiny` | 500 | 125 | sifter 500 |  |
 | 材料形态 | `crate.raw` | 493 | 493 | unboxinator 493 |  |
 | 材料形态 | `crate.gem` | 209 | 209 | unboxinator 209 |  |
 | 材料形态 | `crate.plateGem` | 207 | 207 | unboxinator 207 |  |
@@ -842,8 +842,9 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 物品/方块 | `gregtech:gt.multitileentity` | 151 | — | extruder 150, shredder 1 |  |
 | 物品/方块 | `gregtech:gt.multitileentity` | 145 | — | extruder 144, shredder 1 |  |
 | 物品/方块 | `gregtech:gt.stone.andesite` | 140 | — | laserengraver 75, extruder 56, cutter 5 |  |
+| 物品/方块 | `gregtech:gt.stone.basalt` | 140 | — | laserengraver 75, extruder 56, cutter 5 |  |
 
-按类型合计（第一缺口口径）：材料形态 66810，物品/方块 14958，流体 7832
+按类型合计（第一缺口口径）：材料形态 66310，物品/方块 14958，流体 7832
 
 ### 17.2 缺配方（按机器，前 20 项）
 

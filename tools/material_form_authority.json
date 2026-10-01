@@ -472,6 +472,13 @@
       "required_forms_sha256": "d161d2e7125db41d1d36389abc9bb9e8e29d202eddf68dff68814ede766cb4b2",
       "slice_sha256": "98d5081230c328f53db86c621863f59e87b3dc043718d27b9fc48445a1605635"
     },
+    "sifter_byproduct_tiny_dust_required_forms": {
+      "extra_factual_forms": [],
+      "gate_section": "sifter_byproduct_tiny_dust_required_forms",
+      "required_factual_prereqs": {},
+      "required_forms_sha256": "c61ce7ce59788c200cde68eaf26661f99d044bf2b00e03384956011aa0f29428",
+      "slice_sha256": "2b0df540eae9626034682a87f7f8c043b5bf08da41f15ca7937d672ea3d39d62"
+    },
     "smelter_ordinary_closure_required_forms": {
       "extra_factual_forms": [
         "arrow_gt_wood",
@@ -633,7 +640,8 @@
     "gt6_storage_dust_blocks_required_forms",
     "gt6_long_tail_forms_required_forms",
     "gt6_form_open_followup_required_forms",
-    "census_form_open_required_forms"
+    "census_form_open_required_forms",
+    "sifter_byproduct_tiny_dust_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -1322,6 +1330,16 @@
       "owner": "registry/census-form-open",
       "path": "tools/waves/registry/census-form-open/required_forms.json",
       "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [],
+      "field": "required_forms",
+      "gate_section": "sifter_byproduct_tiny_dust_required_forms",
+      "id": "sifter_byproduct_tiny_dust_required_forms",
+      "java_runtime_visible": true,
+      "owner": "recipe/sifter-byproduct-tiny-dust",
+      "path": "tools/waves/recipe/sifter-byproduct-tiny-dust/required_forms.json",
+      "required_factual_prereqs": {}
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",
@@ -1332,5 +1350,5 @@
     "worldgen_acquisition_ore_delta": 10,
     "worldgen_catalog": "independent catalog, not the chemical vein ledger"
   },
-  "whole_file_sha256": "bb82d25ed1faf6e559b4c3063972e5f0916c852c1e3c0682f8764038076dcdbe"
+  "whole_file_sha256": "80ae99e138aec17dd6a70d47a93f051ade53722a153983502a7e5d16abc173c2"
 }
