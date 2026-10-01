@@ -28,7 +28,7 @@
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
 
-## runtime_ready accepted（132）
+## runtime_ready accepted（133）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -148,6 +148,7 @@
 - `recipe/gt6-recipe-capacity-expansion` — GT6 Recipe Capacity Expansion — [GT6 配方扩容详细计划](../history/card-plans/closed/GT6配方扩容详细计划.md)
 - `recipe/gt6-steamcracking-bulk` — GT6 Steam Cracking Recipe Bulk — [GT6 蒸汽裂化配方批量详细计划](../history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
+- `registry/census-form-open` — Census Material Form Open — [普查形态开门详细计划](../history/card-plans/closed/普查形态开门详细计划.md)
 - `registry/gt6-form-open-followup` — GT6 Material Form Open Follow-up — [GT6 材料形态开门后续详细计划](../history/card-plans/closed/GT6材料形态开门后续详细计划.md)
 - `registry/gt6-long-tail-forms` — GT6 Long-tail Forms — [GT6 长尾形态开门详细计划](../history/card-plans/closed/GT6长尾形态开门详细计划.md)
 - `registry/gt6-storage-dust-blocks` — GT6 Storage Dust Blocks — [GT6 粉块批量详细计划](../history/card-plans/closed/GT6粉块批量详细计划.md)

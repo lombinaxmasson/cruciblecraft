@@ -718,11 +718,11 @@
     },
     "cc_recipe_rows": 582785,
     "cc_material_rule_files": 98,
-    "capability_count": 140,
+    "capability_count": 141,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 6,
-      "runtime_ready:accepted": 132
+      "runtime_ready:accepted": 133
     },
     "blocker_count": 62,
     "blocker_states": {
@@ -1868,6 +1868,15 @@
       "survival_access": null,
       "wave_slug": null,
       "path": "tools/capabilities/registry/catalog-modern-ids/capability.json"
+    },
+    {
+      "slug": "registry/census-form-open",
+      "title": "Census Material Form Open",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "registry/census-form-open",
+      "path": "tools/capabilities/registry/census-form-open/capability.json"
     },
     {
       "slug": "registry/gt6-form-open-followup",
@@ -5245,7 +5254,7 @@
       "dump_demand_pairs": 6551,
       "dump_demand_rows": 28623,
       "gated_unresolved": 1207,
-      "not_form": 74,
+      "not_form": 72,
       "openable": 220,
       "skipped": 0,
       "ungated_generated_flag_pairs": 3173
@@ -11022,7 +11031,7 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "b59205ed97097a9b7f0807fb9ee83839799019464d5546ab00f64dfa4dd76d5b",
       "tools/gt6_oredict_cross_reference.json": "7b4dd75801b9c04437c176e39e4fbd6c9579dbd30af38e0fc2d8aebe322aa60b",
       "tools/machine_fluid_mapping.json": "7944a28c4d88bac253f8a99912eef30cdb63f1cc5697dd3a9dc2673467e2ea3c",
-      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "59ce71a73847ae8baf54f1424a735c9c7cc5c8a4eeb640c4daae802f6d75a89f",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "a57fc3d45f64d38be6f38eabf66472f220f9fd5f30c4ccae3d48931452107c3e",
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
@@ -11911,8 +11920,8 @@
       },
       {
         "kind": "form",
-        "key": "form:crushedPurified",
-        "label": "crushedPurified",
+        "key": "form:dustTiny",
+        "label": "dustTiny",
         "class": "missing_material_form",
         "other_mod": false,
         "rows": 500,
@@ -13800,7 +13809,7 @@
         }
       ]
     },
-    "form_demand_pairs_sha256": "0c5629c3ed24c3335686a73aef06b5aff8a98ddc3679cd1d1008be679a33de79"
+    "form_demand_pairs_sha256": "265e61c72e4e0893b4ddad3bb74c2720e402f4949e79b230dd710317257d3154"
   },
   "unowned_cc_maps": [
     {

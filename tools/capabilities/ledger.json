@@ -4140,6 +4140,30 @@
     },
     {
       "depends_on": [
+        "registry/gt6-form-open-followup"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/普查形态开门详细计划.md",
+        "docs/history/card-plans/closed/普查形态开门详细计划.md",
+        "tools/capabilities/registry/census-form-open/**",
+        "tools/waves/registry/census-form-open/**",
+        "tools/material_form_authority.json",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+        "tools/waves/prep/material-form-demand-census/census.json"
+      ],
+      "path": "tools/capabilities/registry/census-form-open/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/census-form-open",
+      "survival_access": "unreviewed",
+      "title": "Census Material Form Open",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "registry/gt6-long-tail-forms"
       ],
       "maturity": "runtime_ready",
@@ -4745,7 +4769,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 140,
+  "capability_count": 141,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -6241,14 +6265,20 @@
       "recipe/gt6-identity-ready-bulk",
       "registry/catalog-modern-ids"
     ],
+    "registry/census-form-open": [
+      "registry/census-form-open"
+    ],
     "registry/gt6-form-open-followup": [
+      "registry/census-form-open",
       "registry/gt6-form-open-followup"
     ],
     "registry/gt6-long-tail-forms": [
+      "registry/census-form-open",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms"
     ],
     "registry/gt6-storage-dust-blocks": [
+      "registry/census-form-open",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
       "registry/gt6-storage-dust-blocks"
@@ -6420,6 +6450,7 @@
       "recipe/gt6-bulk-capacity",
       "recipe/gt6-recipe-capacity-expansion",
       "registry/catalog-modern-ids",
+      "registry/census-form-open",
       "registry/gt6-form-open-followup",
       "registry/gt6-long-tail-forms",
       "registry/gt6-storage-dust-blocks",

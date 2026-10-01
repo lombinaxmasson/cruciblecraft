@@ -230,6 +230,59 @@ class MaterialFormAuthorityTest(unittest.TestCase):
             gate["converter_catalog_fluidbed_required_forms"]["petroleum_coke"],
         )
 
+    def test_census_form_open_lands_only_the_standard_gate_slice(self) -> None:
+        source = authority.source_by_id(
+            "census_form_open_required_forms",
+            document=self.document,
+        )
+        self.assertEqual("registry/census-form-open", source["owner"])
+        self.assertEqual([], source["extra_factual_forms"])
+        self.assertIn(
+            "census_form_open_required_forms",
+            self.document["java_overlay_sections"],
+        )
+        required = _load_json(
+            ROOT / "tools/waves/registry/census-form-open/required_forms.json"
+        )
+        pairs = {
+            (material, form)
+            for material, forms in required["required_forms"].items()
+            for form in forms
+        }
+        self.assertEqual(125, len(pairs))
+        self.assertEqual({"washed_crushed_ore"}, {form for _, form in pairs})
+        self.assertEqual("LANDED_BOUNDED_FORM_OPEN", required["status"])
+        gate = vr.gate_document()
+        self.assertEqual(
+            required["required_forms"],
+            gate["census_form_open_required_forms"],
+        )
+        for material, form in pairs:
+            self.assertIn(form, gate["materials"][material])
+        containers = _load_json(
+            ROOT
+            / "tools/waves/prep/gt6-container-chem-tube-forms/required_forms.json"
+        )
+        container_pairs = {
+            (material, form)
+            for material, forms in containers["required_forms"].items()
+            for form in forms
+        }
+        self.assertEqual(95, len(container_pairs))
+        self.assertTrue(pairs.isdisjoint(container_pairs))
+        census = _load_json(
+            ROOT / "tools/waves/prep/material-form-demand-census/census.json"
+        )
+        openable = {
+            (row["material"], row["form"]) for row in census["openable"]
+        }
+        self.assertTrue(pairs.isdisjoint(openable))
+        self.assertEqual(
+            container_pairs
+            | {(material, "tiny_dust") for material, _form in pairs},
+            openable,
+        )
+
     def test_authored_recipe_material_forms_are_gated_or_aliased(self) -> None:
         missing = _ungated_authored_material_forms()
         self.assertEqual([], missing)

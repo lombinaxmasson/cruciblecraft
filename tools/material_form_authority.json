@@ -66,6 +66,13 @@
       "required_forms_sha256": "94fe26488188d8f419058a08c879a1afe637e35f8b153f047c49d3ac9e446931",
       "slice_sha256": "c7d4d35d7e5ca10034f6e121dbca3494a1dbffcee165622e33a167bedd9ba77f"
     },
+    "census_form_open_required_forms": {
+      "extra_factual_forms": [],
+      "gate_section": "census_form_open_required_forms",
+      "required_factual_prereqs": {},
+      "required_forms_sha256": "1e2a0d859dcedcf60948bac92630b22e259abb334745fb2c1590cbed06317c48",
+      "slice_sha256": "73f768806abee6e0951aad380b334200513a8f3eda77f4e1c45638c7e33ecc6b"
+    },
     "centrifuge_compact_required_forms": {
       "extra_factual_forms": [
         "dust_div72",
@@ -625,7 +632,8 @@
     "fluid_attachment_required_forms",
     "gt6_storage_dust_blocks_required_forms",
     "gt6_long_tail_forms_required_forms",
-    "gt6_form_open_followup_required_forms"
+    "gt6_form_open_followup_required_forms",
+    "census_form_open_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -1304,6 +1312,16 @@
       "owner": "registry/gt6-form-open-followup",
       "path": "tools/waves/prep/gt6-form-open-followup/required_forms.json",
       "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [],
+      "field": "required_forms",
+      "gate_section": "census_form_open_required_forms",
+      "id": "census_form_open_required_forms",
+      "java_runtime_visible": true,
+      "owner": "registry/census-form-open",
+      "path": "tools/waves/registry/census-form-open/required_forms.json",
+      "required_factual_prereqs": {}
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",
@@ -1314,5 +1332,5 @@
     "worldgen_acquisition_ore_delta": 10,
     "worldgen_catalog": "independent catalog, not the chemical vein ledger"
   },
-  "whole_file_sha256": "c753cded5187a3e4069cbc4184132b22db0253d669d46a8ddbda12ea874df41d"
+  "whole_file_sha256": "bb82d25ed1faf6e559b4c3063972e5f0916c852c1e3c0682f8764038076dcdbe"
 }

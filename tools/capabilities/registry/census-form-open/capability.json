@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "slug": "registry/census-form-open",
+  "title": "Census Material Form Open",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/普查形态开门详细计划.md",
+    "docs/history/card-plans/closed/普查形态开门详细计划.md",
+    "tools/capabilities/registry/census-form-open/**",
+    "tools/waves/registry/census-form-open/**",
+    "tools/material_form_authority.json",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "tools/waves/prep/material-form-demand-census/census.json"
+  ],
+  "depends_on": [
+    "registry/gt6-form-open-followup"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "registry/census-form-open",
+  "note": "Lands the 125 non-metadata census openable washed_crushed_ore pairs (GT6 crushedPurified). After that gate, the same sifter rows are blocked on byproduct tiny_dust; those pairs stay openable and are not gated here. The other 95 pairs are metadata-only chem tubes and empty arrows and stay on the container-form prep. No recipe stand-ins and no ItemEntity worldgen obtain."
+}
