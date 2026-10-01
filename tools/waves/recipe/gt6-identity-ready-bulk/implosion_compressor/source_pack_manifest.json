@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/implosion_compressor/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "3861d97646e3c4912ccfd1b1a169bd9ce55d37376a429ea84ea367b977bb2747"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/implosion_compressor/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "335b120eb667d8a61c4c60d95d460387b2d9e111e85692058f6040513841dcd8"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "implosion-compressor/identity-ready",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

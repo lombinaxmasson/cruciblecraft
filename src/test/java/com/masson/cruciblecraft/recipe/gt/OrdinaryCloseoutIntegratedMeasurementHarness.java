@@ -31,6 +31,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
 
 import net.minecraft.core.RegistryAccess;
@@ -523,8 +524,12 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
         if (hybrid.eager > 21_000) {
             unverified.add("UNVERIFIED_SCALE:eager_publication_rows:" + hybrid.eager + ">21000");
         }
-        if (hybrid.lazy > 500_000) {
-            unverified.add("UNVERIFIED_SCALE:lazy_logical_rows:" + hybrid.lazy + ">500000");
+        if (hybrid.lazy > ModProcessingMachines.ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING) {
+            unverified.add(
+                    "UNVERIFIED_SCALE:lazy_logical_rows:"
+                            + hybrid.lazy
+                            + ">"
+                            + ModProcessingMachines.ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING);
         }
         if (hybrid.cache > 4_096) {
             unverified.add("UNVERIFIED_SCALE:lazy_cache_ceiling_rows:" + hybrid.cache + ">4096");

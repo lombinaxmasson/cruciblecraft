@@ -92,21 +92,13 @@ class EnergyFluxConvertersCardTest(unittest.TestCase):
         self.assertIn("no stand-in ingredients", rule)
         self.assertIn("缺形态时 DESIGN_POLICY 用已有材料做生存获得", rule)
 
-    def test_d0_is_thirty_rows_with_blocked_hosts(self) -> None:
+    def test_d0_is_thirty_exact_rows(self) -> None:
         document = io.load_json(D0)
         self.assertEqual(30, len(document["rows"]))
         statuses = {row["status"] for row in document["rows"]}
-        self.assertEqual({"exact", "explicitly_blocked"}, statuses)
+        self.assertEqual({"exact"}, statuses)
         self.assertEqual(
-            20, sum(1 for row in document["rows"] if row["status"] == "exact")
-        )
-        self.assertEqual(
-            10,
-            sum(
-                1
-                for row in document["rows"]
-                if row["status"] == "explicitly_blocked"
-            ),
+            30, sum(1 for row in document["rows"] if row["status"] == "exact")
         )
         heater = next(row for row in document["rows"] if row["source_id"] == 11001)
         self.assertEqual("cruciblecraft:flux_heater_lead", heater["cc_id"])
@@ -116,8 +108,17 @@ class EnergyFluxConvertersCardTest(unittest.TestCase):
         )
         self.assertEqual("cruciblecraft:lead/long_rod", heater["slots"]["S"]["cc"])
         magnet = next(row for row in document["rows"] if row["source_id"] == 11031)
-        self.assertEqual("explicitly_blocked", magnet["status"])
-        self.assertEqual("explicitly_blocked", magnet["slots"]["M"]["status"])
+        self.assertEqual("exact", magnet["status"])
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_electromagnet",
+            magnet["slots"]["M"]["cc"],
+        )
+        laser = next(row for row in document["rows"] if row["source_id"] == 11101)
+        self.assertEqual("exact", laser["status"])
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_laser_electric",
+            laser["slots"]["M"]["cc"],
+        )
         dynamo = next(row for row in document["rows"] if row["source_id"] == 11111)
         self.assertEqual("cruciblecraft:bronze_dynamo", dynamo["slots"]["M"]["cc"])
 
@@ -140,7 +141,15 @@ class EnergyFluxConvertersCardTest(unittest.TestCase):
         self.assertEqual("RU", dynamo["accepts"])
         self.assertEqual("RF", dynamo["emits"])
         magnet = next(row for row in catalog["machines"] if row["source_id"] == 11031)
-        self.assertFalse(magnet["recipe_live"])
+        self.assertTrue(magnet["recipe_live"])
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_electromagnet", magnet["host_id"]
+        )
+        laser = next(row for row in catalog["machines"] if row["source_id"] == 11101)
+        self.assertTrue(laser["recipe_live"])
+        self.assertEqual(
+            "cruciblecraft:steel_galvanized_laser_electric", laser["host_id"]
+        )
 
     def test_art_and_java_are_source_backed(self) -> None:
         manifest = io.load_json(MANIFEST)

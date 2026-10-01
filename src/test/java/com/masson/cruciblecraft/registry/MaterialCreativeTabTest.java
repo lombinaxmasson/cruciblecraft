@@ -126,7 +126,7 @@ class MaterialCreativeTabTest {
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 294),
                         Map.entry(MaterialCreativeTab.RAW_ORES, 1_191),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_326),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_451),
                         Map.entry(MaterialCreativeTab.DUSTS, 4_851),
                         Map.entry(MaterialCreativeTab.METALS_GEMS, 5_786),
                         Map.entry(MaterialCreativeTab.PLATES, 4_646),

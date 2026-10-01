@@ -3,9 +3,10 @@
   "slug": "energy/cooler",
   "title": "Electric and Flux Coolers",
   "maturity": "runtime_ready",
-  "workflow": "paused",
+  "workflow": "accepted",
   "owned_paths": [
-    "docs/history/card-plans/prep/冷却器详细计划.md",
+    "docs/history/card-plans/active/冷却器详细计划.md",
+    "docs/history/card-plans/closed/冷却器详细计划.md",
     "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
     "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
     "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
@@ -53,6 +54,6 @@
       "reason": "GT6 MultiTileEntityCoolerElectric 10161-10165 and MultiTileEntityCoolerFlux 11161-11165. EU or RF in, CU front + HU back, NBT_WASTE_ENERGY. Flux input is NeoForge FE amount-translated from GT6 RF; not EnergyType.RF."
     }
   ],
-  "note": "Ten GT6 coolers. Paused so machines/distillation-tower can occupy unique-active. Flux RF has no CC EnergyType; FE is the platform translation. survival_access is unreviewed.",
+  "note": "Ten GT6 coolers. Flux RF has no CC EnergyType; FE is the platform translation. 2026-09-30 reopened only to verify the loader rows, twin-type conversion, and the declared GameTests, then close. survival_access stays unreviewed: only the LV electric and lead flux recipes were crafted in GameTest.",
   "survival_access": "unreviewed"
 }

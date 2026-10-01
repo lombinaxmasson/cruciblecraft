@@ -886,9 +886,11 @@
     },
     {
       "affected_capabilities": [
+        "energy/cooler",
         "energy/heat-exchangers"
       ],
       "authority": [
+        "tools/capabilities/energy/cooler/capability.json",
         "tools/capabilities/energy/heat-exchangers/capability.json"
       ],
       "blocks_maturity": "player_complete",
@@ -903,12 +905,12 @@
       "id": "energy/cooler",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Independent runtime, recipes and player path.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Ten electric and flux coolers landed on energy/cooler: loader rows 10161-10165 and 11161-11165, source-exact shaped recipes, and the energy-grid GameTests. survival_access stays unreviewed.",
+      "planning_bucket": "not_work",
+      "resolved_by": "energy/cooler",
       "root_cause": "cooler_later_card",
       "root_cause_class": "missing_runtime",
-      "status": "open",
+      "status": "resolved",
       "title": "电力/通量冷却器",
       "unit": ""
     },

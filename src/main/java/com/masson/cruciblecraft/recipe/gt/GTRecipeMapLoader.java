@@ -1,8 +1,11 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -10,6 +13,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Set;
+
+import io.netty.buffer.Unpooled;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
@@ -26,7 +31,10 @@ import com.masson.cruciblecraft.registry.ModRecipes;
 import com.masson.cruciblecraft.registry.ModFuelGenerators;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundUpdateRecipesPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +43,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.neoforged.neoforge.network.connection.ConnectionType;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /** Builds immutable concrete RecipeMap and material metadata snapshots. */
 public final class GTRecipeMapLoader {
@@ -45,6 +55,8 @@ public final class GTRecipeMapLoader {
             PublicationMetrics.empty();
     private static volatile PublicationCapacityReport lastCapacityReport =
             PublicationCapacityReport.empty();
+    /** Encoded {@code update_recipes} bytes from the latest server publish, or -1. */
+    private static volatile long measuredLoginPacketBytes = -1L;
 
     private GTRecipeMapLoader() {}
 
@@ -99,6 +111,10 @@ public final class GTRecipeMapLoader {
             return;
         }
         long started = System.nanoTime();
+        measuredLoginPacketBytes = -1L;
+        CompactAuthoredMatrix.clearExpandCache();
+        MaterialRuleExpansion.clearReloadScratch();
+        try {
         long phaseMark = started;
         Map<ResourceLocation, RecipeMap> knownMaps = new HashMap<>();
         Map<RecipeMap, List<ResolvedRecipe>> resolved = new HashMap<>();
@@ -145,9 +161,19 @@ public final class GTRecipeMapLoader {
                         member.definition());
             }
         }
+        if (runtimeSide == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT) {
+            for (var onDemand : CompactFamilyOnDemand.entries().entrySet()) {
+                addCompactSource(
+                        compactSources,
+                        knownMaps,
+                        onDemand.getKey(),
+                        onDemand.getValue().definition());
+            }
+        }
         compactSources.sort(Comparator.comparing(source -> source.id().toString()));
         compactSources = CompactTransportFragments.reassemble(compactSources);
-        long sourceCollectionMillis = elapsedMs(phaseMark);
+        long compactSourceMillis = elapsedMs(phaseMark);
+        long sourceCollectionMillis = compactSourceMillis;
         phaseMark = System.nanoTime();
         List<CompactDedupRuleDefinition> compactDedupRules =
                 manager.getAllRecipesFor(
@@ -160,6 +186,7 @@ public final class GTRecipeMapLoader {
         CompactRecipeDeduplicator.validate(compactDedupRules);
         compactSources = CompactRecipeDeduplicator.applyPreSnapshot(
                 compactSources, compactDedupRules);
+        compactSources = maybeAppendMeasurementSources(compactSources);
         long dedupMillis = elapsedMs(phaseMark);
         phaseMark = System.nanoTime();
         Map<PublicationGroupKey, List<CompactRecipeFamilySource>>
@@ -182,13 +209,24 @@ public final class GTRecipeMapLoader {
                         .toList();
         Map<PublicationGroupKey,
                 CompactRecipeFamilyProvider.MaterializationPolicy>
-                compactPolicies = CompactPublicationPolicy.merge(
-                        Map.of(), publicationPolicies);
+                compactPolicies = new HashMap<>(CompactPublicationPolicy.merge(
+                        Map.of(), publicationPolicies));
+        maybeInstallMeasurementPolicy(compactPolicies);
+        int deferredDedicatedGroups = 0;
         for (CompactPublicationPolicyEntry entry : publicationPolicies) {
-            CompactPublicationPolicy.validateLiveSources(
-                    entry.definition(),
-                    compactSourcesByGroup.getOrDefault(
-                            entry.definition().key(), List.of()));
+            List<CompactRecipeFamilySource> live = compactSourcesByGroup.getOrDefault(
+                    entry.definition().key(), List.of());
+            if (live.isEmpty()
+                    && runtimeSide == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT) {
+                deferredDedicatedGroups++;
+                continue;
+            }
+            CompactPublicationPolicy.validateLiveSources(entry.definition(), live);
+        }
+        if (deferredDedicatedGroups > 0) {
+            CrucibleCraft.LOGGER.info(
+                    "Dedicated client deferred {} compact publication groups until on-demand families arrive",
+                    deferredDedicatedGroups);
         }
         for (CompactRecipeFamilySource source : compactSources) {
             PublicationGroupKey key = new PublicationGroupKey(
@@ -253,7 +291,12 @@ public final class GTRecipeMapLoader {
                                 formIndexes);
                     }
                 });
-        sourceCollectionMillis += elapsedMs(phaseMark);
+        long materialRuleMillis = elapsedMs(phaseMark);
+        sourceCollectionMillis += materialRuleMillis;
+        CrucibleCraft.LOGGER.info(
+                "Recipe publication phases: compactSources={}ms materialRules={}ms",
+                compactSourceMillis,
+                materialRuleMillis);
         phaseMark = System.nanoTime();
         long preparedEpoch = GTRecipeRuntimeEpoch.nextEpoch();
         ExtruderRecipeFamilyProvider.Snapshot extruderFamily =
@@ -415,6 +458,12 @@ public final class GTRecipeMapLoader {
         validateNoUnindexed(preparedByMap);
         long indexNanos = System.nanoTime() - indexStarted;
         long reloadNanos = System.nanoTime() - started;
+        measuredLoginPacketBytes = encodeLoginPacketBytes(manager);
+        if (measuredLoginPacketBytes >= 0L) {
+            CrucibleCraft.LOGGER.info(
+                    "Recipe login packet bytes={}",
+                    measuredLoginPacketBytes);
+        }
         PublicationControlMetrics control = new PublicationControlMetrics(
                 GTRecipeReloadCoordinator.requestCount(),
                 GTRecipeReloadCoordinator.publicationCount() + 1,
@@ -485,8 +534,7 @@ public final class GTRecipeMapLoader {
                 : ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS;
         if (candidateMetrics.reloadMillis() > sideReloadBudget
                 || candidateMetrics.indexMillis() > sideIndexBudget
-                || candidateMetrics.compactLoadExtruderSyncBytes()
-                        + candidateMetrics.compactFamilySyncBytes()
+                || candidateMetrics.loginSyncBytes()
                         > ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES) {
             CrucibleCraft.LOGGER.warn(
                     "Recipe publication exceeded an online compact-load budget: {}",
@@ -512,6 +560,84 @@ public final class GTRecipeMapLoader {
                 preparedByMap.size(),
                 unindexedMaps,
                 totalPublicationMillis);
+        } finally {
+            CompactAuthoredMatrix.clearExpandCache();
+            MaterialRuleExpansion.clearReloadScratch();
+        }
+    }
+
+    private static boolean capacityMeasurementRequested() {
+        String value = System.getProperty("cruciblecraft.capacityMeasurementRows");
+        return value != null && !value.isBlank() && !"false".equalsIgnoreCase(value);
+    }
+
+    private static List<CompactRecipeFamilySource> maybeAppendMeasurementSources(
+            List<CompactRecipeFamilySource> sources) {
+        if (!capacityMeasurementRequested()) {
+            return sources;
+        }
+        try {
+            Class<?> type = Class.forName(
+                    "com.masson.cruciblecraft.recipe.gt.CapacityMeasurementSources");
+            Method append = type.getMethod("append", List.class);
+            @SuppressWarnings("unchecked")
+            List<CompactRecipeFamilySource> appended =
+                    (List<CompactRecipeFamilySource>) append.invoke(null, sources);
+            return appended;
+        } catch (InvocationTargetException failure) {
+            if (failure.getCause() instanceof RuntimeException runtime) {
+                throw runtime;
+            }
+            throw new IllegalStateException(
+                    "Capacity measurement rows were requested but the fixture failed",
+                    failure);
+        } catch (ReflectiveOperationException failure) {
+            throw new IllegalStateException(
+                    "Capacity measurement rows were requested but the test fixture is missing",
+                    failure);
+        }
+    }
+
+    private static void maybeInstallMeasurementPolicy(
+            Map<PublicationGroupKey, CompactRecipeFamilyProvider.MaterializationPolicy>
+                    policies) {
+        if (!capacityMeasurementRequested()) {
+            return;
+        }
+        try {
+            Class<?> type = Class.forName(
+                    "com.masson.cruciblecraft.recipe.gt.CapacityMeasurementSources");
+            Method putPolicy = type.getMethod("putPolicy", Map.class);
+            putPolicy.invoke(null, policies);
+        } catch (InvocationTargetException failure) {
+            if (failure.getCause() instanceof RuntimeException runtime) {
+                throw runtime;
+            }
+            throw new IllegalStateException(
+                    "Capacity measurement policy was requested but the fixture failed",
+                    failure);
+        } catch (ReflectiveOperationException failure) {
+            throw new IllegalStateException(
+                    "Capacity measurement policy was requested but the test fixture is missing",
+                    failure);
+        }
+    }
+
+    private static long encodeLoginPacketBytes(RecipeManager manager) {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) {
+            return -1L;
+        }
+        RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(
+                Unpooled.buffer(), server.registryAccess(), ConnectionType.NEOFORGE);
+        try {
+            ClientboundUpdateRecipesPacket packet =
+                    new ClientboundUpdateRecipesPacket(manager.getRecipes());
+            ClientboundUpdateRecipesPacket.STREAM_CODEC.encode(buffer, packet);
+            return buffer.readableBytes();
+        } finally {
+            buffer.release();
+        }
     }
 
     /** Runs production Extruder lookup p95/candidate gates for verification. */
@@ -638,6 +764,18 @@ public final class GTRecipeMapLoader {
             Objects.requireNonNull(control, "control");
             Objects.requireNonNull(phaseTimings, "phaseTimings");
             Objects.requireNonNull(allocation, "allocation");
+        }
+
+        /**
+         * Login {@code update_recipes} bytes compared with
+         * {@link ModProcessingMachines#RECIPE_SYNC_BUDGET_BYTES}.
+         * Compact family holders are omitted from that packet and stay on
+         * {@link #compactFamilySyncBytes()} as telemetry only.
+         */
+        public long loginSyncBytes() {
+            return measuredLoginPacketBytes >= 0L
+                    ? measuredLoginPacketBytes
+                    : compactLoadExtruderSyncBytes;
         }
 
         private static PublicationMetrics empty() {
@@ -821,8 +959,7 @@ public final class GTRecipeMapLoader {
         return new CompactLoadOnlineBudgetGate(
                 metrics.reloadMillis() <= reloadBudget,
                 metrics.indexMillis() <= indexBudget,
-                metrics.compactLoadExtruderSyncBytes()
-                        + metrics.compactFamilySyncBytes()
+                metrics.loginSyncBytes()
                         <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES,
                 lookup.p95Nanos()
                         <= lookupP95Budget,
@@ -1110,8 +1247,7 @@ public final class GTRecipeMapLoader {
                 lookup,
                 ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
                 ModProcessingMachines.VERIFICATION_RECIPE_LOOKUP_P95_BUDGET_NS);
-        long syncBytes = metrics.compactLoadExtruderSyncBytes()
-                + metrics.compactFamilySyncBytes();
+        long syncBytes = metrics.loginSyncBytes();
         boolean sync = syncBytes <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES;
         boolean retained = retainedMemoryBytes == null
                 || retainedMemoryBytes <= (512L * 1024L * 1024L);
@@ -1449,41 +1585,47 @@ public final class GTRecipeMapLoader {
                 .map(ProcessingMachineSpec::requireRecipeMap)
                 .anyMatch(candidate -> candidate == map);
         for (RecipeMap.Entry entry : entries) {
-            boolean chemicalRecipe = isAuthoredChemicalRecipe(entry.id());
-            boolean hydrocarbonProcess = isHydrocarbonProcessRecipe(entry.id());
-            boolean petroleum = isPetroleumRecipe(entry.id());
-            boolean machineBootstrap = isMachineBootstrapRecipe(entry.id());
-            boolean hostCompact = CompactWaveRecipeIds.isCompactHostRecipe(
-                    entry.id())
-                    || CompactWaveRecipeIds.isDumpImportedRecipe(entry.id());
-            boolean recovery = CompactWaveRecipeIds.isRoasterRecoveryRecipe(
-                    entry.id());
-            boolean nuclearCanner = isNuclearRecipe(entry.id())
+            validateChemicalRecipeId(map, entry.id(), chemicalMap, dedicatedChemicalMap);
+        }
+    }
+
+    private static void validateChemicalRecipeId(
+            RecipeMap map,
+            ResourceLocation id,
+            boolean chemicalMap,
+            boolean dedicatedChemicalMap) {
+            boolean chemicalRecipe = isAuthoredChemicalRecipe(id);
+            boolean hydrocarbonProcess = isHydrocarbonProcessRecipe(id);
+            boolean petroleum = isPetroleumRecipe(id);
+            boolean machineBootstrap = isMachineBootstrapRecipe(id);
+            boolean hostCompact = CompactWaveRecipeIds.isCompactHostRecipe(id)
+                    || CompactWaveRecipeIds.isDumpImportedRecipe(id);
+            boolean recovery = CompactWaveRecipeIds.isRoasterRecoveryRecipe(id);
+            boolean nuclearCanner = isNuclearRecipe(id)
                     && map == ModRecipeMaps.CANNER;
-            if (chemicalRecipe && !chemicalMap) {
-                throw new IllegalArgumentException(
-                        "Chemical recipe " + entry.id()
-                                + " targets a non-chemical map " + map.id());
-            }
-            if (dedicatedChemicalMap && !chemicalRecipe && !hydrocarbonProcess
-                    && !petroleum && !machineBootstrap && !hostCompact
-                    && !recovery && !nuclearCanner) {
-                throw new IllegalArgumentException(
-                        "Dedicated chemical map " + map.id()
-                                + " requires a chemical, hydrocarbon, petroleum, "
-                                + "bootstrap, compact host, or nuclear canner "
-                                + "recipe id: "
-                                + entry.id());
-            }
-            if (hydrocarbonProcess
-                    && map != ModRecipeMaps.DISTILLERY
-                    && map != ModRecipeMaps.GENERIFIER
-                    && map != ModRecipeMaps.DISTILLATION_TOWER
-                    && map != ModRecipeMaps.CRYO_DISTILLATION_TOWER) {
-                throw new IllegalArgumentException(
-                        "Hydrocarbon process recipe " + entry.id()
-                                + " targets unsupported map " + map.id());
-            }
+        if (chemicalRecipe && !chemicalMap) {
+            throw new IllegalArgumentException(
+                    "Chemical recipe " + id
+                            + " targets a non-chemical map " + map.id());
+        }
+        if (dedicatedChemicalMap && !chemicalRecipe && !hydrocarbonProcess
+                && !petroleum && !machineBootstrap && !hostCompact
+                && !recovery && !nuclearCanner) {
+            throw new IllegalArgumentException(
+                    "Dedicated chemical map " + map.id()
+                            + " requires a chemical, hydrocarbon, petroleum, "
+                            + "bootstrap, compact host, or nuclear canner "
+                            + "recipe id: "
+                            + id);
+        }
+        if (hydrocarbonProcess
+                && map != ModRecipeMaps.DISTILLERY
+                && map != ModRecipeMaps.GENERIFIER
+                && map != ModRecipeMaps.DISTILLATION_TOWER
+                && map != ModRecipeMaps.CRYO_DISTILLATION_TOWER) {
+            throw new IllegalArgumentException(
+                    "Hydrocarbon process recipe " + id
+                            + " targets unsupported map " + map.id());
         }
     }
 
@@ -1531,10 +1673,17 @@ public final class GTRecipeMapLoader {
             long preparedEpoch,
             List<CompactDedupRuleDefinition> dedupRules) {
         List<RecipeMap.Entry> complete = new ArrayList<>(concrete);
+        List<CompactRecipeFamilyProvider.Snapshot> compactSnapshots = new ArrayList<>();
+        boolean postEnumeration = needsPostEnumerationEntries(map.id(), dedupRules);
         for (RecipeMap.RecipeFamily family : families) {
             if (family.epoch() != preparedEpoch) {
                 throw new IllegalArgumentException(
                         "Recipe family epoch does not match reload epoch");
+            }
+            if (!postEnumeration
+                    && family instanceof CompactRecipeFamilyProvider.Snapshot snapshot) {
+                compactSnapshots.add(snapshot);
+                continue;
             }
             int cacheBefore = family.cacheSize();
             for (int index = 0; index < family.logicalRecipeCount(); index++) {
@@ -1577,6 +1726,195 @@ public final class GTRecipeMapLoader {
                                 + "; add an explicit index before publishing "
                                 + "non-simple ingredients");
             }
+        }
+        if (!compactSnapshots.isEmpty()) {
+            validateCompactSnapshots(map, complete, compactSnapshots);
+        }
+    }
+
+    private static boolean needsPostEnumerationEntries(
+            ResourceLocation mapId,
+            List<CompactDedupRuleDefinition> rules) {
+        for (CompactDedupRuleDefinition rule : rules) {
+            if (CompactDedupRuleDefinition.PHASE_POST_ENUMERATION.equals(rule.phase())
+                    && rule.targetMap().equals(mapId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks compact logical rows from their relations. Machine envelopes that
+     * depend on arity, energy, and fluid lists run once per distinct shape.
+     */
+    private static void validateCompactSnapshots(
+            RecipeMap map,
+            List<RecipeMap.Entry> concrete,
+            List<CompactRecipeFamilyProvider.Snapshot> snapshots) {
+        Set<ResourceLocation> ids = new HashSet<>();
+        for (RecipeMap.Entry entry : concrete) {
+            ids.add(entry.id());
+        }
+        Map<Ingredient, String> ingredientTails = newIngredientTailCache();
+        Map<String, ResourceLocation> signatures = new HashMap<>();
+        for (RecipeMap.Entry entry : concrete) {
+            rememberSignature(map, signatures, entry.id(), inputSignature(
+                    entry.recipe().itemInputs(),
+                    entry.recipe().itemInputCounts(),
+                    entry.recipe().itemInputActions(),
+                    entry.recipe().fluidInputsView(),
+                    ingredientTails));
+        }
+        Map<CompactShapeKey, Boolean> shapes = new HashMap<>();
+        IdentityHashMap<List<Ingredient>, List<String>> unsupported =
+                new IdentityHashMap<>();
+        boolean chemicalMap = ModProcessingMachines.CHEMICAL_HOST_MACHINES.stream()
+                .map(ProcessingMachineSpec::requireRecipeMap)
+                .anyMatch(candidate -> candidate == map);
+        boolean dedicatedChemicalMap = ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
+                .map(ProcessingMachineSpec::requireRecipeMap)
+                .anyMatch(candidate -> candidate == map);
+        for (CompactRecipeFamilyProvider.Snapshot snapshot : snapshots) {
+            int count = snapshot.logicalRecipeCount();
+            for (int index = 0; index < count; index++) {
+                CompactGTRecipeFamilyDefinition.Relation relation =
+                        snapshot.logicalRelation(index);
+                ResourceLocation id = relation.stableId();
+                if (!id.equals(snapshot.recipeIds().get(index))) {
+                    throw recipeValidationError(
+                            id,
+                            "Recipe family enumeration identity drifted");
+                }
+                if (!ids.add(id)) {
+                    throw new IllegalArgumentException(
+                            "Duplicate stable recipe id in map " + map.id() + ": "
+                                    + describeLogicalResource(id)
+                                    + ". Compact family expansion must fail before epoch "
+                                    + "publication.");
+                }
+                validateChemicalRecipeId(map, id, chemicalMap, dedicatedChemicalMap);
+                rememberSignature(
+                        map,
+                        signatures,
+                        id,
+                        inputSignature(
+                                relation.itemInputs(),
+                                relation.itemInputCounts(),
+                                relation.itemInputActions(),
+                                relation.fluidInputs(),
+                                ingredientTails));
+                List<String> unsupportedTypes = unsupported.get(relation.itemInputs());
+                if (unsupportedTypes == null) {
+                    unsupportedTypes = ComponentIngredientIndex
+                            .unsupportedIngredientTypes(relation.itemInputs());
+                    unsupported.put(relation.itemInputs(), unsupportedTypes);
+                }
+                if (!unsupportedTypes.isEmpty()) {
+                    throw recipeValidationError(
+                            id,
+                            "Unsupported indexed ingredient types for map "
+                                    + map.id() + ": " + unsupportedTypes);
+                }
+                if (RecipeMap.wouldBeUnindexed(
+                        relation.itemInputs(),
+                        relation.itemInputActions(),
+                        relation.fluidInputs())) {
+                    throw new IllegalArgumentException(
+                            "RecipeMap " + map.id() + " contains unindexed recipe "
+                                    + id
+                                    + "; add an explicit index before publishing "
+                                    + "non-simple ingredients");
+                }
+                validateCompactShape(map, relation, shapes);
+            }
+        }
+    }
+
+    private static void rememberSignature(
+            RecipeMap map,
+            Map<String, ResourceLocation> signatures,
+            ResourceLocation id,
+            String signature) {
+        ResourceLocation previous = signatures.putIfAbsent(signature, id);
+        if (previous != null) {
+            throw new IllegalArgumentException(
+                    "Shadowed input signature in map " + map.id() + ": "
+                            + describeLogicalResource(previous) + " conflicts with "
+                            + describeLogicalResource(id)
+                            + "; signature=" + signature
+                            + ". Change the recipe input or specificity to remove "
+                            + "the conflict.");
+        }
+    }
+
+    private static void validateCompactShape(
+            RecipeMap map,
+            CompactGTRecipeFamilyDefinition.Relation relation,
+            Map<CompactShapeKey, Boolean> shapes) {
+        if (shapes.putIfAbsent(new CompactShapeKey(relation), Boolean.TRUE) != null) {
+            return;
+        }
+        validateTarget(relation.stableId(), map, relation.materialize());
+    }
+
+    private static final class CompactShapeKey {
+        private final int itemInputs;
+        private final int itemOutputs;
+        private final List<?> fluidInputs;
+        private final List<?> fluidOutputs;
+        private final List<?> chances;
+        private final List<?> counts;
+        private final List<?> actions;
+        private final long eut;
+        private final int duration;
+        private final long specialValue;
+        private final int hash;
+
+        private CompactShapeKey(CompactGTRecipeFamilyDefinition.Relation relation) {
+            itemInputs = relation.itemInputs().size();
+            itemOutputs = relation.itemOutputs().size();
+            fluidInputs = relation.fluidInputs();
+            fluidOutputs = relation.fluidOutputs();
+            chances = relation.outputChances();
+            counts = relation.itemInputCounts();
+            actions = relation.itemInputActions();
+            eut = relation.eut();
+            duration = relation.duration();
+            specialValue = relation.specialValue();
+            hash = Objects.hash(
+                    itemInputs,
+                    itemOutputs,
+                    System.identityHashCode(fluidInputs),
+                    System.identityHashCode(fluidOutputs),
+                    System.identityHashCode(chances),
+                    System.identityHashCode(counts),
+                    System.identityHashCode(actions),
+                    eut,
+                    duration,
+                    specialValue);
+        }
+
+        @Override
+        public int hashCode() {
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (!(other instanceof CompactShapeKey key)) {
+                return false;
+            }
+            return itemInputs == key.itemInputs
+                    && itemOutputs == key.itemOutputs
+                    && fluidInputs == key.fluidInputs
+                    && fluidOutputs == key.fluidOutputs
+                    && chances == key.chances
+                    && counts == key.counts
+                    && actions == key.actions
+                    && eut == key.eut
+                    && duration == key.duration
+                    && specialValue == key.specialValue;
         }
     }
 

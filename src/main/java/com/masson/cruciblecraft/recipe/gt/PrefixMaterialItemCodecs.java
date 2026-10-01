@@ -271,7 +271,7 @@ public final class PrefixMaterialItemCodecs {
     }
 
     public static Ingredient tightenLiveIngredient(Ingredient ingredient) {
-        if (ingredient == null || ingredient.isEmpty()) {
+        if (ingredient == null || ingredient.isEmpty() || ingredient.isSimple()) {
             return ingredient;
         }
         if (ComponentIngredientIndex.extract(ingredient).supported()) {

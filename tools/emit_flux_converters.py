@@ -42,10 +42,10 @@ MATERIALS = (
         "engine_host": "cruciblecraft:steel_galvanized_electric_engine",
         "motor_host": "cruciblecraft:steel_galvanized_electric_motor",
         "magnet_host": "cruciblecraft:steel_galvanized_electromagnet",
-        "laser_host": "cruciblecraft:steel_galvanized_electric_co2_laser",
+        "laser_host": "cruciblecraft:steel_galvanized_laser_electric",
         "dynamo_host": "cruciblecraft:bronze_dynamo",
-        "magnet_live": False,
-        "laser_live": False,
+        "magnet_live": True,
+        "laser_live": True,
     },
     {
         "tier": 2,
@@ -60,10 +60,10 @@ MATERIALS = (
         "engine_host": "cruciblecraft:aluminium_electric_engine",
         "motor_host": "cruciblecraft:aluminium_electric_motor",
         "magnet_host": "cruciblecraft:aluminium_electromagnet",
-        "laser_host": "cruciblecraft:aluminium_electric_co2_laser",
+        "laser_host": "cruciblecraft:aluminium_laser_electric",
         "dynamo_host": "cruciblecraft:aluminium_dynamo",
-        "magnet_live": False,
-        "laser_live": False,
+        "magnet_live": True,
+        "laser_live": True,
     },
     {
         "tier": 3,
@@ -78,10 +78,10 @@ MATERIALS = (
         "engine_host": "cruciblecraft:stainless_steel_electric_engine",
         "motor_host": "cruciblecraft:stainless_steel_electric_motor",
         "magnet_host": "cruciblecraft:stainless_steel_electromagnet",
-        "laser_host": "cruciblecraft:stainless_steel_electric_co2_laser",
+        "laser_host": "cruciblecraft:stainless_steel_laser_electric",
         "dynamo_host": "cruciblecraft:stainless_steel_dynamo",
-        "magnet_live": False,
-        "laser_live": False,
+        "magnet_live": True,
+        "laser_live": True,
     },
     {
         "tier": 4,
@@ -96,10 +96,10 @@ MATERIALS = (
         "engine_host": "cruciblecraft:chromium_electric_engine",
         "motor_host": "cruciblecraft:chromium_electric_motor",
         "magnet_host": "cruciblecraft:chromium_electromagnet",
-        "laser_host": "cruciblecraft:chromium_electric_co2_laser",
+        "laser_host": "cruciblecraft:chromium_laser_electric",
         "dynamo_host": "cruciblecraft:chromium_dynamo",
-        "magnet_live": False,
-        "laser_live": False,
+        "magnet_live": True,
+        "laser_live": True,
     },
     {
         "tier": 5,
@@ -114,10 +114,10 @@ MATERIALS = (
         "engine_host": "cruciblecraft:titanium_electric_engine",
         "motor_host": "cruciblecraft:titanium_electric_motor",
         "magnet_host": "cruciblecraft:titanium_electromagnet",
-        "laser_host": "cruciblecraft:titanium_electric_co2_laser",
+        "laser_host": "cruciblecraft:titanium_laser_electric",
         "dynamo_host": "cruciblecraft:titanium_dynamo",
-        "magnet_live": False,
-        "laser_live": False,
+        "magnet_live": True,
+        "laser_live": True,
     },
 )
 KINDS = (
@@ -199,10 +199,7 @@ KINDS = (
         "part_letter": "S",
         "gt6_part": "OP.stickLong",
         "gt6_host": "aRegistry.getItem(1003{tier})",
-        "recipe_live": False,
-        "blocked_reason": (
-            "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
-        ),
+        "recipe_live": True,
     },
     {
         "kind": "laser",
@@ -222,10 +219,7 @@ KINDS = (
         "part_letter": "P",
         "gt6_part": "OP.plate",
         "gt6_host": "aRegistry.getItem(1010{tier})",
-        "recipe_live": False,
-        "blocked_reason": (
-            "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
-        ),
+        "recipe_live": True,
     },
     {
         "kind": "dynamo",
@@ -298,6 +292,23 @@ def copy_png(src: Path, dest: Path) -> None:
         raise SystemExit(f"missing gregtech6_w texture {src}")
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dest)
+
+
+def current_workflow() -> str:
+    path = (
+        ROOT
+        / "tools"
+        / "capabilities"
+        / "energy"
+        / "flux-converters"
+        / "capability.json"
+    )
+    if not path.is_file():
+        return "paused"
+    workflow = io.load_json(path).get("workflow")
+    if workflow in {"active", "paused", "accepted"}:
+        return workflow
+    return "paused"
 
 
 def unique_active_wave() -> str | None:
@@ -524,7 +535,7 @@ def write_wave() -> None:
             "complete_family_count": 0,
             "generated_by": "runtime/flux-converters implementation",
             "next_unassigned": True,
-            "remaining_recipe_gap": 10,
+            "remaining_recipe_gap": 0,
             "schema_version": 1,
             "source_revision": REVISION,
             "status": "WAVE_READY",
@@ -540,7 +551,7 @@ def write_wave() -> None:
             "generated_by": "runtime/flux-converters implementation",
             "leftover_later_count": 0,
             "partial_family_count": 0,
-            "remaining_recipe_gap": 10,
+            "remaining_recipe_gap": 0,
             "schema_version": 1,
             "source_revision": REVISION,
             "status": "CENSUS_DELTA_READY",
@@ -555,14 +566,14 @@ def write_wave() -> None:
                 "acquisition": "survival_recipes",
                 "completion_delta": 0,
                 "flux_identity_count": 30,
-                "generated_recipe_count": 20,
-                "blocked_recipe_count": 10,
+                "generated_recipe_count": 30,
+                "blocked_recipe_count": 0,
                 "leftover_later_count": 0,
                 "owns_families": 0,
                 "flux_converters_status": "runtime_ready",
             },
             "generated_by": "runtime/flux-converters implementation",
-            "generated_recipe_count": 20,
+            "generated_recipe_count": 30,
             "next_unassigned": True,
             "owns_families": 0,
             "production_lock": None,
@@ -598,9 +609,11 @@ def write_capability() -> None:
             "slug": CAPABILITY_SLUG,
             "title": "Flux FE to GU Converters",
             "maturity": "runtime_ready",
-            "workflow": "paused",
+            "workflow": current_workflow(),
             "owned_paths": [
                 "docs/history/card-plans/prep/通量转换器详细计划.md",
+                "docs/history/card-plans/active/通量转换器详细计划.md",
+                "docs/history/card-plans/closed/通量转换器详细计划.md",
                 "src/main/java/com/masson/cruciblecraft/energy/flux/**",
                 "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
                 "src/test/java/com/masson/cruciblecraft/energy/flux/**",
@@ -649,10 +662,10 @@ def write_capability() -> None:
                 }
             ],
             "note": (
-                "Thirty GT6 flux converters. Paused so machines/distillation-tower "
-                "can occupy unique-active. Magnet and laser recipes stay "
-                "explicitly_blocked until electromagnets and electric CO2 lasers "
-                "are live. survival_access is unreviewed."
+                "Thirty GT6 flux converters. Magnet and laser wrap recipes use "
+                "the live electromagnet and laser_electric hosts (GT6 10031-10035 "
+                "and 10101-10105). RF has no CC EnergyType; FE is the platform "
+                "translation. survival_access is unreviewed."
             ),
             "survival_access": "unreviewed",
         },

@@ -77,10 +77,11 @@ class PolicyDeltaTest(unittest.TestCase):
         self.assertEqual({"old": None, "new": 1}, extra["relation_count"])
         self.assertEqual(["cruciblecraft:gt6/ddd"], extra["added_stable_ids"])
 
-    def test_since_default_grid_restore_thirty_groups_were_added(self) -> None:
+    def test_since_default_grid_restore_forty_groups_were_added(self) -> None:
+        """Ten of these are the identity_ready groups published after the thirty."""
         old = policy_delta.load_policies(policy_delta.Tree(revision="abdb2bb61"))
         new = policy_delta.load_policies(policy_delta.Tree(worktree=True))
-        self.assertEqual(30, len(set(new) - set(old)))
+        self.assertEqual(40, len(set(new) - set(old)))
         self.assertEqual(set(), set(old) - set(new))
 
     def test_loom_drift_fix_removes_one_stable_id(self) -> None:

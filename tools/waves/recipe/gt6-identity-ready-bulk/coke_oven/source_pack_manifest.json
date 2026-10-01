@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/coke_oven/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "afd3323482f979fcf51e5f4c9f69e2f485d99528e5c364fe21e18723687be0de"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-identity-ready-bulk/coke_oven/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "0e5cd8520262e6c9dee48f49e3dd5b11c7470bd544c18c10ceb44b72cc13793e"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "coke-oven/identity-ready",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}
