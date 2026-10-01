@@ -1,10 +1,10 @@
 {
-  "family_id": "gt.recipe.sifter#bulk_0017",
+  "family_id": "gt.recipe.sifter#bulk_0023",
   "publication_group": "cruciblecraft:sifter/prefix-regular",
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 16,
+      "duration": 144,
       "eut": 16,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -18,42 +18,43 @@
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "certus_quartz"
-          },
-          "items": "cruciblecraft:tiny_washed_crushed_ore",
-          "type": "neoforge:components"
+          "item": "minecraft:coarse_dirt"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:charged_certus_quartz/gem"
+          "id": "cruciblecraft:sand/dust"
         },
         {
           "count": 1,
-          "id": "cruciblecraft:certus_quartz/gem"
+          "id": "cruciblecraft:stone/dust"
         },
         {
           "count": 1,
-          "id": "cruciblecraft:certus_quartz/tiny_dust"
+          "id": "cruciblecraft:clay_brown/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:brown/clay_contains_small_amounts_of_lithium"
         }
       ],
       "output_chances": [
-        100,
-        800,
-        5000
+        4500,
+        3000,
+        250,
+        100
       ],
       "provenance": {
         "evidence_hashes": [
-          "ddc234ec67b073148dfbcd2b90b75d84b70900f9d024c11e550eb59e0306d9df"
+          "2003489a09ca91486b8e2cf9768c4019137188d56a164b40261a55de761c9270"
         ],
-        "selected_source_recipe": "gt.recipe.sifter#bulk_0017",
+        "selected_source_recipe": "gt.recipe.sifter#bulk_0023",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/e739ef8a529459d3"
+      "stable_id": "cruciblecraft:gt6/f08860ab60820872"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

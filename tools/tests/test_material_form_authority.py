@@ -277,11 +277,66 @@ class MaterialFormAuthorityTest(unittest.TestCase):
             (row["material"], row["form"]) for row in census["openable"]
         }
         self.assertTrue(pairs.isdisjoint(openable))
-        self.assertEqual(
-            container_pairs
-            | {(material, "tiny_dust") for material, _form in pairs},
-            openable,
+        byproduct = {(material, "tiny_dust") for material, _form in pairs}
+        self.assertTrue(container_pairs <= openable)
+        self.assertTrue(byproduct.isdisjoint(openable))
+        self.assertEqual(container_pairs, openable)
+
+    def test_sifter_byproduct_tiny_dust_lands_the_census_remainder(self) -> None:
+        source = authority.source_by_id(
+            "sifter_byproduct_tiny_dust_required_forms",
+            document=self.document,
         )
+        self.assertEqual("recipe/sifter-byproduct-tiny-dust", source["owner"])
+        self.assertEqual([], source["extra_factual_forms"])
+        self.assertIn(
+            "sifter_byproduct_tiny_dust_required_forms",
+            self.document["java_overlay_sections"],
+        )
+        required = _load_json(
+            ROOT
+            / "tools/waves/recipe/sifter-byproduct-tiny-dust/required_forms.json"
+        )
+        pairs = {
+            (material, form)
+            for material, forms in required["required_forms"].items()
+            for form in forms
+        }
+        self.assertEqual(125, len(pairs))
+        self.assertEqual({"tiny_dust"}, {form for _, form in pairs})
+        self.assertEqual(500, len(required["unlocked_source_row_sha256"]))
+        self.assertEqual("LANDED_SIFTER_BYPRODUCT_TINY_DUST", required["status"])
+        washed = _load_json(
+            ROOT / "tools/waves/registry/census-form-open/required_forms.json"
+        )
+        self.assertEqual(
+            set(washed["required_forms"]),
+            set(required["required_forms"]),
+        )
+        gate = vr.gate_document()
+        self.assertEqual(
+            required["required_forms"],
+            gate["sifter_byproduct_tiny_dust_required_forms"],
+        )
+        for material, form in pairs:
+            self.assertIn(form, gate["materials"][material])
+        census = _load_json(
+            ROOT / "tools/waves/prep/material-form-demand-census/census.json"
+        )
+        openable = {
+            (row["material"], row["form"]) for row in census["openable"]
+        }
+        self.assertTrue(pairs.isdisjoint(openable))
+        proof = _load_json(
+            ROOT
+            / "tools/waves/recipe/gt6-prefix-regular-bulk/sifter/coverage_proof.json"
+        )
+        blocked = _load_json(
+            ROOT / "tools/waves/recipe/gt6-prefix-regular-bulk/sifter/blocked.json"
+        )
+        self.assertEqual([], blocked["rows"])
+        self.assertEqual(blocked["source_rows"], proof["published_rows"])
+        self.assertEqual(2877, proof["published_rows"])
 
     def test_authored_recipe_material_forms_are_gated_or_aliased(self) -> None:
         missing = _ungated_authored_material_forms()

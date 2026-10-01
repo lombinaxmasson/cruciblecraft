@@ -11,15 +11,21 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.gametest.support.GameTestFailures;
 import com.masson.cruciblecraft.gametest.support.GameTestRequirements;
+import com.masson.cruciblecraft.gametest.support.PublicationPolicyCounts;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
+import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -80,6 +86,46 @@ public final class Gt6PrefixRegularBulkGameTests {
         SampleRun run = new SampleRun(load());
         helper.onEachTick(() -> run.tick(helper));
         helper.succeedWhen(() -> helper.assertTrue(run.finished(), run.status()));
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 100)
+    public static void sifterByproductTinyDustMatches(GameTestHelper helper) {
+        ResourceLocation group = id("cruciblecraft:sifter/prefix-regular");
+        RecipeMap recipes = requireMap(helper, "cruciblecraft:sifter");
+        RecipeMap.RecipeFamily family = recipes.family(
+                CompactRecipeFamilyProvider.familyId(recipes.id(), group)).orElse(null);
+        int expected = PublicationPolicyCounts.relationCount(helper, group);
+        helper.assertTrue(
+                family != null && family.logicalRecipeCount() == expected && expected > 2377,
+                "sifter publication rows != policy " + expected);
+        ItemStack input = GtHostedOreBlock.item(
+                ModBlocks.GT_HOSTED_ORE.get().defaultBlockState()
+                        .setValue(GtHostedOreBlock.HOST, OreStoneHost.GRAVEL),
+                "anti_silver");
+        RecipeMap.Match match = recipes.findMatch(new GTRecipeQuery(List.of(input), List.of()))
+                .orElse(null);
+        helper.assertTrue(match != null, "anti-silver gravel ore did not match a sifter row");
+        ItemStack washed = MaterialLookup.stack(
+                "anti_silver", MaterialPrefixes.WASHED_CRUSHED_ORE);
+        ItemStack tiny = MaterialLookup.stack("anti_silver", MaterialPrefixes.TINY_DUST);
+        GTRecipe recipe = match.recipe();
+        int washedCount = 0;
+        int tinyCount = 0;
+        for (int index = 0; index < recipe.itemOutputs().size(); index++) {
+            ItemStack stack = recipe.itemOutputs().get(index);
+            int chance = recipe.outputChances().get(index);
+            if (ItemStack.isSameItemSameComponents(stack, washed)
+                    && chance == GTRecipe.GUARANTEED_CHANCE) {
+                washedCount += stack.getCount();
+            }
+            if (ItemStack.isSameItemSameComponents(stack, tiny)) {
+                tinyCount += stack.getCount();
+            }
+        }
+        helper.assertTrue(
+                washedCount == 2 && tinyCount == 3,
+                "anti-silver sifter outputs washed=" + washedCount + " tiny=" + tinyCount);
+        helper.succeed();
     }
 
     private static RecipeMap requireMap(GameTestHelper helper, String target) {
