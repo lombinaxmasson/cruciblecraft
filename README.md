@@ -137,4 +137,4 @@ python tools/verify.py integration --profile capability-runtime
 
 源码和项目自有资源用 [LGPL-3.0-or-later](LICENSE)。GT6 来源数据、第三方资产、模板各自的许可证列在 [CREDITS.md](CREDITS.md) 和 [NOTICE](NOTICE) 里。GT6 的默认资产在上游是 CC0 1.0；本项目不使用 GregTech 的 logo（CC-BY-NC-4.0）。
 
-EMI、Jade 和 KubeJS 都是可选的集成，不会被捆绑进包里。
+EMI、Jade、Reliable EMI（REMI）和 KubeJS 都是可选的集成，不会被捆绑进包里。

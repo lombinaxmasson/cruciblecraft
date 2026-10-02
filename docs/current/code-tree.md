@@ -44,7 +44,7 @@ Cursor 的 `.vscode/settings.json` 会把运行目录和缓存从资源管理器
 | Java / tick 权威 | [GregTech6/gregtech6](https://github.com/GregTech6/gregtech6) | `3703e40308c8c030763fd6297dea8b210d2a77b1` | `gt6_code/gregtech6` |
 | 贴图 | [wolfram0108/gregtech6_w](https://github.com/wolfram0108/gregtech6_w) | `936083c247a70b1bbc5f19996a83d75c27d196e2` | `gt6_referencable_port_code/gregtech6_w` |
 | 管道命名与几何（不是运行时依赖） | [GregTechCEu/GregTech-Modern](https://github.com/GregTechCEu/GregTech-Modern) | `de5d2c4a4c863b94a10bfb5d0839df2de8246628` | `gtceu_code` |
-| GT6U（不在 v1 范围） | [GregTech6-Unofficial/GregTech6-Unofficial](https://github.com/GregTech6-Unofficial/GregTech6-Unofficial) | `4972d0468ee2ea0e896af1e4afe4018d4e2294e6` | `gt6u_code` |
+| GT6U（不在当前范围） | [GregTech6-Unofficial/GregTech6-Unofficial](https://github.com/GregTech6-Unofficial/GregTech6-Unofficial) | `4972d0468ee2ea0e896af1e4afe4018d4e2294e6` | `gt6u_code` |
 | TFRU 附加。不是 GT6 权威 | [kuzuanpa/kTFRUAddon](https://github.com/kuzuanpa/kTFRUAddon) | `75cebb71abb9b5ac5ceb447e3324bd161b6fa7ab` | `ktfruaddon/kTFRUAddon` |
 | TFRU 的 Waila 表面 | [kuzuanpa/gregtech6-TFRU](https://github.com/kuzuanpa/gregtech6-TFRU) | `35402b05b35d4c7e666233cb37f99d305eeffc8b` | `gt6_tfru/gregtech6-TFRU` |
 
