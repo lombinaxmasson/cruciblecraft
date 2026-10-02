@@ -107,4 +107,4 @@
 - 可选依赖：缺 EMI / Jade / REMI / KubeJS 可启动；存在时客户端加载 EMI / Jade；有 REMI 时按材料前缀、工具种类、加工机 / 转换器 kind，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具折叠物品列表；
 - 不支持：对外公开分发、旧档升级、GT6 全量配方、G10 / GT6U；
 - 大型热交换器 / 蒸汽涡轮 / 聚变不当成可玩终局；
-- 反馈：小群里直接说，或 https://github.com/icodestuljh/cruciblecraft/issues（附上 **`0.1.0-test.20260927.1`** + 复现步骤 + 日志 / 崩溃报告）。
+- 反馈：小群里直接说，或 https://github.com/lombinaxmasson/cruciblecraft/issues（附上 **`0.1.0-test.20260927.1`** + 复现步骤 + 日志 / 崩溃报告）。

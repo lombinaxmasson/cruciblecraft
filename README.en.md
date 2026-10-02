@@ -15,7 +15,7 @@ Play notes: [player guide](docs/current/player-guide.md) (new worlds).
 - [GT6 full-coverage assessment](docs/current/gt6-full-coverage.md)
 - [Unimplemented gaps](docs/current/unimplemented-gap.md)
 - [Roadmap](docs/current/roadmap.md)
-- [Issue tracker](https://github.com/icodestuljh/cruciblecraft/issues)
+- [Issue tracker](https://github.com/lombinaxmasson/cruciblecraft/issues)
 
 ## Screenshots
 
