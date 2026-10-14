@@ -4,13 +4,22 @@
 
 本项目是把 GregTech 6 移植到 Minecraft 1.21.1 / NeoForge 上的一个尝试：材料、机器、配方、能源、物流、世界生成都照着钉死的上游版本走数据驱动的移植流程，目标是完整覆盖，而不是挑几个系统做个演示。
 
-当前版本是开发快照 `0.1.0-test.20260927.1`，以源码仓库的形式发布。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。
+**本项目已于 2026 年 10 月收尾，不再主动开发。** 最后一个版本是开发快照 `0.1.0-test.20260927.1`，以源码仓库的形式留存，没有发布过正式版。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。现已搬到[Saltnya的repo](https://github.com/SaltNya/GregTech6)继续开发社区版移植，勿念。
 
 - [项目状态](docs/current/project-status.md)
 - [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)
 - [未实现与缺口](docs/current/unimplemented-gap.md)
 - [总体规划](docs/current/roadmap.md)
-- [问题反馈](https://github.com/lombinaxmasson/cruciblecraft/issues)
+- [问题反馈](https://github.com/lombinaxmasson/cruciblecraft/issues)（入口保留，不保证回复）
+
+## 收尾时的状态
+
+- 135 项运行时能力已经关闭（`runtime_ready` accepted），收尾时没有进行中的卡。完整列表在[项目状态](docs/current/project-status.md)。
+- 还有 14 份 prep 计划没有开工，包括 GT6 作物与食物、PUV2+ / OMEGA 科技线、大型洗浴槽、印刷机、GT Center、地牢、行星岩石，以及几张批量移植的总计划。清单在项目状态的 Prep 一节。
+- 能力关闭不等于玩家在生存里拿得到。获得性单独记账，缺口和阻塞项留在[未实现与缺口](docs/current/unimplemented-gap.md)和[已阻塞项](docs/current/blocked.md)里；对照 GT6 的完整覆盖情况看 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)。
+- 旧存档没有做 DataFixer，换版本必须开新档。
+
+
 
 ## 目前进了运行时的东西
 
@@ -30,7 +39,7 @@ GT6 是这个项目的主要来源，也是完整移植的目标。Minecraft 和
 
 ## 构建与运行
 
-需要 Java 21、Minecraft 1.21.1、NeoForge 21.1.243。内存建议留够 16 GiB 以上，第一次进世界要等它把东西都加载完。材料身份和铸造方块刚改过一版，建议开新档。
+需要 Java 21、Minecraft 1.21.1、NeoForge 21.1.243。内存建议留够 16 GiB 以上，第一次进世界要等它把东西都加载完。请开新档。
 
 全量移植的对照和当前进度见 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)。
 
@@ -131,7 +140,7 @@ python tools/verify.py integration --profile capability-runtime
 - [工具链说明](tools/README.md)
 - [完整文档索引](docs/README.md)
 
-报 issue 的时候带上版本号、复现步骤和日志。缺的零件按 GT6 里对应的对象补齐，不会拿别的东西顶替充数。
+报 issue 的时候带上版本号、复现步骤和日志。
 
 ## 许可证
 

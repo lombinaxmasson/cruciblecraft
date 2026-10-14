@@ -8,18 +8,35 @@ data-driven pipeline. Unofficial. The target is full coverage; progress is
 closed capabilities, and remaining gaps stay on the ledger until they are
 done for real.
 
-Current version `0.1.0-test.20260927.1` — source tree, development snapshot.
-Play notes: [player guide](docs/current/player-guide.md) (new worlds).
+**The project was wrapped up in October 2026 and is no longer under active
+development.** The last version is the development snapshot
+`0.1.0-test.20260927.1`, kept as a source tree; there was never a formal
+release. Play notes: [player guide](docs/current/player-guide.md) (new worlds).
+Community development continues at
+[SaltNya/GregTech6](https://github.com/SaltNya/GregTech6).
 
 - [Project status](docs/current/project-status.md)
 - [GT6 full-coverage assessment](docs/current/gt6-full-coverage.md)
 - [Unimplemented gaps](docs/current/unimplemented-gap.md)
 - [Roadmap](docs/current/roadmap.md)
 - [Issue tracker](https://github.com/lombinaxmasson/cruciblecraft/issues)
+  (left open; replies are not guaranteed)
 
-## Screenshots
+## State at wrap-up
 
-> Screenshots and gameplay demonstrations will be added here.
+- 135 runtime capabilities are closed (`runtime_ready` accepted). No card was
+  in progress at wrap-up. The full list is in
+  [project status](docs/current/project-status.md).
+- 14 prep plans were never started, including GT6 crops and food, the
+  PUV2+ / OMEGA tech line, the large bath, the printer, GT Center, dungeons,
+  planet rocks, and a few bulk-port umbrella plans. They are listed under Prep
+  in project status.
+- A closed capability does not mean players can obtain it in survival.
+  Obtainability is tracked separately; gaps and blockers stay in
+  [unimplemented-gap.md](docs/current/unimplemented-gap.md) and
+  [blocked.md](docs/current/blocked.md). For coverage against GT6 as a whole,
+  see the [GT6 full-coverage assessment](docs/current/gt6-full-coverage.md).
+- There is no DataFixer. A new version always needs a new world.
 
 ## In the tree
 
@@ -59,12 +76,7 @@ third-party attribution are listed in [CREDITS.md](CREDITS.md) and
 ## Build and run
 
 Java 21, Minecraft 1.21.1, NeoForge 21.1.243. Plan on ≥16 GiB; the first
-world load takes a while. Material identity and foundry blocks just moved:
-start a new save.
-
-A clone builds. Replaying GregTech 6 or importing art needs the optional
-checkouts in the [code tree](docs/current/code-tree.md#参考源). Ordinary
-runtime work does not.
+world load takes a while. Start a new save.
 
 ```powershell
 .\gradlew.bat build
@@ -190,8 +202,7 @@ For development and contributions:
 - [Tooling guide](tools/README.md)
 - [Complete documentation index](docs/README.md)
 
-Issues: version, steps, logs. Missing parts get the real GT6 object, not a
-stand-in.
+Issues: version, steps, logs.
 
 ## License
 
